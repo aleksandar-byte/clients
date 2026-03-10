@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QC Report — stg-buforddentist-stg.kinsta.cloud</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #1f2937; background: #f9fafb; line-height: 1.5; }
+  @media print { body { background: #fff; } .no-print { display: none !important; } .cluster-checks { display: block !important; } .check-findings { display: block !important; } .nav-bar { display: none !important; } }
+
+  .nav-bar { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid #e5e7eb; padding: 8px 20px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .nav-bar .nav-title { font-weight: 700; font-size: 14px; color: #374151; margin-right: 12px; white-space: nowrap; }
+  .nav-link { font-size: 12px; color: #6b7280; text-decoration: none; padding: 4px 10px; border-radius: 4px; transition: all 0.15s; white-space: nowrap; }
+  .nav-link:hover { background: #f3f4f6; color: #1f2937; }
+  .nav-actions { margin-left: auto; display: flex; gap: 6px; }
+  .btn { padding: 5px 14px; border-radius: 6px; font-size: 12px; font-weight: 500; border: 1px solid #d1d5db; background: #fff; color: #374151; cursor: pointer; transition: all 0.15s; }
+  .btn:hover { background: #f3f4f6; }
+  .btn-primary { background: #2563eb; color: #fff; border-color: #2563eb; }
+  .btn-primary:hover { background: #1d4ed8; }
+
+  .content { max-width: 920px; margin: 0 auto; padding: 24px 20px 60px; }
+  .report-header { margin-bottom: 24px; }
+  .report-header h1 { font-size: 22px; font-weight: 700; }
+  .report-header .subtitle { color: #6b7280; font-size: 13px; margin-top: 2px; }
+
+  .summary-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 28px; }
+  .summary-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px; text-align: center; }
+  .summary-card .count { font-size: 26px; font-weight: 700; }
+  .summary-card .label { font-size: 11px; color: #6b7280; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .cluster { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+  .cluster-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; cursor: pointer; user-select: none; transition: background 0.15s; }
+  .cluster-header:hover { background: #f9fafb; }
+  .cluster-title { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #374151; }
+  .cluster-badges { display: flex; gap: 6px; align-items: center; }
+  .cluster-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+  .cluster-chevron { color: #9ca3af; font-size: 18px; transition: transform 0.2s; margin-left: 8px; }
+  .cluster-chevron.open { transform: rotate(90deg); }
+  .cluster-checks { padding: 0 12px 12px; }
+  .cluster-checks.collapsed { display: none; }
+
+  .check-card { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
+  .check-header { display: flex; align-items: center; gap: 10px; padding: 12px 14px; cursor: pointer; user-select: none; transition: background 0.15s; }
+  .check-header:hover { background: #f9fafb; }
+  .status-icon { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .check-info { flex: 1; min-width: 0; }
+  .check-name { font-size: 14px; font-weight: 600; color: #1f2937; }
+  .badge { display: inline-block; padding: 1px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; color: #fff; letter-spacing: 0.3px; margin-left: 8px; vertical-align: middle; }
+  .override-badge { background: #3b82f6; font-size: 9px; padding: 1px 6px; }
+  .check-summary { font-size: 12px; color: #6b7280; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .check-note { font-size: 12px; color: #3b82f6; margin-top: 3px; display: flex; align-items: center; gap: 4px; }
+  .check-note::before { content: "💬"; font-size: 10px; }
+  .check-chevron { color: #9ca3af; font-size: 16px; flex-shrink: 0; transition: transform 0.2s; }
+  .check-chevron.open { transform: rotate(90deg); }
+  .check-findings { padding: 0 14px 14px; border-top: 1px solid #f3f4f6; }
+  .check-findings.collapsed { display: none; }
+
+  .findings-list { margin: 8px 0 0; padding-left: 18px; color: #374151; font-size: 12px; line-height: 1.7; }
+  .findings-list li { margin-bottom: 2px; }
+  .finding-url { font-size: 11px; }
+  .finding-url a { color: #2563eb; text-decoration: none; word-break: break-all; }
+  .finding-url a:hover { text-decoration: underline; }
+  .finding-detail { color: #9ca3af; font-size: 11px; margin-left: 4px; }
+  .finding-detail a { color: #2563eb; text-decoration: none; word-break: break-all; }
+  .finding-detail a:hover { text-decoration: underline; }
+  .findings-list a { color: #2563eb; text-decoration: none; }
+  .findings-list a:hover { text-decoration: underline; }
+  .manual-note { margin-top: 6px; padding: 6px 10px; background: #eff6ff; border-radius: 4px; font-size: 12px; color: #1e40af; }
+
+  .report-footer { margin-top: 36px; padding-top: 14px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #9ca3af; text-align: center; }
+</style>
+</head>
+<body>
+
+<div class="nav-bar no-print">
+  <span class="nav-title">QC Report</span>
+  <a href="#cluster-0" class="nav-link">Technical Foundation</a><a href="#cluster-1" class="nav-link">Meta &amp; Content</a><a href="#cluster-2" class="nav-link">Schema Markup</a><a href="#cluster-3" class="nav-link">Structure &amp; Navigation</a><a href="#cluster-4" class="nav-link">Manual / Visual QC</a>
+  <div class="nav-actions">
+    <button class="btn" onclick="toggleAll(true)">Expand All</button>
+    <button class="btn" onclick="toggleAll(false)">Collapse All</button>
+    <button class="btn btn-primary" onclick="window.print()">Print / PDF</button>
+  </div>
+</div>
+
+<div class="content">
+  <div class="report-header">
+    <h1>Pre-Launch QC Report</h1>
+    <p class="subtitle">stg-buforddentist-stg.kinsta.cloud &mdash; March 10, 2026</p>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-card"><div class="count" style="color:#16a34a">8</div><div class="label">Passed</div></div>
+    <div class="summary-card"><div class="count" style="color:#d97706">1</div><div class="label">Warnings</div></div>
+    <div class="summary-card"><div class="count" style="color:#dc2626">8</div><div class="label">Failed</div></div>
+    <div class="summary-card"><div class="count" style="color:#ef4444">0</div><div class="label">Errors</div></div>
+    <div class="summary-card"><div class="count" style="color:#6b7280">4</div><div class="label">Skipped</div></div>
+  </div>
+
+  
+  <div class="cluster" id="cluster-0">
+    <div class="cluster-header" onclick="toggleCluster(0)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="cluster-title">Technical Foundation</span>
+        <div class="cluster-badges">
+          <span class="cluster-badge" style="background:#dcfce7;color:#16a34a">3 passed</span>
+          
+          <span class="cluster-badge" style="background:#fee2e2;color:#dc2626">1 failed</span>
+        </div>
+      </div>
+      <span class="cluster-chevron open" id="chevron-cluster-0">▶</span>
+    </div>
+    <div class="cluster-checks" id="checks-cluster-0">
+      
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(0,0)" style="">
+          <div class="status-icon" style="background:#16a34a">✓</div>
+          <div class="check-info">
+            <div class="check-name">
+              Robots.txt
+              <span class="badge" style="background:#16a34a">PASS</span>
+              
+            </div>
+            <div class="check-summary">robots.txt is properly configured</div>
+            
+          </div>
+          <span class="check-chevron " id="chevron-0-0">▶</span>
+        </div>
+        
+        <div class="check-findings collapsed" id="findings-0-0">
+          
+          <ul class="findings-list"><li>robots.txt content<br><span class="finding-detail"># Allow Google Ads crawlers
+User-agent: AdsBot-Google
+Disallow:
+
+User-agent: AdsBot-Google-Mobile
+Disallow:
+
+
+# Default WP rules
+user-agent: *
+disallow: /wp-admin/
+allow: /wp-admin/admin-ajax.php
+
+# Block RSS feeds
+user-agent: *
+disallow: /feed/
+disallow: */feed
+disallow: */feed$
+disallow: /feed/$
+disallow: /comments/feed
+disallow: /?feed=
+disallow: /wp-feed
+
+# Link to your sitemap
+Sitemap: <a href="https://stg-buforddentist-stg.kinsta.cloud/sitemaps.xml" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/sitemaps.xml</a></span></li></ul>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(0,1)" style="">
+          <div class="status-icon" style="background:#16a34a">✓</div>
+          <div class="check-info">
+            <div class="check-name">
+              Sitemap.xml
+              <span class="badge" style="background:#16a34a">PASS</span>
+              
+            </div>
+            <div class="check-summary">Sitemap.xml is valid with 2 entries</div>
+            
+          </div>
+          <span class="check-chevron " id="chevron-0-1">▶</span>
+        </div>
+        
+        <div class="check-findings collapsed" id="findings-0-1">
+          
+          <ul class="findings-list"><li>Sitemap index contains 2 child sitemaps</li><li>post-sitemap1.xml: 158 URLs with lastmod, newest 2026-03-02 (7 days ago)</li><li>page-sitemap1.xml: 66 URLs with lastmod, newest 2026-03-10 (today)</li><li>Most recent lastmod: 2026-03-10 (today)</li><li>Oldest lastmod: 2024-12-12 (1 year ago)</li><li>226 URL(s) have lastmod dates</li></ul>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(0,2)" style="">
+          <div class="status-icon" style="background:#16a34a">✓</div>
+          <div class="check-info">
+            <div class="check-name">
+              Trailing Slash &amp; WWW
+              <span class="badge" style="background:#16a34a">PASS</span>
+              
+            </div>
+            <div class="check-summary">Trailing slash &amp; WWW redirects look good</div>
+            
+          </div>
+          <span class="check-chevron " id="chevron-0-2">▶</span>
+        </div>
+        
+        <div class="check-findings collapsed" id="findings-0-2">
+          
+          <ul class="findings-list"><li>with trailing slash: HTTP 200 (no redirect)</li><li>without trailing slash: HTTP 200 (no redirect)</li><li>with www: 301 redirect → <a href="https://stg-buforddentist-stg.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/</a></li><li>Canonical URL: <a href="https://stg-buforddentist-stg.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/</a></li></ul>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(0,3)" style="">
+          <div class="status-icon" style="background:#dc2626">✕</div>
+          <div class="check-info">
+            <div class="check-name">
+              GTM Validation
+              <span class="badge" style="background:#dc2626">FAIL</span>
+              
+            </div>
+            <div class="check-summary">Google Tag Manager not found</div>
+            
+          </div>
+          <span class="check-chevron open" id="chevron-0-3">▶</span>
+        </div>
+        
+        <div class="check-findings " id="findings-0-3">
+          
+          <ul class="findings-list"><li>Google Tag Manager container not found in homepage</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cluster" id="cluster-1">
+    <div class="cluster-header" onclick="toggleCluster(1)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="cluster-title">Meta &amp; Content</span>
+        <div class="cluster-badges">
+          <span class="cluster-badge" style="background:#dcfce7;color:#16a34a">2 passed</span>
+          
+          <span class="cluster-badge" style="background:#fee2e2;color:#dc2626">3 failed</span>
+        </div>
+      </div>
+      <span class="cluster-chevron open" id="chevron-cluster-1">▶</span>
+    </div>
+    <div class="cluster-checks" id="checks-cluster-1">
+      
+      <div class="check-card">
+        <div class="check-header"  style="cursor:default">
+          <div class="status-icon" style="background:#16a34a">✓</div>
+          <div class="check-info">
+            <div class="check-name">
+              Meta Info Validation
+              <span class="badge" style="background:#16a34a">PASS</span>
+              
+            </div>
+            <div class="check-summary">All 23 pages have valid meta info</div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      <div class="check-card">
+        <div class="check-header"  style="cursor:default">
+          <div class="status-icon" style="background:#16a34a">✓</div>
+          <div class="check-info">
+            <div class="check-name">
+              Open Graph Tags
+              <span class="badge" style="background:#16a34a">PASS</span>
+              
+            </div>
+            <div class="check-summary">All 23 pages have OG tags</div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(1,2)" style="">
+          <div class="status-icon" style="background:#dc2626">✕</div>
+          <div class="check-info">
+            <div class="check-name">
+              EM Dash Check
+              <span class="badge" style="background:#dc2626">FAIL</span>
+              
+            </div>
+            <div class="check-summary">23 page(s) contain em dashes or double dashes</div>
+            
+          </div>
+          <span class="check-chevron open" id="chevron-1-2">▶</span>
+        </div>
+        
+        <div class="check-findings " id="findings-1-2">
+          
+          <ul class="findings-list"><li>4 em dash(es) (—), 1 double dash(es) (--) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-implants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-implants/</a>)</span></li><li>5 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/emergency-dentist/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/emergency-dentist/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-crowns-and-dental-bridges/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-crowns-and-dental-bridges/</a>)</span></li><li>6 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/teeth-whitening/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/teeth-whitening/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/composite-fillings/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/composite-fillings/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/denture-care/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/denture-care/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/general-dentistry-services/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/general-dentistry-services/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-anxiety-care/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-anxiety-care/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dentures-and-partial-dentures/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dentures-and-partial-dentures/</a>)</span></li><li>8 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/cosmetic-dentist/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/cosmetic-dentist/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/botox/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/botox/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/endodontic-surgery/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/endodontic-surgery/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/same-day-dentistry/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/same-day-dentistry/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/preventative-dental-care/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/preventative-dental-care/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/full-mouth-reconstruction/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/full-mouth-reconstruction/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/all-on-4-dental-implants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/all-on-4-dental-implants/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/pediatric-dentistry/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/pediatric-dentistry/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/night-guards/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/night-guards/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-sealants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-sealants/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-implant-surgery/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-implant-surgery/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-bonding/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-bonding/</a>)</span></li><li>4 em dash(es) (—) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/denture-adjustments/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/denture-adjustments/</a>)</span></li></ul>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(1,3)" style="">
+          <div class="status-icon" style="background:#dc2626">✕</div>
+          <div class="check-info">
+            <div class="check-name">
+              Publish / Modified Date
+              <span class="badge" style="background:#dc2626">FAIL</span>
+              
+            </div>
+            <div class="check-summary">No date schema found on 4 sampled pages — likely a site-wide issue</div>
+            
+          </div>
+          <span class="check-chevron open" id="chevron-1-3">▶</span>
+        </div>
+        
+        <div class="check-findings " id="findings-1-3">
+          
+          <ul class="findings-list"><li>Sampled 4 pages (homepage, 3 service) — if dates are missing here, it is likely a site-wide issue</li><li>No datePublished or dateModified found <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/</a>)</span></li><li>No datePublished or dateModified found <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-implants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-implants/</a>)</span></li><li>No datePublished or dateModified found <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/emergency-dentist/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/emergency-dentist/</a>)</span></li><li>No datePublished or dateModified found <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-crowns-and-dental-bridges/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-crowns-and-dental-bridges/</a>)</span></li></ul>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(1,4)" style="">
+          <div class="status-icon" style="background:#dc2626">✕</div>
+          <div class="check-info">
+            <div class="check-name">
+              Images Audit
+              <span class="badge" style="background:#dc2626">FAIL</span>
+              
+            </div>
+            <div class="check-summary">0 missing alt, 4 empty alt out of 43 images on 23 pages (1 homepage, 22 service)</div>
+            
+          </div>
+          <span class="check-chevron open" id="chevron-1-4">▶</span>
+        </div>
+        
+        <div class="check-findings " id="findings-1-4">
+          
+          <ul class="findings-list"><li>Auditing 23 pages: 1 homepage, 22 service</li><li>✗ Logo image missing or empty alt text: <a href="https://stg-buforddentist-stg.kinsta.cloud/wp-content/uploads/2024/11/logo-heade" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/wp-content/uploads/2024/11/logo-heade</a><br><span class="finding-detail">Logo checked once (first occurrence)</span></li><li>📄 / — 4 image issue(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/</a>)</span></li><li>⛔ Empty alt — <a href="https://stg-buforddentist-stg.kinsta.cloud/wp-content/uploads/2024/11/Family-Dentist.png" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/wp-content/uploads/2024/11/Family-Dentist.png</a> <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/</a>)</span></li><li>⛔ Empty alt — <a href="https://stg-buforddentist-stg.kinsta.cloud/wp-content/uploads/2024/11/Dental-Clinic-white-.png" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/wp-content/uploads/2024/11/Dental-Clinic-white-.png</a> <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/</a>)</span></li><li>⛔ Empty alt — <a href="https://stg-buforddentist-stg.kinsta.cloud/wp-content/uploads/2024/11/Dentists.png" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/wp-content/uploads/2024/11/Dentists.png</a> <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/</a>)</span></li><li>⛔ Empty alt — <a href="https://stg-buforddentist-stg.kinsta.cloud/wp-content/uploads/2024/11/Forum-white.png" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/wp-content/uploads/2024/11/Forum-white.png</a> <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/</a>)</span></li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cluster" id="cluster-2">
+    <div class="cluster-header" onclick="toggleCluster(2)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="cluster-title">Schema Markup</span>
+        <div class="cluster-badges">
+          <span class="cluster-badge" style="background:#dcfce7;color:#16a34a">1 passed</span>
+          
+          <span class="cluster-badge" style="background:#fee2e2;color:#dc2626">4 failed</span>
+        </div>
+      </div>
+      <span class="cluster-chevron open" id="chevron-cluster-2">▶</span>
+    </div>
+    <div class="cluster-checks" id="checks-cluster-2">
+      
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(2,0)" style="">
+          <div class="status-icon" style="background:#16a34a">✓</div>
+          <div class="check-info">
+            <div class="check-name">
+              Schema — Organization &amp; Dentist
+              <span class="badge" style="background:#16a34a">PASS</span>
+              
+            </div>
+            <div class="check-summary">Organization/Dentist schema detected</div>
+            
+          </div>
+          <span class="check-chevron " id="chevron-2-0">▶</span>
+        </div>
+        
+        <div class="check-findings collapsed" id="findings-2-0">
+          
+          <ul class="findings-list"><li>Organization/LocalBusiness schema found</li><li>Dentist schema found</li></ul>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(2,1)" style="">
+          <div class="status-icon" style="background:#dc2626">✕</div>
+          <div class="check-info">
+            <div class="check-name">
+              Schema — Product / Service
+              <span class="badge" style="background:#dc2626">FAIL</span>
+              
+            </div>
+            <div class="check-summary">0/4 sampled service pages have Product/Service schema</div>
+            
+          </div>
+          <span class="check-chevron open" id="chevron-2-1">▶</span>
+        </div>
+        
+        <div class="check-findings " id="findings-2-1">
+          
+          <ul class="findings-list"><li>Checked 4 of 22 service pages (random sample)</li><li>Missing Product/Service schema <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/general-dentistry-services/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/general-dentistry-services/</a>)</span></li><li>Missing Product/Service schema <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/all-on-4-dental-implants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/all-on-4-dental-implants/</a>)</span></li><li>Missing Product/Service schema <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-bonding/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-bonding/</a>)</span></li><li>Missing Product/Service schema <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-sealants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-sealants/</a>)</span></li></ul>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(2,2)" style="">
+          <div class="status-icon" style="background:#dc2626">✕</div>
+          <div class="check-info">
+            <div class="check-name">
+              Schema — FAQ
+              <span class="badge" style="background:#dc2626">FAIL</span>
+              
+            </div>
+            <div class="check-summary">0/4 sampled service pages have FAQ schema</div>
+            
+          </div>
+          <span class="check-chevron open" id="chevron-2-2">▶</span>
+        </div>
+        
+        <div class="check-findings " id="findings-2-2">
+          
+          <ul class="findings-list"><li>Checked 4 of 22 service pages (random sample)</li><li>No FAQ schema found <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-sealants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-sealants/</a>)</span></li><li>No FAQ schema found <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-crowns-and-dental-bridges/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-crowns-and-dental-bridges/</a>)</span></li><li>No FAQ schema found <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/endodontic-surgery/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/endodontic-surgery/</a>)</span></li><li>No FAQ schema found <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/same-day-dentistry/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/same-day-dentistry/</a>)</span></li></ul>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-header"  style="cursor:default">
+          <div class="status-icon" style="background:#dc2626">✕</div>
+          <div class="check-info">
+            <div class="check-name">
+              Schema — Article
+              <span class="badge" style="background:#dc2626">FAIL</span>
+              <span class="badge override-badge">OVERRIDDEN</span>
+            </div>
+            <div class="check-summary">No blog pages found to check</div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      <div class="check-card">
+        <div class="check-header"  style="cursor:default">
+          <div class="status-icon" style="background:#dc2626">✕</div>
+          <div class="check-info">
+            <div class="check-name">
+              Schema — Person
+              <span class="badge" style="background:#dc2626">FAIL</span>
+              <span class="badge override-badge">OVERRIDDEN</span>
+            </div>
+            <div class="check-summary">No about/team pages found to check</div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cluster" id="cluster-3">
+    <div class="cluster-header" onclick="toggleCluster(3)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="cluster-title">Structure &amp; Navigation</span>
+        <div class="cluster-badges">
+          <span class="cluster-badge" style="background:#dcfce7;color:#16a34a">2 passed</span>
+          <span class="cluster-badge" style="background:#fef3c7;color:#d97706">1 warning</span>
+          <span class="cluster-badge" style="background:#fee2e2;color:#dc2626">2 failed</span>
+        </div>
+      </div>
+      <span class="cluster-chevron open" id="chevron-cluster-3">▶</span>
+    </div>
+    <div class="cluster-checks" id="checks-cluster-3">
+      
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(3,0)" style="">
+          <div class="status-icon" style="background:#dc2626">✕</div>
+          <div class="check-info">
+            <div class="check-name">
+              Header Audit
+              <span class="badge" style="background:#dc2626">FAIL</span>
+              
+            </div>
+            <div class="check-summary">1 key navigation section(s) missing</div>
+            
+          </div>
+          <span class="check-chevron open" id="chevron-3-0">▶</span>
+        </div>
+        
+        <div class="check-findings " id="findings-3-0">
+          
+          <ul class="findings-list"><li>Menu uses class-based navigation (menu class found) but not semantic &lt;nav&gt; tags — add &lt;nav&gt; wrapper</li><li>✗ Missing: Services section<br><span class="finding-detail">There is no explicit 'Services' section or dropdown in the navigation. The navigation contains many individual service links but no grouped 'Services' menu item.</span></li><li>✓ About section found<br><span class="finding-detail">There is an 'About Us' link and a sub-link for 'Dr Ashley Curington' in the navigation.</span></li><li>✓ Contact / Book link found<br><span class="finding-detail">There is a 'Contact Us' link with class 'main-btn' linking to /contact-us/.</span></li><li>Service page not linked in navigation <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/alternative-to-braces-for-teens/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/alternative-to-braces-for-teens/</a>)</span></li><li>Service page not linked in navigation <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/teeth-whitening-at-dentist/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/teeth-whitening-at-dentist/</a>)</span></li><li>Service page not linked in navigation <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/pediatric-dentistry/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/pediatric-dentistry/</a>)</span></li><li>Service page not linked in navigation <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/services/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/services/</a>)</span></li></ul>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(3,1)" style="">
+          <div class="status-icon" style="background:#dc2626">✕</div>
+          <div class="check-info">
+            <div class="check-name">
+              Footer Audit
+              <span class="badge" style="background:#dc2626">FAIL</span>
+              
+            </div>
+            <div class="check-summary">8/9 footer elements found — missing: Copyright with Current Year</div>
+            
+          </div>
+          <span class="check-chevron open" id="chevron-3-1">▶</span>
+        </div>
+        
+        <div class="check-findings " id="findings-3-1">
+          
+          <ul class="findings-list"><li>No &lt;footer&gt; wrapper tag found — footer should be wrapped in semantic &lt;footer&gt; tags</li><li>✓ Map (Google Maps embed or link)<br><span class="finding-detail">Link to Google Maps location via <a href="https://maps.app.goo.gl/fFnx3wVCq41geQmu5" target="_blank" rel="noopener noreferrer">https://maps.app.goo.gl/fFnx3wVCq41geQmu5</a></span></li><li>✓ Physical Address<br><span class="finding-detail">Physical address present: 1900 Morningside Dr Suite 201, Buford, GA 30518</span></li><li>✓ Business Hours<br><span class="finding-detail">Business hours listed: Monday - Thursday 8 AM - 5 PM, Friday - Saturday Closed</span></li><li>✓ Phone Number (clickable)<br><span class="finding-detail">Clickable phone number link: tel:+17709321115 with number (770) 932-1115</span></li><li>✓ Social Media Links<br><span class="finding-detail">Social media links to Facebook, X (Twitter), and YouTube present</span></li><li>✓ Links to Services<br><span class="finding-detail">Service-related links present including Services, Dental Center, Dental Practice</span></li><li>✗ Missing: Copyright with Current Year<br><span class="finding-detail">No copyright year (2026 or 2025) found in the copyright text</span></li><li>✓ Privacy Policy Link<br><span class="finding-detail">Privacy Policy link present in footer menu</span></li><li>✓ Company / Agency Attribution<br><span class="finding-detail">Website attribution to SERP Dental and AscendPoint Agency present</span></li></ul>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-header"  style="cursor:default">
+          <div class="status-icon" style="background:#16a34a">✓</div>
+          <div class="check-info">
+            <div class="check-name">
+              Internal Links (Redirects &amp; Errors)
+              <span class="badge" style="background:#16a34a">PASS</span>
+              
+            </div>
+            <div class="check-summary">All 50 internal links are valid</div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(3,3)" style="">
+          <div class="status-icon" style="background:#16a34a">✓</div>
+          <div class="check-info">
+            <div class="check-name">
+              External Link Validation
+              <span class="badge" style="background:#16a34a">PASS</span>
+              
+            </div>
+            <div class="check-summary">All 3 external links valid across 23 pages (12 domain(s) ignored)</div>
+            
+          </div>
+          <span class="check-chevron " id="chevron-3-3">▶</span>
+        </div>
+        
+        <div class="check-findings collapsed" id="findings-3-3">
+          
+          <ul class="findings-list"><li>📄 / — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /dental-implants/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-implants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-implants/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /emergency-dentist/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/emergency-dentist/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/emergency-dentist/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /dental-crowns-and-dental-bridges/ — 3 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-crowns-and-dental-bridges/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-crowns-and-dental-bridges/</a>)</span></li><li><a href="https://buforddentist.com/" target="_blank" rel="noopener noreferrer">https://buforddentist.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /teeth-whitening/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/teeth-whitening/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/teeth-whitening/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /composite-fillings/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/composite-fillings/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/composite-fillings/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /denture-care/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/denture-care/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/denture-care/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /general-dentistry-services/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/general-dentistry-services/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/general-dentistry-services/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /dental-anxiety-care/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-anxiety-care/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-anxiety-care/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /dentures-and-partial-dentures/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dentures-and-partial-dentures/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dentures-and-partial-dentures/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /cosmetic-dentist/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/cosmetic-dentist/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/cosmetic-dentist/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /botox/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/botox/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/botox/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /endodontic-surgery/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/endodontic-surgery/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/endodontic-surgery/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /same-day-dentistry/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/same-day-dentistry/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/same-day-dentistry/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /preventative-dental-care/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/preventative-dental-care/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/preventative-dental-care/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /full-mouth-reconstruction/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/full-mouth-reconstruction/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/full-mouth-reconstruction/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /all-on-4-dental-implants/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/all-on-4-dental-implants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/all-on-4-dental-implants/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /pediatric-dentistry/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/pediatric-dentistry/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/pediatric-dentistry/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /night-guards/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/night-guards/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/night-guards/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /dental-sealants/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-sealants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-sealants/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /dental-implant-surgery/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-implant-surgery/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-implant-surgery/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /dental-bonding/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-bonding/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-bonding/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li><li>📄 /denture-adjustments/ — 2 external link(s) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/denture-adjustments/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/denture-adjustments/</a>)</span></li><li><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer">https://serpdental.com/</a><br><span class="finding-detail">HTTP 200</span></li><li><a href="https://ascendpoint.agency/" target="_blank" rel="noopener noreferrer">https://ascendpoint.agency/</a><br><span class="finding-detail">HTTP 200</span></li></ul>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(3,4)" style="">
+          <div class="status-icon" style="background:#d97706">⚠</div>
+          <div class="check-info">
+            <div class="check-name">
+              Privacy Policy &amp; Terms of Service
+              <span class="badge" style="background:#d97706">WARNING</span>
+              
+            </div>
+            <div class="check-summary">Privacy Policy found; Terms of Service not found</div>
+            
+          </div>
+          <span class="check-chevron open" id="chevron-3-4">▶</span>
+        </div>
+        
+        <div class="check-findings " id="findings-3-4">
+          
+          <ul class="findings-list"><li>Privacy Policy link found in page HTML: <a href="https://stg-buforddentist-stg.kinsta.cloud/privacy-policy/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/privacy-policy/</a></li><li>Terms of Service page not found</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cluster" id="cluster-4">
+    <div class="cluster-header" onclick="toggleCluster(4)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="cluster-title">Manual / Visual QC</span>
+        <div class="cluster-badges">
+          
+          <span class="cluster-badge" style="background:#fef3c7;color:#d97706">2 warnings</span>
+          
+        </div>
+      </div>
+      <span class="cluster-chevron open" id="chevron-cluster-4">▶</span>
+    </div>
+    <div class="cluster-checks" id="checks-cluster-4">
+      
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(4,0)" style="">
+          <div class="status-icon" style="background:#d97706">⚠</div>
+          <div class="check-info">
+            <div class="check-name">
+              NAPH Consistency
+              <span class="badge" style="background:#d97706">WARNING</span>
+              <span class="badge override-badge">OVERRIDDEN</span>
+            </div>
+            <div class="check-summary">All 4 NAPH fields extracted — compare with your GBP</div>
+            <div class="check-note">Add alternative name to the schema -  dentist and organization - &quot;North Atlanta Center for Cosmetic &amp; Implant Dentistry
+&quot;</div>
+          </div>
+          <span class="check-chevron open" id="chevron-4-0">▶</span>
+        </div>
+        
+        <div class="check-findings " id="findings-4-0">
+          <div class="manual-note"><strong>Note:</strong> Add alternative name to the schema -  dentist and organization - &quot;North Atlanta Center for Cosmetic &amp; Implant Dentistry
+&quot;</div>
+          <ul class="findings-list"><li>Business Name<br><span class="finding-detail">Buford Dentist</span></li><li>Address<br><span class="finding-detail">1900 Morningside Dr Suite 201, Buford, GA 30518</span></li><li>Phone<br><span class="finding-detail">(770) 932-1115</span></li><li>Working Hours<br><span class="finding-detail">Monday - thursday: 8 AM - 5 PM
+Friday - Saturday: Closed</span></li><li>Google Maps link found in footer — click to verify GBP listing <span class="finding-url">(<a href="https://maps.app.goo.gl/fFnx3wVCq41geQmu5" target="_blank" rel="noopener noreferrer">https://maps.app.goo.gl/fFnx3wVCq41geQmu5</a>)</span></li><li>Compare the above with your Google Business Profile listing to verify consistency</li></ul>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(4,1)" style="">
+          <div class="status-icon" style="background:#6b7280">—</div>
+          <div class="check-info">
+            <div class="check-name">
+              Page Targeting &amp; H-Tag Structure
+              <span class="badge" style="background:#6b7280">SKIPPED</span>
+              <span class="badge override-badge">OVERRIDDEN</span>
+            </div>
+            <div class="check-summary">23 pages reviewed — all have H1 tags</div>
+            <div class="check-note">Post Launch</div>
+          </div>
+          <span class="check-chevron " id="chevron-4-1">▶</span>
+        </div>
+        
+        <div class="check-findings collapsed" id="findings-4-1">
+          <div class="manual-note"><strong>Note:</strong> Post Launch</div>
+          <ul class="findings-list"><li>H1 tags for classified pages — verify each H1 targets the correct keyword for that page</li><li>[HOMEPAGE] H1: TOP RATED DENTIST IN BUFORD, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/</a>)</span></li><li>[SERVICE] H1: Dental Implants in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-implants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-implants/</a>)</span></li><li>[SERVICE] H1: Emergency Dentist in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/emergency-dentist/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/emergency-dentist/</a>)</span></li><li>[SERVICE] H1: Dental Crowns &amp; Bridges in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-crowns-and-dental-bridges/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-crowns-and-dental-bridges/</a>)</span></li><li>[SERVICE] H1: Teeth Whitening in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/teeth-whitening/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/teeth-whitening/</a>)</span></li><li>[SERVICE] H1: Composite Fillings in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/composite-fillings/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/composite-fillings/</a>)</span></li><li>[SERVICE] H1: Denture Care in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/denture-care/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/denture-care/</a>)</span></li><li>[SERVICE] H1: General Dentistry Services in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/general-dentistry-services/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/general-dentistry-services/</a>)</span></li><li>[SERVICE] H1: Dental Anxiety in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-anxiety-care/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-anxiety-care/</a>)</span></li><li>[SERVICE] H1: Dentures &amp; Partial Dentures in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dentures-and-partial-dentures/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dentures-and-partial-dentures/</a>)</span></li><li>[SERVICE] H1: Cosmetic Dentist in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/cosmetic-dentist/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/cosmetic-dentist/</a>)</span></li><li>[SERVICE] H1: Botox in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/botox/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/botox/</a>)</span></li><li>[SERVICE] H1: Endodontic Surgery in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/endodontic-surgery/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/endodontic-surgery/</a>)</span></li><li>[SERVICE] H1: Same-Day Dentistry in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/same-day-dentistry/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/same-day-dentistry/</a>)</span></li><li>[SERVICE] H1: Preventative Dental Care in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/preventative-dental-care/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/preventative-dental-care/</a>)</span></li><li>[SERVICE] H1: Full Mouth Reconstruction in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/full-mouth-reconstruction/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/full-mouth-reconstruction/</a>)</span></li><li>[SERVICE] H1: All on 4 Dental Implants in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/all-on-4-dental-implants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/all-on-4-dental-implants/</a>)</span></li><li>[SERVICE] H1: Pediatric Dentistry in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/pediatric-dentistry/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/pediatric-dentistry/</a>)</span></li><li>[SERVICE] H1: Night Guards in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/night-guards/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/night-guards/</a>)</span></li><li>[SERVICE] H1: Dental Sealants in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-sealants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-sealants/</a>)</span></li><li>[SERVICE] H1: Dental Implant Surgery in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-implant-surgery/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-implant-surgery/</a>)</span></li><li>[SERVICE] H1: Dental Bonding in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-bonding/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-bonding/</a>)</span></li><li>[SERVICE] H1: Denture Adjustments in Buford, GA <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/denture-adjustments/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/denture-adjustments/</a>)</span></li></ul>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(4,2)" style="">
+          <div class="status-icon" style="background:#d97706">⚠</div>
+          <div class="check-info">
+            <div class="check-name">
+              Visual Elements (Core Pages)
+              <span class="badge" style="background:#d97706">WARNING</span>
+              <span class="badge override-badge">OVERRIDDEN</span>
+            </div>
+            <div class="check-summary">7 pages selected for manual visual review</div>
+            <div class="check-note">Service pages - mobile version subheading needs to be trimmed down to &lt;250 characters and h1 needs to be optimized for mobile view
+
+</div>
+          </div>
+          <span class="check-chevron open" id="chevron-4-2">▶</span>
+        </div>
+        
+        <div class="check-findings " id="findings-4-2">
+          <div class="manual-note"><strong>Note:</strong> Service pages - mobile version subheading needs to be trimmed down to &lt;250 characters and h1 needs to be optimized for mobile view
+
+</div>
+          <ul class="findings-list"><li>Open each page below in desktop &amp; mobile view. Check: hero images load, CTAs visible, forms function, no broken layouts, visual consistency.</li><li>Homepage <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/</a>)</span></li><li>About page <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/about-us/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/about-us/</a>)</span></li><li>Contact page <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/contact-us/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/contact-us/</a>)</span></li><li>Service page (random sample) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/alternative-to-braces-for-teens/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/alternative-to-braces-for-teens/</a>)</span></li><li>Service page (random sample) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/general-dentistry-services/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/general-dentistry-services/</a>)</span></li><li>Blog root page <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/blog/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/blog/</a>)</span></li><li>Blog post (random sample) <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/link-gum-disease-alzheimers-patients/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/link-gum-disease-alzheimers-patients/</a>)</span></li></ul>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-header" onclick="toggleCheck(4,3)" style="">
+          <div class="status-icon" style="background:#6b7280">—</div>
+          <div class="check-info">
+            <div class="check-name">
+              Meta &amp; Title Validation
+              <span class="badge" style="background:#6b7280">SKIPPED</span>
+              <span class="badge override-badge">OVERRIDDEN</span>
+            </div>
+            <div class="check-summary">23 page titles listed for review</div>
+            <div class="check-note">Post Launch</div>
+          </div>
+          <span class="check-chevron " id="chevron-4-3">▶</span>
+        </div>
+        
+        <div class="check-findings collapsed" id="findings-4-3">
+          <div class="manual-note"><strong>Note:</strong> Post Launch</div>
+          <ul class="findings-list"><li>Review each page's meta title and description below — verify they match page content and target keywords</li><li>[HOMEPAGE] Top Rated Dentist in Buford, GA | North Atlanta Center <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/</a>)</span><br><span class="finding-detail">Meta description: Experience comprehensive dental care in Buford, GA at NACCID. From general dentistry to cosmetic treatments, we help you achieve a healthy smile. Call us today!</span></li><li>[SERVICE] Dental Implants in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-implants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-implants/</a>)</span><br><span class="finding-detail">Meta description: Replace missing teeth with dental implants in Buford, GA from NACCID for permanent, natural-looking results. Schedule your consultation today.</span></li><li>[SERVICE] Emergency Dentist in , GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/emergency-dentist/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/emergency-dentist/</a>)</span><br><span class="finding-detail">Meta description: Dental emergency in Buford, GA? NACCID’s emergency dentist provides prompt care for pain, injury, or infection. Call now.</span></li><li>[SERVICE] Dental Crowns &amp;amp; Bridges in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-crowns-and-dental-bridges/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-crowns-and-dental-bridges/</a>)</span><br><span class="finding-detail">Meta description: Protect and restore teeth with dental crowns and bridges at NACCID in Buford, GA. Durable, natural-looking solutions for missing or damaged teeth.</span></li><li>[SERVICE] Teeth Whitening in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/teeth-whitening/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/teeth-whitening/</a>)</span><br><span class="finding-detail">Meta description: Remove stubborn stains with teeth whitening in Buford, GA at NACCID for a noticeably brighter smile. Schedule today.</span></li><li>[SERVICE] Composite Fillings in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/composite-fillings/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/composite-fillings/</a>)</span><br><span class="finding-detail">Meta description: Repair cavities with composite fillings in Buford, GA at NACCID that blend naturally with your smile. Book your visit today.</span></li><li>[SERVICE] Denture Care in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/denture-care/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/denture-care/</a>)</span><br><span class="finding-detail">Meta description: Protect your investment with professional denture care in Buford, GA from NACCID focused on long-term comfort and durability. Call today.</span></li><li>[SERVICE] General Dentistry Services in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/general-dentistry-services/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/general-dentistry-services/</a>)</span><br><span class="finding-detail">Meta description: Looking for comprehensive general dentistry services in Buford, GA? NACCID provides preventive, restorative, and family dental care. Schedule today.</span></li><li>[SERVICE] Dental Anxiety Care in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-anxiety-care/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-anxiety-care/</a>)</span><br><span class="finding-detail">Meta description: Overcome dental fear with dental anxiety care at NACCID in Buford, GA. Sedation and comfort-focused dentistry for stress-free visits.</span></li><li>[SERVICE] Dentures &amp;amp; Partial Dentures in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dentures-and-partial-dentures/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dentures-and-partial-dentures/</a>)</span><br><span class="finding-detail">Meta description: Get comfortable and functional dentures and partial dentures in Buford, GA with NACCID. Restore your smile and confidence. Schedule today.</span></li><li>[SERVICE] Cosmetic Dental Services in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/cosmetic-dentist/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/cosmetic-dentist/</a>)</span><br><span class="finding-detail">Meta description: Enhance your confidence with cosmetic dental services in Buford, GA from NACCID designed to improve the look of your smile. Schedule today.</span></li><li>[SERVICE] Botox in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/botox/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/botox/</a>)</span><br><span class="finding-detail">Meta description: Reduce fine lines and wrinkles with Botox at NACCID in Buford, GA. Safe, professional treatments for a refreshed appearance. Schedule now.</span></li><li>[SERVICE] Endodontic Surgery in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/endodontic-surgery/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/endodontic-surgery/</a>)</span><br><span class="finding-detail">Meta description: Save your natural tooth with endodontic surgery in Buford, GA from NACCID designed to treat infection and relieve pain. Book today.</span></li><li>[SERVICE] Same-Day Dentistry in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/same-day-dentistry/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/same-day-dentistry/</a>)</span><br><span class="finding-detail">Meta description: Short on time? Same-day dentistry in Buford, GA from NACCID provides fast, efficient treatment for urgent dental needs. Call now.</span></li><li>[SERVICE] Preventative Dental Care in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/preventative-dental-care/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/preventative-dental-care/</a>)</span><br><span class="finding-detail">Meta description: Stay ahead of dental problems with preventative dental care in Buford, GA from NACCID including exams and cleanings. Book your visit today.</span></li><li>[SERVICE] Full Mouth Reconstruction in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/full-mouth-reconstruction/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/full-mouth-reconstruction/</a>)</span><br><span class="finding-detail">Meta description: Discover full mouth reconstruction at NACCID in Buford, GA. Restore teeth, function, and aesthetics with comprehensive dental care.</span></li><li>[SERVICE] All on 4 Dental Implants in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/all-on-4-dental-implants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/all-on-4-dental-implants/</a>)</span><br><span class="finding-detail">Meta description: Learn about All-on-4 dental implants at NACCID in Buford, GA. Restore your smile and function with full-arch implant solutions.</span></li><li>[SERVICE] Pediatric Dentistry in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/pediatric-dentistry/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/pediatric-dentistry/</a>)</span><br><span class="finding-detail">Meta description: Explore pediatric dentistry at NACCID in Buford, GA. Gentle, expert care to keep your child’s teeth healthy and smiles bright.</span></li><li>[SERVICE] Night Guards in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/night-guards/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/night-guards/</a>)</span><br><span class="finding-detail">Meta description: Grinding your teeth? Custom night guards in Buford, GA from NACCID help prevent damage and reduce jaw discomfort. Schedule today.</span></li><li>[SERVICE] Dental Sealants in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-sealants/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-sealants/</a>)</span><br><span class="finding-detail">Meta description: Protect against cavities with dental sealants in Buford, GA from NACCID designed to shield vulnerable teeth. Book today.</span></li><li>[SERVICE] Dental Implant Surgery in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-implant-surgery/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-implant-surgery/</a>)</span><br><span class="finding-detail">Meta description: Replace missing teeth with dental implant surgery in Buford, GA from NACCID for strong, long-lasting results. Schedule a consultation today.</span></li><li>[SERVICE] Dental Bonding in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/dental-bonding/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/dental-bonding/</a>)</span><br><span class="finding-detail">Meta description: Fix chips, gaps, and stains with dental bonding in Buford, GA at NACCID for fast, natural-looking results. Book today.</span></li><li>[SERVICE] Denture Adjustments in Buford, GA | NACCID <span class="finding-url">(<a href="https://stg-buforddentist-stg.kinsta.cloud/denture-adjustments/" target="_blank" rel="noopener noreferrer">https://stg-buforddentist-stg.kinsta.cloud/denture-adjustments/</a>)</span><br><span class="finding-detail">Meta description: Experiencing discomfort? Get precise denture adjustments in Buford, GA with NACCID to improve bite alignment and daily comfort. Schedule today.</span></li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="report-footer">Generated by SEO Optimizer QC &mdash; March 10, 2026</div>
+</div>
+
+<script>
+function toggleCluster(i) {
+  var el = document.getElementById("checks-cluster-" + i);
+  var ch = document.getElementById("chevron-cluster-" + i);
+  if (el.classList.contains("collapsed")) {
+    el.classList.remove("collapsed");
+    ch.classList.add("open");
+  } else {
+    el.classList.add("collapsed");
+    ch.classList.remove("open");
+  }
+}
+function toggleCheck(ci, ki) {
+  var el = document.getElementById("findings-" + ci + "-" + ki);
+  var ch = document.getElementById("chevron-" + ci + "-" + ki);
+  if (!el) return;
+  if (el.classList.contains("collapsed")) {
+    el.classList.remove("collapsed");
+    if (ch) ch.classList.add("open");
+  } else {
+    el.classList.add("collapsed");
+    if (ch) ch.classList.remove("open");
+  }
+}
+function toggleAll(expand) {
+  var checks = document.querySelectorAll(".cluster-checks");
+  var findings = document.querySelectorAll(".check-findings");
+  var chevrons = document.querySelectorAll(".cluster-chevron, .check-chevron");
+  for (var i = 0; i < checks.length; i++) {
+    if (expand) checks[i].classList.remove("collapsed");
+    else checks[i].classList.add("collapsed");
+  }
+  for (var j = 0; j < findings.length; j++) {
+    if (expand) findings[j].classList.remove("collapsed");
+    else findings[j].classList.add("collapsed");
+  }
+  for (var k = 0; k < chevrons.length; k++) {
+    if (expand) chevrons[k].classList.add("open");
+    else chevrons[k].classList.remove("open");
+  }
+}
+</script>
+</body>
+</html>
