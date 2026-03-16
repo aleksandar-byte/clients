@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QC Report — greatstarthealthysmiles.kinsta.cloud</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #1e293b; background: #f8fafc; line-height: 1.5; font-size: 14px; }
+
+  .nav-bar { position: sticky; top: 0; z-index: 100; background: rgba(248,250,252,0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid #e2e8f0; padding: 10px 20px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .nav-title { font-weight: 700; font-size: 14px; color: #1e293b; margin-right: 12px; white-space: nowrap; }
+  .nav-link { font-size: 11px; color: #64748b; text-decoration: none; padding: 2px 8px; border-radius: 6px; transition: all 0.15s; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+  .nav-link:hover { background: #f1f5f9; color: #1e293b; }
+  .nav-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; }
+  .nav-actions { margin-left: auto; display: flex; gap: 6px; }
+  .btn { padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 500; border: 1px solid #e2e8f0; background: #f8fafc; color: #1e293b; cursor: pointer; transition: all 0.15s; }
+  .btn:hover { background: #f1f5f9; }
+  .btn-active { border-color: #2563eb; background: #2563eb; color: #fff; font-weight: 600; }
+  .btn-active:hover { background: #1d4ed8; }
+
+  .content { max-width: 920px; margin: 0 auto; padding: 24px 20px 60px; }
+  .report-header { margin-bottom: 24px; }
+  .report-header h1 { font-size: 22px; font-weight: 700; color: #1e293b; }
+  .report-header .subtitle { color: #64748b; font-size: 13px; margin-top: 2px; }
+
+  .summary-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 28px; }
+  .summary-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px; text-align: center; }
+  .summary-card .count { font-size: 26px; font-weight: 700; }
+  .summary-card .label { font-size: 11px; color: #64748b; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .cluster { margin-bottom: 16px; }
+  .cluster-header { display: flex; align-items: center; gap: 8px; padding: 4px 4px 8px; }
+  .cluster-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; }
+  .cluster-badges { display: flex; gap: 4px; align-items: center; }
+  .cluster-badge { font-size: 9px; padding: 1px 6px; border-radius: 10px; font-weight: 600; display: inline-block; }
+  .cluster-checks { display: flex; flex-direction: column; gap: 8px; }
+
+  .check-card { border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; background: #fff; }
+  .check-header { display: flex; align-items: center; gap: 12px; padding: 12px; cursor: pointer; user-select: none; transition: background 0.15s; }
+  .check-header:hover { background: #f8fafc; }
+  .check-status-icon { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
+  .check-info { flex: 1; min-width: 0; }
+  .check-name { font-size: 14px; font-weight: 500; color: #1e293b; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .status-badge { display: inline-block; padding: 1px 8px; border-radius: 6px; font-size: 10px; font-weight: 600; letter-spacing: 0.3px; }
+  .override-badge { font-size: 10px; padding: 1px 6px; border-radius: 6px; font-weight: 600; background: rgba(59,130,246,0.1); color: #3b82f6; }
+  .check-summary { font-size: 12px; color: #64748b; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .check-note { font-size: 12px; color: #1d4ed8; margin-top: 8px; display: flex; align-items: flex-start; gap: 8px; padding: 8px 12px; border-radius: 6px; background: #eff6ff; border: 1px solid #bfdbfe; white-space: pre-wrap; word-break: break-word; line-height: 1.5; }
+  .check-note svg { flex-shrink: 0; margin-top: 2px; }
+  .chevron { color: #94a3b8; font-size: 12px; flex-shrink: 0; transition: transform 0.2s; }
+  .chevron.open { transform: rotate(90deg); }
+  .check-findings { border-top: 1px solid #e2e8f0; background: rgba(241,245,249,0.5); padding: 12px; display: none; }
+  .check-findings.show { display: block; }
+
+  .findings-list { font-size: 12px; line-height: 1.7; }
+  .finding-row { display: flex; align-items: flex-start; gap: 8px; padding: 2px 0; padding-left: 16px; }
+  .finding-row.finding-group-header { margin-top: 12px; padding-left: 0; padding-top: 8px; border-top: 1px solid rgba(226,232,240,0.5); }
+  .finding-row.finding-group-header:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+  .finding-content { min-width: 0; flex: 1; }
+  .finding-header-text { font-weight: 500; color: #1e293b; }
+  .finding-link { display: block; color: #2563eb; text-decoration: none; word-break: break-all; font-size: 11px; }
+  .finding-link:hover { text-decoration: underline; }
+  .finding-detail { color: #64748b; opacity: 0.7; font-size: 11px; margin-top: 1px; }
+  .finding-detail a { color: #2563eb; text-decoration: none; }
+  .finding-detail a:hover { text-decoration: underline; }
+  .finding-detail-block { color: #64748b; opacity: 0.7; font-size: 11px; margin-top: 4px; padding: 6px 8px; background: rgba(248,250,252,0.7); border: 1px solid rgba(226,232,240,0.3); border-radius: 6px; white-space: pre-wrap; font-family: "SF Mono", Menlo, monospace; max-height: 200px; overflow-y: auto; line-height: 1.5; }
+  .finding-detail-block a { color: #2563eb; text-decoration: none; }
+
+  .marker { flex-shrink: 0; font-size: 10px; line-height: 20px; }
+  .marker.error { color: #ef4444; }
+  .marker.warn { color: #f59e0b; }
+  .marker.muted { color: #94a3b8; }
+
+  .ext-links-container { }
+  .ext-tabs { display: flex; gap: 4px; margin-bottom: 12px; }
+  .ext-tab { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500; border: none; cursor: pointer; transition: all 0.15s; background: #f1f5f9; color: #64748b; }
+  .ext-tab:hover { background: #e2e8f0; }
+  .ext-tab-active { background: #2563eb; color: #fff; }
+  .ext-tab-active:hover { background: #1d4ed8; }
+  .ext-domain-row { display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 6px 8px; border-radius: 6px; }
+  .ext-domain-row:hover { background: #f8fafc; }
+  .ext-domain-name { font-weight: 500; color: #1e293b; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .ext-domain-detail { color: #64748b; flex-shrink: 0; font-size: 11px; }
+  .ext-empty { font-size: 12px; color: #94a3b8; padding: 8px 0; }
+
+  .report-footer { margin-top: 36px; padding-top: 14px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #64748b; text-align: center; }
+
+  @media print {
+    .nav-bar { display: none !important; }
+    .check-findings { display: block !important; }
+    .check-card[data-status="pass"] { display: block !important; }
+    .cluster[style*="display: none"], .cluster[style*="display:none"] { display: block !important; }
+    body { background: #fff; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+  <span class="nav-title">QC Report</span>
+  <a href="#cluster-0" class="nav-link"><span class="nav-dot" style="background:#f59e0b"></span>Technical Foundation</a><a href="#cluster-1" class="nav-link"><span class="nav-dot" style="background:#ef4444"></span>Meta &amp; Content</a><a href="#cluster-2" class="nav-link"><span class="nav-dot" style="background:#ef4444"></span>Schema Markup</a><a href="#cluster-3" class="nav-link"><span class="nav-dot" style="background:#ef4444"></span>Structure &amp; Navigation</a><a href="#cluster-4" class="nav-link"><span class="nav-dot" style="background:#ef4444"></span>Manual / Visual QC</a>
+  <div class="nav-actions">
+    <button class="btn btn-active" id="btn-filter" onclick="toggleFilter()">Errors Only</button>
+    <button class="btn" onclick="toggleAll(true)">Expand All</button>
+    <button class="btn" onclick="toggleAll(false)">Collapse All</button>
+  </div>
+</div>
+
+<div class="content">
+  <div class="report-header">
+    <h1>Pre-Launch QC Report</h1>
+    <p class="subtitle">greatstarthealthysmiles.kinsta.cloud &mdash; March 16, 2026</p>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-card"><div class="count" style="color:#10b981">8</div><div class="label">Passed</div></div>
+    <div class="summary-card"><div class="count" style="color:#f59e0b">4</div><div class="label">Warnings</div></div>
+    <div class="summary-card"><div class="count" style="color:#ef4444">6</div><div class="label">Failed</div></div>
+    <div class="summary-card"><div class="count" style="color:#f87171">0</div><div class="label">Errors</div></div>
+    <div class="summary-card"><div class="count" style="color:#64748b">0</div><div class="label">Skipped</div></div>
+    <div class="summary-card"><div class="count" style="color:#3b82f6">2</div><div class="label">Review</div></div>
+  </div>
+
+  
+  <div class="cluster" id="cluster-0">
+    <div class="cluster-header">
+      <span class="cluster-title">Technical Foundation</span>
+      <div class="cluster-badges">
+        <span class="cluster-badge" style="background:rgba(16,185,129,0.1);color:#10b981">3</span>
+        <span class="cluster-badge" style="background:rgba(245,158,11,0.1);color:#f59e0b">1</span>
+        
+      </div>
+    </div>
+    <div class="cluster-checks">
+      
+      <div class="check-card" data-status="warn">
+        <div class="check-header" onclick="toggleCheck(0,0)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Robots.txt</span>
+              <span class="status-badge" style="background:rgba(245,158,11,0.1);color:#f59e0b">Warning</span>
+              
+            </div>
+            <div class="check-summary">2 issue(s) found in robots.txt</div>
+            
+          </div>
+          <span class="chevron" id="chevron-0-0">▶</span>
+        </div>
+        <div class="check-findings" id="findings-0-0"><div class="findings-list"><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">No User-agent directive found</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">No Allow or Disallow rules found</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">robots.txt content</p><pre class="finding-detail-block"># Link to your sitemap
+Sitemap: <a href="https://greatstarthealthysmiles.kinsta.cloud/sitemaps.xml" target="_blank" rel="noopener noreferrer">https://greatstarthealthysmiles.kinsta.cloud/sitemaps.xml</a></pre></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(0,1)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Sitemap.xml</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              
+            </div>
+            <div class="check-summary">Sitemap.xml is valid with 29 URLs</div>
+            
+          </div>
+          <span class="chevron" id="chevron-0-1">▶</span>
+        </div>
+        <div class="check-findings" id="findings-0-1"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Sitemap index contains 2 child sitemaps</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">post-sitemap1.xml: 2 URLs with lastmod, newest 2026-03-02 (14 days ago)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">page-sitemap1.xml: 27 URLs with lastmod, newest 2026-03-16 (today)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Scanned 2 child sitemap(s), found 30 page URLs</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Most recent lastmod: 2026-03-16 (today)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Oldest lastmod: 2026-02-17 (27 days ago)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">31 URL(s) have lastmod dates</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Checked 29 sitemap URLs for accessibility</p></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(0,2)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Trailing Slash &amp; WWW</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              
+            </div>
+            <div class="check-summary">Trailing slash &amp; WWW redirects look good</div>
+            
+          </div>
+          <span class="chevron" id="chevron-0-2">▶</span>
+        </div>
+        <div class="check-findings" id="findings-0-2"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">with trailing slash: HTTP 200 (no redirect)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">without trailing slash: HTTP 200 (no redirect)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">with www: 301 redirect → <a href="https://greatstarthealthysmiles.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://greatstarthealthysmiles.kinsta.cloud/</a></p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Canonical URL: <a href="https://greatstarthealthysmiles.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://greatstarthealthysmiles.kinsta.cloud/</a></p></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(0,3)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Tracking &amp; Analytics</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              
+            </div>
+            <div class="check-summary">Found: GTM</div>
+            
+          </div>
+          <span class="chevron" id="chevron-0-3">▶</span>
+        </div>
+        <div class="check-findings" id="findings-0-3"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Google Tag Manager found (GTM-N99KR7SZ)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">GTM noscript fallback found</p></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cluster" id="cluster-1">
+    <div class="cluster-header">
+      <span class="cluster-title">Meta &amp; Content</span>
+      <div class="cluster-badges">
+        <span class="cluster-badge" style="background:rgba(16,185,129,0.1);color:#10b981">4</span>
+        
+        <span class="cluster-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">1</span>
+      </div>
+    </div>
+    <div class="cluster-checks">
+      
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(1,0)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Meta &amp; Title Validation</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              
+            </div>
+            <div class="check-summary">All 28 pages have valid meta — 21 listed for review</div>
+            
+          </div>
+          <span class="chevron" id="chevron-1-0">▶</span>
+        </div>
+        <div class="check-findings" id="findings-1-0"><div class="ext-links-container">
+        <div class="ext-tabs">
+          <button class="ext-tab ext-tab-active" onclick="switchTwoViewTab('meta','v1',this)">Issues (0)</button>
+          <button class="ext-tab" onclick="switchTwoViewTab('meta','v2',this)">Review All (22)</button>
+        </div>
+        <div class="ext-view" id="meta-view-v1"><p class="ext-empty">No items to display</p></div>
+        <div class="ext-view" id="meta-view-v2" style="display:none"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Review each page's meta title and description below — verify they match page content and target keywords</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[HOMEPAGE] /</p><a href="https://greatstarthealthysmiles.kinsta.cloud/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/</a><pre class="finding-detail-block">Title: Pediatric Dentist Chattanooga: Stop decay, happy kids.
+Description: Pediatric Dentist Chattanooga: Stop decay and save your child's smile with expert care. Get a fun, stress-free dental experience that kids actually love.</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[SERVICE] /dental-services/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/</a><pre class="finding-detail-block">Title: Familly Dentistry Services Chattanooga
+Description: Explore expert tips for pediatric dental care and discover our comprehensive Pediatric Dental Services at Children’s Dentistry of Chattanooga.</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[SERVICE] /childrens-dentistry/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/childrens-dentistry/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/childrens-dentistry/</a><pre class="finding-detail-block">Title: Kids Dentist in Chattanooga TN
+Description: Need a kids dentist in Chattanooga? Stop the cavities and fix the pain fast. We make childrens dentistry fun and fearless. Book your easy visit today!</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[SERVICE] /dental-services/preventative-dentistry/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/preventative-dentistry/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/preventative-dentistry/</a><pre class="finding-detail-block">Title: Preventive Dentistry Chattanooga: No holes, happy smiles.
+Description: Preventive Dentistry Chattanooga: Stop holes and save teeth before they start hurting. Get sealants and fluoride to block decay and avoid future drills.</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[SERVICE] /dental-services/special-needs-patients/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/special-needs-patients/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/special-needs-patients/</a><pre class="finding-detail-block">Title: Special Needs Dentist Chattanooga: Calm care, happy kids.
+Description: Special Needs Dentist Chattanooga: Calm care for your unique child. We end the stress of dental visits with an adaptive, patient approach for happy kids.</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[SERVICE] /service/frenectomies/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/service/frenectomies/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/service/frenectomies/</a><pre class="finding-detail-block">Title: Tongue Tie Release Chattanooga TN: Fix ties, easy feeding.
+Description: Fix the Tie for Pain-Free, Easy Feeding</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[SERVICE] /dental-services/sedation-dentistry/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/sedation-dentistry/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/sedation-dentistry/</a><pre class="finding-detail-block">Title: Kids Sedation Chattanooga TN: Gentle naps, no more fear.
+Description: Kids Sedation Chattanooga: The nap-time fix for dental fear. We use gentle sedation so your child can sleep through their visit and wake up happy and healthy.</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[SERVICE] /dental-services/general-dentistry/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/general-dentistry/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/general-dentistry/</a><pre class="finding-detail-block">Title: General dentistry for kids Chattanooga TN - healthy smiles.
+Description: Kids Dentistry Chattanooga TN: Stop tooth pain and help your child grow healthy. Our gentle team fixes dental problems early for a lifetime of health.</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[CORE] /contact-us/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/contact-us/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/contact-us/</a><pre class="finding-detail-block">Title: Contact Us - Children’s Dentistry of Chattanooga
+Description: Contact Children’s Dentistry of Chattanooga for quality pediatric dental care. See why kids &amp; parents prefer our pediatric dentist office.</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] /about-us/dr-clay-p-goins/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/dr-clay-p-goins/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/dr-clay-p-goins/</a><pre class="finding-detail-block">Title: Clay Goins, D.D.S. - Children’s Dentistry of Chattanooga
+Description: Patients LOVE Dr. Clay Goins &amp; it’s easy to see why. He’s passionate about helping kids and ensuring everyone has a positive dental experience.</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] /about-us/referrals/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/referrals/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/referrals/</a><pre class="finding-detail-block">Title: Referrals - Children’s Dentistry of Chattanooga
+Description: Dental Referrals from Children’s Dentistry of Chattanooga</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] /privacy-policy/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/privacy-policy/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/privacy-policy/</a><pre class="finding-detail-block">Title: Privacy Policy - Children's Dentistry Of Chattanooga
+Description: Learn how we collect, use, and protect your personal information when using our website and services. Read our Privacy Policy for full details.</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] /about-us/sponsorship-request/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/sponsorship-request/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/sponsorship-request/</a><pre class="finding-detail-block">Title: Sponsorship Request - Children’s Dentistry of Chattanooga
+Description: We are incredibly grateful to be able to support the amazing organizations in our area! From supporting local schools or sports teams to festivals and</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] /about-us/reviews/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/reviews/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/reviews/</a><pre class="finding-detail-block">Title: Chattanooga Dental Reviews
+Description: See why parents and children in Chattanooga, TN love the top rated pediatric dentists at Children’s Dentistry of Chattanooga. Call our office today.</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] /about-us/office-tour/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/office-tour/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/office-tour/</a><pre class="finding-detail-block">Title: Dental Office Tour
+Description: Step into our kid-friendly Dental Office, designed to eliminate dental fears with fun, themed rooms and activities. Your child will love visiting us!</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] /about-us/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/</a><pre class="finding-detail-block">Title: Why Choose This Chattanooga Kids Dentist?
+Description: Learn more about Us! Find out why Chattanooga families choose us as their Pediatric Dentist in our Magical Dental Care Environment.</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] /frequently-asked-questions/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/frequently-asked-questions/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/frequently-asked-questions/</a><pre class="finding-detail-block">Title: FAQs | Children’s Dentistry of Chattanooga
+Description: Visit our FAQ page to learn more about Children’s Dentistry of Chattanooga.</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] /notice-of-non-discrimination/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/notice-of-non-discrimination/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/notice-of-non-discrimination/</a><pre class="finding-detail-block">Title: Notice of Non-Discrimination
+Description: Children's Dentistry of Chattanooga complies with applicable Federal civil rights laws and does not discriminate on the basis of race, color, national origin,</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] /patient-privacy/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/patient-privacy/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/patient-privacy/</a><pre class="finding-detail-block">Title: Patient Privacy - Children’s Dentistry of Chattanooga
+Description: THIS NOTICE DESCRIBES HOW MEDICAL INFORMATION ABOUT YOU MAY BE USED AND DISCLOSED AND HOW YOU CAN GET ACCESS TO THIS INFORMATION.</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] /accessibility/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/accessibility/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/accessibility/</a><pre class="finding-detail-block">Title: Accessibility - Children’s Dentistry of Chattanooga
+Description: We are constantly working to improve the accessibility of our website content. Here are a few suggestions to enhance your browsing experience:</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] /disclaimer/</p><a href="https://greatstarthealthysmiles.kinsta.cloud/disclaimer/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/disclaimer/</a><pre class="finding-detail-block">Title: Disclaimer - Children’s Dentistry of Chattanooga
+Description: All the information on this website – <a href="https://greatstarthealthysmiles.com/" target="_blank" rel="noopener noreferrer">https://greatstarthealthysmiles.com/</a> – is published in good faith and for general information purpose only. Children's</pre></div></div></div>
+      </div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" style="cursor:default">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Open Graph Tags</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              
+            </div>
+            <div class="check-summary">All 28 pages have OG tags</div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(1,2)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>EM Dash Check</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              <span class="override-badge">overridden</span>
+            </div>
+            <div class="check-summary">1 page(s) contain em dashes or double dashes</div>
+            
+          </div>
+          <span class="chevron" id="chevron-1-2">▶</span>
+        </div>
+        <div class="check-findings" id="findings-1-2"><div class="findings-list"><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">2 em dash(es) (—)</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/</a></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="fail">
+        <div class="check-header" style="cursor:default">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Publish / Modified Date</span>
+              <span class="status-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">Fail</span>
+              
+            </div>
+            <div class="check-summary">Checked — failed</div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" style="cursor:default">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Images Audit</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              
+            </div>
+            <div class="check-summary">All 142 images on 21 pages have alt text</div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cluster" id="cluster-2">
+    <div class="cluster-header">
+      <span class="cluster-title">Schema Markup</span>
+      <div class="cluster-badges">
+        <span class="cluster-badge" style="background:rgba(16,185,129,0.1);color:#10b981">1</span>
+        <span class="cluster-badge" style="background:rgba(245,158,11,0.1);color:#f59e0b">1</span>
+        <span class="cluster-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">1</span>
+      </div>
+    </div>
+    <div class="cluster-checks">
+      
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(2,0)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Schema — Organization &amp; Dentist</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              
+            </div>
+            <div class="check-summary">Organization/Dentist schema detected</div>
+            
+          </div>
+          <span class="chevron" id="chevron-2-0">▶</span>
+        </div>
+        <div class="check-findings" id="findings-2-0"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Organization/LocalBusiness schema found</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Dentist schema found</p></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="warn">
+        <div class="check-header" onclick="toggleCheck(2,1)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Schema — Product / Service</span>
+              <span class="status-badge" style="background:rgba(245,158,11,0.1);color:#f59e0b">Warning</span>
+              
+            </div>
+            <div class="check-summary">2/7 service pages have Product/Service schema</div>
+            
+          </div>
+          <span class="chevron" id="chevron-2-1">▶</span>
+        </div>
+        <div class="check-findings" id="findings-2-1"><div class="findings-list"><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">Missing Product/Service schema</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/preventative-dentistry/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/preventative-dentistry/</a></div></div><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">Missing Product/Service schema</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/special-needs-patients/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/special-needs-patients/</a></div></div><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">Missing Product/Service schema</p><a href="https://greatstarthealthysmiles.kinsta.cloud/service/frenectomies/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/service/frenectomies/</a></div></div><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">Missing Product/Service schema</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/sedation-dentistry/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/sedation-dentistry/</a></div></div><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">Missing Product/Service schema</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/general-dentistry/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/general-dentistry/</a></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="fail">
+        <div class="check-header" onclick="toggleCheck(2,2)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Schema — Person</span>
+              <span class="status-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">Fail</span>
+              
+            </div>
+            <div class="check-summary">Not found — checked 1 doctor pages</div>
+            
+          </div>
+          <span class="chevron" id="chevron-2-2">▶</span>
+        </div>
+        <div class="check-findings" id="findings-2-2"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Checked 1 pages — not found on any</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Checked</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/dr-clay-p-goins/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/dr-clay-p-goins/</a></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cluster" id="cluster-3">
+    <div class="cluster-header">
+      <span class="cluster-title">Structure &amp; Navigation</span>
+      <div class="cluster-badges">
+        <span class="cluster-badge" style="background:rgba(16,185,129,0.1);color:#10b981">1</span>
+        <span class="cluster-badge" style="background:rgba(245,158,11,0.1);color:#f59e0b">1</span>
+        <span class="cluster-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">3</span>
+      </div>
+    </div>
+    <div class="cluster-checks">
+      
+      <div class="check-card" data-status="fail">
+        <div class="check-header" onclick="toggleCheck(3,0)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Header Audit</span>
+              <span class="status-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">Fail</span>
+              
+            </div>
+            <div class="check-summary">1 service page(s) not in navigation</div>
+            
+          </div>
+          <span class="chevron" id="chevron-3-0">▶</span>
+        </div>
+        <div class="check-findings" id="findings-3-0"><div class="findings-list"><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">Menu uses class-based navigation (menu class found) but not semantic &lt;nav&gt; tags — add &lt;nav&gt; wrapper</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">✓ Services section found</p><p class="finding-detail">Multiple links related to services are present, including 'Services', 'Pediatric Dentistry', 'Frenectomy', 'Preventative', 'Special Needs', and 'Sedation'.</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">✓ About section found</p><p class="finding-detail">Several links related to About are present, including 'About Us', 'Meet Dr. Clay P Goins', 'Reviews', and 'Sponsorship Request'.</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">✓ Contact / Book link found</p><p class="finding-detail">Contact-related links are present: 'Contact Us', 'Call Now 423-954-9511' (tel link), and 'Book Now' (appointment link).</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">Service page not linked in navigation</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/general-dentistry/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/general-dentistry/</a></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="fail">
+        <div class="check-header" onclick="toggleCheck(3,1)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Footer Audit</span>
+              <span class="status-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">Fail</span>
+              
+            </div>
+            <div class="check-summary">6/8 footer elements found — missing: Physical Address, Copyright with Current Year</div>
+            
+          </div>
+          <span class="chevron" id="chevron-3-1">▶</span>
+        </div>
+        <div class="check-findings" id="findings-3-1"><div class="findings-list"><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">No &lt;footer&gt; wrapper tag found — footer should be wrapped in semantic &lt;footer&gt; tags</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Map (Google Maps embed or link) detected in rendered page screenshot</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Business Hours detected in rendered page screenshot</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Phone Number (clickable) detected in rendered page screenshot</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Social Media Links detected in rendered page screenshot</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">✓ Map (Google Maps embed or link)</p><p class="finding-detail">Google Maps embed showing location of Children's Dentistry of Chattanooga (found via screenshot)</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">✗ Missing: Physical Address</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">✓ Business Hours</p><p class="finding-detail">Monday: 8:00 AM - 1:00 PM, 2:00 PM - 5:00 PM; Tuesday: 8:00 AM - 1:00 PM, 2:00 PM - 5:00 PM; Wednesday: 8:00 AM - 1:00 PM, 2:00 PM - 5:00 PM; Thursday: 8:00 AM - 1:00 PM, 2:00 PM - 5:00 PM; Fri - Sat - Sun: Closed (found via screenshot)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">✓ Phone Number (clickable)</p><span class="finding-link">423-954-9511</span><p class="finding-detail"> (found via screenshot)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">✓ Social Media Links</p><p class="finding-detail">Facebook, Instagram (found via screenshot)</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">✗ Missing: Copyright with Current Year</p><p class="finding-detail">Copyright © &lt;span id=&quot;copyright&quot;&gt;&lt;/span&gt; Children's Dentistry Of Chattanooga. All rights reserved</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">✓ Privacy Policy Link</p><span class="finding-link">/privacy-policy/</span></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">✓ Company / Agency Attribution</p><a href="https://serpdental.com/" target="_blank" rel="noopener noreferrer" class="finding-link">https://serpdental.com/</a><p class="finding-detail">Website and SEO powered by SERP Dental, a division of AscendPoint Agency</p></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="fail">
+        <div class="check-header" onclick="toggleCheck(3,2)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Internal Links (Redirects &amp; Errors)</span>
+              <span class="status-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">Fail</span>
+              
+            </div>
+            <div class="check-summary">3 broken, 0 redirects, 0 timeouts out of 37 internal links</div>
+            
+          </div>
+          <span class="chevron" id="chevron-3-2">▶</span>
+        </div>
+        <div class="check-findings" id="findings-3-2"><div class="findings-list"><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">404 Not Found</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/first-dental-visit/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/first-dental-visit/</a><p class="finding-detail">Found on: <a href="https://greatstarthealthysmiles.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://greatstarthealthysmiles.kinsta.cloud/</a></p></div></div><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">404 Not Found</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/childrens-dentistry/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/childrens-dentistry/</a><p class="finding-detail">Found on: <a href="https://greatstarthealthysmiles.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://greatstarthealthysmiles.kinsta.cloud/</a></p></div></div><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">404 Not Found</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/frenectomies/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/frenectomies/</a><p class="finding-detail">Found on: <a href="https://greatstarthealthysmiles.kinsta.cloud/" target="_blank" rel="noopener noreferrer">https://greatstarthealthysmiles.kinsta.cloud/</a></p></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="warn">
+        <div class="check-header" onclick="toggleCheck(3,3)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>External Link Validation</span>
+              <span class="status-badge" style="background:rgba(245,158,11,0.1);color:#f59e0b">Warning</span>
+              
+            </div>
+            <div class="check-summary">1 low-authority domain(s) out of 2 external links across 2 pages (26 domain(s) ignored)</div>
+            
+          </div>
+          <span class="chevron" id="chevron-3-3">▶</span>
+        </div>
+        <div class="check-findings" id="findings-3-3"><div class="ext-links-container">
+        <div class="ext-tabs">
+          <button class="ext-tab ext-tab-active" onclick="switchExtTab('domains',this)">By Domain (2)</button>
+          <button class="ext-tab" onclick="switchExtTab('all',this)">All Links</button>
+        </div>
+        <div class="ext-view" id="ext-view-domains"><div class="ext-domain-row"><span class="marker muted">○</span><span class="ext-domain-name">www.sciencedaily.com</span><span class="ext-domain-detail">1 link(s)</span></div><div class="ext-domain-row"><span class="marker warn">●</span><span class="ext-domain-name">pediatricsedation.com</span><span class="ext-domain-detail">1 link(s) · ⚠ Low authority: Low-quality niche site with limited authority and trust signals</span></div></div>
+        <div class="ext-view" id="ext-view-all" style="display:none"><div class="finding-row finding-group-header"><span class="marker muted">▸</span><div class="finding-content"><p class="finding-header-text">📄 /dental-services/preventative-dentistry/ — 1 external link(s)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class=""><a href="https://www.sciencedaily.com/releases/2014/05/140501101133.htm" target="_blank" rel="noopener noreferrer">https://www.sciencedaily.com/releases/2014/05/140501101133.htm</a></p><p class="finding-detail">HTTP 200</p></div></div><div class="finding-row finding-group-header"><span class="marker muted">▸</span><div class="finding-content"><p class="finding-header-text">📄 /dental-services/sedation-dentistry/ — 1 external link(s)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class=""><a href="http://pediatricsedation.com/" target="_blank" rel="noopener noreferrer">http://pediatricsedation.com/</a></p><p class="finding-detail">HTTP 200</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">view:all-unique-links</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class=""><a href="http://pediatricsedation.com/" target="_blank" rel="noopener noreferrer">http://pediatricsedation.com/</a></p><p class="finding-detail">HTTP 200</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class=""><a href="https://www.sciencedaily.com/releases/2014/05/140501101133.htm" target="_blank" rel="noopener noreferrer">https://www.sciencedaily.com/releases/2014/05/140501101133.htm</a></p><p class="finding-detail">HTTP 200</p></div></div></div>
+      </div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(3,4)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Privacy Policy &amp; Terms of Service</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              
+            </div>
+            <div class="check-summary">Privacy Policy and Terms of Service found</div>
+            
+          </div>
+          <span class="chevron" id="chevron-3-4">▶</span>
+        </div>
+        <div class="check-findings" id="findings-3-4"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Privacy Policy link found in page HTML: /patient-privacy/</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Terms of Service link found in page HTML: /disclaimer/</p></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cluster" id="cluster-4">
+    <div class="cluster-header">
+      <span class="cluster-title">Manual / Visual QC</span>
+      <div class="cluster-badges">
+        <span class="cluster-badge" style="background:rgba(16,185,129,0.1);color:#10b981">2</span>
+        
+        <span class="cluster-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">1</span>
+      </div>
+    </div>
+    <div class="cluster-checks">
+      
+      <div class="check-card" data-status="fail">
+        <div class="check-header" onclick="toggleCheck(4,0)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>NAPH Consistency</span>
+              <span class="status-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">Fail</span>
+              <span class="override-badge">overridden</span>
+            </div>
+            <div class="check-summary">All 4 NAPH fields extracted — compare with your GBP</div>
+            <div class="check-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Working Hours Discrepancy for Friday</div>
+          </div>
+          <span class="chevron" id="chevron-4-0">▶</span>
+        </div>
+        <div class="check-findings" id="findings-4-0"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Business Name</p><p class="finding-detail">Children's Dentistry of Chattanooga</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Address</p><pre class="finding-detail-block">1612 Gunbarrel Rd., Suite 102,
+Chattanooga, TN 37421</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Phone</p><p class="finding-detail">(423) 954-9511</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Working Hours</p><pre class="finding-detail-block">Monday – Thursday (8am – 5pm)
+*Closed for lunch from 1 – 2pm* 
+Friday - Sat - Sunday: Closed</pre></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Google Maps link — click to verify GBP listing</p><a href="https://maps.app.goo.gl/CbaEkzWUY1tVG4XL9" target="_blank" rel="noopener noreferrer" class="finding-link">https://maps.app.goo.gl/CbaEkzWUY1tVG4XL9</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Compare the above with your Google Business Profile listing to verify consistency</p></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(4,1)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Page Targeting &amp; H-Tag Structure</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              <span class="override-badge">overridden</span>
+            </div>
+            <div class="check-summary">21 pages reviewed — 6 missing H1</div>
+            
+          </div>
+          <span class="chevron" id="chevron-4-1">▶</span>
+        </div>
+        <div class="check-findings" id="findings-4-1"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">H1 tags for classified pages — verify each H1 targets the correct keyword for that page</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[HOMEPAGE] H1: Pediatric Dentist in Chattanooga, TN</p><a href="https://greatstarthealthysmiles.kinsta.cloud/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[SERVICE] H1: Pediatric Dental Services in Chattanooga, TN</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[SERVICE] H1: Pediatric Dental Services in Chattanooga, TN</p><a href="https://greatstarthealthysmiles.kinsta.cloud/childrens-dentistry/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/childrens-dentistry/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[SERVICE] H1: Preventive Dentistry in Chattanooga</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/preventative-dentistry/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/preventative-dentistry/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[SERVICE] H1: Special Needs Dentist in Chattanooga</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/special-needs-patients/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/special-needs-patients/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[SERVICE] H1: Tongue Tie Release in Chattanooga</p><a href="https://greatstarthealthysmiles.kinsta.cloud/service/frenectomies/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/service/frenectomies/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[SERVICE] H1: Kids Sedation Dentistry in Chattanooga</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/sedation-dentistry/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/sedation-dentistry/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[SERVICE] H1: General Kids Dentistry in Chattanooga, TN</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/general-dentistry/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/general-dentistry/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[CORE] H1: Contact Our Pediatric Dentist Office in Chattanooga, TN Today!</p><a href="https://greatstarthealthysmiles.kinsta.cloud/contact-us/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/contact-us/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] H1: Our Pediatric Dentist</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/dr-clay-p-goins/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/dr-clay-p-goins/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] H1: Contact Our Pediatric Dentist Office in Chattanooga, TN Today!</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/referrals/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/referrals/</a></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">[ABOUT] No H1 tag found</p><a href="https://greatstarthealthysmiles.kinsta.cloud/privacy-policy/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/privacy-policy/</a></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">[ABOUT] No H1 tag found</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/sponsorship-request/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/sponsorship-request/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] H1: Chattanooga Dental Reviews</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/reviews/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/reviews/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] H1: Dental Office Tour</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/office-tour/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/office-tour/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] H1: Why Choose This Chattanooga Kids Dentist?</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[ABOUT] H1: Children’s Dentistry of Chattanooga FAQs</p><a href="https://greatstarthealthysmiles.kinsta.cloud/frequently-asked-questions/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/frequently-asked-questions/</a></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">[ABOUT] No H1 tag found</p><a href="https://greatstarthealthysmiles.kinsta.cloud/notice-of-non-discrimination/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/notice-of-non-discrimination/</a></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">[ABOUT] No H1 tag found</p><a href="https://greatstarthealthysmiles.kinsta.cloud/patient-privacy/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/patient-privacy/</a></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">[ABOUT] No H1 tag found</p><a href="https://greatstarthealthysmiles.kinsta.cloud/accessibility/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/accessibility/</a></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">[ABOUT] No H1 tag found</p><a href="https://greatstarthealthysmiles.kinsta.cloud/disclaimer/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/disclaimer/</a></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(4,2)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Visual Elements (Core Pages)</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              <span class="override-badge">overridden</span>
+            </div>
+            <div class="check-summary">7 pages selected for manual visual review</div>
+            
+          </div>
+          <span class="chevron" id="chevron-4-2">▶</span>
+        </div>
+        <div class="check-findings" id="findings-4-2"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Open each page below in desktop &amp; mobile view. Check: hero images load, CTAs visible, forms function, no broken layouts, visual consistency.</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Homepage</p><a href="https://greatstarthealthysmiles.kinsta.cloud/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">About page</p><a href="https://greatstarthealthysmiles.kinsta.cloud/about-us/dr-clay-p-goins/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/about-us/dr-clay-p-goins/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Contact page</p><a href="https://greatstarthealthysmiles.kinsta.cloud/contact-us/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/contact-us/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Service page (random sample)</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/general-dentistry/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/general-dentistry/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Service page (random sample)</p><a href="https://greatstarthealthysmiles.kinsta.cloud/dental-services/special-needs-patients/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/dental-services/special-needs-patients/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Blog root page</p><a href="https://greatstarthealthysmiles.kinsta.cloud/blog/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/blog/</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Blog post (random sample)</p><a href="https://greatstarthealthysmiles.kinsta.cloud/blog/how-to-overcome-dental-anxiety-in-children/" target="_blank" rel="noopener noreferrer" class="finding-link">https://greatstarthealthysmiles.kinsta.cloud/blog/how-to-overcome-dental-anxiety-in-children/</a></div></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="report-footer">Generated by SEO Optimizer QC &mdash; March 16, 2026</div>
+</div>
+
+<script>
+function toggleCheck(ci, ki) {
+  var el = document.getElementById("findings-" + ci + "-" + ki);
+  var ch = document.getElementById("chevron-" + ci + "-" + ki);
+  if (!el) return;
+  var isOpen = el.classList.contains("show");
+  if (isOpen) { el.classList.remove("show"); if (ch) ch.classList.remove("open"); }
+  else { el.classList.add("show"); if (ch) ch.classList.add("open"); }
+}
+function toggleAll(expand) {
+  var findings = document.querySelectorAll(".check-findings");
+  var chevrons = document.querySelectorAll(".chevron");
+  for (var j = 0; j < findings.length; j++) {
+    if (expand) findings[j].classList.add("show");
+    else findings[j].classList.remove("show");
+  }
+  for (var k = 0; k < chevrons.length; k++) {
+    if (expand) chevrons[k].classList.add("open");
+    else chevrons[k].classList.remove("open");
+  }
+}
+var filterActive = true;
+function toggleFilter() {
+  filterActive = !filterActive;
+  var btn = document.getElementById("btn-filter");
+  if (filterActive) { btn.classList.add("btn-active"); btn.textContent = "Errors Only"; }
+  else { btn.classList.remove("btn-active"); btn.textContent = "All Checks"; }
+  var cards = document.querySelectorAll(".check-card");
+  for (var i = 0; i < cards.length; i++) {
+    if (cards[i].getAttribute("data-status") === "pass") {
+      cards[i].style.display = filterActive ? "none" : "";
+    }
+  }
+  var clusters = document.querySelectorAll(".cluster");
+  for (var j = 0; j < clusters.length; j++) {
+    var hasNonPass = false;
+    var allCards = clusters[j].querySelectorAll(".check-card");
+    for (var k = 0; k < allCards.length; k++) {
+      if (allCards[k].getAttribute("data-status") !== "pass") { hasNonPass = true; break; }
+    }
+    clusters[j].style.display = (filterActive && !hasNonPass) ? "none" : "";
+  }
+}
+function switchExtTab(view, btn) {
+  document.getElementById("ext-view-domains").style.display = view === "domains" ? "" : "none";
+  document.getElementById("ext-view-all").style.display = view === "all" ? "" : "none";
+  var tabs = btn.parentElement.querySelectorAll(".ext-tab");
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove("ext-tab-active");
+  btn.classList.add("ext-tab-active");
+}
+function switchTwoViewTab(prefix, view, btn) {
+  var v1 = document.getElementById(prefix + "-view-v1");
+  var v2 = document.getElementById(prefix + "-view-v2");
+  if (v1) v1.style.display = view === "v1" ? "" : "none";
+  if (v2) v2.style.display = view === "v2" ? "" : "none";
+  var tabs = btn.parentElement.querySelectorAll(".ext-tab");
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove("ext-tab-active");
+  btn.classList.add("ext-tab-active");
+}
+</script>
+</body>
+</html>
