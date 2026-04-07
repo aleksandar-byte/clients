@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QC Report — michgc.com</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #1e293b; background: #f8fafc; line-height: 1.5; font-size: 14px; }
+
+  .nav-bar { position: sticky; top: 0; z-index: 100; background: rgba(248,250,252,0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid #e2e8f0; padding: 10px 20px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .nav-title { font-weight: 700; font-size: 14px; color: #1e293b; margin-right: 12px; white-space: nowrap; }
+  .nav-link { font-size: 11px; color: #64748b; text-decoration: none; padding: 2px 8px; border-radius: 6px; transition: all 0.15s; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+  .nav-link:hover { background: #f1f5f9; color: #1e293b; }
+  .nav-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; }
+  .nav-actions { margin-left: auto; display: flex; gap: 6px; }
+  .btn { padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 500; border: 1px solid #e2e8f0; background: #f8fafc; color: #1e293b; cursor: pointer; transition: all 0.15s; }
+  .btn:hover { background: #f1f5f9; }
+  .btn-active { border-color: #2563eb; background: #2563eb; color: #fff; font-weight: 600; }
+  .btn-active:hover { background: #1d4ed8; }
+
+  .content { max-width: 920px; margin: 0 auto; padding: 24px 20px 60px; }
+  .report-header { margin-bottom: 24px; }
+  .report-header h1 { font-size: 22px; font-weight: 700; color: #1e293b; }
+  .report-header .subtitle { color: #64748b; font-size: 13px; margin-top: 2px; }
+
+  .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 28px; }
+  .summary-card { border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px; text-align: center; }
+  .summary-card .count { font-size: 26px; font-weight: 700; }
+  .summary-card .label { font-size: 11px; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .summary-card.card-pass { background: #f0fdf4; border-color: #bbf7d0; }
+  .summary-card.card-pass .label { color: #166534; }
+  .summary-card.card-failed { background: #fef2f2; border-color: #fecaca; }
+  .summary-card.card-failed .label { color: #991b1b; }
+  .summary-card.card-skipped { background: #f5f3ff; border-color: #ddd6fe; }
+  .summary-card.card-skipped .label { color: #5b21b6; }
+  .summary-card.card-review { background: #eff6ff; border-color: #bfdbfe; }
+  .summary-card.card-review .label { color: #1e40af; }
+
+  .cluster { margin-bottom: 16px; }
+  .cluster-header { display: flex; align-items: center; gap: 8px; padding: 4px 4px 8px; }
+  .cluster-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; }
+  .cluster-badges { display: flex; gap: 4px; align-items: center; }
+  .cluster-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; display: inline-flex; align-items: center; gap: 3px; }
+  .cluster-checks { display: flex; flex-direction: column; gap: 8px; }
+
+  .check-card { border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; background: #fff; border-left: 4px solid #e2e8f0; }
+  .check-card[data-status="pass"] { border-left-color: #10b981; }
+  .check-card[data-status="warn"] { border-left-color: #ef4444; }
+  .check-card[data-status="fail"] { border-left-color: #ef4444; }
+  .check-card[data-status="error"] { border-left-color: #f87171; }
+  .check-card[data-status="skip"] { border-left-color: #a78bfa; }
+  .check-card[data-status="info"] { border-left-color: #3b82f6; }
+  .check-header { display: flex; align-items: center; gap: 12px; padding: 12px; cursor: pointer; user-select: none; transition: background 0.15s; }
+  .check-header:hover { background: #f8fafc; }
+  .check-status-icon { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
+  .check-info { flex: 1; min-width: 0; }
+  .check-name { font-size: 14px; font-weight: 500; color: #1e293b; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .status-badge { display: inline-block; padding: 1px 8px; border-radius: 6px; font-size: 10px; font-weight: 600; letter-spacing: 0.3px; }
+  .override-badge { font-size: 10px; padding: 1px 6px; border-radius: 6px; font-weight: 600; background: rgba(59,130,246,0.1); color: #3b82f6; }
+  .check-summary { font-size: 12px; color: #64748b; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .check-note { font-size: 12px; color: #1d4ed8; margin-top: 8px; display: flex; align-items: flex-start; gap: 8px; padding: 8px 12px; border-radius: 6px; background: #eff6ff; border: 1px solid #bfdbfe; white-space: pre-wrap; word-break: break-word; line-height: 1.5; }
+  .check-note svg { flex-shrink: 0; margin-top: 2px; }
+  .chevron { color: #94a3b8; flex-shrink: 0; transition: transform 0.2s; display: inline-flex; align-items: center; gap: 4px; }
+  .chevron svg { width: 16px; height: 16px; transition: transform 0.2s; }
+  .chevron.open svg { transform: rotate(90deg); }
+  .chevron-count { font-size: 10px; font-weight: 500; color: #94a3b8; }
+  .check-findings { border-top: 2px solid #e2e8f0; background: #f1f5f9; padding: 12px; display: none; box-shadow: inset 0 2px 4px rgba(0,0,0,0.03); }
+  .check-findings.show { display: block; }
+
+  .findings-list { font-size: 12px; line-height: 1.7; }
+  .finding-row { display: flex; align-items: flex-start; gap: 8px; padding: 2px 0; padding-left: 16px; }
+  .finding-row.finding-group-header { margin-top: 12px; padding-left: 0; padding-top: 8px; border-top: 1px solid rgba(226,232,240,0.5); }
+  .finding-row.finding-group-header:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+  .finding-content { min-width: 0; flex: 1; }
+  .finding-header-text { font-weight: 500; color: #1e293b; }
+  .finding-link { display: block; color: #2563eb; text-decoration: none; word-break: break-all; font-size: 11px; }
+  .finding-link:hover { text-decoration: underline; }
+  .finding-detail { color: #64748b; opacity: 0.7; font-size: 11px; margin-top: 1px; }
+  .finding-detail a { color: #2563eb; text-decoration: none; }
+  .finding-detail a:hover { text-decoration: underline; }
+  .finding-detail-block { color: #64748b; opacity: 0.7; font-size: 11px; margin-top: 4px; padding: 6px 8px; background: rgba(248,250,252,0.7); border: 1px solid rgba(226,232,240,0.3); border-radius: 6px; white-space: pre-wrap; font-family: "SF Mono", Menlo, monospace; max-height: 200px; overflow-y: auto; line-height: 1.5; }
+  .finding-detail-block a { color: #2563eb; text-decoration: none; }
+
+  .marker { flex-shrink: 0; font-size: 10px; line-height: 20px; }
+  .marker.error { color: #ef4444; }
+  .marker.warn { color: #ef4444; }
+  .marker.muted { color: #94a3b8; }
+
+  .ext-links-container { }
+  .ext-tabs { display: flex; gap: 4px; margin-bottom: 12px; }
+  .ext-tab { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500; border: none; cursor: pointer; transition: all 0.15s; background: #f1f5f9; color: #64748b; }
+  .ext-tab:hover { background: #e2e8f0; }
+  .ext-tab-active { background: #2563eb; color: #fff; }
+  .ext-tab-active:hover { background: #1d4ed8; }
+  .ext-domain-row { display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 6px 8px; border-radius: 6px; }
+  .ext-domain-row:hover { background: #f8fafc; }
+  .ext-domain-name { font-weight: 500; color: #1e293b; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .ext-domain-detail { color: #64748b; flex-shrink: 0; font-size: 11px; }
+  .ext-empty { font-size: 12px; color: #94a3b8; padding: 8px 0; }
+
+  .report-footer { margin-top: 36px; padding-top: 14px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #64748b; text-align: center; }
+
+  @media print {
+    .nav-bar { display: none !important; }
+    .check-findings { display: block !important; }
+    .check-card[data-status="pass"] { display: block !important; }
+    .cluster[style*="display: none"], .cluster[style*="display:none"] { display: block !important; }
+    body { background: #fff; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+  <span class="nav-title">QC Report</span>
+  <a href="#cluster-0" class="nav-link"><span class="nav-dot" style="background:#10b981"></span>Technical Foundation</a><a href="#cluster-1" class="nav-link"><span class="nav-dot" style="background:#ef4444"></span>Meta &amp; Content</a><a href="#cluster-2" class="nav-link"><span class="nav-dot" style="background:#10b981"></span>Schema Markup</a><a href="#cluster-3" class="nav-link"><span class="nav-dot" style="background:#ef4444"></span>Structure &amp; Navigation</a><a href="#cluster-4" class="nav-link"><span class="nav-dot" style="background:#f59e0b"></span>Manual / Visual QC</a><a href="#cluster-5" class="nav-link"><span class="nav-dot" style="background:#64748b"></span>Legacy Checks</a>
+  <div class="nav-actions">
+    <button class="btn btn-active" id="btn-filter" onclick="toggleFilter()">Errors Only</button>
+    <button class="btn" onclick="toggleAll(true)">Expand All</button>
+    <button class="btn" onclick="toggleAll(false)">Collapse All</button>
+  </div>
+</div>
+
+<div class="content">
+  <div class="report-header">
+    <h1>Pre-Launch QC Report</h1>
+    <p class="subtitle">michgc.com &mdash; April 7, 2026</p>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-card card-pass"><div class="count" style="color:#10b981">15</div><div class="label">Passed</div></div>
+    <div class="summary-card card-failed"><div class="count" style="color:#ef4444">4</div><div class="label">Failed</div></div>
+    <div class="summary-card card-skipped"><div class="count" style="color:#7c3aed">3</div><div class="label">Skipped</div></div>
+    
+  </div>
+
+  
+  <div class="cluster" id="cluster-0" style="display:none">
+    <div class="cluster-header">
+      <span class="cluster-title">Technical Foundation</span>
+      <div class="cluster-badges">
+        <span class="cluster-badge" style="background:rgba(16,185,129,0.1);color:#10b981">&#10003; 4</span>
+        
+      </div>
+    </div>
+    <div class="cluster-checks">
+      
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(0,0)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Robots.txt</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              
+              
+            </div>
+            <div class="check-summary">robots.txt is properly configured</div>
+            
+          </div>
+          <span class="chevron" id="chevron-0-0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">1</span></span>
+        </div>
+        <div class="check-findings" id="findings-0-0"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">robots.txt content</p><pre class="finding-detail-block">User-agent: *
+Allow: 
+
+Sitemap: <a href="https://michgc.com/sitemap.xml" target="_blank" rel="noopener noreferrer">https://michgc.com/sitemap.xml</a></pre></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(0,1)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Sitemap.xml</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              
+              
+            </div>
+            <div class="check-summary">Sitemap.xml is valid with 1 URLs</div>
+            
+          </div>
+          <span class="chevron" id="chevron-0-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">5</span></span>
+        </div>
+        <div class="check-findings" id="findings-0-1"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Sitemap contains 1 URLs</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Most recent lastmod: 2026-01-25 (2 months ago)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Oldest lastmod: 2026-01-25 (2 months ago)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">1 URL(s) have lastmod dates</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Checked 1 sitemap URLs for accessibility</p></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(0,2)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Trailing Slash &amp; WWW</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              
+              
+            </div>
+            <div class="check-summary">Trailing slash &amp; WWW redirects look good</div>
+            
+          </div>
+          <span class="chevron" id="chevron-0-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">4</span></span>
+        </div>
+        <div class="check-findings" id="findings-0-2"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">with trailing slash: HTTP 200 (no redirect)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">without trailing slash: HTTP 200 (no redirect)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">with www: 301 redirect → <a href="https://michgc.com/" target="_blank" rel="noopener noreferrer">https://michgc.com/</a></p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Canonical URL: <a href="https://michgc.com/" target="_blank" rel="noopener noreferrer">https://michgc.com/</a></p></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(0,3)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Tracking &amp; Analytics</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              
+              
+            </div>
+            <div class="check-summary">Found: GTM, GA</div>
+            
+          </div>
+          <span class="chevron" id="chevron-0-3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">5</span></span>
+        </div>
+        <div class="check-findings" id="findings-0-3"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Google Tag Manager found (GTM-PV2ZFP89)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">GTM noscript fallback found</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">Google Analytics ID found (g-thumbnail) but gtag.js script not detected</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Google Search Console verification tag found</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Bing Webmaster verification tag found</p></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cluster" id="cluster-1">
+    <div class="cluster-header">
+      <span class="cluster-title">Meta &amp; Content</span>
+      <div class="cluster-badges">
+        <span class="cluster-badge" style="background:rgba(16,185,129,0.1);color:#10b981">&#10003; 3</span>
+        <span class="cluster-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">&#10007; 2</span>
+      </div>
+    </div>
+    <div class="cluster-checks">
+      
+      <div class="check-card" data-status="fail">
+        <div class="check-header" onclick="toggleCheck(1,0)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Meta &amp; Title Validation</span>
+              <span class="status-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">Fail</span>
+              
+              
+            </div>
+            <div class="check-summary">1/1 pages have meta issues — 1 listed for review</div>
+            
+          </div>
+          <span class="chevron" id="chevron-1-0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">3</span></span>
+        </div>
+        <div class="check-findings" id="findings-1-0"><div class="ext-links-container">
+        <div class="ext-tabs">
+          <button class="ext-tab ext-tab-active" onclick="switchTwoViewTab('meta','v1',this)">Issues (1)</button>
+          <button class="ext-tab" onclick="switchTwoViewTab('meta','v2',this)">Review All (2)</button>
+        </div>
+        <div class="ext-view" id="meta-view-v1"><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">Meta description too long (203 chars)</p><a href="https://michgc.com/" target="_blank" rel="noopener noreferrer" class="finding-link">https://michgc.com/</a><pre class="finding-detail-block">Title: Window Tinting Michigan | Michigan Glass Coatings
+Description: Michigan Glass Coatings provides professional window tinting across Michigan for commercial and residential properties. Improve comfort, privacy, and energy efficiency with trusted window film solutions.</pre></div></div></div>
+        <div class="ext-view" id="meta-view-v2" style="display:none"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Review each page's meta title and description below — verify they match page content and target keywords</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[HOMEPAGE] /</p><a href="https://michgc.com/" target="_blank" rel="noopener noreferrer" class="finding-link">https://michgc.com/</a><pre class="finding-detail-block">Title: Window Tinting Michigan | Michigan Glass Coatings
+Description: Michigan Glass Coatings provides professional window tinting across Michigan for commercial and residential properties. Improve comfort, privacy, and energy efficiency with trusted window film solutions.</pre></div></div></div>
+      </div></div>
+      </div>
+      <div class="check-card" data-status="fail">
+        <div class="check-header" onclick="toggleCheck(1,1)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Open Graph Tags</span>
+              <span class="status-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">Fail</span>
+              
+              
+            </div>
+            <div class="check-summary">1/1 pages missing OG tags</div>
+            
+          </div>
+          <span class="chevron" id="chevron-1-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">1</span></span>
+        </div>
+        <div class="check-findings" id="findings-1-1"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Missing: og:image</p><a href="https://michgc.com/" target="_blank" rel="noopener noreferrer" class="finding-link">https://michgc.com/</a></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" style="cursor:default">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>EM Dash Check</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              
+              
+            </div>
+            <div class="check-summary">No em dashes or double dashes found across 1 pages</div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" style="cursor:default">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Publish / Modified Date</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              <span class="override-badge">overridden</span>
+              
+            </div>
+            <div class="check-summary">Checked — failed</div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" style="cursor:default">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Images Audit</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              
+              
+            </div>
+            <div class="check-summary">All 32 images on 1 pages have alt text</div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cluster" id="cluster-2">
+    <div class="cluster-header">
+      <span class="cluster-title">Schema Markup</span>
+      <div class="cluster-badges">
+        <span class="cluster-badge" style="background:rgba(16,185,129,0.1);color:#10b981">&#10003; 2</span>
+        
+      </div>
+    </div>
+    <div class="cluster-checks">
+      
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(2,0)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Schema — Organization &amp; Dentist</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              <span class="override-badge">overridden</span>
+              
+            </div>
+            <div class="check-summary">Schema found but has issues (missing Dentist)</div>
+            
+          </div>
+          <span class="chevron" id="chevron-2-0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">3</span></span>
+        </div>
+        <div class="check-findings" id="findings-2-0"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Organization/LocalBusiness schema found on 1 page(s)</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">Dentist schema not found — expected per SOP</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">📋 SOP Template (Organization &amp; Dentist schema):</p><pre class="finding-detail-block">{
+  &quot;@context&quot;: &quot;<a href="https://schema.org" target="_blank" rel="noopener noreferrer">https://schema.org</a>&quot;,
+  &quot;@graph&quot;: [
+    {
+      &quot;@type&quot;: &quot;Organization&quot;,
+      &quot;@id&quot;: &quot;WEBSITE_URL/#organization&quot;,
+      &quot;name&quot;: &quot;PRACTICE_NAME&quot;,
+      &quot;url&quot;: &quot;WEBSITE_URL&quot;,
+      &quot;logo&quot;: {
+        &quot;@type&quot;: &quot;ImageObject&quot;,
+        &quot;url&quot;: &quot;LOGO_IMAGE_URL&quot;,
+        &quot;width&quot;: &quot;LOGO_WIDTH&quot;,
+        &quot;height&quot;: &quot;LOGO_HEIGHT&quot;
+      },
+      &quot;sameAs&quot;: [
+        &quot;FACEBOOK_URL&quot;,
+        &quot;INSTAGRAM_URL&quot;,
+        &quot;LINKEDIN_URL&quot;
+      ]
+    },
+    {
+      &quot;@type&quot;: &quot;Dentist&quot;,
+      &quot;@id&quot;: &quot;WEBSITE_URL/#dentist&quot;,
+      &quot;isPartOf&quot;: { &quot;@id&quot;: &quot;WEBSITE_URL/#organization&quot; },
+      &quot;name&quot;: &quot;PRACTICE_NAME&quot;,
+      &quot;description&quot;: &quot;PRACTICE_DESCRIPTION&quot;,
+      &quot;image&quot;: &quot;CLINIC_PHOTO_URL&quot;,
+      &quot;telephone&quot;: &quot;PHONE_NUMBER&quot;,
+      &quot;email&quot;: &quot;EMAIL_ADDRESS&quot;,
+      &quot;priceRange&quot;: &quot;$$&quot;,
+      &quot;address&quot;: {
+        &quot;@type&quot;: &quot;PostalAddress&quot;,
+        &quot;streetAddress&quot;: &quot;STREET_ADDRESS&quot;,
+        &quot;addressLocality&quot;: &quot;CITY&quot;,
+        &quot;addressRegion&quot;: &quot;STATE_CODE&quot;,
+        &quot;postalCode&quot;: &quot;ZIP_CODE&quot;,
+        &quot;addressCountry&quot;: &quot;US&quot;
+      },
+      &quot;geo&quot;: {
+        &quot;@type&quot;: &quot;GeoCoordinates&quot;,
+        &quot;latitude&quot;: &quot;LATITUDE&quot;,
+        &quot;longitude&quot;: &quot;LONGITUDE&quot;
+      },
+      &quot;openingHoursSpecification&quot;: [
+        { &quot;@type&quot;: &quot;OpeningHoursSpecification&quot;, &quot;dayOfWeek&quot;: &quot;Monday&quot;, &quot;opens&quot;: &quot;09:00&quot;, &quot;closes&quot;: &quot;18:00&quot; },
+        { &quot;@type&quot;: &quot;OpeningHoursSpecification&quot;, &quot;dayOfWeek&quot;: &quot;Tuesday&quot;, &quot;opens&quot;: &quot;09:00&quot;, &quot;closes&quot;: &quot;18:00&quot; },
+        { &quot;@type&quot;: &quot;OpeningHoursSpecification&quot;, &quot;dayOfWeek&quot;: &quot;Wednesday&quot;, &quot;opens&quot;: &quot;09:00&quot;, &quot;closes&quot;: &quot;18:00&quot; },
+        { &quot;@type&quot;: &quot;OpeningHoursSpecification&quot;, &quot;dayOfWeek&quot;: &quot;Thursday&quot;, &quot;opens&quot;: &quot;09:00&quot;, &quot;closes&quot;: &quot;18:00&quot; },
+        { &quot;@type&quot;: &quot;OpeningHoursSpecification&quot;, &quot;dayOfWeek&quot;: &quot;Friday&quot;, &quot;opens&quot;: &quot;09:00&quot;, &quot;closes&quot;: &quot;17:00&quot; },
+        { &quot;@type&quot;: &quot;OpeningHoursSpecification&quot;, &quot;dayOfWeek&quot;: &quot;Saturday&quot;, &quot;opens&quot;: &quot;00:00&quot;, &quot;closes&quot;: &quot;00:00&quot; },
+        { &quot;@type&quot;: &quot;OpeningHoursSpecification&quot;, &quot;dayOfWeek&quot;: &quot;Sunday&quot;, &quot;opens&quot;: &quot;00:00&quot;, &quot;closes&quot;: &quot;00:00&quot; }
+      ]
+    }
+  ]
+}</pre></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="skip">
+        <div class="check-header" style="cursor:default">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" x2="19" y1="5" y2="19"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Schema — Product / Service</span>
+              <span class="status-badge" style="background:rgba(100,116,139,0.1);color:#64748b">Skipped</span>
+              
+              
+            </div>
+            <div class="check-summary">No service pages found to check</div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      <div class="check-card" data-status="skip">
+        <div class="check-header" style="cursor:default">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" x2="19" y1="5" y2="19"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Schema — Person</span>
+              <span class="status-badge" style="background:rgba(100,116,139,0.1);color:#64748b">Skipped</span>
+              
+              
+            </div>
+            <div class="check-summary">No doctor/team pages found to check</div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(2,3)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Schema vs Site Consistency</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              <span class="override-badge">overridden</span>
+              
+            </div>
+            <div class="check-summary">Schema vs site inconsistencies found — 2 mismatches</div>
+            
+          </div>
+          <span class="chevron" id="chevron-2-3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">7</span></span>
+        </div>
+        <div class="check-findings" id="findings-2-3"><div class="findings-list"><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">businessName: Schema has 'Michigan Glass Coatings', On-Page Content has '2026 Michigan Glass Coatings', GBP has 'Michigan Glass Coatings, Inc.'</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">phone: Schema and Footer and On-Page Content have phone '800 999 8468' but GBP has '(248) 364-6667'</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">socialLinks: Schema social links differ from Footer social links; Footer has additional LinkedIn and YouTube links not in Schema</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Address is consistent across Footer, On-Page Content, and GBP (minor formatting differences ignored).</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">GBP website '<a href="https://michgc.com/'" target="_blank" rel="noopener noreferrer">https://michgc.com/'</a> was not provided in other sources for comparison.</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">No product/brand information provided to compare.</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">No aggregateRating schema data to compare with GBP rating.</p></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cluster" id="cluster-3">
+    <div class="cluster-header">
+      <span class="cluster-title">Structure &amp; Navigation</span>
+      <div class="cluster-badges">
+        <span class="cluster-badge" style="background:rgba(16,185,129,0.1);color:#10b981">&#10003; 4</span>
+        <span class="cluster-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">&#10007; 1</span>
+      </div>
+    </div>
+    <div class="cluster-checks">
+      
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(3,0)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Header Audit</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              <span class="override-badge">overridden</span>
+              
+            </div>
+            <div class="check-summary">3 key navigation section(s) missing</div>
+            
+          </div>
+          <span class="chevron" id="chevron-3-0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">4</span></span>
+        </div>
+        <div class="check-findings" id="findings-3-0"><div class="findings-list"><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">Menu uses class-based navigation (menu class found) but not semantic &lt;nav&gt; tags — add &lt;nav&gt; wrapper</p></div></div><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">✗ Missing: Services section</p><p class="finding-detail">No Services section or dropdown found in the provided header HTML.</p></div></div><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">✗ Missing: About section</p><p class="finding-detail">No About section or link found in the provided header HTML.</p></div></div><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">✗ Missing: Contact / Book link</p><p class="finding-detail">No Contact, Appointment, or Book link found in the provided header HTML.</p></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(3,1)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Footer Audit</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              <span class="override-badge">overridden</span>
+              
+            </div>
+            <div class="check-summary">5/8 footer elements found — missing: Business Hours, Privacy Policy Link, Company / Agency Attribution</div>
+            
+          </div>
+          <span class="chevron" id="chevron-3-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">13</span></span>
+        </div>
+        <div class="check-findings" id="findings-3-1"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">1 item(s) found in section above &lt;footer&gt;: Social Media Links</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">✓ Map (Google Maps embed or link)</p><a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.3692627689766!2d-83.2456746!3d42.6535297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8824c005a04efcc3%3A0x48d264d4a948cdb6!2sMichigan%20Glass%20Coatings%2C%20Inc.!5e0!3m2!1sen!2sph!4v1766352283953!5m2!1sen!2sph" target="_blank" rel="noopener noreferrer" class="finding-link">https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.3692627689766!2d-83.2456746!3d42.6535297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8824c005a04efcc3%3A0x48d264d4a948cdb6!2sMichigan%20Glass%20Coatings%2C%20Inc.!5e0!3m2!1sen!2sph!4v1766352283953!5m2!1sen!2sph</a><p class="finding-detail">Google Maps iframe embedded and link to Google Maps app present</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">✓ Physical Address</p><p class="finding-detail">1000 N Opdyke Rd Suite G, Auburn Hills, MI 48326</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">✗ Missing: Business Hours</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">✓ Phone Number (clickable)</p><span class="finding-link">tel:800 999 8468</span><p class="finding-detail">Clickable phone number link present</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">✓ Social Media Links</p><p class="finding-detail">Social media links to Facebook, X (Twitter), LinkedIn, and YouTube found. (found in section above footer)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Social link OK</p><a href="https://www.facebook.com/MichiganGlassCoatings" target="_blank" rel="noopener noreferrer" class="finding-link">https://www.facebook.com/MichiganGlassCoatings</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Social link OK</p><a href="https://x.com/MiGlassCoatings" target="_blank" rel="noopener noreferrer" class="finding-link">https://x.com/MiGlassCoatings</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Social link OK</p><a href="https://www.linkedin.com/company/michigan-glass-coatings" target="_blank" rel="noopener noreferrer" class="finding-link">https://www.linkedin.com/company/michigan-glass-coatings</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Social link OK</p><a href="https://www.youtube.com/channel/UC51Uwq-CmSOTQE2D7WpYS9w" target="_blank" rel="noopener noreferrer" class="finding-link">https://www.youtube.com/channel/UC51Uwq-CmSOTQE2D7WpYS9w</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">✓ Copyright with Current Year</p><p class="finding-detail">2026 Michigan Glass Coatings</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">✗ Missing: Privacy Policy Link</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">✗ Missing: Company / Agency Attribution</p></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="fail">
+        <div class="check-header" onclick="toggleCheck(3,2)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Internal Links (Redirects &amp; Errors)</span>
+              <span class="status-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">Fail</span>
+              
+              
+            </div>
+            <div class="check-summary">0 broken, 1 redirects, 0 timeouts out of 27 internal links</div>
+            
+          </div>
+          <span class="chevron" id="chevron-3-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">1</span></span>
+        </div>
+        <div class="check-findings" id="findings-3-2"><div class="findings-list"><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">Redirects to <a href="https://michgc.com/" target="_blank" rel="noopener noreferrer">https://michgc.com/</a></p><a href="http://michgc.com" target="_blank" rel="noopener noreferrer" class="finding-link">http://michgc.com</a><p class="finding-detail">Found on: <a href="https://michgc.com/" target="_blank" rel="noopener noreferrer">https://michgc.com/</a></p></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(3,3)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>External Link Validation</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              <span class="override-badge">overridden</span>
+              
+            </div>
+            <div class="check-summary">1 external links across 1 pages (15 domain(s) ignored)</div>
+            
+          </div>
+          <span class="chevron" id="chevron-3-3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">3</span></span>
+        </div>
+        <div class="check-findings" id="findings-3-3"><div class="ext-links-container">
+        <div class="ext-tabs">
+          <button class="ext-tab ext-tab-active" onclick="switchExtTab('domains',this)">By Domain (1)</button>
+          <button class="ext-tab" onclick="switchExtTab('all',this)">All Links</button>
+        </div>
+        <div class="ext-view" id="ext-view-domains"><div class="ext-domain-row"><span class="marker muted">○</span><span class="ext-domain-name">x.com</span><span class="ext-domain-detail">1 link(s)</span></div></div>
+        <div class="ext-view" id="ext-view-all" style="display:none"><div class="finding-row finding-group-header"><span class="marker muted">▸</span><div class="finding-content"><p class="finding-header-text">📄 / — 1 external link(s)</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class=""><a href="https://x.com/MiGlassCoatings" target="_blank" rel="noopener noreferrer">https://x.com/MiGlassCoatings</a></p><p class="finding-detail">HTTP 200</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">view:all-unique-links</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class=""><a href="https://x.com/MiGlassCoatings" target="_blank" rel="noopener noreferrer">https://x.com/MiGlassCoatings</a></p><p class="finding-detail">HTTP 200</p></div></div></div>
+      </div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(3,4)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Privacy Policy &amp; Terms of Service</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              <span class="override-badge">overridden</span>
+              
+            </div>
+            <div class="check-summary">Privacy Policy not found (Terms of Service also missing)</div>
+            
+          </div>
+          <span class="chevron" id="chevron-3-4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">2</span></span>
+        </div>
+        <div class="check-findings" id="findings-3-4"><div class="findings-list"><div class="finding-row"><span class="marker error">●</span><div class="finding-content"><p class="">Privacy Policy page not found</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Terms of Service page not found — recommended but not required</p></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cluster" id="cluster-4">
+    <div class="cluster-header">
+      <span class="cluster-title">Manual / Visual QC</span>
+      <div class="cluster-badges">
+        <span class="cluster-badge" style="background:rgba(16,185,129,0.1);color:#10b981">&#10003; 2</span>
+        <span class="cluster-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">&#10007; 1</span>
+      </div>
+    </div>
+    <div class="cluster-checks">
+      
+      <div class="check-card" data-status="warn">
+        <div class="check-header" onclick="toggleCheck(4,0)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>NAPH Consistency</span>
+              <span class="status-badge" style="background:rgba(239,68,68,0.1);color:#ef4444">Fail</span>
+              <span class="override-badge">overridden</span>
+              
+            </div>
+            <div class="check-summary">Extracted 3/4 NAPH fields — cross-source inconsistencies found</div>
+            <div class="check-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>WORKING HOURS MISSMATCH</div>
+          </div>
+          <span class="chevron" id="chevron-4-0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">19</span></span>
+        </div>
+        <div class="check-findings" id="findings-4-0"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Business Name</p><p class="finding-detail">2026 Michigan Glass Coatings</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Address</p><p class="finding-detail">1000 N Opdyke Rd Suite G, Auburn Hills, MI 48326</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Phone</p><p class="finding-detail">800 999 8468</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">Working Hours: Not found on website</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Google Maps: Michigan Glass Coatings, Inc.</p><a href="https://www.google.com/search?q=Michigan%20Glass%20Coatings%2C%20Inc.%201000%20N%20Opdyke%20Rd%20Suite%20G%2C%20Auburn%20Hills%2C%20MI%2048326" target="_blank" rel="noopener noreferrer" class="finding-link">https://www.google.com/search?q=Michigan%20Glass%20Coatings%2C%20Inc.%201000%20N%20Opdyke%20Rd%20Suite%20G%2C%20Auburn%20Hills%2C%20MI%2048326</a><p class="finding-detail">Search Google for &quot;Michigan Glass Coatings, Inc. 1000 N Opdyke Rd Suite G, Auburn Hills, MI 48326&quot; to verify GBP listing</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Google Maps link — click to verify GBP listing</p><a href="https://maps.app.goo.gl/KCaP6z7bqQ7DDRmRA" target="_blank" rel="noopener noreferrer" class="finding-link">https://maps.app.goo.gl/KCaP6z7bqQ7DDRmRA</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Social profile — verify matches GBP</p><a href="https://www.facebook.com/MichiganGlassCoatings" target="_blank" rel="noopener noreferrer" class="finding-link">https://www.facebook.com/MichiganGlassCoatings</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Social profile — verify matches GBP</p><a href="https://x.com/MiGlassCoatings" target="_blank" rel="noopener noreferrer" class="finding-link">https://x.com/MiGlassCoatings</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Social profile — verify matches GBP</p><a href="https://www.linkedin.com/company/michigan-glass-coatings" target="_blank" rel="noopener noreferrer" class="finding-link">https://www.linkedin.com/company/michigan-glass-coatings</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Social profile — verify matches GBP</p><a href="https://www.youtube.com/channel/UC51Uwq-CmSOTQE2D7WpYS9w" target="_blank" rel="noopener noreferrer" class="finding-link">https://www.youtube.com/channel/UC51Uwq-CmSOTQE2D7WpYS9w</a></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">--- GBP (Google Business Profile) ---</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Name: Michigan Glass Coatings, Inc.</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Address: 1000 N Opdyke Rd suite g, Auburn Hills, MI 48326</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Phone: (248) 364-6667</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Rating: 4.9 (101 reviews)</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">Name mismatch: NAPH extraction = &quot;2026 Michigan Glass Coatings&quot; vs Google Maps embed = &quot;Michigan Glass Coatings, Inc.&quot;</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">Name mismatch: NAPH extraction = &quot;2026 Michigan Glass Coatings&quot; vs GBP = &quot;Michigan Glass Coatings, Inc.&quot;</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">Phone mismatch: Footer = &quot;tel:800 999 8468&quot; vs GBP = &quot;(248) 364-6667&quot;</p></div></div><div class="finding-row"><span class="marker warn">●</span><div class="finding-content"><p class="">Cross-source inconsistencies detected — review values above</p></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(4,1)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Page Targeting &amp; H-Tag Structure</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              <span class="override-badge">overridden</span>
+              
+            </div>
+            <div class="check-summary">1 pages reviewed — all have H1 tags</div>
+            
+          </div>
+          <span class="chevron" id="chevron-4-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">2</span></span>
+        </div>
+        <div class="check-findings" id="findings-4-1"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">H1 tags for classified pages — verify each H1 targets the correct keyword for that page</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">[HOMEPAGE] H1: Professional 3M Window Film &amp; Tinting Services in Michigan</p><a href="https://michgc.com/" target="_blank" rel="noopener noreferrer" class="finding-link">https://michgc.com/</a></div></div></div></div>
+      </div>
+      <div class="check-card" data-status="pass" style="display:none">
+        <div class="check-header" onclick="toggleCheck(4,2)">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Visual Elements (Core Pages)</span>
+              <span class="status-badge" style="background:rgba(16,185,129,0.1);color:#10b981">Pass</span>
+              <span class="override-badge">overridden</span>
+              
+            </div>
+            <div class="check-summary">1 pages selected for manual visual review</div>
+            
+          </div>
+          <span class="chevron" id="chevron-4-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span class="chevron-count">2</span></span>
+        </div>
+        <div class="check-findings" id="findings-4-2"><div class="findings-list"><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Open each page below in desktop &amp; mobile view. Check: hero images load, CTAs visible, forms function, no broken layouts, visual consistency.</p></div></div><div class="finding-row"><span class="marker muted">○</span><div class="finding-content"><p class="">Homepage</p><a href="https://michgc.com/" target="_blank" rel="noopener noreferrer" class="finding-link">https://michgc.com/</a></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cluster" id="cluster-5">
+    <div class="cluster-header">
+      <span class="cluster-title">Legacy Checks</span>
+      <div class="cluster-badges">
+        
+        
+      </div>
+    </div>
+    <div class="cluster-checks">
+      
+      <div class="check-card" data-status="skip">
+        <div class="check-header" style="cursor:default">
+          <div class="check-status-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" x2="19" y1="5" y2="19"/></svg></div>
+          <div class="check-info">
+            <div class="check-name">
+              <span>Service Content Depth</span>
+              <span class="status-badge" style="background:rgba(100,116,139,0.1);color:#64748b">Skipped</span>
+              
+              
+            </div>
+            <div class="check-summary">No service pages with HTML available to check</div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="report-footer">Generated by Sitemap Helper QC &mdash; April 7, 2026</div>
+</div>
+
+<script>
+function toggleCheck(ci, ki) {
+  var el = document.getElementById("findings-" + ci + "-" + ki);
+  var ch = document.getElementById("chevron-" + ci + "-" + ki);
+  if (!el) return;
+  var isOpen = el.classList.contains("show");
+  if (isOpen) { el.classList.remove("show"); if (ch) ch.classList.remove("open"); }
+  else { el.classList.add("show"); if (ch) ch.classList.add("open"); }
+}
+function toggleAll(expand) {
+  var findings = document.querySelectorAll(".check-findings");
+  var chevrons = document.querySelectorAll(".chevron");
+  for (var j = 0; j < findings.length; j++) {
+    if (expand) findings[j].classList.add("show");
+    else findings[j].classList.remove("show");
+  }
+  for (var k = 0; k < chevrons.length; k++) {
+    if (expand) chevrons[k].classList.add("open");
+    else chevrons[k].classList.remove("open");
+  }
+}
+var filterActive = true;
+function toggleFilter() {
+  filterActive = !filterActive;
+  var btn = document.getElementById("btn-filter");
+  if (filterActive) { btn.classList.add("btn-active"); btn.textContent = "Errors Only"; }
+  else { btn.classList.remove("btn-active"); btn.textContent = "All Checks"; }
+  var cards = document.querySelectorAll(".check-card");
+  for (var i = 0; i < cards.length; i++) {
+    if (cards[i].getAttribute("data-status") === "pass") {
+      cards[i].style.display = filterActive ? "none" : "";
+    }
+  }
+  var clusters = document.querySelectorAll(".cluster");
+  for (var j = 0; j < clusters.length; j++) {
+    var hasNonPass = false;
+    var allCards = clusters[j].querySelectorAll(".check-card");
+    for (var k = 0; k < allCards.length; k++) {
+      if (allCards[k].getAttribute("data-status") !== "pass") { hasNonPass = true; break; }
+    }
+    clusters[j].style.display = (filterActive && !hasNonPass) ? "none" : "";
+  }
+}
+function switchExtTab(view, btn) {
+  document.getElementById("ext-view-domains").style.display = view === "domains" ? "" : "none";
+  document.getElementById("ext-view-all").style.display = view === "all" ? "" : "none";
+  var tabs = btn.parentElement.querySelectorAll(".ext-tab");
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove("ext-tab-active");
+  btn.classList.add("ext-tab-active");
+}
+function switchTwoViewTab(prefix, view, btn) {
+  var v1 = document.getElementById(prefix + "-view-v1");
+  var v2 = document.getElementById(prefix + "-view-v2");
+  if (v1) v1.style.display = view === "v1" ? "" : "none";
+  if (v2) v2.style.display = view === "v2" ? "" : "none";
+  var tabs = btn.parentElement.querySelectorAll(".ext-tab");
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove("ext-tab-active");
+  btn.classList.add("ext-tab-active");
+}
+</script>
+</body>
+</html>
