@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Dental Club vs Astra Dental CT | Competitive SEO Report</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --surface-2: #f2f5fa;
+      --text: #172033;
+      --muted: #5f6b85;
+      --line: #d9e1ef;
+      --brand: #214a8a;
+      --brand-2: #4a7bd1;
+      --good: #1f8f55;
+      --bad: #c23b3b;
+      --warn: #9a6b00;
+      --shadow: 0 12px 28px rgba(21, 34, 63, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 22px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #163461 0%, #28539a 56%, #4a7bd1 100%);
+      color: #fff;
+      border-radius: 28px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      margin-bottom: 26px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.86;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 38px;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      max-width: 860px;
+      font-size: 18px;
+      opacity: 0.96;
+      margin: 0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 24px 0 30px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.82;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-note {
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      margin-bottom: 22px;
+    }
+
+    .section h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      color: var(--brand);
+    }
+
+    .section p.lead {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    thead th {
+      background: #eaf0fb;
+      color: #22304d;
+      text-align: left;
+      font-size: 14px;
+      padding: 14px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    tbody td {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+
+    .club { color: var(--bad); font-weight: 700; }
+    .astra { color: var(--good); font-weight: 700; }
+    .neutral { color: var(--warn); font-weight: 700; }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .panel {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px 18px 14px;
+    }
+
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: var(--text);
+    }
+
+    ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+
+    li { margin: 8px 0; }
+
+    .callout {
+      border-left: 5px solid var(--brand-2);
+      background: #eef4ff;
+      padding: 16px 18px;
+      border-radius: 14px;
+      color: #22304d;
+      font-size: 15px;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 920px) {
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .split { grid-template-columns: 1fr; }
+      h1 { font-size: 30px; }
+    }
+
+    @media (max-width: 620px) {
+      .wrap { padding: 16px 12px 40px; }
+      .hero { padding: 24px; border-radius: 22px; }
+      .summary-grid { grid-template-columns: 1fr; }
+      table, thead, tbody, th, td, tr { display: block; }
+      thead { display: none; }
+      table { border: none; background: transparent; }
+      tbody tr {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        margin-bottom: 12px;
+        overflow: hidden;
+      }
+      tbody td {
+        border-bottom: 1px solid var(--line);
+      }
+      tbody td:last-child { border-bottom: none; }
+      tbody td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        margin-bottom: 6px;
+        font-weight: 700;
+      }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .wrap { max-width: none; padding: 0; }
+      .section, .hero { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Competitive SEO and CRO Report</div>
+      <h1>The Dental Club vs Astra Dental CT</h1>
+      <p class="subtitle">Astra Dental currently holds the stronger market position across organic visibility, authority, local trust, topic coverage, and conversion readiness. The Dental Club’s clearest advantage is technical speed, but speed alone is not offsetting the broader SEO and CRO gaps.</p>
+
+      <div class="summary-grid">
+        <div class="stat-card">
+          <div class="stat-label">Biggest Gap</div>
+          <div class="stat-value">Coverage</div>
+          <div class="stat-note">Overall service and topic coverage is 3.7/10 for The Dental Club vs 8.3/10 for Astra.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Traffic Gap</div>
+          <div class="stat-value">7 vs 290</div>
+          <div class="stat-note">Astra is already capturing meaningful organic demand while The Dental Club is barely visible.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Trust Gap</div>
+          <div class="stat-value">21 vs 542</div>
+          <div class="stat-note">Astra has a much stronger review footprint in Google Business Profile.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Speed Edge</div>
+          <div class="stat-value">Club wins</div>
+          <div class="stat-note">The Dental Club performs better on both mobile and desktop speed, but this is not the main reason Astra is ahead.</div>
+        </div>
+      </div>
+
+      <div class="callout"><strong>Main takeaway:</strong> The Dental Club’s core issue is not site speed. It is site maturity, content coverage, trust depth, ranking footprint, and conversion structure.</div>
+    </section>
+
+    <section class="section">
+      <h2>1. Organic Visibility</h2>
+      <p class="lead">Astra has a much larger organic footprint and has been visible for longer, giving it more time to build trust and rankings.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>The Dental Club</th>
+            <th>Astra Dental CT</th>
+            <th>What It Means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Metric">Organic keywords</td>
+            <td data-label="The Dental Club"><span class="club">4</span></td>
+            <td data-label="Astra Dental CT"><span class="astra">60</span></td>
+            <td data-label="What It Means">Astra has actual keyword coverage. The Dental Club does not.</td>
+          </tr>
+          <tr>
+            <td data-label="Metric">Organic traffic</td>
+            <td data-label="The Dental Club"><span class="club">7</span></td>
+            <td data-label="Astra Dental CT"><span class="astra">290</span></td>
+            <td data-label="What It Means">Astra is already capturing local demand at a much higher level.</td>
+          </tr>
+          <tr>
+            <td data-label="Metric">Organic pages</td>
+            <td data-label="The Dental Club"><span class="club">0</span></td>
+            <td data-label="Astra Dental CT"><span class="astra">70+</span></td>
+            <td data-label="What It Means">Astra has a real ranking-page footprint, while The Dental Club effectively does not.</td>
+          </tr>
+          <tr>
+            <td data-label="Metric">First seen on Ahrefs</td>
+            <td data-label="The Dental Club"><span class="club">Mid-2025</span></td>
+            <td data-label="Astra Dental CT"><span class="astra">Mid-2023</span></td>
+            <td data-label="What It Means">Astra has had much longer to build rankings, trust, content signals, and authority.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>2. Authority and Backlink Profile</h2>
+      <p class="lead">Both sites are still relatively weak in raw authority, but Astra is clearly ahead and has more supporting link equity.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>The Dental Club</th>
+            <th>Astra Dental CT</th>
+            <th>What It Means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Metric">Referring domains</td>
+            <td data-label="The Dental Club"><span class="club">28</span></td>
+            <td data-label="Astra Dental CT"><span class="astra">54</span></td>
+            <td data-label="What It Means">Astra has a stronger authority base.</td>
+          </tr>
+          <tr>
+            <td data-label="Metric">Backlinks</td>
+            <td data-label="The Dental Club"><span class="club">31</span></td>
+            <td data-label="Astra Dental CT"><span class="astra">223</span></td>
+            <td data-label="What It Means">Astra has materially better link support.</td>
+          </tr>
+          <tr>
+            <td data-label="Metric">DR</td>
+            <td data-label="The Dental Club"><span class="club">1</span></td>
+            <td data-label="Astra Dental CT"><span class="astra">4.3</span></td>
+            <td data-label="What It Means">Both are weak, but Astra is still ahead.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>3. Technical Performance</h2>
+      <p class="lead">This is one of the few areas where The Dental Club is ahead. That makes it clear that speed is not the main blocker.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>The Dental Club</th>
+            <th>Astra Dental CT</th>
+            <th>What It Means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Metric">Mobile speed</td>
+            <td data-label="The Dental Club"><span class="astra">69</span></td>
+            <td data-label="Astra Dental CT"><span class="club">49</span></td>
+            <td data-label="What It Means">The Dental Club has the better mobile performance.</td>
+          </tr>
+          <tr>
+            <td data-label="Metric">Desktop speed</td>
+            <td data-label="The Dental Club"><span class="astra">91</span></td>
+            <td data-label="Astra Dental CT"><span class="club">83</span></td>
+            <td data-label="What It Means">The Dental Club also leads on desktop speed.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>4. GBP and Local Trust Signals</h2>
+      <p class="lead">Astra has built far stronger local trust signals, especially through review volume.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>The Dental Club</th>
+            <th>Astra Dental CT</th>
+            <th>What It Means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Metric">GBP review count</td>
+            <td data-label="The Dental Club"><span class="club">21</span></td>
+            <td data-label="Astra Dental CT"><span class="astra">542</span></td>
+            <td data-label="What It Means">Astra has a much stronger review footprint and trust profile.</td>
+          </tr>
+          <tr>
+            <td data-label="Metric">GBP primary category</td>
+            <td data-label="The Dental Club"><span class="neutral">Dental clinic</span></td>
+            <td data-label="Astra Dental CT"><span class="neutral">Dentist</span></td>
+            <td data-label="What It Means">The listings are categorized differently.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>5. CRO and Landing Page Quality</h2>
+      <p class="lead">Astra appears more conversion-ready, while The Dental Club shows larger messaging, trust, and UX gaps.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>The Dental Club</th>
+            <th>Astra Dental CT</th>
+            <th>What It Means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Metric">Overall landing page CRO score</td>
+            <td data-label="The Dental Club"><span class="club">4.9/10</span></td>
+            <td data-label="Astra Dental CT"><span class="astra">6.6/10</span></td>
+            <td data-label="What It Means">Astra’s landing page appears more conversion-ready, while The Dental Club likely has bigger messaging, trust, and UX gaps.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>6. Service and Topic Coverage</h2>
+      <p class="lead">This is one of the largest competitive gaps. Astra has built a fuller SEO ecosystem with many more opportunities to rank and convert.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>The Dental Club</th>
+            <th>Astra Dental CT</th>
+            <th>What It Means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Metric">Service breadth</td>
+            <td data-label="The Dental Club"><span class="club">4/10</span></td>
+            <td data-label="Astra Dental CT"><span class="astra">8/10</span></td>
+            <td data-label="What It Means">Astra covers substantially more treatment intent and service demand.</td>
+          </tr>
+          <tr>
+            <td data-label="Metric">Blog breadth</td>
+            <td data-label="The Dental Club"><span class="club">1/10</span></td>
+            <td data-label="Astra Dental CT"><span class="astra">9/10</span></td>
+            <td data-label="What It Means">The Dental Club has almost no informational or topic coverage compared to Astra.</td>
+          </tr>
+          <tr>
+            <td data-label="Metric">Core page coverage</td>
+            <td data-label="The Dental Club"><span class="club">6/10</span></td>
+            <td data-label="Astra Dental CT"><span class="astra">8/10</span></td>
+            <td data-label="What It Means">The Dental Club has some foundation pages, but Astra’s site is more complete.</td>
+          </tr>
+          <tr>
+            <td data-label="Metric">Overall service/topic coverage</td>
+            <td data-label="The Dental Club"><span class="club">3.7/10</span></td>
+            <td data-label="Astra Dental CT"><span class="astra">8.3/10</span></td>
+            <td data-label="What It Means">This is one of the biggest competitive gaps between the two sites.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>7. CRO Weaknesses on The Dental Club</h2>
+      <div class="split">
+        <div class="panel">
+          <h3>Weak Points</h3>
+          <ul>
+            <li>Weak hero clarity and value proposition</li>
+            <li>Limited trust-building elements above the fold</li>
+            <li>CTA hierarchy is likely not strong or prominent enough</li>
+            <li>Less persuasive service-page structure</li>
+            <li>Weaker local proof and authority signals</li>
+            <li>Less depth in treatment explanation and benefits</li>
+            <li>Fewer conversion-supporting elements such as reviews, financing, reassurance, FAQs, and process clarity</li>
+            <li>Likely weaker internal paths from informational intent to booking intent</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>What The Dental Club Needs to Do</h3>
+          <ul>
+            <li>Rewrite the hero so the offer is instantly clear: who they help, what they do, and why choose them</li>
+            <li>Strengthen primary CTA visibility with a clear booking or request appointment action</li>
+            <li>Add trust signals near the top of the page: reviews, years of experience, doctor credibility, insurance or financing, and key benefits</li>
+            <li>Make service pages more conversion-focused with clearer structure, treatment benefits, candidacy, process, outcomes, and FAQs</li>
+            <li>Improve local reassurance by emphasizing Stratford relevance, patient trust, and convenience</li>
+            <li>Add stronger proof throughout the site: testimonials, before-and-after examples, technology, team, and patient experience details</li>
+            <li>Reduce friction by improving mobile CTA placement, contact visibility, and appointment pathways</li>
+            <li>Build better internal linking from blog and support pages into core money pages</li>
+            <li>Create a clearer section flow so users move naturally from problem to solution to trust to CTA</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>8. Final Assessment</h2>
+      <p class="lead">Astra is ahead because it has built a more complete SEO and conversion system over a longer period of time.</p>
+      <div class="callout">
+        <strong>Client-ready conclusion:</strong> The Dental Club’s main advantage is technical speed, but Astra is ahead in the areas that more directly drive rankings and leads: organic footprint, backlinks, reviews, service breadth, topic breadth, and landing page effectiveness. The biggest opportunity for The Dental Club is to improve site coverage and conversion structure at the same time.
+      </div>
+      <div class="footer-note">Prepared as a competitive report comparing current organic visibility, authority, technical performance, local trust, CRO quality, and service/topic coverage.</div>
+    </section>
+  </div>
+</body>
+</html>
