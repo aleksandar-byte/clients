@@ -1,0 +1,1256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Client Records</title>
+  <style>
+    :root {
+      --bg: #f6f3eb;
+      --card: #fffdf7;
+      --ink: #1f2a2a;
+      --muted: #5d6a67;
+      --line: #d8d1c2;
+      --accent: #0e7a6d;
+      --active: #d7f4ea;
+      --paused: #fff0bf;
+      --lost: #ffd7d2;
+      --review: #dbe7ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Aptos", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(14,122,109,.12), transparent 30%),
+        radial-gradient(circle at top right, rgba(212,166,92,.12), transparent 28%),
+        var(--bg);
+    }
+    .wrap {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+    }
+    .sub {
+      color: var(--muted);
+      max-width: 900px;
+      margin-bottom: 22px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 30px rgba(31,42,42,.05);
+    }
+    .stat-label {
+      font-size: .84rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .stat-value {
+      font-size: 1.7rem;
+      margin-top: 4px;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .toolbar input, .toolbar select {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: white;
+      color: var(--ink);
+      min-width: 180px;
+    }
+    .table-shell {
+      overflow: auto;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 14px 36px rgba(31,42,42,.06);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1300px;
+    }
+    th, td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: .95rem;
+    }
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #fbf8ef;
+      font-size: .8rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    tr:last-child td {
+      border-bottom: 0;
+    }
+    .client-cell {
+      min-width: 260px;
+    }
+    .client-name {
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .client-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: .85rem;
+    }
+    .client-links a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .badge.active { background: var(--active); }
+    .badge.paused { background: var(--paused); }
+    .badge.lost { background: var(--lost); }
+    .badge.review { background: var(--review); }
+    .badge.default { background: #ece7dc; }
+    .footer {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .hidden-row { display: none; }
+    @media (max-width: 900px) {
+      .wrap { padding: 24px 14px 40px; }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .toolbar input, .toolbar select { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Client Records</h1>
+    <div class="sub">Generated from the canonical client table in <code>client-reference.md</code>. This page is designed to be the public, searchable view of current client records, with links to websites, folders, and sitemap sheets where available.</div>
+    <div class="stats">
+      <div class="stat"><div class="stat-label">Total Clients</div><div class="stat-value">68</div></div>
+      <div class="stat"><div class="stat-label">Active</div><div class="stat-value">49</div></div>
+      <div class="stat"><div class="stat-label">Paused</div><div class="stat-value">5</div></div>
+      <div class="stat"><div class="stat-label">Lost / Churned</div><div class="stat-value">4</div></div>
+      <div class="stat"><div class="stat-label">White Pod</div><div class="stat-value">42</div></div>
+      <div class="stat"><div class="stat-label">Orange Pod</div><div class="stat-value">23</div></div>
+    </div>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Search client, location, notes..." />
+      <select id="pod">
+        <option value="">All pods</option>
+        <option value="white">White</option>
+        <option value="orange">Orange</option>
+      </select>
+      <select id="status">
+        <option value="">All statuses</option>
+        <option value="active">Active</option>
+        <option value="paused">Paused</option>
+        <option value="lost / churned">Lost / churned</option>
+        <option value="needs review">Needs review</option>
+      </select>
+    </div>
+    <div class="table-shell">
+      <table>
+        <thead>
+          <tr>
+            <th>Client</th>
+            <th>Location</th>
+            <th>Industry</th>
+            <th>Pod</th>
+            <th>Services</th>
+            <th>Status</th>
+            <th>Monday Item</th>
+            <th>Geo / Target Locations</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody id="records-body">
+          
+            <tr data-client="[mds] elmtree dental" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">[MDS] Elmtree Dental</div>
+                <div class="client-links"><a href="https://www.elmtreefamilydental.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1-GaeCnXriPAmRLoeLBdGwHET9T08CIbp" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/10hsUXTRpYstmYR-Cv7fa2A8tpct01jLwP4OKmRM6HLY/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Columbia, SC</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7495773337</td>
+              <td>No locational landing pages found. Recommended pages based on geographic proximity and population: Columbia, SC, West Columbia, SC, Cayce, SC, Lexington, SC, Irmo, SC, Forest Acres, SC, Dentsville, SC</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="rodich law" data-pod="white" data-status="paused">
+              <td class="client-cell">
+                <div class="client-name">Rodich Law</div>
+                <div class="client-links"><a href="https://www.rodichlaw.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1PhHQ9JPG7SHeETvsIxEUxYtODhJW14H1" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1wc_ikDPTMX2YmgqpQZMhXxhOb9qoSnPVBTGy-V6saUo/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Woodland Hills, CA</td>
+              <td>Legal</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge paused">Paused</span></td>
+              <td>7495773375</td>
+              <td>No locational landing pages found. Recommended pages based on geographic proximity and population: Tarzana, Canoga Park, West Hills, Calabasas, Encino, Northridge, Chatsworth, Sherman Oaks, Van Nuys, Reseda, Granada Hills, Porter Ranch.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="cap dental" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Cap Dental</div>
+                <div class="client-links"><a href="https://mycapdental.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1FL-tFQytOTvzTX4ewkVkkKS7g_WYaUxH" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1uMKGLMqiS464cfM7HpmHxLxoag4y90LTE_dWTCJWrLs/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Boynton Beach, FL</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>8970105641</td>
+              <td>Existing Locational Pages: Lake Worth, Lantana, West Palm Beach, Delray Beach. Suggested additional pages: Boynton Beach, Greenacres, Wellington.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="winwood dental" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Winwood Dental</div>
+                <div class="client-links"><a href="https://winwooddental.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1CEtrMMEZu4UTEacLflc6vE7aeFN0aeX0" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1yOjAiTCb4PPIRXgwoGLuq7Cn_WNRJY8BI7RlXmDB1zA/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Lebanon, TN</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>PPC, web hosting only, SEO</td>
+              <td><span class="badge active">Active</span></td>
+              <td>9312639165</td>
+              <td>Recommended pages: Lebanon, Mount Juliet, Hermitage, Gallatin, Hendersonville, Watertown, Smyrna, La Vergne, Nashville, Goodlettsville.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="dulce dental" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Dulce Dental</div>
+                <div class="client-links"><a href="https://www.mydulcedental.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1aPjsU9pN1XzrnyFLrVOpDlexZwjyw4tR" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/19HMc2iHrqYeEW7wNljNBi7fB8jFj1izWKOS5ohx3B4E/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Dulce, NM</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>9413852605</td>
+              <td>Existing Locational Pages: West Dallas, Oak Cliff, Cedar Crest, Kessler Park. Suggested additional pages: Bishop Arts District, Irving, Grand Prairie.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="q and a dental care" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Q and A Dental Care</div>
+                <div class="client-links"><a href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1ZtsDaRuqb_PgNnHMJs0IPAwons9MYxK7" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1-IE6pgTB3Lq585KRNOmrOFhriQsDOgClVwikc5_OAwM/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Macedonia, OH</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>9635470989</td>
+              <td>Existing Locational Pages: Glenwillow, Mayfield Heights, Northfield, Oakwood, Sagamore Hills, Solon, Streetsboro, Twinsburg, Bedford, Garfield Heights.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="smileology" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Smileology</div>
+                <div class="client-links"><a href="https://smileology.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1wXPNR6s9C5Dw6FCKWJkVul-a3VwwJLmb" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/14_t0PXbo95AkMXBBA7jTWlc3lClYLNcr2yEI2j7kPWA/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Niceville, FL Miramar Beach, FL Crestview, FL</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC, Web build</td>
+              <td><span class="badge active">Active</span></td>
+              <td>9820714164</td>
+              <td>Existing Location Pages: Niceville, Miramar Beach, Crestview (physical office locations).</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="michael berry" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Michael Berry</div>
+                <div class="client-links"><a href="https://mjbfirm.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1jNdk4Hd5KP5oFI60W7FrAW0VNrH_MHb5" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1StI-Mow-CEO2ChZFAf9W0pJ-iQPEomNkyy_bvU4DTRo/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Jacksonville, FL</td>
+              <td>Legal</td>
+              <td>White</td>
+              <td>SEO</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7678158460</td>
+              <td>Anaheim, Costa Mesa, Huntington Beach, Irvine, Lake Forest, Mission Viejo, Newport Beach, Orange, Rancho Santa Margarita, Yorba Linda</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="supremia dentistry" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Supremia Dentistry</div>
+                <div class="client-links"><a href="https://supremiadentistry.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1jcHRioGxl2Lnrt9ndiRyzroiiIw5jv2I" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1dyN2bMguMCJYWSWfEtrllvGmNFC3XhyuUkx0jmq1iwg/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Wake Forest, NC</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7396321739, 7903735761</td>
+              <td>Cary, Raleigh, Youngsville, Chapel Hill, Falls, Durham, Knightdale, Rolesville, Stony Hill, Forestville</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="ben helfman" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Ben Helfman</div>
+                <div class="client-links"><a href="https://www.lthzlaw.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1h5ULsDYKQbQXHnUWK2kT1f4H_2ZkT7Ri" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1_b-L9uSjDzvSrx1sXGz1UCnV_GdZz4vOvvsbIaixV3o/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Redding, CA</td>
+              <td>Legal</td>
+              <td>White</td>
+              <td>SEO</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7863279341</td>
+              <td>Sacramento, San Francisco, Santa Rosa</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="lovett dental" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Lovett Dental</div>
+                <div class="client-links"><a href="https://www.lovettdental.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1EnKlKgkAfsIIP9Ckhvu7pJopw3bVD-KA" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1cp-GHQxId2mPQkDwE6oCP7F5g-rMmPujb_Zfus1REVA/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Houston, TX</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, FB, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7495772603</td>
+              <td>Baytown, Beaumont, Cinco Ranch, Conroe, Corpus Christi, Gulfgate, Heights North Shepherd, Heights Yale St., Humble, Jersey Village, Katy, Meyerland Plaza, Missouri City, Northside, Pasadena, Pearland, Piney Point, Sharpstown, Sugar Land, Vintage Park, Webster, West University, Atascocita, Spring-Woodlands.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="[mds] smart ortho" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">[MDS] Smart Ortho</div>
+                <div class="client-links"><a href="https://www.smartorthodontics.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1lhXcubLD2H_R9LmGZEaFS-UGsRcqjoCI" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1MQiNj5gj5e4HLrg9tdptDb8m4JTnOaWv9j5xIa1qfBU/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Charlotte, NC</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7495773223</td>
+              <td>Existing Locational Pages: Harrisburg, Huntersville, Newell, Cabarrus, Mecklenburg, Union.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="[mds] vivid dental - greensboro" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">[MDS] Vivid Dental - Greensboro</div>
+                <div class="client-links"><a href="https://www.vividdental.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1hLSH0HSZmneigwbv3MJOwXQ_N2hRNl66" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1XwQ0H7i1KBPidMBGpTpsy3u94fhYffjM6_eH7FWE9Us/edit?gid=124398067#gid=124398067" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Greensboro, NC</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7495773194</td>
+              <td>Existing Locational Pages: Greensboro, High Point, Winston-Salem. Suggested Cities: Kernersville, Jamestown, Burlington, Thomasville, Lexington, Asheboro, Reidsville, Walkertown, Oak Ridge.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="tabor dentistry" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Tabor Dentistry</div>
+                <div class="client-links"><a href="https://www.smilesthatrock.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/14xZTV4xD6MOe2dz-8TyYE_KAnu3qdB__" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1de1_1bUt8WSEhtQtcLyZzBkecjBjadjd7-HCwS6gXJQ/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Rockwall, TX</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7396321775, 8060588723</td>
+              <td>Existing Locational Pages: Nashville, Goodlettsville, Gallatin. Suggested Cities: Hendersonville, Madison, Mount Juliet, Lebanon, White House, Portland, Springfield, La Vergne, Smyrna.</td>
+              <td>Root CSV alias: Tabor Dental</td>
+            </tr>
+            
+            <tr data-client="[mds] charlotte dental associates" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">[MDS] Charlotte Dental Associates</div>
+                <div class="client-links"><a href="https://charlottedentalassociatesnc.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1NIjSZYocDuFi5U6_BA5E4VYC2c7Iw-Mj" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1GGzcNdd2HL91GIgzbS2gRi9NhC2xWT8l3kXG7H9bYR0/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Charlotte, NC</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7495772512</td>
+              <td>Suggested Secondary Locations: Concord, NC, Harrisburg, NC, Huntersville, NC, Matthews, NC, Mint Hill, NC, Kannapolis, NC, Cornelius, NC, Davidson, NC</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="oasis smile studio" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Oasis Smile Studio</div>
+                <div class="client-links"><a href="https://oasissmilestudio.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1KP6CFRF-LP0DcX14n3JDPEuOfnhu-hTq" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1b_h7zALNGPFVN-zMxIoIDGtMR96ScsMaV1KerH6dry8/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>New York, NY</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>8585445984</td>
+              <td>Existing Locational Pages: Archdale, Thomasville, Lexington. Additional Suggested Cities: Greensboro, Winston-Salem, Jamestown, Trinity, Kernersville, Asheboro, Walkertown, Pleasant Garden, Colfax.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="[mds] central ave dental" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">[MDS] Central Ave Dental</div>
+                <div class="client-links"><a href="https://www.centralavenuedental.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1-0iO24iQx0QSXl6e8fquJySyvrP0IUGO" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/11VIHnhpV_cxD9g10O52s13yC04_pLifUU5fM7UeUwHE/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Charlotte, NC</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7495772951</td>
+              <td>No locational landing pages found. Recommended pages based on geographic proximity and population: Concord, Gastonia, Huntersville, Matthews, Mint Hill, Pineville, Belmont, Indian Trail.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="bryant ortho" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Bryant Ortho</div>
+                <div class="client-links"><a href="https://bryantortho.net/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/12OYcGiHHZgpM6EZQl914-zM0l0EadlRK" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1Dy8xDmp0UMIXpSByoNnWhu2PqWHL_Tq_X_4ty57i9kI/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Windsor Mill, MD</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC, Web build</td>
+              <td><span class="badge active">Active</span></td>
+              <td>9921643009</td>
+              <td>Existing Locational Pages: Owings Mills, Ellicott City, Baltimore, Randallstown, Catonsville, Pikesville.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="downtown dental nashville" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Downtown Dental Nashville</div>
+                <div class="client-links"><a href="https://www.downtowndentalnashville.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1mxKqoFYpaBECA1XRjb5dLXOcp_fizJI5" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1BjK3vY48-arL1VFgkMnGF-kPjIjA92LQKYCD6IxoV9E/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Nashville, TN</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC, Web build</td>
+              <td><span class="badge active">Active</span></td>
+              <td>18015737126</td>
+              <td>Existing Locational Pages: East Nashville, Germantown, Midtown, North Nashville, The Gulch.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="joy dental pines" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Joy Dental Pines</div>
+                <div class="client-links"><a href="https://joydentalpines.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1uRzoSTTQpg59qJ8EYppn_M6Ql8Narbwi" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1N4LxrRTWH7-hZVQBqZzUUAIPciyhn_as_HGfeUE2-9Y/edit?gid=408537344#gid=408537344" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Pembroke Pines, FL</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC, Web build</td>
+              <td><span class="badge active">Active</span></td>
+              <td>18037400747</td>
+              <td>No existing locational pages. Suggested Secondary Locations: Miramar, Weston, Davie, Cooper City, Hollywood, Southwest Ranches.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="smile sf" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Smile SF</div>
+                <div class="client-links"><a href="https://sanfranciscodentistsmilesf.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1h3AUQE3EYMucEzggYAQSBMK1Exf5k9oQ" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1qYnzruVK5g6YkdW0x029BCb2AQf75ap9QBDr9RlbwsY/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>San Francisco, CA</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC, Web build</td>
+              <td><span class="badge active">Active</span></td>
+              <td>18056078972</td>
+              <td>Listed in sitemap but currently 404 when clicked: Inner Richmond, Central Richmond, Presidio Terrace, Pacific Heights, Haight-Ashbury</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="south florida sedation dentistry" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">South Florida Sedation Dentistry</div>
+                <div class="client-links"><a href="https://www.southfloridasedationdentistry.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1vDdpVZaDPSd2g1n8bv33ZhWCI8-EXsLo" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1f-TvkVQ8ATInEC6oFQYj5GO-Yl65XzmY9GHDD1v7Kxw/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>West Palm Beach, FL</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC, Web build</td>
+              <td><span class="badge active">Active</span></td>
+              <td>18183666938</td>
+              <td>Existing Locations: Wellington, FL, Royal Palm Beach, FL, Palm Beach County, FL, Greenacres, FL</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="maison la" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Maison LA</div>
+                <div class="client-links"><a href="https://maisonladental.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1Nz-PK60tS_5F02I73dkGVh9YqgCLI03P" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1ioFcoFdhtc6ZKGUKZiRenw9sD4aDON093sAnQB_uUrM/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>New Orleans, LA</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, Web build, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>18255174577</td>
+              <td>Suggested Secondary Locations: Silver Lake, CA, Los Feliz, CA, Echo Park, CA, Glendale, CA, Atwater Village, CA, Burbank, CA, Hollywood, CA</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="dental care center of hollywood" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Dental Care Center of Hollywood</div>
+                <div class="client-links"><a href="https://www.dentalcenterofhollywood.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1JPSX3QHmP2MD3m65MwrxZcQ8l7u4k2g2" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1OHnIcMJ2iwI_AFPvRl3wV7rD0ju-jNRy8n5wk8hj_Ko/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Hollywood, FL</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>18365122656</td>
+              <td>Suggested Secondary Locations: Hallandale Beach, FL, Dania Beach, FL, Pembroke Pines, FL, Miramar, FL, Aventura, FL, Davie, FL</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="university dental" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">University Dental</div>
+                <div class="client-links"><a href="https://www.universitydentalsandiego.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1TaalzVWyJDneswTPN6E9KvbSvptZJf9F" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1XNTTuGUO1r4ATHJoFkE57eNqcZvLJvKJuzNubyn_sHk/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>San Diego, CA</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC, Web build</td>
+              <td><span class="badge active">Active</span></td>
+              <td>18375010972</td>
+              <td>Areas Served page exists but no individual location pages found. Suggested Secondary Locations: La Mesa, CA, El Cajon, CA, Lemon Grove, CA, National City, CA, Chula Vista, CA, Spring Valley, CA</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="slcsmiles - dr gleave" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">SLCsmiles - DR gleave</div>
+                <div class="client-links"><a href="https://slcsmiles.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1XjgDykUCvBK7YP0gHwp1HY1GVF9vRBRR" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1aP28YV6Bd0wvOpg5Kmo0u9Tv5GGmbM6_v8vad7Ib6TQ/edit?gid=124398067#gid=124398067" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Salt Lake City, UT</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>18386514163</td>
+              <td>Suggested Secondary Locations: Murray, UT, Millcreek, UT, Sandy, UT, Draper, UT, South Jordan, UT, Bountiful, UT, Taylorsville, UT, Holladay, UT</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="mountain view" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Mountain View</div>
+                <div class="client-links"><a href="https://dentistacworth.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1eCG-CzbnszeMJ5L6pLG4dy-Qe_oHe_LU" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/18QiyGt19Sgn4-PSfeRl3VgZBp6d4aCBjfACyuud5PqE/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Acworth, GA</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7396321692</td>
+              <td>The following URLs appear in the sitemap but return 404 (page not found) when clicked: https://mvdentalacworth.com/areas-served/acworth/ , https://mvdentalacworth.com/areas-served/marietta/ , https://mvdentalacworth.com/areas-served/woodstock/, https://mvdentalacworth.com/areas-served/kennesaw/ . No working locational landing pages were found. Suggested Cities: Acworth, Kennesaw, Woodstock, Marietta, Cartersville, Dallas, Powder Springs, Canton, Smyrna, Holly Springs.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="emerald coast" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Emerald Coast</div>
+                <div class="client-links"><a href="https://emeraldcoastdentistry.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1C-o9duznIRwMZqQ3C6P_u8wze9TtXfEv" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1fcQCdnOhm85-Xn2-RxXbMYHcxAe481tRzQ15-XBJ52U/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Fort Walton Beach, FL</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7396322344</td>
+              <td>Suggested Secondary Locations: Mary Esther, FL, Wright, FL, Destin, FL, Shalimar, FL, Niceville, FL, Valparaiso, FL, Navarre, FL</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="ar smiles" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">AR Smiles</div>
+                <div class="client-links"><a href="https://www.arsmilesdental.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1CipkNCCcrRk0MxP_IYYUpSd8W78hBlqD" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1Jm8uh_NjcqW8hcuY244-4uvL0vReT121iVD01N8CErU/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Fairlawn, OH</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7396322017</td>
+              <td>Existing Locational Pages: Akron, Bath, Copley, Wadsworth. Suggested Cities: Fairlawn, Montrose-Ghent, Norton, Barberton, Richfield, Medina, Green, Tallmadge.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="bright healthy smiles" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Bright Healthy Smiles</div>
+                <div class="client-links"><a href="https://brighthealthysmiles.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1dJIisAKJIds-p0gUfhnnRfPMYZtbJ8qP" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1hKk-4sMkzUrf_M9X9WF59ukLa74_fvu6nn8wbXrOESE/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>New York, NY</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>Hosting</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7396321736</td>
+              <td>Suggested Secondary Locations: Upper East Side, NY, Yorkville, NY, Lenox Hill, NY, Carnegie Hill, NY, Midtown Manhattan, NY, Upper West Side, NY</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="1000 smiles" data-pod="orange" data-status="paused">
+              <td class="client-cell">
+                <div class="client-name">1000 Smiles</div>
+                <div class="client-links"><a href="https://www.1000smiles.la/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/10hKP-ypzAcbAx8IfWgVZuTlrO-fSD-_A" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1aptk3CtGtbshzMmYqS6bA2ChB0toldWxfgIm84ovzrI/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Thousand Oaks, CA</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>Hosting</td>
+              <td><span class="badge paused">Paused</span></td>
+              <td>7396322190</td>
+              <td>Existing Locational Pages: Thousand Oaks, Camarillo, Reseda. Suggested Cities: Westlake Village, Agoura Hills, Moorpark, Simi Valley, Newbury Park, Oak Park, Ventura, Oxnard, Calabasas.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="classic dental arts" data-pod="orange" data-status="lost / churned">
+              <td class="client-cell">
+                <div class="client-name">Classic Dental Arts</div>
+                <div class="client-links"><a href="https://www.classicdentalarts.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1PiUBZs7UhS1F8rwYjBr6fuOnNrkQer-f" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1YNv7GwOJjRJJ-DZztzv93P3fk9Df6XIrXjyskkmJh80/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Manalapan Township, NJ</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>SEO</td>
+              <td><span class="badge lost">Lost / churned</span></td>
+              <td>7396322282</td>
+              <td>Currently targets only one main location. Suggested Secondary Locations: Freehold, NJ, Marlboro, NJ, Englishtown, NJ, Morganville, NJ, Old Bridge, NJ, Colts Neck, NJ, East Brunswick, NJ</td>
+              <td>Content: ready</td>
+            </tr>
+            
+            <tr data-client="smile 312" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Smile 312</div>
+                <div class="client-links"><a href="https://www.smile312.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1AJhXJepm1Gei-Z1kkImM1zK9r-qGHkqu" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1DeSWW2My_hXCOqbGh4bkR3oi0ShFJ0UkI4yGOpINYs0/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Chicago, IL</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>PPC, SEO, Website</td>
+              <td><span class="badge active">Active</span></td>
+              <td>18309920682</td>
+              <td>Suggested Secondary Locations: Evanston, IL, Skokie, IL, Oak Park, IL, Cicero, IL, Berwyn, IL, Lincolnwood, IL, Park Ridge, IL</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="dental wellness" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Dental Wellness</div>
+                <div class="client-links"><a href="https://www.1dentalwellness.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/19o391XD9tTL2GUMeZWWLsIThW2TOD9fm" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1fBVgvHfWBuu9l2HOyY_T0hpAcYTDv_fnm6v2Ml2F9s0/edit" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Sioux Falls, SD</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>SEO, PPC, Website</td>
+              <td><span class="badge active">Active</span></td>
+              <td>11406798824</td>
+              <td>Suggested Secondary Locations: Brandon, SD, Harrisburg, SD, Tea, SD, Dell Rapids, SD, Hartford, SD, Canton, SD, Lennox, SD</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="dr.goins" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Dr.Goins</div>
+                <div class="client-links"><a href="https://greatstarthealthysmiles.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1M8agm4YTOQ1efpGKA4-As7V4eNn2DGeL" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1srAhoLDen-9T8St-TJG42hpvAB6VVSzwW7Gxe8Wjzro/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Plano, TX</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td></td>
+              <td><span class="badge active">Active</span></td>
+              <td></td>
+              <td>Ooltewah, TN, Dalton, GA, East Brainerd, TN, Apison, TN</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="oc specialties" data-pod="white" data-status="paused">
+              <td class="client-cell">
+                <div class="client-name">OC Specialties</div>
+                <div class="client-links"><a href="https://ocspecialtyendo.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1YCZ3H_w6A4Bkyu158vc9RdUO37wKt-wm" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1OQaN69qK4qUBJaGWVvXwRF7lqaD6fhPKcFZBX8J6FSI/edit?gid=124398067#gid=124398067" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Huntington Beach, CA</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>web hosting only, PPC</td>
+              <td><span class="badge paused">Paused</span></td>
+              <td>8927703519</td>
+              <td>Suggested Secondary Locations: Costa Mesa, CA, Fountain Valley, CA, Westminster, CA, Garden Grove, CA, Seal Beach, CA, Newport Beach, CA, Santa Ana, CA, Midway City, CA, Stanton, CA, Cypress, CA, Los Alamitos, CA, Tustin, CA</td>
+              <td>Current board service mix does not include SEO.</td>
+            </tr>
+            
+            <tr data-client="dental studio of palm harbor" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Dental Studio of Palm Harbor</div>
+                <div class="client-links"><a href="https://yourpalmharbordentist.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1ubskxUs7_3Sjlhy6kpAxHJtJwHHU9U9O" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1GPyI9I-ljAWAbl1YfPVUy2ejSiPEg4lE5h3RGydyK_I/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Palm Harbor, FL</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>SEO, Website</td>
+              <td><span class="badge active">Active</span></td>
+              <td>11406800953</td>
+              <td>Suggested Secondary Locations:Clearwater, FL, Dunedin, FL, Tarpon Springs, FL, Largo, FL, Safety Harbor, FL, Oldsmar, FL, Pinellas Park, FL, Seminole, FL, East Lake, FL</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="haven dentistry" data-pod="white" data-status="">
+              <td class="client-cell">
+                <div class="client-name">Haven Dentistry</div>
+                <div class="client-links"><a href="https://www.lovettdental.com/dental-offices-tx/haven-dentistry/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1ty-nuLPWCp3ucePXXy4z5rfaV09dnFqb" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1eswMd2a93522QM_MgclLNtNx_Wl2dQHys1T1S9n4_-8/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Richmond, TX</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td></td>
+              <td><span class="badge default"></span></td>
+              <td></td>
+              <td>Katy, TX, Pearland, TX, Sugar Land, TX, Pasadena, TX, Baytown, TX, Conroe, TX, Beaumont, TX, Humble, TX, Webster, TX, Missouri City, TX, Jersey Village, TX, Sharpstown, TX, Cinco Ranch, TX, Upper Kirby, TX, Gulfgate, TX, Kohrville, TX, Meyerland, TX, North Heights, TX, Piney Point Village, TX</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="total smiles of roxboro" data-pod="white" data-status="paused">
+              <td class="client-cell">
+                <div class="client-name">Total Smiles of Roxboro</div>
+                <div class="client-links"><a href="https://www.totalsmilesnc.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1XClMZxr3LNxhcSgmONz4XIkoN-lpbC_y" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1_9QvW_DuMfrSuCJ6Bs1ph06xxnUUOtm2piRn1dL1Mj0/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Oxford, NC</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge paused">Paused</span></td>
+              <td>7495773466</td>
+              <td>No locational landing pages found. Multiple office location pages exist (Oxford, Roxboro, Leland), but no city-based service pages. Recommended pages based on geographic proximity and population: Oxford, Durham, Hillsborough, South Boston, Timberlake, Mebane, Chapel Hill, Burlington, Danville.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="more dental - total smiles leland" data-pod="white" data-status="paused">
+              <td class="client-cell">
+                <div class="client-name">MORE Dental - Total Smiles Leland</div>
+                <div class="client-links"><a href="https://totalsmilesofleland.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1me8J2d5yQf0ibL4o7vUuFRfXqqYTFbvm" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1_9QvW_DuMfrSuCJ6Bs1ph06xxnUUOtm2piRn1dL1Mj0/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Leland, NC</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge paused">Paused</span></td>
+              <td>7495773445</td>
+              <td>No locational landing pages found. Recommended pages based on geographic proximity and population: Wilmington, Belville, Navassa, Brunswick Forest, Carolina Beach, Southport, Oak Island, Castle Hayne, Wrightsville Beach.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="smile line" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Smile Line</div>
+                <div class="client-links"><a href="https://smilelinedentistry.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1oJNhQAgRGfOXyxXep_UfdtN2syrYBeHA" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1jwaxHpstd_olYQhCY_tC4tjhihT_a6xfpXvAVOs6F0o/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Livermore, CA</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7396321977, 7495773152</td>
+              <td>Existing Locational Pages: Livermore, Antioch. Suggested Cities: Pleasanton, Dublin, San Ramon, Tracy, Brentwood, Oakley, Pittsburg, Danville, Castro Valley.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="simply veneers" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Simply Veneers</div>
+                <div class="client-links"><a href="https://www.simplyveneers.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1CAaDuanQQlHGeTUdSc8sGSjnc6M1weqU" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1O0I830CtiTVJKP-4Q4l0HwVcSlXiYsfeuzeg6WNgblY/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Newport Beach, CA</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7396322369</td>
+              <td>Huntington Beach, Newport, Irvine, Los Angeles, Costa Mesa, Ventura County, Corona Del Mar, Riverside</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="my teeth &amp; me" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">My Teeth &amp; Me</div>
+                <div class="client-links"><a href="https://www.myteethandme.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1uqK42WLOa7E8djI1u0JdSqUHo8HyMQnP" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/105iYZhLFgWVUXi3grNh44AZk1tAgEZvKAxcgLXkcYjM/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>New York, NY</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>SEO, Website only</td>
+              <td><span class="badge active">Active</span></td>
+              <td>8864440888</td>
+              <td>No locational landing pages found. Recommended pages based on geographic proximity and population: Yorkville, Lenox Hill, Carnegie Hill, East Harlem, Midtown East, Roosevelt Island, Central Park.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="starlite dental" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Starlite Dental</div>
+                <div class="client-links"><a href="https://www.starlitedental.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1PQgER2ywvlLmTkYK8LCy55H854gsmzNU" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1EeszKQSZ272mDdg-djeG1hcQp6DUwR1l26NBj1bCuZM/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>McKinney, TX</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>9454892282</td>
+              <td>No locational landing pages found. Recommended pages based on geographic proximity and population: Frisco, Allen, Plano, Prosper, Little Elm, The Colony, Celina, Princeton.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="wagner sleep dental" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Wagner Sleep Dental</div>
+                <div class="client-links"><a href="https://www.wagnersleepdentist.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1VfOKlobQA5ozPuckZU06gTY37vO6TAO9" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1Lgky1FoGgcZY9EgiZhoU1D4GJhP47yR4gHKPhMsXt24/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Indianapolis, IN</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>PPC, SEO, Website</td>
+              <td><span class="badge active">Active</span></td>
+              <td>10003184805</td>
+              <td>Locational Pages: None currently live Plan in Web Build Sheet: Yes – coverage area pages planned Planned Locations: Greenwood, IN, Southport, IN, South Perry (Indianapolis), IN, Homecroft, IN</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="vista ridge dental" data-pod="orange" data-status="">
+              <td class="client-cell">
+                <div class="client-name">Vista Ridge Dental</div>
+                <div class="client-links"><a href="https://vistaridgedental.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/17HLH0bCeEpUhvNybVTStHdKKpTphGFYZ" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1AYf3IJyr4mbwM9TST-mCwgpMyLRgMsaV0k6Ny9cYxYM/edit?usp=drive_link" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Fort Worth, TX</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td></td>
+              <td><span class="badge default"></span></td>
+              <td></td>
+              <td>Suggested Secondary Locations: Fort Worth, TX, Benbrook, TX, Crowley, TX, Burleson, TX, Forest Hill, TX, Everman, TX, White Settlement, TX, Arlington, TX, Mansfield, TX, Kennedale, TX</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="lehigh dental - dr petrillo" data-pod="orange" data-status="lost / churned">
+              <td class="client-cell">
+                <div class="client-name">Lehigh Dental - DR Petrillo</div>
+                <div class="client-links"><a href="https://drpetrillo.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1ssmEN9DYvrD-EK5dg_qodJi_F2JHHJyb" target="_blank" rel="noreferrer">folder</a> <a href="/" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Bethlehem, PA</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>PPC</td>
+              <td><span class="badge lost">Lost / churned</span></td>
+              <td>11406829912</td>
+              <td>Suggested Secondary Locations:: Bethlehem, PA, Allentown, PA, Easton, PA, Nazareth, PA, Hellertown, PA, Whitehall, PA, Emmaus, PA, Quakertown, PA, Phillipsburg, NJ, Stroudsburg, PA</td>
+              <td>Root CSV alias: Leigh Valley</td>
+            </tr>
+            
+            <tr data-client="lorton town dental" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Lorton Town Dental</div>
+                <div class="client-links"><a href="https://lortontowndental.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1x29hSUzf1dgSMBnB-S6EcL0q8t_ido9L" target="_blank" rel="noreferrer">folder</a> <a href="/" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Lorton, VA</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>PPC, SEO, Website</td>
+              <td><span class="badge active">Active</span></td>
+              <td>11406812858</td>
+              <td>Cities Targeted: Lorton, VA Suggested Secondary Locations: Springfield, VA, Alexandria, VA, Woodbridge, VA, Fairfax, VA, Burke, VA, Annandale, VA, Mount Vernon, VA, Fort Belvoir, VA</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="nk family dentistry" data-pod="orange" data-status="">
+              <td class="client-cell">
+                <div class="client-name">NK Family Dentistry</div>
+                <div class="client-links"><a href="https://nkfamilydental.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1gisrTD8Sg7WCSNkOc8SHdeQn449N1NVI" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1OMiAPSzaD9c4L7ptm1MxKON4PEuigN6ZQh-fb5l5dzs/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Chicago, IL</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td></td>
+              <td><span class="badge default"></span></td>
+              <td></td>
+              <td>Exisitng: Chicago, IL, Logan Square, Chicago, IL</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="the dental parlour" data-pod="orange" data-status="lost / churned">
+              <td class="client-cell">
+                <div class="client-name">The Dental Parlour</div>
+                <div class="client-links"><a href="https://dentalparlour.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/12AMdTwlSt0WTp2evG3-1HUHTdmdsIu1W" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1pqttRowtUltQsdJ1JJOrFa9Y_TweOVpSrfdjgVLd_z8/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Midtown East, NY</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>PPC</td>
+              <td><span class="badge lost">Lost / churned</span></td>
+              <td>11406755521</td>
+              <td>Suggested Secondary Locations: Midtown East, New York, NY, Upper East Side, New York, NY, Sutton Place, New York, NY, Lenox Hill, New York, NY, Yorkville, New York, NY, Murray Hill, New York, NY, Turtle Bay, New York, NY</td>
+              <td>Churned client as of 2026-04-20.</td>
+            </tr>
+            
+            <tr data-client="one orthodontics" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">One Orthodontics</div>
+                <div class="client-links"><a href="https://1-orthodontics.com/" target="_blank" rel="noreferrer">website</a>  <a href="https://docs.google.com/spreadsheets/d/1iDCB8lE7CTAl91J0JbMKECjhnuV4-jt3C1Kf80lpSeI/edit?usp=drive_web&amp;ouid=114052628708076124203" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Fredericksburg, VA</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>SEO</td>
+              <td><span class="badge active">Active</span></td>
+              <td>8642651206</td>
+              <td>Plan in Web Build Sheet: Stafford, VA, Massaponax, VA, Falmouth, VA, Leavells, VA, Five Mile Fork, VA</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="raytown dentist" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Raytown Dentist</div>
+                <div class="client-links"><a href="https://www.raytowndentist.com/" target="_blank" rel="noreferrer">website</a>  </div>
+              </td>
+              <td>Raytown</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>Hosting</td>
+              <td><span class="badge active">Active</span></td>
+              <td>8163461596</td>
+              <td>Unity Village, MO, Sugar Creek, MO, North Blue Ridge (Kansas City), MO, Loma Vista (Kansas City), MO, Eastwood Hills (Kansas City), MO</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="michael bleeker" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Michael Bleeker</div>
+                <div class="client-links"><a href="https://www.michaellbleekerdmd.com/" target="_blank" rel="noreferrer">website</a>  <a href="https://docs.google.com/spreadsheets/d/1S40tlqFLcFmkdGzaGGs0SNuhwzOpQHvMwfhOGytispA/edit?gid=408537344#gid=408537344" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Scottsdale, AZ</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>11073677686</td>
+              <td>Phoenix, AZ, Tempe, AZ, Paradise Valley, AZ, Fountain Hills, AZ, Carefree, AZ, Cave Creek, AZ</td>
+              <td>Root CSV alias: Bleeker</td>
+            </tr>
+            
+            <tr data-client="charm dental" data-pod="orange" data-status="lost / churned">
+              <td class="client-cell">
+                <div class="client-name">Charm Dental</div>
+                <div class="client-links"><a href="https://charmsmilesdental.com/" target="_blank" rel="noreferrer">website</a>  </div>
+              </td>
+              <td>Woodbridge, VA</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>PPC</td>
+              <td><span class="badge lost">Lost / churned</span></td>
+              <td>18309913616</td>
+              <td>Locational Pages (Existing): Woodbridge, VA Suggested Secondary Locations: Dale City, VA, Lake Ridge, VA, Occoquan, VA, Dumfries, VA, Montclair, VA</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="bright craft" data-pod="white" data-status="">
+              <td class="client-cell">
+                <div class="client-name">Bright Craft</div>
+                <div class="client-links"><a href="https://brightcraftcenter.com/" target="_blank" rel="noreferrer">website</a>  </div>
+              </td>
+              <td>Burbank, CA</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td></td>
+              <td><span class="badge default"></span></td>
+              <td></td>
+              <td>Locational Pages (Existing): Burbank, CA Suggested Secondary Locations: Glendale, CA, North Hollywood, CA, Studio City, CA, Toluca Lake, CA, Sherman Oaks, CA, Pasadena, CA</td>
+              <td>Missing from current White/Orange SEO boards.</td>
+            </tr>
+            
+            <tr data-client="molly&#x27;s florals" data-pod="" data-status="">
+              <td class="client-cell">
+                <div class="client-name">Molly&#x27;s Florals</div>
+                <div class="client-links">  </div>
+              </td>
+              <td></td>
+              <td>Floral</td>
+              <td></td>
+              <td></td>
+              <td><span class="badge default"></span></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="empower" data-pod="white" data-status="">
+              <td class="client-cell">
+                <div class="client-name">Empower</div>
+                <div class="client-links"><a href="https://empowerdentalgroup.com/" target="_blank" rel="noreferrer">website</a>  </div>
+              </td>
+              <td></td>
+              <td>Dental Group</td>
+              <td>White</td>
+              <td></td>
+              <td><span class="badge default"></span></td>
+              <td></td>
+              <td>Suggested Locational Pages (Main website): Rancho Cucamonga, CA, Glendale, CA Upland, CA, Burbank, CA, Pasadena, CA Suggested Locational Pages (Empower Dental Glendale): Burbank, CA, Pasadena, CA, North Hollywood, CA, La Cañada Flintridge, CA, Eagle Rock, CA Suggested Locational Pages (Empower Dental Upland): Rancho Cucamonga, CA, Ontario, CA, Claremont, CA, Montclair, CA, Fontana, CA Suggested Locational Pages (Coastland Dental): Glendale, CA, Pasadena, CA, North Hollywood, CA, Studio City, CA, Sun Valley, CA Suggested Locational Pages (BrightCraft Dental &amp; Laser): Glendale, CA, Pasadena, CA, North Hollywood, CA, Studio City, CA, Sherman Oaks, CA Suggested Locational Pages (Allen Washington Dental): Pasadena, CA, Burbank, CA, La Cañada Flintridge, CA, Montrose, CA, Eagle Rock, CA</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="commonwealth family dentistry- dr. breeden" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Commonwealth Family Dentistry- Dr. Breeden</div>
+                <div class="client-links"><a href="https://commonwealthfamilydentistry.com/" target="_blank" rel="noreferrer">website</a>  </div>
+              </td>
+              <td>Chester, VA</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>PPC, SEO, Website</td>
+              <td><span class="badge active">Active</span></td>
+              <td>11406866552</td>
+              <td>Suggested Secondary Locations: Chesterfield, VA, Colonial Heights, VA, Hopewell, VA, Petersburg, VA, Richmond, VA</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="az cosmetic dental" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">AZ Cosmetic Dental</div>
+                <div class="client-links"><a href="https://azfamilydentistry.com/" target="_blank" rel="noreferrer">website</a>  <a href="https://docs.google.com/spreadsheets/d/1o0hCK2a6reQ045Up5PdPpOXgpSdWQbVD-71ukxjmlVs/edit?gid=124398067#gid=124398067" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td></td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>PPC, SEO, Website</td>
+              <td><span class="badge active">Active</span></td>
+              <td>11406694596</td>
+              <td>Locational Pages (Existing): Pinnacle, AZ Suggested Secondary Locations (based on the 2 offices) Peoria, AZ, Glendale, AZ, Phoenix, AZ, Sun City, AZ, Surprise, AZ, El Mirage, AZ</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="north atlanta center for cosmetic &amp; implant dentistry" data-pod="" data-status="">
+              <td class="client-cell">
+                <div class="client-name">North Atlanta Center for Cosmetic &amp; Implant Dentistry</div>
+                <div class="client-links"><a href="https://buforddentist.com/" target="_blank" rel="noreferrer">website</a>  </div>
+              </td>
+              <td></td>
+              <td>Dental</td>
+              <td></td>
+              <td></td>
+              <td><span class="badge default"></span></td>
+              <td></td>
+              <td>Existing: Buford, GA Suggested Locational Pages: Sugar Hill, GA, Suwanee, GA, Flowery Branch, GA, Lawrenceville, GA, Hoschton, GA, Dacula, GA</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="bufford dentist currington" data-pod="" data-status="">
+              <td class="client-cell">
+                <div class="client-name">Bufford Dentist Currington</div>
+                <div class="client-links"><a href="https://www.buford-dentist.com/" target="_blank" rel="noreferrer">website</a>  </div>
+              </td>
+              <td></td>
+              <td>Dental</td>
+              <td></td>
+              <td></td>
+              <td><span class="badge default"></span></td>
+              <td></td>
+              <td>Locational Pages Found: Sugar Hill, GA, Flowery Branch, GA, Suwanee, GA, Oakwood, GA, Braselton, GA, Hoschton, GA, Dacula, GA, Auburn, GA, Lawrenceville, GA, Atlanta, GA</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="vivid dental - main dentist - separate practice" data-pod="white" data-status="">
+              <td class="client-cell">
+                <div class="client-name">Vivid Dental - Main Dentist - Separate practice</div>
+                <div class="client-links">  </div>
+              </td>
+              <td></td>
+              <td>Dental</td>
+              <td>White</td>
+              <td></td>
+              <td><span class="badge default"></span></td>
+              <td></td>
+              <td>No website found for this GBP</td>
+              <td>Missing from current White/Orange SEO boards.</td>
+            </tr>
+            
+            <tr data-client="new wave dental" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">New wave Dental</div>
+                <div class="client-links"><a href="https://newwavedental.com/" target="_blank" rel="noreferrer">website</a>  <a href="https://docs.google.com/spreadsheets/d/1wRnMzrssEfmAZ9p4LW8VAe0HLQiKl6WG2kJGgnr7I0E/edit?gid=1893346259#gid=1893346259" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Raleigh, NC</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>11228475001</td>
+              <td>Exisitng: Raleigh, NC, Cary, NC, Apex, NC, Chapel Hill, NC</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="polished dentistry" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Polished Dentistry</div>
+                <div class="client-links"><a href="https://polishedgeneralandcosmeticdentistry.com/" target="_blank" rel="noreferrer">website</a>  </div>
+              </td>
+              <td></td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>SEO</td>
+              <td><span class="badge active">Active</span></td>
+              <td>11376144739</td>
+              <td>Locational Pages Found: Peapack, NJ, Gladstone, NJ, Branchburg, NJ, Readington, NJ, Morristown, NJ, Pottersville, NJ, Bernardsville, NJ, Somerville, NJ, Far Hills, NJ, Chester, NJ, Basking Ridge, NJ, Tewksbury, NJ, Mendham, NJ, Bridgewater, NJ</td>
+              <td>Root CSV alias: Polished Dental</td>
+            </tr>
+            
+            <tr data-client="davis dental" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Davis Dental</div>
+                <div class="client-links"><a href="https://smiles4jonesboro.com/" target="_blank" rel="noreferrer">website</a>  <a href="https://docs.google.com/spreadsheets/d/1UNTzw_mi7PAWcA2RBF12CfUyI4t6rxodsI43JBWSQAU/edit?gid=1310801267#gid=1310801267" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Jonesboro, AR</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO</td>
+              <td><span class="badge active">Active</span></td>
+              <td>11377060937</td>
+              <td>Suggested Secondary Locations: Paragould, AR, Brookland, AR, Trumann, AR, Bono, AR, Bay, AR, Walnut Ridge, AR</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="mount jackson dental" data-pod="orange" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Mount Jackson Dental</div>
+                <div class="client-links"><a href="https://www.mountjacksondentalcare.com/" target="_blank" rel="noreferrer">website</a> <a href="https://drive.google.com/drive/folders/1YxdeLPpIWt0w6w4DsMyywxP90duHXFIN" target="_blank" rel="noreferrer">folder</a> <a href="https://docs.google.com/spreadsheets/d/1IXiI3ccRt2tLF60ZibirL3NrzMaF6b8Es-L9d9ebN-o/edit?gid=408537344#gid=408537344" target="_blank" rel="noreferrer">sitemap</a></div>
+              </td>
+              <td>Mount Jackson, VA</td>
+              <td>Dental</td>
+              <td>Orange</td>
+              <td>PPC, SEO</td>
+              <td><span class="badge active">Active</span></td>
+              <td>9554722676</td>
+              <td>Planned Locations: Basye, VA, Edinburg, VA, New Market, VA, Strasburg, VA, Woodstock, VA</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="vivid dental - raleigh" data-pod="white" data-status="">
+              <td class="client-cell">
+                <div class="client-name">Vivid Dental - Raleigh</div>
+                <div class="client-links"><a href="https://vividdentalraleigh.com/" target="_blank" rel="noreferrer">website</a>  </div>
+              </td>
+              <td>Raleigh, North Carolina</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td></td>
+              <td><span class="badge default"></span></td>
+              <td></td>
+              <td>No locational landing pages found. Recommended pages based on geographic proximity and population: Cary, Apex, Garner, Wake Forest, Morrisville, Knightdale, Holly Springs, Fuquay-Varina.</td>
+              <td></td>
+            </tr>
+            
+            <tr data-client="encore dental studio" data-pod="white" data-status="active">
+              <td class="client-cell">
+                <div class="client-name">Encore Dental Studio</div>
+                <div class="client-links"><a href="https://edswinstonsalemdentist.com/" target="_blank" rel="noreferrer">website</a>  </div>
+              </td>
+              <td>Winston-Salem, North Carolina</td>
+              <td>Dental</td>
+              <td>White</td>
+              <td>SEO, PPC</td>
+              <td><span class="badge active">Active</span></td>
+              <td>7976789937</td>
+              <td>No locational landing pages found. Recommended pages based on geographic proximity and population: Greensboro, High Point, Kernersville, Clemmons, Lewisville, Advance, Lexington, Thomasville.</td>
+              <td></td>
+            </tr>
+            
+        </tbody>
+      </table>
+    </div>
+    <div class="footer">Live URL: <a href="https://aleksandar-byte.github.io/clients/clients-records.html">https://aleksandar-byte.github.io/clients/clients-records.html</a></div>
+  </div>
+  <script>
+    const search = document.getElementById('search');
+    const pod = document.getElementById('pod');
+    const status = document.getElementById('status');
+    const rows = [...document.querySelectorAll('#records-body tr')];
+
+    function applyFilters() {
+      const query = search.value.trim().toLowerCase();
+      const podValue = pod.value;
+      const statusValue = status.value;
+
+      for (const row of rows) {
+        const text = row.textContent.toLowerCase();
+        const matchesQuery = !query || text.includes(query);
+        const matchesPod = !podValue || row.dataset.pod === podValue;
+        const matchesStatus = !statusValue || row.dataset.status === statusValue;
+        row.classList.toggle('hidden-row', !(matchesQuery && matchesPod && matchesStatus));
+      }
+    }
+
+    search.addEventListener('input', applyFilters);
+    pod.addEventListener('change', applyFilters);
+    status.addEventListener('change', applyFilters);
+  </script>
+</body>
+</html>
