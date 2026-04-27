@@ -1,0 +1,58 @@
+name: Publish client records
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+  push:
+    paths:
+      - ".github/workflows/publish-clients-records.yml"
+      - ".github/scripts/build_clients_records.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-clients-records
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      AIRTABLE_BASE_ID: app2h8wYoS13DnCcm
+      AIRTABLE_TABLE_NAME: Clients
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate Airtable secret
+        env:
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+        run: |
+          if [ -z "$AIRTABLE_TOKEN" ]; then
+            echo "Missing AIRTABLE_TOKEN secret"
+            exit 1
+          fi
+
+      - name: Build clients-records.html from Airtable
+        env:
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+        run: python .github/scripts/build_clients_records.py
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet -- clients-records.html; then
+            echo "No page changes to publish"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add clients-records.html
+          git commit -m "Publish clients-records.html"
+          git push
