@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dentistry Article SOP and Prompt Generator</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6f7f9;
+      color: #1f2933;
+      margin: 0;
+      padding: 12px;
+      line-height: 1.4;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: 26px;
+      line-height: 1.15;
+      color: #111827;
+    }
+
+    h1 span {
+      font-size: 20px;
+      color: #4b5563;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      margin: 0 0 14px;
+      color: #5f6b7a;
+      font-size: 14px;
+    }
+
+    .sop-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 0 0 14px;
+    }
+
+    .sop-strip div {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 9px 11px;
+      font-size: 13px;
+      color: #374151;
+    }
+
+    .builder {
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .builder h2 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      color: #ffffff;
+    }
+
+    .builder p {
+      margin: 0 0 10px;
+      color: #d1d5db;
+      font-size: 13px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 260px;
+      box-sizing: border-box;
+      border: 1px solid #374151;
+      border-radius: 10px;
+      background: #1f2937;
+      color: #f9fafb;
+      padding: 12px;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 13px;
+      line-height: 1.45;
+      resize: vertical;
+    }
+
+    textarea::placeholder {
+      color: #9ca3af;
+    }
+
+    .field-label {
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      align-items: center;
+    }
+
+    button {
+      border: 0;
+      border-radius: 9px;
+      padding: 9px 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .primary {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    .secondary {
+      background: #374151;
+      color: #ffffff;
+    }
+
+    .status {
+      font-size: 13px;
+      color: #bbf7d0;
+      min-height: 18px;
+    }
+
+    .rules {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .rule {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 12px;
+      background: #fbfcfd;
+    }
+
+    .rule h2 {
+      font-size: 16px;
+      margin: 0 0 7px;
+      color: #111827;
+    }
+
+    .principle {
+      margin: 0 0 10px;
+      color: #4b5563;
+      font-size: 13px;
+    }
+
+    .examples {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .example {
+      border-radius: 9px;
+      padding: 9px 10px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+    }
+
+    .bad {
+      border-left: 4px solid #d14343;
+    }
+
+    .good {
+      border-left: 4px solid #2f855a;
+    }
+
+    .label {
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .bad .label {
+      color: #b42318;
+    }
+
+    .good .label {
+      color: #276749;
+    }
+
+    .text {
+      font-size: 12.5px;
+      color: #27313f;
+    }
+
+    .note {
+      margin-top: 12px;
+      padding: 12px 14px;
+      background: #eef4ff;
+      border-left: 4px solid #2563eb;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .grid, .rules, .sop-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 12px;
+      }
+
+      .page {
+        padding: 18px;
+      }
+
+      .examples {
+        grid-template-columns: 1fr;
+      }
+
+      .button-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Dentistry Article SOP<br><span>and Prompt Generator</span></h1>
+    <p class="subtitle">Paste a content brief, generate the article-writing prompt, copy into ChatGPT.</p>
+    <div class="sop-strip">
+      <div><strong>Source:</strong> use the brief as truth.</div>
+      <div><strong>Format:</strong> Gutenberg-ready HTML.</div>
+      <div><strong>Output:</strong> JSON only.</div>
+    </div>
+
+    <section class="builder">
+      <h2>Prompt Builder</h2>
+      <p>Paste the dentistry article brief. The generated prompt will include the brief and the required JSON schema.</p>
+
+      <div class="grid">
+        <div>
+          <div class="field-label">Article Brief</div>
+          <textarea id="briefInput" placeholder="Paste the article brief here..."></textarea>
+        </div>
+        <div>
+          <div class="field-label">Generated Prompt</div>
+          <textarea id="generatedPrompt" readonly placeholder="Generated prompt appears here..."></textarea>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button class="primary" onclick="generatePrompt()">Generate</button>
+        <button class="secondary" onclick="copyPrompt()">Copy Prompt</button>
+        <button class="secondary" onclick="clearAll()">Clear</button>
+        <span id="status" class="status"></span>
+      </div>
+    </section>
+
+    <section class="rules">
+      <div class="rule">
+        <h2>1. Use the brief as the source of truth.</h2>
+        <p class="principle">The article should reflect the provided facts, services, location, audience, and constraints.</p>
+        <div class="examples">
+          <div class="example bad">
+            <div class="label">Negative</div>
+            <div class="text">Inventing a specialist, service, offer, or clinic detail that is not in the brief.</div>
+          </div>
+          <div class="example good">
+            <div class="label">Positive</div>
+            <div class="text">Explaining only the treatments, symptoms, audience, and next steps supported by the brief.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule">
+        <h2>2. Start with a practical answer.</h2>
+        <p class="principle">Open with useful guidance before moving into background, causes, mechanisms, and options.</p>
+        <div class="examples">
+          <div class="example bad">
+            <div class="label">Negative</div>
+            <div class="text">Starting with generic filler about how important oral health is.</div>
+          </div>
+          <div class="example good">
+            <div class="label">Positive</div>
+            <div class="text">Answering the patient's likely question in the first paragraph.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule">
+        <h2>3. Write Gutenberg-ready HTML.</h2>
+        <p class="principle">Use clean HTML body content only, with no h1 and no Markdown syntax.</p>
+        <div class="examples">
+          <div class="example bad">
+            <div class="label">Negative</div>
+            <div class="text"># Heading<br>**Bold Markdown**<br>&lt;h1&gt;Article Title&lt;/h1&gt;</div>
+          </div>
+          <div class="example good">
+            <div class="label">Positive</div>
+            <div class="text">&lt;h2&gt;What Patients Should Know&lt;/h2&gt;<br>&lt;p&gt;...&lt;/p&gt;</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule">
+        <h2>4. Explain without overstepping.</h2>
+        <p class="principle">Cover causes, mechanism, evaluation, treatment options, and next steps when relevant, without personalized medical instructions.</p>
+        <div class="examples">
+          <div class="example bad">
+            <div class="label">Negative</div>
+            <div class="text">Providing medication dosing, antibiotic guidance, or custom treatment directions.</div>
+          </div>
+          <div class="example good">
+            <div class="label">Positive</div>
+            <div class="text">Describing why symptoms happen and when a dental evaluation is appropriate.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule">
+        <h2>5. Return only the required JSON.</h2>
+        <p class="principle">The final response should be machine-readable JSON with title, metaDescription, sections, and markdown fields.</p>
+        <div class="examples">
+          <div class="example bad">
+            <div class="label">Negative</div>
+            <div class="text">Adding notes, explanation, or text before or after the JSON object.</div>
+          </div>
+          <div class="example good">
+            <div class="label">Positive</div>
+            <div class="text">Returning one valid JSON object where markdown contains the final HTML article body.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule">
+        <h2>6. Keep the tone patient-friendly.</h2>
+        <p class="principle">Use plain language, natural phrasing, and a trustworthy professional voice.</p>
+        <div class="examples">
+          <div class="example bad">
+            <div class="label">Negative</div>
+            <div class="text">Hype, repetition, obvious AI phrasing, or vague claims.</div>
+          </div>
+          <div class="example good">
+            <div class="label">Positive</div>
+            <div class="text">Clear explanations that help a patient understand the issue and the practical next step.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="note">
+      <strong>Rule:</strong> the article body belongs in the <code>markdown</code> JSON field, but it must contain final HTML, not Markdown.
+    </div>
+  </main>
+
+  <script>
+    function buildPrompt() {
+      return [
+        "You are a dentistry article writer.",
+        "",
+        "Write a polished, patient-friendly dentistry article from the provided brief.",
+        "",
+        "Instructions:",
+        "- Use the brief as the source of truth.",
+        "- Write in clean HTML for the WordPress Gutenberg code editor.",
+        "- Do not include an <h1>.",
+        "- Start with a direct, practical answer in the opening paragraph(s).",
+        "- Explain the issue clearly, including causes, mechanism, evaluation, treatment options, and practical next steps when relevant.",
+        "- Include a plain-language mechanism section when appropriate.",
+        "- Use tables only when they improve clarity.",
+        "- End with a short FAQ section in HTML.",
+        "- Keep the tone professional, natural, and trustworthy.",
+        "- Avoid hype, filler, repetition, and obvious AI phrasing.",
+        "- Do not include medication dosing, drug combinations, antibiotics guidance, or personalized treatment instructions.",
+        "",
+        "HTML requirements:",
+        "- Use <h2> and <h3> for headings.",
+        "- Use <p> for paragraphs.",
+        "- Use <ul><li> for lists.",
+        "- Use <table> only when useful.",
+        "",
+        "Return only JSON that matches the required schema.",
+        "- title should be the proposed article title.",
+        "- metaDescription should be a concise SEO meta description.",
+        "- sections should reflect the major article sections from the brief.",
+        "- markdown must contain the final HTML article body, not Markdown.",
+        "",
+        "Required JSON schema:",
+        "{",
+        "  \"title\": \"string\",",
+        "  \"metaDescription\": \"string\",",
+        "  \"sections\": [\"string\"],",
+        "  \"markdown\": \"string containing the final HTML article body\"",
+        "}",
+        "",
+        "Article brief:",
+        ""
+      ].join("\n");
+    }
+
+    function generatePrompt() {
+      const brief = document.getElementById("briefInput").value.trim();
+      const output = document.getElementById("generatedPrompt");
+      const status = document.getElementById("status");
+
+      if (!brief) {
+        status.textContent = "Paste an article brief first.";
+        output.value = "";
+        return;
+      }
+
+      output.value = buildPrompt() + brief;
+      status.textContent = "Prompt generated.";
+    }
+
+    async function copyPrompt() {
+      const output = document.getElementById("generatedPrompt");
+      const status = document.getElementById("status");
+
+      if (!output.value.trim()) {
+        generatePrompt();
+      }
+
+      if (!output.value.trim()) {
+        status.textContent = "Nothing to copy.";
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(output.value);
+        status.textContent = "Copied.";
+      } catch (err) {
+        output.select();
+        document.execCommand("copy");
+        status.textContent = "Copied.";
+      }
+    }
+
+    function clearAll() {
+      document.getElementById("briefInput").value = "";
+      document.getElementById("generatedPrompt").value = "";
+      document.getElementById("status").textContent = "";
+    }
+  </script>
+</body>
+</html>
