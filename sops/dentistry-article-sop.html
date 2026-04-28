@@ -252,21 +252,21 @@
 <body>
   <main class="page">
     <h1>Dentistry Article SOP<br><span>and Prompt Generator</span></h1>
-    <p class="subtitle">Paste a content brief, generate the article-writing prompt, copy into ChatGPT.</p>
+    <p class="subtitle">Paste the keyword / title, generate the article-writing prompt, copy into ChatGPT.</p>
     <div class="sop-strip">
-      <div><strong>Source:</strong> use the brief as truth.</div>
+      <div><strong>Source:</strong> use the keyword / title as truth.</div>
       <div><strong>Format:</strong> Gutenberg-ready HTML.</div>
       <div><strong>Output:</strong> JSON only.</div>
     </div>
 
     <section class="builder">
       <h2>Prompt Builder</h2>
-      <p>Paste the dentistry article brief. The generated prompt will include the brief and the required JSON schema.</p>
+      <p>Paste the dentistry article keyword / title. The generated prompt will include that input and the required JSON schema.</p>
 
       <div class="grid">
         <div>
-          <div class="field-label">Article Brief</div>
-          <textarea id="briefInput" placeholder="Paste the article brief here..."></textarea>
+          <div class="field-label">Keyword / Title</div>
+          <textarea id="keywordTitleInput" placeholder="Paste the keyword / title here..."></textarea>
         </div>
         <div>
           <div class="field-label">Generated Prompt</div>
@@ -284,16 +284,16 @@
 
     <section class="rules">
       <div class="rule">
-        <h2>1. Use the brief as the source of truth.</h2>
-        <p class="principle">The article should reflect the provided facts, services, location, audience, and constraints.</p>
+        <h2>1. Use the keyword / title as the source of truth.</h2>
+        <p class="principle">The article should stay focused on the provided keyword, title, topic, service, or patient question.</p>
         <div class="examples">
           <div class="example bad">
             <div class="label">Negative</div>
-            <div class="text">Inventing a specialist, service, offer, or clinic detail that is not in the brief.</div>
+            <div class="text">Inventing a specialist, service, offer, or clinic detail that is not provided.</div>
           </div>
           <div class="example good">
             <div class="label">Positive</div>
-            <div class="text">Explaining only the treatments, symptoms, audience, and next steps supported by the brief.</div>
+            <div class="text">Building the article around the provided keyword or title and its natural patient intent.</div>
           </div>
         </div>
       </div>
@@ -384,10 +384,10 @@
       return [
         "You are a dentistry article writer.",
         "",
-        "Write a polished, patient-friendly dentistry article from the provided brief.",
+        "Write a polished, patient-friendly dentistry article from the provided keyword / title.",
         "",
         "Instructions:",
-        "- Use the brief as the source of truth.",
+        "- Use the keyword / title as the source of truth.",
         "- Write in clean HTML for the WordPress Gutenberg code editor.",
         "- Do not include an <h1>.",
         "- Start with a direct, practical answer in the opening paragraph(s).",
@@ -408,7 +408,7 @@
         "Return only JSON that matches the required schema.",
         "- title should be the proposed article title.",
         "- metaDescription should be a concise SEO meta description.",
-        "- sections should reflect the major article sections from the brief.",
+        "- sections should reflect the major article sections implied by the keyword / title.",
         "- markdown must contain the final HTML article body, not Markdown.",
         "",
         "Required JSON schema:",
@@ -419,23 +419,23 @@
         "  \"markdown\": \"string containing the final HTML article body\"",
         "}",
         "",
-        "Article brief:",
+        "Keyword / title:",
         ""
       ].join("\n");
     }
 
     function generatePrompt() {
-      const brief = document.getElementById("briefInput").value.trim();
+      const keywordTitle = document.getElementById("keywordTitleInput").value.trim();
       const output = document.getElementById("generatedPrompt");
       const status = document.getElementById("status");
 
-      if (!brief) {
-        status.textContent = "Paste an article brief first.";
+      if (!keywordTitle) {
+        status.textContent = "Paste a keyword / title first.";
         output.value = "";
         return;
       }
 
-      output.value = buildPrompt() + brief;
+      output.value = buildPrompt() + keywordTitle;
       status.textContent = "Prompt generated.";
     }
 
@@ -463,7 +463,7 @@
     }
 
     function clearAll() {
-      document.getElementById("briefInput").value = "";
+      document.getElementById("keywordTitleInput").value = "";
       document.getElementById("generatedPrompt").value = "";
       document.getElementById("status").textContent = "";
     }
