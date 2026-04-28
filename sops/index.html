@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SOP Library</title>
+  <style>
+    :root {
+      --bg: #f4f0e8;
+      --panel: #fffdf9;
+      --text: #1f2933;
+      --muted: #5b6875;
+      --line: #d9d0c3;
+      --accent: #0f766e;
+      --accent-soft: #d7f3ef;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, #fff8ef 0, #f4f0e8 45%, #ece6db 100%);
+      color: var(--text);
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(255, 253, 249, 0.96), rgba(247, 241, 232, 0.96));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 18px 40px rgba(71, 85, 105, 0.08);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 0 0 12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font: 600 12px/1.2 Arial, sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .intro {
+      margin: 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .section-title {
+      margin: 36px 0 14px;
+      font: 700 14px/1.2 Arial, sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .sop-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 16px;
+    }
+
+    .sop-link {
+      display: block;
+      padding: 20px 22px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      color: inherit;
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+
+    .sop-link:hover,
+    .sop-link:focus-visible {
+      transform: translateY(-2px);
+      border-color: #aacfc9;
+      box-shadow: 0 12px 28px rgba(15, 118, 110, 0.12);
+      outline: none;
+    }
+
+    .sop-name {
+      display: block;
+      margin-bottom: 6px;
+      font: 700 24px/1.2 Georgia, "Times New Roman", serif;
+    }
+
+    .sop-path {
+      display: block;
+      color: var(--muted);
+      font: 14px/1.5 Arial, sans-serif;
+      word-break: break-word;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font: 14px/1.6 Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Prompt Library</p>
+      <h1>SOP Library</h1>
+      <p class="intro">
+        This page collects the SOP and prompt documents published in the <code>sops</code> folder
+        so they are easy to open and share from one place.
+      </p>
+    </section>
+
+    <h2 class="section-title">Available SOPs</h2>
+    <ul class="sop-list">
+      <li>
+        <a class="sop-link" href="./meta-sop.html">
+          <span class="sop-name">Meta SOP</span>
+          <span class="sop-path">sops/meta-sop.html</span>
+        </a>
+      </li>
+    </ul>
+
+    <p class="footer-note">
+      Add more SOP HTML files to this folder and update this index page when you want them listed here.
+    </p>
+  </main>
+</body>
+</html>
