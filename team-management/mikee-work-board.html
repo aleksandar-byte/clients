@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mikee Novio Current Focus Work Board</title>
+  <style>
+    :root {
+      --bg: #f5f6f2;
+      --ink: #172023;
+      --muted: #667074;
+      --line: #d9dfd8;
+      --panel: #ffffff;
+      --blue: #315f8a;
+      --blue-soft: #e6eef7;
+      --green: #166859;
+      --green-soft: #e4f1ed;
+      --amber: #9b6428;
+      --amber-soft: #f4ead9;
+      --red: #9f3e43;
+      --red-soft: #f7e8e7;
+      --sans: "Segoe UI", "Aptos", "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--sans); color: var(--ink); background: var(--bg); }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .page { max-width: 1180px; margin: 0 auto; padding: 22px; }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: 1.7rem; margin-bottom: 4px; }
+    h2 { font-size: 1rem; margin-bottom: 8px; }
+    h3 { font-size: 0.95rem; margin-bottom: 4px; }
+    .muted, .subtle { color: var(--muted); }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(82px, 1fr)); gap: 8px; min-width: 360px; }
+    .metric { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 10px; }
+    .metric span { display: block; color: var(--muted); font-size: 0.72rem; text-transform: uppercase; }
+    .metric strong { font-size: 1.25rem; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
+    .main-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 12px; }
+    .card { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 14px; }
+    .task-row { display: flex; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px solid #edf0ec; }
+    .task-row:last-child { border-bottom: 0; }
+    .task-row p { color: var(--muted); font-size: 0.85rem; margin-bottom: 0; }
+    .meta { min-width: 110px; display: grid; justify-items: end; align-content: start; gap: 5px; color: var(--muted); font-size: 0.78rem; }
+    .badge { display: inline-flex; width: fit-content; border-radius: 999px; padding: 0.18rem 0.55rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; background: #eef1ef; color: var(--muted); }
+    .badge-in-progress { background: var(--green-soft); color: var(--green); }
+    .badge-planned { background: var(--amber-soft); color: var(--amber); }
+    .badge-done { background: #e7f3e8; color: #2f6a37; }
+    .badge-blocked { background: var(--red-soft); color: var(--red); }
+    ul { margin: 0; padding-left: 1.15rem; }
+    li + li { margin-top: 0.35rem; }
+    code { background: #eef1ef; border-radius: 4px; padding: 0.08rem 0.25rem; }
+    @media (max-width: 900px) { .grid, .main-grid { grid-template-columns: 1fr; } .metrics { min-width: 0; width: 100%; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div>
+        <h1>Mikee Novio Current Focus Work Board</h1>
+        <p class="subtle">Week: 2026-04-27 to 2026-05-03. Rendered 2026-05-01 00:25.</p>
+      </div>
+      <div class="metrics">
+        <div class='metric'><span>Active</span><strong>5</strong></div><div class='metric'><span>Done</span><strong>4</strong></div><div class='metric'><span>In Progress</span><strong>0</strong></div><div class='metric'><span>Planned</span><strong>2</strong></div>
+      </div>
+    </header>
+    <section class="grid">
+      <article class="card"><h2>Manager Priority</h2><ul><li>Keep Mikee focused on closing the sitemap queue and finishing QC support without adding unrelated side work.</li></ul></article>
+      <article class="card"><h2>Constraint</h2><ul><li>Multiple sitemap items plus report QC in the same week can create context switching and end-of-week pileup.</li><li>Mikee is on vacation from 2026-04-13 to 2026-05-01, so new work should not be scheduled into that window.</li></ul></article>
+      <article class="card"><h2>Needs From Me</h2><ul><li>Clear priority order if more urgent tasks appear midweek.</li><li>Confirm what must be closed before vacation versus what is explicitly queued for after vacation.</li></ul></article>
+    </section>
+    <section class="main-grid">
+      <article class="card"><h2>Current Tasks</h2><article class='task-row'><div><h3>Glendale - EDH</h3><p>From manager weekly notes; part of sitemap queue.</p></div><div class='meta'><span class='badge badge-planned'>Planned</span><span>2026-04-27</span><span>sitemap</span></div></article><article class='task-row'><div><h3>Pasadena - EDH</h3><p>From manager weekly notes; part of sitemap queue.</p></div><div class='meta'><span class='badge badge-planned'>Planned</span><span>2026-04-27</span><span>sitemap</span></div></article><article class='task-row'><div><h3>Ashburn Family Dental Care</h3><p>Sitemap support completed; Alex now has pre-launch QC follow-up.</p></div><div class='meta'><span class='badge badge-done'>Done</span><span>2026-04-27</span><span>sitemap</span></div></article><article class='task-row'><div><h3>Clear Lake edits</h3><p>Sitemap edits/rework completed this week.</p></div><div class='meta'><span class='badge badge-done'>Done</span><span>2026-04-27</span><span>sitemap edits</span></div></article><article class='task-row'><div><h3>Reports QC for Grethel</h3><p>QC support for Grethel&#x27;s reports: BrightCraft, Farhoumand, Clear Lake, Coastland, Glendale EDH, Pasadena EDH, Ashburn Family Dental Care, and Clear Lake edits.</p></div><div class='meta'><span class='badge badge-done'>Done</span><span>2026-04-27</span><span>report qc</span></div></article><article class='task-row'><div><h3>Availability</h3><p>Vacation window 2026-04-13 to 2026-05-01; queue internal links after vacation.</p></div><div class='meta'><span class='badge badge-done'>Done</span><span>2026-05-01</span><span>vacation</span></div></article></article>
+      <div>
+        <article class="card"><h2>Active Work Notes</h2><ul><li>Glendale - EDH</li><li>Pasadena - EDH</li><li>Ashburn Family Dental Care</li><li>Clear Lake edits (sitemap edits)</li><li>Reports QC for Grethel</li></ul></article>
+        <article class="card" style="margin-top:12px;"><h2>Follow-Through</h2><ul><li>Protect the sitemap queue from unrelated urgent work where possible.</li><li>Check whether the QC work for Grethel is crowding out Mikee&#x27;s own execution work.</li><li>Ask for early escalation if any sitemap item starts slipping toward end of week.</li><li>Queue these internal links for after vacation: Tooth Co, Mount Jackson, Lorton, and Empower.</li></ul></article>
+        <article class="card" style="margin-top:12px;"><h2>Links</h2><ul><li><a href="https://serpagency.slack.com/archives/D08QF163W03/p1775045387432079">Sitemap queue note</a></li><li><a href="https://serpagency.slack.com/archives/D08QF163W03/p1775056376907929">Clear Lake sitemap follow-up</a></li></ul></article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
