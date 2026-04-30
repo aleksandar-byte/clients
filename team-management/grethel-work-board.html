@@ -3,89 +3,100 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Grethel Current Focus Work Board</title>
+  <title>Grethel Weekly Work Board</title>
   <style>
     :root {
-      --bg: #f5f6f2;
+      --bg: #f7f8f5;
       --ink: #172023;
       --muted: #667074;
       --line: #d9dfd8;
       --panel: #ffffff;
-      --blue: #315f8a;
-      --blue-soft: #e6eef7;
       --green: #166859;
       --green-soft: #e4f1ed;
-      --amber: #9b6428;
-      --amber-soft: #f4ead9;
       --red: #9f3e43;
       --red-soft: #f7e8e7;
+      --blue: #315f8a;
+      --blue-soft: #e6eef7;
+      --amber: #9b6428;
+      --amber-soft: #f4ead9;
+      --mono: "Consolas", "SFMono-Regular", monospace;
       --sans: "Segoe UI", "Aptos", "Helvetica Neue", Arial, sans-serif;
     }
     * { box-sizing: border-box; }
     body { margin: 0; font-family: var(--sans); color: var(--ink); background: var(--bg); }
     a { color: var(--blue); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .page { max-width: 1180px; margin: 0 auto; padding: 22px; }
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 16px;
-      margin-bottom: 18px;
-    }
+    code { font-family: var(--mono); background: #eef1ef; border-radius: 4px; padding: 0.08rem 0.25rem; font-size: 0.9em; }
+    .page { max-width: 1280px; margin: 0 auto; padding: 22px; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 18px; }
     h1, h2, h3, p { margin-top: 0; }
-    h1 { font-size: 1.7rem; margin-bottom: 4px; }
-    h2 { font-size: 1rem; margin-bottom: 8px; }
-    h3 { font-size: 0.95rem; margin-bottom: 4px; }
-    .muted, .subtle { color: var(--muted); }
-    .metrics { display: grid; grid-template-columns: repeat(4, minmax(82px, 1fr)); gap: 8px; min-width: 360px; }
+    h1 { font-size: 1.75rem; line-height: 1.1; margin-bottom: 4px; }
+    .subtle { color: var(--muted); margin-bottom: 0; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(86px, 1fr)); gap: 8px; min-width: 360px; }
     .metric { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 10px; }
-    .metric span { display: block; color: var(--muted); font-size: 0.72rem; text-transform: uppercase; }
-    .metric strong { font-size: 1.25rem; }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
-    .main-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 12px; }
-    .card { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 14px; }
-    .task-row { display: flex; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px solid #edf0ec; }
-    .task-row:last-child { border-bottom: 0; }
-    .task-row p { color: var(--muted); font-size: 0.85rem; margin-bottom: 0; }
-    .meta { min-width: 110px; display: grid; justify-items: end; align-content: start; gap: 5px; color: var(--muted); font-size: 0.78rem; }
+    .metric-label { display: block; color: var(--muted); font-size: 0.72rem; margin-bottom: 4px; text-transform: uppercase; }
+    .metric strong { font-size: 1.35rem; }
+    .strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .note, .quadrant { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+    .note { padding: 12px; }
+    .note h2 { font-size: 0.95rem; margin-bottom: 8px; }
+    .board { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .quadrant { min-height: 250px; padding: 14px; border-top: 5px solid var(--blue); }
+    .quadrant-do-today { border-top-color: var(--red); }
+    .quadrant-schedule { border-top-color: var(--blue); }
+    .quadrant-follow-up { border-top-color: var(--amber); }
+    .quadrant-done-waiting { border-top-color: var(--green); }
+    .quadrant-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+    .quadrant-head h2 { font-size: 1rem; margin-bottom: 0; }
+    .quadrant-head span { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; }
+    .work-row { display: flex; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px solid #edf0ec; }
+    .work-row:last-child { border-bottom: 0; }
+    .work-row h3 { font-size: 0.95rem; margin-bottom: 4px; }
+    .work-row p { color: var(--muted); font-size: 0.85rem; margin-bottom: 0; }
+    .task-context { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 5px; color: var(--muted); font-size: 0.78rem; }
+    .task-context span { border: 1px solid #e4e9e2; border-radius: 999px; background: #fafbf8; padding: 0.12rem 0.45rem; }
+    .row-meta { min-width: 94px; display: grid; justify-items: end; align-content: start; gap: 5px; color: var(--muted); font-size: 0.78rem; }
+    .row-meta strong { color: var(--ink); font-size: 0.95rem; }
+    .row-meta small { max-width: 150px; text-align: right; line-height: 1.25; }
+    .no-estimate { color: var(--muted); font-style: italic; }
     .badge { display: inline-flex; width: fit-content; border-radius: 999px; padding: 0.18rem 0.55rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; background: #eef1ef; color: var(--muted); }
-    .badge-in-progress { background: var(--green-soft); color: var(--green); }
-    .badge-planned { background: var(--amber-soft); color: var(--amber); }
-    .badge-done { background: #e7f3e8; color: #2f6a37; }
+    .badge-in-progress, .badge-working { background: var(--green-soft); color: var(--green); }
+    .badge-planned, .badge-assigned, .badge-manual { background: var(--amber-soft); color: var(--amber); }
+    .badge-done, .badge-completed { background: #e7f3e8; color: #2f6a37; }
     .badge-blocked { background: var(--red-soft); color: var(--red); }
-    ul { margin: 0; padding-left: 1.15rem; }
+    ul, ol { margin: 0; padding-left: 1.15rem; }
     li + li { margin-top: 0.35rem; }
-    code { background: #eef1ef; border-radius: 4px; padding: 0.08rem 0.25rem; }
-    @media (max-width: 900px) { .grid, .main-grid { grid-template-columns: 1fr; } .metrics { min-width: 0; width: 100%; } }
+    .empty, .empty-li { color: var(--muted); }
+    @media (max-width: 940px) { .board, .strip { grid-template-columns: 1fr; } .metrics { min-width: 0; width: 100%; } }
+    @media (max-width: 640px) { .page { padding: 14px; } .metrics { grid-template-columns: repeat(2, 1fr); } .work-row { display: grid; } .row-meta { justify-items: start; } }
   </style>
 </head>
 <body>
   <main class="page">
     <header class="topbar">
       <div>
-        <h1>Grethel Current Focus Work Board</h1>
-        <p class="subtle">Week: 2026-04-20 to 2026-04-26. Rendered 2026-05-01 00:25.</p>
+        <h1>Grethel Weekly Work Board</h1>
+        <p class="subtle">Week: 2026-04-20 to 2026-04-26. Rendered 2026-05-01 00:31. Estimates use SOP full-task minutes.</p>
       </div>
       <div class="metrics">
-        <div class='metric'><span>Active</span><strong>7</strong></div><div class='metric'><span>Done</span><strong>5</strong></div><div class='metric'><span>In Progress</span><strong>10</strong></div><div class='metric'><span>Planned</span><strong>1</strong></div>
+        <div class='metric'><span class='metric-label'>Do Today</span><strong>10</strong></div><div class='metric'><span class='metric-label'>Today Est.</span><strong>900m</strong></div><div class='metric'><span class='metric-label'>Open Est.</span><strong>990m</strong></div><div class='metric'><span class='metric-label'>Done</span><strong>5</strong></div>
       </div>
     </header>
-    <section class="grid">
-      <article class="card"><h2>Manager Priority</h2><ul><li>Confirm completion/sent status on the 16-report load, especially White reports still marked <code>Working on it</code> and Orange reports still marked <code>Working on it</code>.</li></ul></article>
-      <article class="card"><h2>Constraint</h2><ul><li>White report ownership is mostly blank in Monday, so Grethel is treated as effective owner by operating rule. Orange reports have explicit co-owners, so clarify whether Grethel owns drafting, QC, or handoff for each.</li></ul></article>
-      <article class="card"><h2>Needs From Me</h2><ul><li>Decide whether the 13 unassigned White reports should stay blank in Monday or be assigned to Grethel for clearer future tracking.</li><li>Check whether <code>Working on it</code> reports are actually unfinished or stale statuses.</li></ul></article>
+    <section class="strip">
+      <div class="note"><h2>Today</h2><ol><li>Downtown Dental Nashville</li><li>Dulce Dental</li><li>Davis Dental</li><li>Oasis Smile Studio</li><li>University Dental</li></ol></div>
+      <div class="note"><h2>Manager Control</h2><ul><li>Confirm completion/sent status on the 16-report load, especially White reports still marked <code>Working on it</code> and Orange reports still marked <code>Working on it</code>.</li><li>Decide whether the 13 unassigned White reports should stay blank in Monday or be assigned to Grethel for clearer future tracking.</li><li>Check whether <code>Working on it</code> reports are actually unfinished or stale statuses.</li></ul></div>
+      <div class="note"><h2>Constraints</h2><ul><li>White report ownership is mostly blank in Monday, so Grethel is treated as effective owner by operating rule. Orange reports have explicit co-owners, so clarify whether Grethel owns drafting, QC, or handoff for each.</li></ul></div>
     </section>
-    <section class="main-grid">
-      <article class="card"><h2>Current Tasks</h2><article class='task-row'><div><h3>Downtown Dental Nashville</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11811066820</code>.</p></div><div class='meta'><span class='badge badge-in-progress'>In Progress</span><span>2026-04-20</span><span>report</span></div></article><article class='task-row'><div><h3>Leep Tescher Helfman and Zanze</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810987906</code>.</p></div><div class='meta'><span class='badge badge-planned'>Planned</span><span>2026-04-20</span><span>report</span></div></article><article class='task-row'><div><h3>Michael Bleeker DMD</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11741916305</code>.</p></div><div class='meta'><span class='badge badge-done'>Done</span><span>2026-04-20</span><span>report</span></div></article><article class='task-row'><div><h3>Tabor Dental</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11741869632</code>.</p></div><div class='meta'><span class='badge badge-done'>Done</span><span>2026-04-20</span><span>report</span></div></article><article class='task-row'><div><h3>Winwood Dental</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11742693455</code>.</p></div><div class='meta'><span class='badge badge-done'>Done</span><span>2026-04-20</span><span>report</span></div></article><article class='task-row'><div><h3>Dulce Dental</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11795184352</code>.</p></div><div class='meta'><span class='badge badge-in-progress'>In Progress</span><span>2026-04-21</span><span>report</span></div></article><article class='task-row'><div><h3>Loftus Family Dental</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11801228840</code>.</p></div><div class='meta'><span class='badge badge-done'>Done</span><span>2026-04-21</span><span>report</span></div></article><article class='task-row'><div><h3>South Florida Sedation Dentistry</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11795316728</code>.</p></div><div class='meta'><span class='badge badge-done'>Done</span><span>2026-04-21</span><span>report</span></div></article><article class='task-row'><div><h3>Davis Dental</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810704918</code>.</p></div><div class='meta'><span class='badge badge-in-progress'>In Progress</span><span>2026-04-22</span><span>report</span></div></article><article class='task-row'><div><h3>Oasis Smile Studio</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810756761</code>.</p></div><div class='meta'><span class='badge badge-in-progress'>In Progress</span><span>2026-04-23</span><span>report</span></div></article><article class='task-row'><div><h3>University Dental</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810887794</code>.</p></div><div class='meta'><span class='badge badge-in-progress'>In Progress</span><span>2026-04-23</span><span>report</span></div></article><article class='task-row'><div><h3>Farhoumand Dentistry</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810939169</code>.</p></div><div class='meta'><span class='badge badge-in-progress'>In Progress</span><span>2026-04-24</span><span>report</span></div></article><article class='task-row'><div><h3>Q and A Dental Care</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810998868</code>.</p></div><div class='meta'><span class='badge badge-in-progress'>In Progress</span><span>2026-04-24</span><span>report</span></div></article><article class='task-row'><div><h3>Commonwealth Dentistry</h3><p>Orange; Grethel explicitly listed as co-owner; Monday item <code>11782422654</code>.</p></div><div class='meta'><span class='badge badge-in-progress'>In Progress</span><span>2026-04-21</span><span>report</span></div></article><article class='task-row'><div><h3>Dental Studio of Palm Harbor</h3><p>Orange; Grethel explicitly listed as co-owner; Monday item <code>11778866818</code>.</p></div><div class='meta'><span class='badge badge-in-progress'>In Progress</span><span>2026-04-21</span><span>report</span></div></article><article class='task-row'><div><h3>NK Family Dental</h3><p>Orange; Grethel explicitly listed as co-owner; Monday item <code>11778876807</code>.</p></div><div class='meta'><span class='badge badge-in-progress'>In Progress</span><span>2026-04-21</span><span>report</span></div></article></article>
-      <div>
-        <article class="card"><h2>Active Work Notes</h2><ul><li>This week&#x27;s reports assigned/co-assigned to Grethel from refreshed Monday cache:</li><li>This week&#x27;s reports assigned/co-assigned to Grethel from refreshed Monday cache:: White defaulted to Grethel because owner is blank: 13 reports</li><li>This week&#x27;s reports assigned/co-assigned to Grethel from refreshed Monday cache:: Orange explicitly assigned/co-assigned to Grethel: 3 reports</li><li>This week&#x27;s reports assigned/co-assigned to Grethel from refreshed Monday cache:: Total Grethel report load: 16 reports</li><li>SEO reports</li><li>Audits</li><li>Analytics check tasks</li></ul></article>
-        <article class="card" style="margin-top:12px;"><h2>Follow-Through</h2><ul><li>Keep the definition of done explicit on reports, audits, and analytics checks.</li><li>Watch detail accuracy when speed is high.</li><li>Ask for a brief self-QC pass before handoff on tracking or location-detail work.</li></ul></article>
-        <article class="card" style="margin-top:12px;"><h2>Links</h2><ul><li>Weekly reports due snapshot: <code>client-report-runs/weekly-reports-due/2026/04/2026-04-20/weekly-reports-due.md</code></li><li>Refreshed report source: Monday board <code>Weekly Client Meeting Schedule</code> (<code>6982782532</code>), refreshed 2026-04-22.</li><li>Grethel White reports by default-unassigned-White rule: Downtown Dental Nashville, Leep Tescher Helfman and Zanze, Michael Bleeker DMD, Tabor Dental, Winwood Dental, Dulce Dental, Loftus Family Dental, South Florida Sedation Dentistry, Davis Dental, Oasis Smile Studio, University Dental, Farhoumand Dentistry, Q and A Dental Care.</li><li>Grethel Orange reports by explicit Monday ownership: Commonwealth Dentistry, Dental Studio of Palm Harbor, NK Family Dental.</li><li><a href="https://serpagency.slack.com/archives/D092WE4DUR0/p1774473885381629">Reports queue update</a></li><li><a href="https://serpagency.slack.com/archives/D092WE4DUR0/p1774532344576189">Reports due tomorrow load note</a></li><li><a href="https://serpagency.slack.com/archives/D092WE4DUR0/p1774835981898249">Audit schedule for the week</a></li><li><a href="https://serpagency.slack.com/archives/C07NV7DAUHL/p1775055949440929">NK Family analytics check</a></li></ul></article>
-      </div>
+    <section class="board">
+      <section class='quadrant quadrant-do-today'><div class='quadrant-head'><span>urgent + important</span><h2>Do Today</h2><strong>900m est.</strong></div><article class='work-row'><div><h3>Downtown Dental Nashville</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11811066820</code>.</p></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Dulce Dental</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11795184352</code>.</p></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Davis Dental</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810704918</code>.</p></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Oasis Smile Studio</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810756761</code>.</p></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>University Dental</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810887794</code>.</p></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Farhoumand Dentistry</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810939169</code>.</p></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Q and A Dental Care</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810998868</code>.</p></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Commonwealth Dentistry</h3><p>Orange; Grethel explicitly listed as co-owner; Monday item <code>11782422654</code>.</p></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Dental Studio of Palm Harbor</h3><p>Orange; Grethel explicitly listed as co-owner; Monday item <code>11778866818</code>.</p></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>NK Family Dental</h3><p>Orange; Grethel explicitly listed as co-owner; Monday item <code>11778876807</code>.</p></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article></section>
+      <section class='quadrant quadrant-schedule'><div class='quadrant-head'><span>important, not urgent</span><h2>Schedule</h2><strong>90m est.</strong></div><article class='work-row'><div><h3>Leep Tescher Helfman and Zanze</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810987906</code>.</p></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article></section>
+      <section class='quadrant quadrant-follow-up'><div class='quadrant-head'><span>needs reply or delegation</span><h2>Follow Up</h2><strong>0m est.</strong></div><p class='empty'>Nothing here right now.</p></section>
+      <section class='quadrant quadrant-done-waiting'><div class='quadrant-head'><span>closed or no action now</span><h2>Done / Waiting</h2><strong>450m est.</strong></div><article class='work-row'><div><h3>Michael Bleeker DMD</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11741916305</code>.</p></div><div class='row-meta'><span class='badge badge-done'>done</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Tabor Dental</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11741869632</code>.</p></div><div class='row-meta'><span class='badge badge-done'>done</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Winwood Dental</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11742693455</code>.</p></div><div class='row-meta'><span class='badge badge-done'>done</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Loftus Family Dental</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11801228840</code>.</p></div><div class='row-meta'><span class='badge badge-done'>done</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>South Florida Sedation Dentistry</h3><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11795316728</code>.</p></div><div class='row-meta'><span class='badge badge-done'>done</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article></section>
+    </section>
+    <section class="strip" style="margin-top:12px;">
+      <div class="note"><h2>Active Work Notes</h2><ul><li>This week&#x27;s reports assigned/co-assigned to Grethel from refreshed Monday cache:</li><li>This week&#x27;s reports assigned/co-assigned to Grethel from refreshed Monday cache:: White defaulted to Grethel because owner is blank: 13 reports</li><li>This week&#x27;s reports assigned/co-assigned to Grethel from refreshed Monday cache:: Orange explicitly assigned/co-assigned to Grethel: 3 reports</li><li>This week&#x27;s reports assigned/co-assigned to Grethel from refreshed Monday cache:: Total Grethel report load: 16 reports</li><li>SEO reports</li><li>Audits</li><li>Analytics check tasks</li></ul></div>
+      <div class="note"><h2>Follow-Through</h2><ul><li>Keep the definition of done explicit on reports, audits, and analytics checks.</li><li>Watch detail accuracy when speed is high.</li><li>Ask for a brief self-QC pass before handoff on tracking or location-detail work.</li></ul></div>
+      <div class="note"><h2>Needs From Me</h2><ul><li>Decide whether the 13 unassigned White reports should stay blank in Monday or be assigned to Grethel for clearer future tracking.</li><li>Check whether <code>Working on it</code> reports are actually unfinished or stale statuses.</li></ul></div>
     </section>
   </main>
 </body>
