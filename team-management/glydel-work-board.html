@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Glydel Weekly Work Board</title>
+  <title>Glydel Weekly Tasks</title>
   <style>
     :root {
       --bg: #f7f8f5;
@@ -36,16 +36,14 @@
     .metric { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 10px; }
     .metric-label { display: block; color: var(--muted); font-size: 0.72rem; margin-bottom: 4px; text-transform: uppercase; }
     .metric strong { font-size: 1.35rem; }
-    .strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .strip { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 12px; }
     .note, .quadrant { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
     .note { padding: 12px; }
     .note h2 { font-size: 0.95rem; margin-bottom: 8px; }
     .board { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .quadrant { min-height: 250px; padding: 14px; border-top: 5px solid var(--blue); }
-    .quadrant-do-today { border-top-color: var(--red); }
-    .quadrant-schedule { border-top-color: var(--blue); }
-    .quadrant-follow-up { border-top-color: var(--amber); }
-    .quadrant-done-waiting { border-top-color: var(--green); }
+    .quadrant-this-week { border-top-color: var(--red); }
+    .quadrant-done { border-top-color: var(--green); }
     .quadrant-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
     .quadrant-head h2 { font-size: 1rem; margin-bottom: 0; }
     .quadrant-head span { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; }
@@ -58,7 +56,6 @@
     .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 7px; font-size: 0.82rem; }
     .row-meta { min-width: 94px; display: grid; justify-items: end; align-content: start; gap: 5px; color: var(--muted); font-size: 0.78rem; }
     .row-meta strong { color: var(--ink); font-size: 0.95rem; }
-    .row-meta small { max-width: 150px; text-align: right; line-height: 1.25; }
     .no-estimate { color: var(--muted); font-style: italic; }
     .badge { display: inline-flex; width: fit-content; border-radius: 999px; padding: 0.18rem 0.55rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; background: #eef1ef; color: var(--muted); }
     .badge-in-progress, .badge-working { background: var(--green-soft); color: var(--green); }
@@ -76,28 +73,19 @@
   <main class="page">
     <header class="topbar">
       <div>
-        <h1>Glydel Weekly Work Board</h1>
-        <p class="subtle">Week: 2026-04-27 to 2026-05-03. Rendered 2026-05-01 20:49. Estimates use SOP full-task minutes.</p>
+        <h1>Glydel Weekly Tasks</h1>
+        <p class="subtle">Week: 2026-04-27 to 2026-05-03. Rendered 2026-05-04 17:03. Estimates use standard task minutes.</p>
       </div>
       <div class="metrics">
-        <div class='metric'><span class='metric-label'>Do Today</span><strong>1</strong></div><div class='metric'><span class='metric-label'>Today Est.</span><strong>20m</strong></div><div class='metric'><span class='metric-label'>Open Est.</span><strong>140m</strong></div><div class='metric'><span class='metric-label'>Done</span><strong>0</strong></div>
+        <div class='metric'><span class='metric-label'>This Week</span><strong>5</strong></div><div class='metric'><span class='metric-label'>Week Est.</span><strong>140m</strong></div><div class='metric'><span class='metric-label'>Done</span><strong>0</strong></div><div class='metric'><span class='metric-label'>Done Est.</span><strong>0m</strong></div>
       </div>
     </header>
     <section class="strip">
-      <div class="note"><h2>Today</h2><ol><li>Open urgent content ticket</li></ol></div>
-      <div class="note"><h2>Manager Control</h2><ul><li>Get the content ticket opened today and keep publishing prep moving this week.</li><li>Quick review only if the content or ticket scope is unclear.</li></ul></div>
-      <div class="note"><h2>Constraints</h2><ul><li>The ticket is urgent today, and the publishing handoff needs to be complete by end of week.</li></ul></div>
+      <div class="note"><h2>Today</h2><ol><li>Open urgent content ticket</li><li>Submit content for publishing</li><li>Wagner GBP optimization</li><li>Simply Veneers GBP optimization</li><li>Images and content work</li></ol></div>
     </section>
     <section class="board">
-      <section class='quadrant quadrant-do-today'><div class='quadrant-head'><span>urgent + important</span><h2>Do Today</h2><strong>20m est.</strong></div><article class='work-row'><div><h3>Open urgent content ticket</h3><div class='task-context'><span>Website: website not found</span></div><p>Needs ticket opened by end of day.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770146011'>Content</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770474236'>Content</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>content</span><strong>20m</strong><small>Glydel: Content - Articles (full - image, internal, cta)</small></div></article></section>
-      <section class='quadrant quadrant-schedule'><div class='quadrant-head'><span>important, not urgent</span><h2>Schedule</h2><strong>100m est.</strong></div><article class='work-row'><div><h3>Wagner GBP optimization</h3><div class='task-context'><span>Website: website not found</span></div><p>GBP optimization note from manager weekly task list.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.monday.com/boards/9496422576/pulses/9784820539'>Simply Veneers GBP schedule task</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/9871491519'>GBP Optimization</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>gbp</span><strong>40m</strong><small>Glydel: GBP Optimization (Normal + Local Falcon Suggestions Implementation)</small></div></article><article class='work-row'><div><h3>Simply Veneers GBP optimization</h3><div class='task-context'><span>Website: www.simplyveneers.com</span></div><p>Linked Monday task: <code>https://serpagency.monday.com/boards/9496422576/pulses/9784820539</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/9496422576/pulses/9784820539'>GBP post Schedule</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.monday.com/boards/620254537/pulses/6003631752'>Simply Veneers</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>gbp</span><strong>40m</strong><small>Glydel: GBP Optimization (Normal + Local Falcon Suggestions Implementation)</small></div></article><article class='work-row'><div><h3>Images and content work</h3><div class='task-context'><span>Website: website not found</span></div><p>Manager note: content includes images and content.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770145247'>Images</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>content</span><strong>20m</strong><small>Glydel: Content - Articles (full - image, internal, cta)</small></div></article></section>
-      <section class='quadrant quadrant-follow-up'><div class='quadrant-head'><span>needs reply or delegation</span><h2>Follow Up</h2><strong>20m est.</strong></div><article class='work-row'><div><h3>Submit content for publishing</h3><div class='task-context'><span>Website: website not found</span></div><p>Needs publishing handoff by end of week.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770146011'>Content</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770474236'>Content</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>content publishing</span><strong>20m</strong><small>Glydel: Content - Articles (full - image, internal, cta)</small></div></article></section>
-      <section class='quadrant quadrant-done-waiting'><div class='quadrant-head'><span>closed or no action now</span><h2>Done / Waiting</h2><strong>0m est.</strong></div><p class='empty'>Nothing here right now.</p></section>
-    </section>
-    <section class="strip" style="margin-top:12px;">
-      <div class="note"><h2>Active Work Notes</h2><ul><li>Open content ticket urgent by end of day</li><li>Submit content for publishing by end of week</li></ul></div>
-      <div class="note"><h2>Follow-Through</h2><ul><li>Confirm the urgent content ticket is opened today.</li><li>Check that the content is actually submitted for publishing before the week ends.</li><li>Keep the handoff expectations explicit so this does not stop at partial completion.</li></ul></div>
-      <div class="note"><h2>Needs From Me</h2><ul><li>Quick review only if the content or ticket scope is unclear.</li></ul></div>
+      <section class='quadrant quadrant-this-week'><div class='quadrant-head'><span>to do this week</span><h2>This Week</h2><strong>140m est.</strong></div><article class='work-row'><div><h3>Open urgent content ticket</h3><div class='task-context'><span>Website: website not found</span></div><p>Needs ticket opened by end of day.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770146011'>Content</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770474236'>Content</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>content</span><strong>20m</strong></div></article><article class='work-row'><div><h3>Submit content for publishing</h3><div class='task-context'><span>Website: website not found</span></div><p>Needs publishing handoff by end of week.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770146011'>Content</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770474236'>Content</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>content publishing</span><strong>20m</strong></div></article><article class='work-row'><div><h3>Wagner GBP optimization</h3><div class='task-context'><span>Website: website not found</span></div><p>GBP optimization note from manager weekly task list.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.monday.com/boards/9496422576/pulses/9784820539'>Simply Veneers GBP schedule task</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/9871491519'>GBP Optimization</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>gbp</span><strong>40m</strong></div></article><article class='work-row'><div><h3>Simply Veneers GBP optimization</h3><div class='task-context'><span>Website: www.simplyveneers.com</span></div><p>Linked Monday task: <code>https://serpagency.monday.com/boards/9496422576/pulses/9784820539</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/9496422576/pulses/9784820539'>GBP post Schedule</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.monday.com/boards/620254537/pulses/6003631752'>Simply Veneers</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>gbp</span><strong>40m</strong></div></article><article class='work-row'><div><h3>Images and content work</h3><div class='task-context'><span>Website: website not found</span></div><p>Manager note: content includes images and content.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770145247'>Images</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>content</span><strong>20m</strong></div></article></section>
+      <section class='quadrant quadrant-done'><div class='quadrant-head'><span>completed this week</span><h2>Done</h2><strong>0m est.</strong></div><p class='empty'>Nothing here right now.</p></section>
     </section>
   </main>
 </body>
