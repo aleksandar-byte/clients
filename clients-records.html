@@ -21,7 +21,7 @@
     .stats { display:grid; grid-template-columns:1.35fr repeat(5, 1fr); gap:12px; margin-top:28px; } .stat { background:var(--surface); border:1px solid var(--line); padding:16px; box-shadow:var(--shadow); min-height:124px; } .stat-label { color:var(--muted); text-transform:uppercase; font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.14em; } .stat-value { font:600 42px/1 "Fraunces", serif; margin-top:12px; } .stat-trend { color:#5a564b; font-size:12px; margin-top:8px; } .stat-bar { height:4px; background:var(--line); margin-top:14px; } .stat-bar span { display:block; height:100%; }
     .workspace { padding:28px 36px 48px; } .section-head { display:flex; align-items:center; gap:16px; margin-bottom:16px; } .section-head h2 { font:500 28px/1 "Fraunces", serif; margin:0; } .section-head h2 em { color:var(--accent); } .rule { flex:1; height:1px; background:var(--line); } .meta-tag { color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.12em; } .toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:14px; } .toolbar select, .chip, .toggle-field { border:1px solid var(--line); background:var(--surface); border-radius:4px; padding:8px 10px; font:inherit; color:var(--ink); } .toolbar-label, .results-count { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.1em; } .chip, .toggle-field { display:inline-flex; align-items:center; gap:8px; cursor:pointer; } .toggle-field input { margin:0; } .results-count { margin-left:auto; }
     .table-shell { background:var(--surface); border:1px solid var(--line); box-shadow:var(--shadow); } .table-scroll { overflow:auto; max-height:78vh; } table { width:100%; min-width:1380px; border-collapse:separate; border-spacing:0; } th { position:sticky; top:0; z-index:2; background:#eee7d8; color:#5a564b; font:600 10px "IBM Plex Mono", monospace; letter-spacing:.12em; text-transform:uppercase; text-align:left; padding:12px; border-bottom:1px solid var(--line-2); } td { padding:13px 12px; border-bottom:1px solid var(--line); vertical-align:top; } tbody tr:hover { background:#faf5e8; }
-    .cell-client { min-width:270px; } .cell-client strong { display:block; margin:4px 0 8px; } .entry-num { color:var(--muted); font-size:10px; letter-spacing:.1em; text-transform:uppercase; } .client-links, .card-item footer { display:flex; flex-wrap:wrap; gap:7px; } .lnk { text-decoration:none; border:1px solid var(--line); padding:3px 7px; border-radius:999px; color:var(--accent); font-size:11px; background:#fffaf0; } .badge { display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-weight:700; font-size:12px; white-space:nowrap; } .badge .dot { width:6px; height:6px; border-radius:50%; background:currentColor; } .badge-active { color:var(--forest); background:#cfddc7; } .badge-paused { color:var(--amber); background:#f0d99c; } .badge-lost { color:var(--crimson); background:#f0c9c2; } .badge-review { color:var(--blue); background:#cdd8e3; } .badge-unknown { color:#5a564b; background:#e8dfcc; } .pod { font-weight:700; } .pod-white { color:var(--blue); } .pod-orange { color:var(--accent); } .wide { min-width:240px; } .muted { color:var(--muted); } .truncate { overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; } .api-key-col { display:none; } body.show-api-keys .api-key-col { display:table-cell; } body.show-api-keys .card-item .api-key-col { display:block; }
+    .cell-client { min-width:270px; } .cell-client strong { display:block; margin:4px 0 8px; } .entry-num { color:var(--muted); font-size:10px; letter-spacing:.1em; text-transform:uppercase; } .client-links, .card-item footer { display:flex; flex-wrap:wrap; gap:7px; } .lnk { text-decoration:none; border:1px solid var(--line); padding:3px 7px; border-radius:999px; color:var(--accent); font-size:11px; background:#fffaf0; } .badge { display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-weight:700; font-size:12px; white-space:nowrap; } .badge .dot { width:6px; height:6px; border-radius:50%; background:currentColor; } .badge-active { color:var(--forest); background:#cfddc7; } .badge-paused { color:var(--amber); background:#f0d99c; } .badge-lost { color:var(--crimson); background:#f0c9c2; } .badge-review { color:var(--blue); background:#cdd8e3; } .badge-unknown { color:#5a564b; background:#e8dfcc; } .pod { font-weight:700; } .pod-white { color:var(--blue); } .pod-orange { color:var(--accent); } .wide { min-width:240px; } .muted { color:var(--muted); } .truncate { overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; } .api-key-col, .notes-col { display:none; } body.show-api-keys .api-key-col, body.show-notes .notes-col { display:table-cell; } body.show-api-keys .card-item .api-key-col, body.show-notes .card-item .notes-col { display:block; }
     .cards { display:none; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; } .cards.show { display:grid; } .table-shell.hide { display:none; } .card-item { background:var(--surface); border:1px solid var(--line); padding:16px; box-shadow:var(--shadow); } .card-corner { display:flex; justify-content:space-between; align-items:center; gap:12px; } .card-item h3 { margin:14px 0 6px; font:600 25px/1.05 "Fraunces", serif; } .card-meta { color:#5a564b; font-size:12px; } .card-meta span { color:var(--muted); margin:0 5px; } .card-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; } .card-grid div { min-width:0; } .card-grid dt { color:var(--muted); font-family:"IBM Plex Mono", monospace; font-size:10px; text-transform:uppercase; letter-spacing:.1em; } .card-grid dd { margin:3px 0 0; } .span-2 { grid-column:1 / -1; } .empty { display:none; text-align:center; padding:50px; color:var(--muted); border:1px dashed var(--line-2); background:var(--surface); } .empty.show { display:block; } .hidden { display:none !important; }
     @media (max-width:960px) { .app { display:block; } .sidebar { position:relative; height:auto; } .topbar { padding:12px 16px; flex-wrap:wrap; } .topbar-meta, .kbd { display:none; } .masthead, .workspace { padding-left:16px; padding-right:16px; } .title-grid, .stats { grid-template-columns:1fr; } h1 { font-size:52px; } }
   </style>
@@ -31,7 +31,7 @@
           <option value="dental group">Dental Group</option>
           <option value="floral">Floral</option>
           <option value="legal">Legal</option>
-        </select><select id="pod-filter"><option value="">All pods</option><option value="white">White pod</option><option value="orange">Orange pod</option></select><select id="status-filter"><option value="">All statuses</option><option value="active">Active</option><option value="paused">Paused</option><option value="lost">Lost / churned</option><option value="review">Needs review</option></select><label class="toggle-field"><input id="show-api-keys" type="checkbox"> Show API keys</label><button class="chip" id="reset-btn" type="button" style="display:none;">Clear x</button><div class="results-count" id="results-count">Showing <strong>70</strong> of 70</div></div><div class="table-shell" id="table-view"><div class="table-scroll"><table><thead><tr><th>Client</th><th>Location</th><th>Industry</th><th>Pod</th><th>Started</th><th>Services</th><th>Status</th><th class="api-key-col">Monday</th><th class="api-key-col">GA4</th><th class="api-key-col">GSC</th><th>Geo targets</th><th>Notes</th></tr></thead><tbody id="rows">
+        </select><select id="pod-filter"><option value="">All pods</option><option value="white">White pod</option><option value="orange">Orange pod</option></select><select id="status-filter"><option value="">All statuses</option><option value="active">Active</option><option value="paused">Paused</option><option value="lost">Lost / churned</option><option value="review">Needs review</option></select><label class="toggle-field"><input id="show-api-keys" type="checkbox"> Show API keys</label><label class="toggle-field"><input id="show-notes" type="checkbox"> Show notes</label><button class="chip" id="reset-btn" type="button" style="display:none;">Clear x</button><div class="results-count" id="results-count">Showing <strong>70</strong> of 70</div></div><div class="table-shell" id="table-view"><div class="table-scroll"><table><thead><tr><th>Client</th><th>Location</th><th>Industry</th><th>Pod</th><th>Started</th><th>Services</th><th>Status</th><th class="api-key-col">Monday</th><th class="api-key-col">GA4</th><th class="api-key-col">GSC</th><th>Geo targets</th><th class="notes-col">Notes</th></tr></thead><tbody id="rows">
 
               <tr class="row" data-status="lost" data-pod="orange" data-industry="dental" data-search="1000 smiles thousand oaks, ca dental orange hosting lost / churned current location pages: thousand oaks, camarillo, reseda. next suggestions: westlake village, agoura hills churned client as of 2026-05-04.">
                 <td class="cell-client"><span class="entry-num">No. 001</span><strong>1000 Smiles</strong><div class="client-links"><a href="https://www.1000smiles.la/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/10hKP-ypzAcbAx8IfWgVZuTlrO-fSD-_A" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1aptk3CtGtbshzMmYqS6bA2ChB0toldWxfgIm84ovzrI/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
@@ -45,7 +45,7 @@
                 <td class="api-key-col mono">436301877</td>
                 <td class="api-key-col mono">sc-domain:1000smiles.la</td>
                 <td class="wide">Current location pages: Thousand Oaks, Camarillo, Reseda. Next suggestions: Westlake Village, Agoura Hills</td>
-                <td class="wide">Churned client as of 2026-05-04.</td>
+                <td class="notes-col wide">Churned client as of 2026-05-04.</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="[mds] central ave dental charlotte, nc dental white seo, ppc active top geo targets: concord, gastonia, huntersville, matthews, mint hill ">
@@ -60,7 +60,7 @@
                 <td class="api-key-col mono">444929412</td>
                 <td class="api-key-col mono">https://www.centralavenuedental.com/</td>
                 <td class="wide">Top geo targets: Concord, Gastonia, Huntersville, Matthews, Mint Hill</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="[mds] charlotte dental associates charlotte, nc dental white seo, ppc active top geo targets: concord, nc, harrisburg, nc, huntersville, nc, matthews, nc, mint hill, nc ">
@@ -75,7 +75,7 @@
                 <td class="api-key-col mono">355847151</td>
                 <td class="api-key-col mono">https://charlottedentalassociatesnc.com/</td>
                 <td class="wide">Top geo targets: Concord, NC, Harrisburg, NC, Huntersville, NC, Matthews, NC, Mint Hill, NC</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="[mds] elmtree dental columbia, sc dental white seo, ppc active top geo targets: columbia, sc, west columbia, sc, cayce, sc, lexington, sc, irmo, sc ">
@@ -90,7 +90,7 @@
                 <td class="api-key-col mono">452733558</td>
                 <td class="api-key-col mono">sc-domain:elmtreefamilydental.com</td>
                 <td class="wide">Top geo targets: Columbia, SC, West Columbia, SC, Cayce, SC, Lexington, SC, Irmo, SC</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="[mds] smart ortho charlotte, nc dental white seo, ppc active current location pages: harrisburg, huntersville, newell, cabarrus, mecklenburg ">
@@ -105,7 +105,7 @@
                 <td class="api-key-col mono">387730680</td>
                 <td class="api-key-col mono">https://www.smartorthodontics.com/</td>
                 <td class="wide">Current location pages: Harrisburg, Huntersville, Newell, Cabarrus, Mecklenburg</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="[mds] vivid dental - greensboro greensboro, nc dental white seo, ppc active current location pages: greensboro, high point, winston-salem. next suggestions: kernersville, jamestown root csv alias: vivid dental - main dentist - separate practice">
@@ -120,7 +120,7 @@
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">sc-domain:vividdental.com</td>
                 <td class="wide">Current location pages: Greensboro, High Point, Winston-Salem. Next suggestions: Kernersville, Jamestown</td>
-                <td class="wide">Root CSV alias: Vivid Dental - Main Dentist - Separate practice</td>
+                <td class="notes-col wide">Root CSV alias: Vivid Dental - Main Dentist - Separate practice</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="ar smiles fairlawn, oh dental orange seo, ppc active current location pages: akron, bath, copley, wadsworth. next suggestions: fairlawn ">
@@ -135,7 +135,7 @@
                 <td class="api-key-col mono">307689199</td>
                 <td class="api-key-col mono">sc-domain:arsmilesdental.com</td>
                 <td class="wide">Current location pages: Akron, Bath, Copley, Wadsworth. Next suggestions: Fairlawn</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="ashburn family dental care ashburn, va dental orange ppc, seo, website active  ">
@@ -150,7 +150,7 @@
                 <td class="api-key-col mono">535803422</td>
                 <td class="api-key-col mono">sc-domain:ashburnfamilydentalcare.com</td>
                 <td class="wide">-</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="az cosmetic dental  dental orange ppc, seo, website active locational pages (existing): pinnacle, az suggested secondary locations (based on the 2 offices) peoria, az, glendale, az, phoenix, az, sun city, az ">
@@ -165,7 +165,7 @@
                 <td class="api-key-col mono">524198926</td>
                 <td class="api-key-col mono">sc-domain:azfamilydentistry.com</td>
                 <td class="wide">Locational Pages (Existing): Pinnacle, AZ Suggested Secondary Locations (based on the 2 offices) Peoria, AZ, Glendale, AZ, Phoenix, AZ, Sun City, AZ</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="legal" data-search="ben helfman redding, ca legal white seo active sacramento, san francisco, santa rosa ">
@@ -180,7 +180,7 @@
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">sc-domain:lthzlaw.com</td>
                 <td class="wide">Sacramento, San Francisco, Santa Rosa</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="bright craft burbank, ca dental white  active top geo targets: glendale, ca, north hollywood, ca, studio city, ca, toluca lake, ca, sherman oaks, ca missing from current white/orange seo boards.">
@@ -195,7 +195,7 @@
                 <td class="api-key-col mono">521523657</td>
                 <td class="api-key-col mono">https://brightcraftcenter.com/</td>
                 <td class="wide">Top geo targets: Glendale, CA, North Hollywood, CA, Studio City, CA, Toluca Lake, CA, Sherman Oaks, CA</td>
-                <td class="wide">Missing from current White/Orange SEO boards.</td>
+                <td class="notes-col wide">Missing from current White/Orange SEO boards.</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="bright healthy smiles new york, ny dental orange hosting active top geo targets: upper east side, ny, yorkville, ny, lenox hill, ny, carnegie hill, ny, midtown manhattan, ny ">
@@ -210,7 +210,7 @@
                 <td class="api-key-col mono">324813499</td>
                 <td class="api-key-col mono">sc-domain:brighthealthysmiles.com</td>
                 <td class="wide">Top geo targets: Upper East Side, NY, Yorkville, NY, Lenox Hill, NY, Carnegie Hill, NY, Midtown Manhattan, NY</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="bryant ortho windsor mill, md dental white seo, ppc, web build active current location pages: owings mills, ellicott city, baltimore, randallstown, catonsville ">
@@ -225,7 +225,7 @@
                 <td class="api-key-col mono">503640778</td>
                 <td class="api-key-col mono">https://bryantortho.net/</td>
                 <td class="wide">Current location pages: Owings Mills, Ellicott City, Baltimore, Randallstown, Catonsville</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="cap dental boynton beach, fl dental white seo, ppc active current location pages: lake worth, lantana, west palm beach, delray beach. next suggestions: boynton beach ">
@@ -240,7 +240,7 @@
                 <td class="api-key-col mono">487695762</td>
                 <td class="api-key-col mono">sc-domain:mycapdental.com</td>
                 <td class="wide">Current location pages: Lake Worth, Lantana, West Palm Beach, Delray Beach. Next suggestions: Boynton Beach</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="lost" data-pod="orange" data-industry="dental" data-search="charm dental woodbridge, va dental orange ppc lost / churned top geo targets: dale city, va, lake ridge, va, occoquan, va, dumfries, va, montclair, va churned client as of 2026-05-04.">
@@ -255,7 +255,7 @@
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">-</td>
                 <td class="wide">Top geo targets: Dale City, VA, Lake Ridge, VA, Occoquan, VA, Dumfries, VA, Montclair, VA</td>
-                <td class="wide">Churned client as of 2026-05-04.</td>
+                <td class="notes-col wide">Churned client as of 2026-05-04.</td>
               </tr>
 
               <tr class="row" data-status="lost" data-pod="orange" data-industry="dental" data-search="classic dental arts manalapan township, nj dental orange seo lost / churned top geo targets: freehold, nj, marlboro, nj, englishtown, nj, morganville, nj, old bridge, nj content: ready; churned client as of 2026-05-04.; content: ready; churned client as of 2026-05-04.; content: ready; churned client as of 2026-05-04.; content: ready; churned client as of 2026-05-04.; content: ready; churned client as of 2026-05-04.">
@@ -270,7 +270,7 @@
                 <td class="api-key-col mono">468405979</td>
                 <td class="api-key-col mono">sc-domain:classicdentalarts.com</td>
                 <td class="wide">Top geo targets: Freehold, NJ, Marlboro, NJ, Englishtown, NJ, Morganville, NJ, Old Bridge, NJ</td>
-                <td class="wide">Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.</td>
+                <td class="notes-col wide">Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="commonwealth family dentistry- dr. breeden chester, va dental orange ppc, seo, website active top geo targets: chesterfield, va, colonial heights, va, hopewell, va, petersburg, va, richmond, va ">
@@ -285,7 +285,7 @@
                 <td class="api-key-col mono">498866939</td>
                 <td class="api-key-col mono">https://commonwealthfamilydentistry.com/</td>
                 <td class="wide">Top geo targets: Chesterfield, VA, Colonial Heights, VA, Hopewell, VA, Petersburg, VA, Richmond, VA</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="davis dental jonesboro, ar dental white seo active top geo targets: paragould, ar, brookland, ar, trumann, ar, bono, ar, bay, ar ">
@@ -300,7 +300,7 @@
                 <td class="api-key-col mono">429656901</td>
                 <td class="api-key-col mono">https://smiles4jonesboro.com/</td>
                 <td class="wide">Top geo targets: Paragould, AR, Brookland, AR, Trumann, AR, Bono, AR, Bay, AR</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="dental care center of hollywood hollywood, fl dental white seo, ppc active top geo targets: hallandale beach, fl, dania beach, fl, pembroke pines, fl, miramar, fl, aventura, fl ">
@@ -315,7 +315,7 @@
                 <td class="api-key-col mono">514042477</td>
                 <td class="api-key-col mono">sc-domain:dentalcenterofhollywood.com</td>
                 <td class="wide">Top geo targets: Hallandale Beach, FL, Dania Beach, FL, Pembroke Pines, FL, Miramar, FL, Aventura, FL</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="dental studio of palm harbor palm harbor, fl dental orange seo, website active top geo targets: clearwater, fl, dunedin, fl, tarpon springs, fl, largo, fl, safety harbor, fl ">
@@ -330,7 +330,7 @@
                 <td class="api-key-col mono">525303914</td>
                 <td class="api-key-col mono">https://yourpalmharbordentist.com/</td>
                 <td class="wide">Top geo targets: Clearwater, FL, Dunedin, FL, Tarpon Springs, FL, Largo, FL, Safety Harbor, FL</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="lost" data-pod="orange" data-industry="dental" data-search="dental wellness sioux falls, sd dental orange ppc, seo, ppc, website lost / churned top geo targets: brandon, sd, harrisburg, sd, tea, sd, dell rapids, sd, hartford, sd churned client as of 2026-05-04.">
@@ -345,7 +345,7 @@
                 <td class="api-key-col mono">391270518</td>
                 <td class="api-key-col mono">https://www.1dentalwellness.com/</td>
                 <td class="wide">Top geo targets: Brandon, SD, Harrisburg, SD, Tea, SD, Dell Rapids, SD, Hartford, SD</td>
-                <td class="wide">Churned client as of 2026-05-04.</td>
+                <td class="notes-col wide">Churned client as of 2026-05-04.</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="downtown dental nashville nashville, tn dental white seo, ppc, web build active current location pages: east nashville, germantown, midtown, north nashville, the gulch ">
@@ -360,7 +360,7 @@
                 <td class="api-key-col mono">358067808</td>
                 <td class="api-key-col mono">https://www.downtowndentalnashville.com/</td>
                 <td class="wide">Current location pages: East Nashville, Germantown, Midtown, North Nashville, The Gulch</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="dr.goins plano, tx dental white  active ooltewah, tn, dalton, ga, east brainerd, tn, apison, tn ">
@@ -375,7 +375,7 @@
                 <td class="api-key-col mono">326588351; 368194289</td>
                 <td class="api-key-col mono">sc-domain:greatstarthealthysmiles.com</td>
                 <td class="wide">Ooltewah, TN, Dalton, GA, East Brainerd, TN, Apison, TN</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="dulce dental dulce, nm dental white seo, ppc active current location pages: west dallas, oak cliff, cedar crest, kessler park. next suggestions: bishop arts district ">
@@ -390,7 +390,7 @@
                 <td class="api-key-col mono">507654974</td>
                 <td class="api-key-col mono">https://www.mydulcedental.com/</td>
                 <td class="wide">Current location pages: West Dallas, Oak Cliff, Cedar Crest, Kessler Park. Next suggestions: Bishop Arts District</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="emerald coast fort walton beach, fl dental white seo active top geo targets: mary esther, fl, wright, fl, destin, fl, shalimar, fl, niceville, fl ">
@@ -405,7 +405,7 @@
                 <td class="api-key-col mono">324815221</td>
                 <td class="api-key-col mono">https://www.emeraldcoastdentistry.com/</td>
                 <td class="wide">Top geo targets: Mary Esther, FL, Wright, FL, Destin, FL, Shalimar, FL, Niceville, FL</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental group" data-search="empower  dental group white seo, ppc, web build active suggested locational pages (main website): rancho cucamonga, ca, glendale, ca upland, ca, burbank, ca, pasadena ">
@@ -420,7 +420,7 @@
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">sc-domain:empowerdentalgroup.com</td>
                 <td class="wide">Suggested Locational Pages (Main website): Rancho Cucamonga, CA, Glendale, CA Upland, CA, Burbank, CA, Pasadena</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="encore dental studio winston-salem, north carolina dental white seo, ppc active top geo targets: greensboro, high point, kernersville, clemmons, lewisville ">
@@ -435,7 +435,7 @@
                 <td class="api-key-col mono">472298657</td>
                 <td class="api-key-col mono">https://edswinstonsalemdentist.com/</td>
                 <td class="wide">Top geo targets: Greensboro, High Point, Kernersville, Clemmons, Lewisville</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="unknown" data-pod="white" data-industry="dental" data-search="haven dentistry richmond, tx dental white  unmarked katy, tx, pearland, tx, sugar land, tx, pasadena, tx, baytown, tx ">
@@ -450,7 +450,7 @@
                 <td class="api-key-col mono">327323383</td>
                 <td class="api-key-col mono">https://www.lovettdental.com/</td>
                 <td class="wide">Katy, TX, Pearland, TX, Sugar Land, TX, Pasadena, TX, Baytown, TX</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="lost" data-pod="white" data-industry="dental" data-search="joy dental pines pembroke pines, fl dental white seo, ppc, web build lost / churned top geo targets: miramar, weston, davie, cooper city, hollywood churned client as of 2026-04-30.; churned client as of 2026-05-04.; churned client as of 2026-05-04.; churned client as of 2026-04-30.; churned client as of 2026-05-04.; churned client as of 2026-04-30.; churned client as of 2026-05-04.; churned client as of 2026-04-30.; churned client as of 2026-05-04.; churned client as of 2026-04-30.">
@@ -465,7 +465,7 @@
                 <td class="api-key-col mono">509395779</td>
                 <td class="api-key-col mono">sc-domain:joydentalpines.com</td>
                 <td class="wide">Top geo targets: Miramar, Weston, Davie, Cooper City, Hollywood</td>
-                <td class="wide">Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.</td>
+                <td class="notes-col wide">Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.</td>
               </tr>
 
               <tr class="row" data-status="lost" data-pod="orange" data-industry="dental" data-search="lehigh dental - dr petrillo bethlehem, pa dental orange ppc lost / churned top geo targets: : bethlehem, pa, allentown, pa, easton, pa, nazareth, pa, hellertown, pa root csv alias: leigh valley">
@@ -480,7 +480,7 @@
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">-</td>
                 <td class="wide">Top geo targets: : Bethlehem, PA, Allentown, PA, Easton, PA, Nazareth, PA, Hellertown, PA</td>
-                <td class="wide">Root CSV alias: Leigh Valley</td>
+                <td class="notes-col wide">Root CSV alias: Leigh Valley</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="lorton town dental lorton, va dental orange ppc, seo, website active current location pages: lorton. next suggestions: springfield, va, alexandria, va, woodbridge, va, fairfax, va ">
@@ -495,7 +495,7 @@
                 <td class="api-key-col mono">524312145</td>
                 <td class="api-key-col mono">sc-domain:lortontowndental.com</td>
                 <td class="wide">Current location pages: Lorton. Next suggestions: Springfield, VA, Alexandria, VA, Woodbridge, VA, Fairfax, VA</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="lovett dental houston, tx dental white seo, fb, ppc active baytown, beaumont, cinco ranch, conroe, corpus christi ">
@@ -510,7 +510,7 @@
                 <td class="api-key-col mono">327323383</td>
                 <td class="api-key-col mono">https://www.lovettdental.com/</td>
                 <td class="wide">Baytown, Beaumont, Cinco Ranch, Conroe, Corpus Christi</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="maison la new orleans, la dental white seo, web build, ppc active top geo targets: silver lake, ca, los feliz, ca, echo park, ca, glendale, ca, atwater village, ca ">
@@ -525,7 +525,7 @@
                 <td class="api-key-col mono">511484037</td>
                 <td class="api-key-col mono">https://maisonladental.com/</td>
                 <td class="wide">Top geo targets: Silver Lake, CA, Los Feliz, CA, Echo Park, CA, Glendale, CA, Atwater Village, CA</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="legal" data-search="michael berry jacksonville, fl legal white seo active anaheim, costa mesa, huntington beach, irvine, lake forest ">
@@ -540,7 +540,7 @@
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">sc-domain:mjbfirm.com</td>
                 <td class="wide">Anaheim, Costa Mesa, Huntington Beach, Irvine, Lake Forest</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="michael bleeker scottsdale, az dental white seo, ppc active phoenix, az, tempe, az, paradise valley, az, fountain hills, az, carefree, az root csv alias: bleeker">
@@ -555,7 +555,7 @@
                 <td class="api-key-col mono">522053218</td>
                 <td class="api-key-col mono">sc-domain:michaellbleekerdmd.com</td>
                 <td class="wide">Phoenix, AZ, Tempe, AZ, Paradise Valley, AZ, Fountain Hills, AZ, Carefree, AZ</td>
-                <td class="wide">Root CSV alias: Bleeker</td>
+                <td class="notes-col wide">Root CSV alias: Bleeker</td>
               </tr>
 
               <tr class="row" data-status="unknown" data-pod="" data-industry="floral" data-search="molly&#x27;s florals  floral   unmarked  ">
@@ -570,7 +570,7 @@
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">-</td>
                 <td class="wide">-</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="paused" data-pod="white" data-industry="dental" data-search="more dental - total smiles leland leland, nc dental white seo, ppc paused top geo targets: wilmington, belville, navassa, brunswick forest, carolina beach ">
@@ -585,7 +585,7 @@
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">https://totalsmilesofleland.com/</td>
                 <td class="wide">Top geo targets: Wilmington, Belville, Navassa, Brunswick Forest, Carolina Beach</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="mount jackson dental mount jackson, va dental orange ppc, seo active top geo targets: basye, va, edinburg, va, new market, va, strasburg, va, woodstock, va ">
@@ -600,7 +600,7 @@
                 <td class="api-key-col mono">509820688</td>
                 <td class="api-key-col mono">https://www.mountjacksondentalcare.com/</td>
                 <td class="wide">Top geo targets: Basye, VA, Edinburg, VA, New Market, VA, Strasburg, VA, Woodstock, VA</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="lost" data-pod="white" data-industry="dental" data-search="mountain view acworth, ga dental white seo, seo, ppc lost / churned top geo targets: acworth, kennesaw, woodstock, marietta, cartersville churned client as of 2026-05-04.">
@@ -615,7 +615,7 @@
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">-</td>
                 <td class="wide">Top geo targets: Acworth, Kennesaw, Woodstock, Marietta, Cartersville</td>
-                <td class="wide">Churned client as of 2026-05-04.</td>
+                <td class="notes-col wide">Churned client as of 2026-05-04.</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="my teeth &amp; me new york, ny dental orange seo, website only active top geo targets: yorkville, lenox hill, carnegie hill, east harlem, midtown east ">
@@ -630,7 +630,7 @@
                 <td class="api-key-col mono">469557877</td>
                 <td class="api-key-col mono">https://www.myteethandme.com/</td>
                 <td class="wide">Top geo targets: Yorkville, Lenox Hill, Carnegie Hill, East Harlem, Midtown East</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="unknown" data-pod="white" data-industry="dental" data-search="nc complete dentistry  dental white  unmarked  content: mentioned in slack as another more office needing a standard strategy-session audit.">
@@ -645,7 +645,7 @@
                 <td class="api-key-col mono">536098401</td>
                 <td class="api-key-col mono">sc-domain:nccompletedentistry.com</td>
                 <td class="wide">-</td>
-                <td class="wide">Content: Mentioned in Slack as another MORE office needing a standard strategy-session audit.</td>
+                <td class="notes-col wide">Content: Mentioned in Slack as another MORE office needing a standard strategy-session audit.</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="new wave dental raleigh, nc dental white seo, ppc active current location pages: raleigh, nc, cary, nc, apex, nc, chapel hill, nc ">
@@ -660,7 +660,7 @@
                 <td class="api-key-col mono">528075650</td>
                 <td class="api-key-col mono">https://newwavedental.com/</td>
                 <td class="wide">Current location pages: Raleigh, NC, Cary, NC, Apex, NC, Chapel Hill, NC</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="nk family dentistry chicago, il dental orange  active current location pages: chicago, il, logan square, chicago, il ">
@@ -675,7 +675,7 @@
                 <td class="api-key-col mono">383127764</td>
                 <td class="api-key-col mono">https://nkfamilydental.com/</td>
                 <td class="wide">Current location pages: Chicago, IL, Logan Square, Chicago, IL</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="" data-industry="dental" data-search="north atlanta center for cosmetic &amp; implant dentistry  dental  seo active current location pages: buford ">
@@ -690,7 +690,7 @@
                 <td class="api-key-col mono">524935222</td>
                 <td class="api-key-col mono">sc-domain:buforddentist.com</td>
                 <td class="wide">Current location pages: Buford</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="oasis smile studio new york, ny dental white seo, ppc active current location pages: archdale, thomasville, lexington. next suggestions: greensboro, winston-salem ">
@@ -705,7 +705,7 @@
                 <td class="api-key-col mono">482364757</td>
                 <td class="api-key-col mono">sc-domain:oasissmilestudio.com</td>
                 <td class="wide">Current location pages: Archdale, Thomasville, Lexington. Next suggestions: Greensboro, Winston-Salem</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="paused" data-pod="white" data-industry="dental" data-search="oc specialties huntington beach, ca dental white web hosting only, ppc paused top geo targets: costa mesa, ca, fountain valley, ca, westminster, ca, garden grove, ca, seal beach, ca current board service mix does not include seo.">
@@ -720,7 +720,7 @@
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">-</td>
                 <td class="wide">Top geo targets: Costa Mesa, CA, Fountain Valley, CA, Westminster, CA, Garden Grove, CA, Seal Beach, CA</td>
-                <td class="wide">Current board service mix does not include SEO.</td>
+                <td class="notes-col wide">Current board service mix does not include SEO.</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="one orthodontics fredericksburg, va dental orange seo active plan in web build sheet: stafford, va, massaponax, va, falmouth, va, leavells, va, five mile fork, va ">
@@ -735,7 +735,7 @@
                 <td class="api-key-col mono">509818434</td>
                 <td class="api-key-col mono">sc-domain:1-orthodontics.com</td>
                 <td class="wide">Plan in Web Build Sheet: Stafford, VA, Massaponax, VA, Falmouth, VA, Leavells, VA, Five Mile Fork, VA</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="polished dentistry  dental orange seo active locational pages found: peapack, nj, gladstone, nj, branchburg, nj, readington, nj, morristown, nj root csv alias: polished dental">
@@ -750,7 +750,7 @@
                 <td class="api-key-col mono">487812865</td>
                 <td class="api-key-col mono">https://polishedgeneralandcosmeticdentistry.com/</td>
                 <td class="wide">Locational Pages Found: Peapack, NJ, Gladstone, NJ, Branchburg, NJ, Readington, NJ, Morristown, NJ</td>
-                <td class="wide">Root CSV alias: Polished Dental</td>
+                <td class="notes-col wide">Root CSV alias: Polished Dental</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="q and a dental care macedonia, oh dental white seo, ppc active current location pages: glenwillow, mayfield heights, northfield, oakwood, sagamore hills ">
@@ -765,7 +765,7 @@
                 <td class="api-key-col mono">498071898</td>
                 <td class="api-key-col mono">https://www.qandadentalcare.com/</td>
                 <td class="wide">Current location pages: Glenwillow, Mayfield Heights, Northfield, Oakwood, Sagamore Hills</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="raytown dentist raytown dental orange hosting active unity village, mo, sugar creek, mo, north blue ridge (kansas city), mo, loma vista (kansas city), mo, eastwood hills (kansas city), mo ">
@@ -780,7 +780,7 @@
                 <td class="api-key-col mono">472568749</td>
                 <td class="api-key-col mono">sc-domain:raytowndentist.com</td>
                 <td class="wide">Unity Village, MO, Sugar Creek, MO, North Blue Ridge (Kansas City), MO, Loma Vista (Kansas City), MO, Eastwood Hills (Kansas City), MO</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="lost" data-pod="white" data-industry="legal" data-search="rodich law woodland hills, ca legal white seo, ppc lost / churned top geo targets: tarzana, canoga park, west hills, calabasas, encino churned client as of 2026-05-04.">
@@ -795,7 +795,7 @@
                 <td class="api-key-col mono">433452846</td>
                 <td class="api-key-col mono">sc-domain:rodichlaw.com</td>
                 <td class="wide">Top geo targets: Tarzana, Canoga Park, West Hills, Calabasas, Encino</td>
-                <td class="wide">Churned client as of 2026-05-04.</td>
+                <td class="notes-col wide">Churned client as of 2026-05-04.</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="simply veneers newport beach, ca dental orange seo, ppc active huntington beach, newport, irvine, los angeles, costa mesa ">
@@ -810,7 +810,7 @@
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">sc-domain:simplyveneers.com</td>
                 <td class="wide">Huntington Beach, Newport, Irvine, Los Angeles, Costa Mesa</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="lost" data-pod="white" data-industry="dental" data-search="slcsmiles - dr gleave salt lake city, ut dental white seo, ppc lost / churned top geo targets: murray, ut, millcreek, ut, sandy, ut, draper, ut, south jordan, ut churned client as of 2026-04-27.">
@@ -825,7 +825,7 @@
                 <td class="api-key-col mono">516291123</td>
                 <td class="api-key-col mono">sc-domain:slcsmiles.com</td>
                 <td class="wide">Top geo targets: Murray, UT, Millcreek, UT, Sandy, UT, Draper, UT, South Jordan, UT</td>
-                <td class="wide">Churned client as of 2026-04-27.</td>
+                <td class="notes-col wide">Churned client as of 2026-04-27.</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="smile 312 chicago, il dental orange ppc, seo, website active top geo targets: evanston, il, skokie, il, oak park, il, cicero, il, berwyn, il ">
@@ -840,7 +840,7 @@
                 <td class="api-key-col mono">514398123</td>
                 <td class="api-key-col mono">sc-domain:smile312.com</td>
                 <td class="wide">Top geo targets: Evanston, IL, Skokie, IL, Oak Park, IL, Cicero, IL, Berwyn, IL</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="smile line livermore, ca dental white seo, seo, ppc active current location pages: livermore, antioch. next suggestions: pleasanton, dublin, san ramon ">
@@ -855,7 +855,7 @@
                 <td class="api-key-col mono">324849615</td>
                 <td class="api-key-col mono">https://smilelinedentistry.com/</td>
                 <td class="wide">Current location pages: Livermore, Antioch. Next suggestions: Pleasanton, Dublin, San Ramon</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="smile sf san francisco, ca dental white seo, ppc, web build active listed in sitemap but currently 404 when clicked: inner richmond, central richmond, presidio terrace, pacific heights, haight-ashbury ">
@@ -870,7 +870,7 @@
                 <td class="api-key-col mono">511819202</td>
                 <td class="api-key-col mono">sc-domain:sanfranciscodentistsmilesf.com</td>
                 <td class="wide">Listed in sitemap but currently 404 when clicked: Inner Richmond, Central Richmond, Presidio Terrace, Pacific Heights, Haight-Ashbury</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="smileology niceville, fl miramar beach, fl crestview, fl dental white seo, ppc, web build active current location pages: niceville, miramar beach, crestview (physical office locations) ">
@@ -885,7 +885,7 @@
                 <td class="api-key-col mono">488682828</td>
                 <td class="api-key-col mono">sc-domain:smileology.com</td>
                 <td class="wide">Current location pages: Niceville, Miramar Beach, Crestview (physical office locations)</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="south florida sedation dentistry west palm beach, fl dental white seo, ppc, web build active current location pages: wellington, fl, royal palm beach, fl, palm beach county, fl, greenacres, fl ">
@@ -900,7 +900,7 @@
                 <td class="api-key-col mono">509729524</td>
                 <td class="api-key-col mono">https://www.southfloridasedationdentistry.com/</td>
                 <td class="wide">Current location pages: Wellington, FL, Royal Palm Beach, FL, Palm Beach County, FL, Greenacres, FL</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="starlite dental mckinney, tx dental orange seo, ppc active top geo targets: frisco, allen, plano, prosper, little elm ">
@@ -915,7 +915,7 @@
                 <td class="api-key-col mono">480137399</td>
                 <td class="api-key-col mono">sc-domain:starlitedental.com</td>
                 <td class="wide">Top geo targets: Frisco, Allen, Plano, Prosper, Little Elm</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="lost" data-pod="white" data-industry="dental" data-search="supremia dentistry wake forest, nc dental white seo lost / churned cary, raleigh, youngsville, chapel hill, falls churned client as of 2026-04-30.">
@@ -930,7 +930,7 @@
                 <td class="api-key-col mono">324823841</td>
                 <td class="api-key-col mono">https://supremiadentistry.com/</td>
                 <td class="wide">Cary, Raleigh, Youngsville, Chapel Hill, Falls</td>
-                <td class="wide">Churned client as of 2026-04-30.</td>
+                <td class="notes-col wide">Churned client as of 2026-04-30.</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="synergy dental center gillette, wy dental white seo, ppc active current location pages: gillette, wy, sturgis, sd. next suggestions: rapid city, sd, spearfish, sd, belle fourche, sd content: holistic dentistry is the main angle. patients come from across the state, so targeting can go wider. ads currently target up to 50 miles. incoming build. lander requirements: include the doctor&#x27;s bio and a section on what the patient should expect during the first visit.">
@@ -945,7 +945,7 @@
                 <td class="api-key-col mono">424499987</td>
                 <td class="api-key-col mono">-</td>
                 <td class="wide">Current location pages: Gillette, WY, Sturgis, SD. Next suggestions: Rapid City, SD, Spearfish, SD, Belle Fourche, SD</td>
-                <td class="wide">Content: Holistic dentistry is the main angle. Patients come from across the state, so targeting can go wider. Ads currently target up to 50 miles. Incoming build. Lander requirements: include the doctor&#x27;s bio and a section on what the patient should expect during the first visit.</td>
+                <td class="notes-col wide">Content: Holistic dentistry is the main angle. Patients come from across the state, so targeting can go wider. Ads currently target up to 50 miles. Incoming build. Lander requirements: include the doctor&#x27;s bio and a section on what the patient should expect during the first visit.</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="tabor dentistry rockwall, tx dental white seo, ppc active current location pages: nashville, goodlettsville, gallatin. next suggestions: hendersonville, madison root csv alias: tabor dental">
@@ -960,7 +960,7 @@
                 <td class="api-key-col mono">324863672</td>
                 <td class="api-key-col mono">sc-domain:smilesthatrock.com</td>
                 <td class="wide">Current location pages: Nashville, Goodlettsville, Gallatin. Next suggestions: Hendersonville, Madison</td>
-                <td class="wide">Root CSV alias: Tabor Dental</td>
+                <td class="notes-col wide">Root CSV alias: Tabor Dental</td>
               </tr>
 
               <tr class="row" data-status="lost" data-pod="orange" data-industry="dental" data-search="the dental parlour midtown east, ny dental orange ppc lost / churned top geo targets: midtown east, new york, ny, upper east side, new york, ny, sutton place churned client as of 2026-04-20.">
@@ -975,7 +975,7 @@
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">sc-domain:dentalparlour.com</td>
                 <td class="wide">Top geo targets: Midtown East, New York, NY, Upper East Side, New York, NY, Sutton Place</td>
-                <td class="wide">Churned client as of 2026-04-20.</td>
+                <td class="notes-col wide">Churned client as of 2026-04-20.</td>
               </tr>
 
               <tr class="row" data-status="paused" data-pod="white" data-industry="dental" data-search="total smiles of roxboro oxford, nc dental white seo, ppc paused top geo targets: oxford, durham, hillsborough, south boston, timberlake ">
@@ -990,7 +990,7 @@
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">-</td>
                 <td class="wide">Top geo targets: Oxford, Durham, Hillsborough, South Boston, Timberlake</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="university dental san diego, ca dental white seo, ppc, web build active top geo targets: la mesa, ca, el cajon, ca, lemon grove, ca, national city, ca, chula vista, ca ">
@@ -1005,7 +1005,7 @@
                 <td class="api-key-col mono">514401802</td>
                 <td class="api-key-col mono">sc-domain:universitydentalsandiego.com</td>
                 <td class="wide">Top geo targets: La Mesa, CA, El Cajon, CA, Lemon Grove, CA, National City, CA, Chula Vista, CA</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="unknown" data-pod="orange" data-industry="dental" data-search="vista ridge dental fort worth, tx dental orange  unmarked top geo targets: fort worth, tx, benbrook, tx, crowley, tx, burleson, tx, forest hill, tx ">
@@ -1020,7 +1020,7 @@
                 <td class="api-key-col mono">506945156</td>
                 <td class="api-key-col mono">sc-domain:vistaridgedental.com</td>
                 <td class="wide">Top geo targets: Fort Worth, TX, Benbrook, TX, Crowley, TX, Burleson, TX, Forest Hill, TX</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="unknown" data-pod="white" data-industry="dental" data-search="vivid dental - main dentist - separate practice  dental white  unmarked no website found for this gbp missing from current white/orange seo boards.">
@@ -1035,7 +1035,7 @@
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">-</td>
                 <td class="wide">No website found for this GBP</td>
-                <td class="wide">Missing from current White/Orange SEO boards.</td>
+                <td class="notes-col wide">Missing from current White/Orange SEO boards.</td>
               </tr>
 
               <tr class="row" data-status="unknown" data-pod="white" data-industry="dental" data-search="vivid dental - raleigh raleigh, north carolina dental white  unmarked top geo targets: cary, apex, garner, wake forest, morrisville ">
@@ -1050,7 +1050,7 @@
                 <td class="api-key-col mono">445378328</td>
                 <td class="api-key-col mono">-</td>
                 <td class="wide">Top geo targets: Cary, Apex, Garner, Wake Forest, Morrisville</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="wagner sleep dental indianapolis, in dental orange ppc, seo, website active top geo targets: greenwood, in, southport, in, south perry (indianapolis), in, homecroft, in ">
@@ -1065,7 +1065,7 @@
                 <td class="api-key-col mono">509825713</td>
                 <td class="api-key-col mono">sc-domain:wagnersleepdentist.com</td>
                 <td class="wide">Top geo targets: Greenwood, IN, Southport, IN, South Perry (Indianapolis), IN, Homecroft, IN</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="winwood dental lebanon, tn dental white ppc, web hosting only, seo active top geo targets: lebanon, mount juliet, hermitage, gallatin, hendersonville ">
@@ -1080,7 +1080,7 @@
                 <td class="api-key-col mono">492628937</td>
                 <td class="api-key-col mono">sc-domain:winwooddental.com</td>
                 <td class="wide">Top geo targets: Lebanon, Mount Juliet, Hermitage, Gallatin, Hendersonville</td>
-                <td class="wide">-</td>
+                <td class="notes-col wide">-</td>
               </tr>
 
       </tbody></table></div></div><div class="cards" id="card-view">
@@ -1096,7 +1096,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">436301877</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:1000smiles.la</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Thousand Oaks, Camarillo, Reseda. Next suggestions: Westlake Village, Agoura Hills</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-05-04.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-05-04.</dd></div>
                 </dl>
                 <footer><a href="https://www.1000smiles.la/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/10hKP-ypzAcbAx8IfWgVZuTlrO-fSD-_A" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1aptk3CtGtbshzMmYqS6bA2ChB0toldWxfgIm84ovzrI/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1112,7 +1112,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">444929412</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.centralavenuedental.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Concord, Gastonia, Huntersville, Matthews, Mint Hill</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.centralavenuedental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1-0iO24iQx0QSXl6e8fquJySyvrP0IUGO" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/11VIHnhpV_cxD9g10O52s13yC04_pLifUU5fM7UeUwHE/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1128,7 +1128,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">355847151</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://charlottedentalassociatesnc.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Concord, NC, Harrisburg, NC, Huntersville, NC, Matthews, NC, Mint Hill, NC</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://charlottedentalassociatesnc.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1NIjSZYocDuFi5U6_BA5E4VYC2c7Iw-Mj" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1GGzcNdd2HL91GIgzbS2gRi9NhC2xWT8l3kXG7H9bYR0/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1144,7 +1144,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">452733558</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:elmtreefamilydental.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Columbia, SC, West Columbia, SC, Cayce, SC, Lexington, SC, Irmo, SC</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.elmtreefamilydental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1-GaeCnXriPAmRLoeLBdGwHET9T08CIbp" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/10hsUXTRpYstmYR-Cv7fa2A8tpct01jLwP4OKmRM6HLY/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1160,7 +1160,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">387730680</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.smartorthodontics.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Harrisburg, Huntersville, Newell, Cabarrus, Mecklenburg</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.smartorthodontics.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1lhXcubLD2H_R9LmGZEaFS-UGsRcqjoCI" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1MQiNj5gj5e4HLrg9tdptDb8m4JTnOaWv9j5xIa1qfBU/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1176,7 +1176,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:vividdental.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Greensboro, High Point, Winston-Salem. Next suggestions: Kernersville, Jamestown</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Root CSV alias: Vivid Dental - Main Dentist - Separate practice</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Root CSV alias: Vivid Dental - Main Dentist - Separate practice</dd></div>
                 </dl>
                 <footer><a href="https://www.vividdental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1hLSH0HSZmneigwbv3MJOwXQ_N2hRNl66" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1XwQ0H7i1KBPidMBGpTpsy3u94fhYffjM6_eH7FWE9Us/edit?gid=124398067#gid=124398067" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1192,7 +1192,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">307689199</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:arsmilesdental.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Akron, Bath, Copley, Wadsworth. Next suggestions: Fairlawn</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.arsmilesdental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1CipkNCCcrRk0MxP_IYYUpSd8W78hBlqD" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1Jm8uh_NjcqW8hcuY244-4uvL0vReT121iVD01N8CErU/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1208,7 +1208,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">535803422</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:ashburnfamilydentalcare.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">-</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://ashburnfamilydentalcare.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://docs.google.com/spreadsheets/d/14MZtMiUZXBv2B_n5Dh-qFi9gdc3ALhHj/edit?gid=733771117#gid=733771117" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1224,7 +1224,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">524198926</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:azfamilydentistry.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Locational Pages (Existing): Pinnacle, AZ Suggested Secondary Locations (based on the 2 offices) Peoria, AZ, Glendale, AZ, Phoenix, AZ, Sun City, AZ</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://azfamilydentistry.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://docs.google.com/spreadsheets/d/1o0hCK2a6reQ045Up5PdPpOXgpSdWQbVD-71ukxjmlVs/edit?gid=124398067#gid=124398067" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1240,7 +1240,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:lthzlaw.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Sacramento, San Francisco, Santa Rosa</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.lthzlaw.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1h5ULsDYKQbQXHnUWK2kT1f4H_2ZkT7Ri" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1_b-L9uSjDzvSrx1sXGz1UCnV_GdZz4vOvvsbIaixV3o/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1256,7 +1256,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">521523657</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://brightcraftcenter.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Glendale, CA, North Hollywood, CA, Studio City, CA, Toluca Lake, CA, Sherman Oaks, CA</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Missing from current White/Orange SEO boards.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Missing from current White/Orange SEO boards.</dd></div>
                 </dl>
                 <footer><a href="https://brightcraftcenter.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
               </article>
@@ -1272,7 +1272,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">324813499</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:brighthealthysmiles.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Upper East Side, NY, Yorkville, NY, Lenox Hill, NY, Carnegie Hill, NY, Midtown Manhattan, NY</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://brighthealthysmiles.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1dJIisAKJIds-p0gUfhnnRfPMYZtbJ8qP" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1hKk-4sMkzUrf_M9X9WF59ukLa74_fvu6nn8wbXrOESE/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1288,7 +1288,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">503640778</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://bryantortho.net/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Owings Mills, Ellicott City, Baltimore, Randallstown, Catonsville</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://bryantortho.net/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/12OYcGiHHZgpM6EZQl914-zM0l0EadlRK" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1Dy8xDmp0UMIXpSByoNnWhu2PqWHL_Tq_X_4ty57i9kI/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1304,7 +1304,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">487695762</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:mycapdental.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Lake Worth, Lantana, West Palm Beach, Delray Beach. Next suggestions: Boynton Beach</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://mycapdental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1FL-tFQytOTvzTX4ewkVkkKS7g_WYaUxH" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1uMKGLMqiS464cfM7HpmHxLxoag4y90LTE_dWTCJWrLs/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1320,7 +1320,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Dale City, VA, Lake Ridge, VA, Occoquan, VA, Dumfries, VA, Montclair, VA</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-05-04.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-05-04.</dd></div>
                 </dl>
                 <footer><a href="https://charmsmilesdental.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
               </article>
@@ -1336,7 +1336,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">468405979</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:classicdentalarts.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Freehold, NJ, Marlboro, NJ, Englishtown, NJ, Morganville, NJ, Old Bridge, NJ</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.; Content: ready; Churned client as of 2026-05-04.</dd></div>
                 </dl>
                 <footer><a href="https://www.classicdentalarts.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1PiUBZs7UhS1F8rwYjBr6fuOnNrkQer-f" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1YNv7GwOJjRJJ-DZztzv93P3fk9Df6XIrXjyskkmJh80/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1352,7 +1352,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">498866939</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://commonwealthfamilydentistry.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Chesterfield, VA, Colonial Heights, VA, Hopewell, VA, Petersburg, VA, Richmond, VA</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://commonwealthfamilydentistry.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
               </article>
@@ -1368,7 +1368,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">429656901</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://smiles4jonesboro.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Paragould, AR, Brookland, AR, Trumann, AR, Bono, AR, Bay, AR</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://smiles4jonesboro.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://docs.google.com/spreadsheets/d/1UNTzw_mi7PAWcA2RBF12CfUyI4t6rxodsI43JBWSQAU/edit?gid=1310801267#gid=1310801267" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1384,7 +1384,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">514042477</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:dentalcenterofhollywood.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Hallandale Beach, FL, Dania Beach, FL, Pembroke Pines, FL, Miramar, FL, Aventura, FL</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.dentalcenterofhollywood.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1JPSX3QHmP2MD3m65MwrxZcQ8l7u4k2g2" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1OHnIcMJ2iwI_AFPvRl3wV7rD0ju-jNRy8n5wk8hj_Ko/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1400,7 +1400,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">525303914</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://yourpalmharbordentist.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Clearwater, FL, Dunedin, FL, Tarpon Springs, FL, Largo, FL, Safety Harbor, FL</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://yourpalmharbordentist.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1ubskxUs7_3Sjlhy6kpAxHJtJwHHU9U9O" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1GPyI9I-ljAWAbl1YfPVUy2ejSiPEg4lE5h3RGydyK_I/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1416,7 +1416,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">391270518</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.1dentalwellness.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Brandon, SD, Harrisburg, SD, Tea, SD, Dell Rapids, SD, Hartford, SD</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-05-04.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-05-04.</dd></div>
                 </dl>
                 <footer><a href="https://www.1dentalwellness.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/19o391XD9tTL2GUMeZWWLsIThW2TOD9fm" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1fBVgvHfWBuu9l2HOyY_T0hpAcYTDv_fnm6v2Ml2F9s0/edit" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1432,7 +1432,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">358067808</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.downtowndentalnashville.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: East Nashville, Germantown, Midtown, North Nashville, The Gulch</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.downtowndentalnashville.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1mxKqoFYpaBECA1XRjb5dLXOcp_fizJI5" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1BjK3vY48-arL1VFgkMnGF-kPjIjA92LQKYCD6IxoV9E/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1448,7 +1448,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">326588351; 368194289</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:greatstarthealthysmiles.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Ooltewah, TN, Dalton, GA, East Brainerd, TN, Apison, TN</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://greatstarthealthysmiles.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1M8agm4YTOQ1efpGKA4-As7V4eNn2DGeL" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1srAhoLDen-9T8St-TJG42hpvAB6VVSzwW7Gxe8Wjzro/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1464,7 +1464,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">507654974</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.mydulcedental.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: West Dallas, Oak Cliff, Cedar Crest, Kessler Park. Next suggestions: Bishop Arts District</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.mydulcedental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1aPjsU9pN1XzrnyFLrVOpDlexZwjyw4tR" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/19HMc2iHrqYeEW7wNljNBi7fB8jFj1izWKOS5ohx3B4E/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1480,7 +1480,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">324815221</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.emeraldcoastdentistry.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Mary Esther, FL, Wright, FL, Destin, FL, Shalimar, FL, Niceville, FL</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://emeraldcoastdentistry.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1C-o9duznIRwMZqQ3C6P_u8wze9TtXfEv" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1fcQCdnOhm85-Xn2-RxXbMYHcxAe481tRzQ15-XBJ52U/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1496,7 +1496,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:empowerdentalgroup.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Suggested Locational Pages (Main website): Rancho Cucamonga, CA, Glendale, CA Upland, CA, Burbank, CA, Pasadena</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://empowerdentalgroup.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
               </article>
@@ -1512,7 +1512,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">472298657</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://edswinstonsalemdentist.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Greensboro, High Point, Kernersville, Clemmons, Lewisville</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://edswinstonsalemdentist.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
               </article>
@@ -1528,7 +1528,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">327323383</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.lovettdental.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Katy, TX, Pearland, TX, Sugar Land, TX, Pasadena, TX, Baytown, TX</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.lovettdental.com/dental-offices-tx/haven-dentistry/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1ty-nuLPWCp3ucePXXy4z5rfaV09dnFqb" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1eswMd2a93522QM_MgclLNtNx_Wl2dQHys1T1S9n4_-8/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1544,7 +1544,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">509395779</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:joydentalpines.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Miramar, Weston, Davie, Cooper City, Hollywood</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.; Churned client as of 2026-05-04.; Churned client as of 2026-04-30.</dd></div>
                 </dl>
                 <footer><a href="https://joydentalpines.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1uRzoSTTQpg59qJ8EYppn_M6Ql8Narbwi" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1N4LxrRTWH7-hZVQBqZzUUAIPciyhn_as_HGfeUE2-9Y/edit?gid=408537344#gid=408537344" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1560,7 +1560,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: : Bethlehem, PA, Allentown, PA, Easton, PA, Nazareth, PA, Hellertown, PA</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Root CSV alias: Leigh Valley</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Root CSV alias: Leigh Valley</dd></div>
                 </dl>
                 <footer><a href="https://drpetrillo.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1ssmEN9DYvrD-EK5dg_qodJi_F2JHHJyb" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="/" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1576,7 +1576,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">524312145</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:lortontowndental.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Lorton. Next suggestions: Springfield, VA, Alexandria, VA, Woodbridge, VA, Fairfax, VA</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://lortontowndental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1x29hSUzf1dgSMBnB-S6EcL0q8t_ido9L" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="/" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1592,7 +1592,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">327323383</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.lovettdental.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Baytown, Beaumont, Cinco Ranch, Conroe, Corpus Christi</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.lovettdental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1EnKlKgkAfsIIP9Ckhvu7pJopw3bVD-KA" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1cp-GHQxId2mPQkDwE6oCP7F5g-rMmPujb_Zfus1REVA/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1608,7 +1608,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">511484037</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://maisonladental.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Silver Lake, CA, Los Feliz, CA, Echo Park, CA, Glendale, CA, Atwater Village, CA</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://maisonladental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1Nz-PK60tS_5F02I73dkGVh9YqgCLI03P" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1ioFcoFdhtc6ZKGUKZiRenw9sD4aDON093sAnQB_uUrM/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1624,7 +1624,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:mjbfirm.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Anaheim, Costa Mesa, Huntington Beach, Irvine, Lake Forest</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://mjbfirm.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1jNdk4Hd5KP5oFI60W7FrAW0VNrH_MHb5" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1StI-Mow-CEO2ChZFAf9W0pJ-iQPEomNkyy_bvU4DTRo/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1640,7 +1640,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">522053218</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:michaellbleekerdmd.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Phoenix, AZ, Tempe, AZ, Paradise Valley, AZ, Fountain Hills, AZ, Carefree, AZ</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Root CSV alias: Bleeker</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Root CSV alias: Bleeker</dd></div>
                 </dl>
                 <footer><a href="https://www.michaellbleekerdmd.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://docs.google.com/spreadsheets/d/1S40tlqFLcFmkdGzaGGs0SNuhwzOpQHvMwfhOGytispA/edit?gid=408537344#gid=408537344" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1656,7 +1656,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">-</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><span class="muted">no links</span></footer>
               </article>
@@ -1672,7 +1672,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://totalsmilesofleland.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Wilmington, Belville, Navassa, Brunswick Forest, Carolina Beach</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://totalsmilesofleland.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1me8J2d5yQf0ibL4o7vUuFRfXqqYTFbvm" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1_9QvW_DuMfrSuCJ6Bs1ph06xxnUUOtm2piRn1dL1Mj0/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1688,7 +1688,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">509820688</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.mountjacksondentalcare.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Basye, VA, Edinburg, VA, New Market, VA, Strasburg, VA, Woodstock, VA</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.mountjacksondentalcare.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1YxdeLPpIWt0w6w4DsMyywxP90duHXFIN" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1IXiI3ccRt2tLF60ZibirL3NrzMaF6b8Es-L9d9ebN-o/edit?gid=408537344#gid=408537344" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1704,7 +1704,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Acworth, Kennesaw, Woodstock, Marietta, Cartersville</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-05-04.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-05-04.</dd></div>
                 </dl>
                 <footer><a href="https://dentistacworth.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1eCG-CzbnszeMJ5L6pLG4dy-Qe_oHe_LU" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/18QiyGt19Sgn4-PSfeRl3VgZBp6d4aCBjfACyuud5PqE/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1720,7 +1720,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">469557877</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.myteethandme.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Yorkville, Lenox Hill, Carnegie Hill, East Harlem, Midtown East</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.myteethandme.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1uqK42WLOa7E8djI1u0JdSqUHo8HyMQnP" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/105iYZhLFgWVUXi3grNh44AZk1tAgEZvKAxcgLXkcYjM/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1736,7 +1736,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">536098401</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:nccompletedentistry.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">-</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Content: Mentioned in Slack as another MORE office needing a standard strategy-session audit.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Content: Mentioned in Slack as another MORE office needing a standard strategy-session audit.</dd></div>
                 </dl>
                 <footer><a href="https://nccompletedentistry.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
               </article>
@@ -1752,7 +1752,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">528075650</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://newwavedental.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Raleigh, NC, Cary, NC, Apex, NC, Chapel Hill, NC</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://newwavedental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://docs.google.com/spreadsheets/d/1wRnMzrssEfmAZ9p4LW8VAe0HLQiKl6WG2kJGgnr7I0E/edit?gid=1893346259#gid=1893346259" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1768,7 +1768,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">383127764</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://nkfamilydental.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Chicago, IL, Logan Square, Chicago, IL</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://nkfamilydental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1gisrTD8Sg7WCSNkOc8SHdeQn449N1NVI" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1OMiAPSzaD9c4L7ptm1MxKON4PEuigN6ZQh-fb5l5dzs/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1784,7 +1784,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">524935222</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:buforddentist.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Buford</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://buforddentist.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
               </article>
@@ -1800,7 +1800,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">482364757</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:oasissmilestudio.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Archdale, Thomasville, Lexington. Next suggestions: Greensboro, Winston-Salem</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://oasissmilestudio.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1KP6CFRF-LP0DcX14n3JDPEuOfnhu-hTq" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1b_h7zALNGPFVN-zMxIoIDGtMR96ScsMaV1KerH6dry8/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1816,7 +1816,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Costa Mesa, CA, Fountain Valley, CA, Westminster, CA, Garden Grove, CA, Seal Beach, CA</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Current board service mix does not include SEO.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Current board service mix does not include SEO.</dd></div>
                 </dl>
                 <footer><a href="https://ocspecialtyendo.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1YCZ3H_w6A4Bkyu158vc9RdUO37wKt-wm" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1OQaN69qK4qUBJaGWVvXwRF7lqaD6fhPKcFZBX8J6FSI/edit?gid=124398067#gid=124398067" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1832,7 +1832,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">509818434</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:1-orthodontics.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Plan in Web Build Sheet: Stafford, VA, Massaponax, VA, Falmouth, VA, Leavells, VA, Five Mile Fork, VA</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://1-orthodontics.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://docs.google.com/spreadsheets/d/1iDCB8lE7CTAl91J0JbMKECjhnuV4-jt3C1Kf80lpSeI/edit?usp=drive_web&amp;ouid=114052628708076124203" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1848,7 +1848,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">487812865</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://polishedgeneralandcosmeticdentistry.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Locational Pages Found: Peapack, NJ, Gladstone, NJ, Branchburg, NJ, Readington, NJ, Morristown, NJ</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Root CSV alias: Polished Dental</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Root CSV alias: Polished Dental</dd></div>
                 </dl>
                 <footer><a href="https://polishedgeneralandcosmeticdentistry.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
               </article>
@@ -1864,7 +1864,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">498071898</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.qandadentalcare.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Glenwillow, Mayfield Heights, Northfield, Oakwood, Sagamore Hills</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1ZtsDaRuqb_PgNnHMJs0IPAwons9MYxK7" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1-IE6pgTB3Lq585KRNOmrOFhriQsDOgClVwikc5_OAwM/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1880,7 +1880,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">472568749</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:raytowndentist.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Unity Village, MO, Sugar Creek, MO, North Blue Ridge (Kansas City), MO, Loma Vista (Kansas City), MO, Eastwood Hills (Kansas City), MO</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.raytowndentist.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
               </article>
@@ -1896,7 +1896,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">433452846</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:rodichlaw.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Tarzana, Canoga Park, West Hills, Calabasas, Encino</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-05-04.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-05-04.</dd></div>
                 </dl>
                 <footer><a href="https://www.rodichlaw.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1PhHQ9JPG7SHeETvsIxEUxYtODhJW14H1" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1wc_ikDPTMX2YmgqpQZMhXxhOb9qoSnPVBTGy-V6saUo/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1912,7 +1912,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:simplyveneers.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Huntington Beach, Newport, Irvine, Los Angeles, Costa Mesa</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.simplyveneers.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1CAaDuanQQlHGeTUdSc8sGSjnc6M1weqU" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1O0I830CtiTVJKP-4Q4l0HwVcSlXiYsfeuzeg6WNgblY/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1928,7 +1928,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">516291123</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:slcsmiles.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Murray, UT, Millcreek, UT, Sandy, UT, Draper, UT, South Jordan, UT</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-04-27.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-04-27.</dd></div>
                 </dl>
                 <footer><a href="https://slcsmiles.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1XjgDykUCvBK7YP0gHwp1HY1GVF9vRBRR" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1aP28YV6Bd0wvOpg5Kmo0u9Tv5GGmbM6_v8vad7Ib6TQ/edit?gid=124398067#gid=124398067" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1944,7 +1944,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">514398123</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:smile312.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Evanston, IL, Skokie, IL, Oak Park, IL, Cicero, IL, Berwyn, IL</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.smile312.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1AJhXJepm1Gei-Z1kkImM1zK9r-qGHkqu" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1DeSWW2My_hXCOqbGh4bkR3oi0ShFJ0UkI4yGOpINYs0/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1960,7 +1960,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">324849615</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://smilelinedentistry.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Livermore, Antioch. Next suggestions: Pleasanton, Dublin, San Ramon</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://smilelinedentistry.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1oJNhQAgRGfOXyxXep_UfdtN2syrYBeHA" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1jwaxHpstd_olYQhCY_tC4tjhihT_a6xfpXvAVOs6F0o/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1976,7 +1976,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">511819202</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:sanfranciscodentistsmilesf.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Listed in sitemap but currently 404 when clicked: Inner Richmond, Central Richmond, Presidio Terrace, Pacific Heights, Haight-Ashbury</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://sanfranciscodentistsmilesf.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1h3AUQE3EYMucEzggYAQSBMK1Exf5k9oQ" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1qYnzruVK5g6YkdW0x029BCb2AQf75ap9QBDr9RlbwsY/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -1992,7 +1992,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">488682828</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:smileology.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Niceville, Miramar Beach, Crestview (physical office locations)</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://smileology.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1wXPNR6s9C5Dw6FCKWJkVul-a3VwwJLmb" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/14_t0PXbo95AkMXBBA7jTWlc3lClYLNcr2yEI2j7kPWA/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -2008,7 +2008,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">509729524</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.southfloridasedationdentistry.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Wellington, FL, Royal Palm Beach, FL, Palm Beach County, FL, Greenacres, FL</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.southfloridasedationdentistry.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1vDdpVZaDPSd2g1n8bv33ZhWCI8-EXsLo" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1f-TvkVQ8ATInEC6oFQYj5GO-Yl65XzmY9GHDD1v7Kxw/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -2024,7 +2024,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">480137399</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:starlitedental.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Frisco, Allen, Plano, Prosper, Little Elm</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.starlitedental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1PQgER2ywvlLmTkYK8LCy55H854gsmzNU" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1EeszKQSZ272mDdg-djeG1hcQp6DUwR1l26NBj1bCuZM/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -2040,7 +2040,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">324823841</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://supremiadentistry.com/</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Cary, Raleigh, Youngsville, Chapel Hill, Falls</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-04-30.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-04-30.</dd></div>
                 </dl>
                 <footer><a href="https://supremiadentistry.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1jcHRioGxl2Lnrt9ndiRyzroiiIw5jv2I" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1dyN2bMguMCJYWSWfEtrllvGmNFC3XhyuUkx0jmq1iwg/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -2056,7 +2056,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">424499987</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Gillette, WY, Sturgis, SD. Next suggestions: Rapid City, SD, Spearfish, SD, Belle Fourche, SD</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Content: Holistic dentistry is the main angle. Patients come from across the state, so targeting can go wider. Ads currently target up to 50 miles. Incoming build. Lander requirements: include the doctor&#x27;s bio and a section on what the patient should expect during the first visit.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Content: Holistic dentistry is the main angle. Patients come from across the state, so targeting can go wider. Ads currently target up to 50 miles. Incoming build. Lander requirements: include the doctor&#x27;s bio and a section on what the patient should expect during the first visit.</dd></div>
                 </dl>
                 <footer><a href="https://mysynergydental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1ZOI-9OpsLAW7EIWT4thK5Iw6KjkpUc3i" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1tK1hnZNb8nu_u8_FyFMNRoWBxNPsZVI5B0IKhrFA96s/edit?gid=1164454692#gid=1164454692" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -2072,7 +2072,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">324863672</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:smilesthatrock.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Current location pages: Nashville, Goodlettsville, Gallatin. Next suggestions: Hendersonville, Madison</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Root CSV alias: Tabor Dental</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Root CSV alias: Tabor Dental</dd></div>
                 </dl>
                 <footer><a href="https://www.smilesthatrock.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/14xZTV4xD6MOe2dz-8TyYE_KAnu3qdB__" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1de1_1bUt8WSEhtQtcLyZzBkecjBjadjd7-HCwS6gXJQ/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -2088,7 +2088,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:dentalparlour.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Midtown East, New York, NY, Upper East Side, New York, NY, Sutton Place</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-04-20.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Churned client as of 2026-04-20.</dd></div>
                 </dl>
                 <footer><a href="https://dentalparlour.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/12AMdTwlSt0WTp2evG3-1HUHTdmdsIu1W" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1pqttRowtUltQsdJ1JJOrFa9Y_TweOVpSrfdjgVLd_z8/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -2104,7 +2104,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Oxford, Durham, Hillsborough, South Boston, Timberlake</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.totalsmilesnc.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1XClMZxr3LNxhcSgmONz4XIkoN-lpbC_y" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1_9QvW_DuMfrSuCJ6Bs1ph06xxnUUOtm2piRn1dL1Mj0/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -2120,7 +2120,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">514401802</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:universitydentalsandiego.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: La Mesa, CA, El Cajon, CA, Lemon Grove, CA, National City, CA, Chula Vista, CA</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.universitydentalsandiego.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1TaalzVWyJDneswTPN6E9KvbSvptZJf9F" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1XNTTuGUO1r4ATHJoFkE57eNqcZvLJvKJuzNubyn_sHk/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -2136,7 +2136,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">506945156</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:vistaridgedental.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Fort Worth, TX, Benbrook, TX, Crowley, TX, Burleson, TX, Forest Hill, TX</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://vistaridgedental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/17HLH0bCeEpUhvNybVTStHdKKpTphGFYZ" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1AYf3IJyr4mbwM9TST-mCwgpMyLRgMsaV0k6Ny9cYxYM/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -2152,7 +2152,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">No website found for this GBP</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">Missing from current White/Orange SEO boards.</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Missing from current White/Orange SEO boards.</dd></div>
                 </dl>
                 <footer><span class="muted">no links</span></footer>
               </article>
@@ -2168,7 +2168,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">445378328</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Cary, Apex, Garner, Wake Forest, Morrisville</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://vividdentalraleigh.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
               </article>
@@ -2184,7 +2184,7 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">509825713</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:wagnersleepdentist.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Greenwood, IN, Southport, IN, South Perry (Indianapolis), IN, Homecroft, IN</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://www.wagnersleepdentist.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1VfOKlobQA5ozPuckZU06gTY37vO6TAO9" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1Lgky1FoGgcZY9EgiZhoU1D4GJhP47yR4gHKPhMsXt24/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
@@ -2200,9 +2200,9 @@
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">492628937</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:winwooddental.com</dd></div>
                   <div class="span-2"><dt>Geo targets</dt><dd class="truncate">Top geo targets: Lebanon, Mount Juliet, Hermitage, Gallatin, Hendersonville</dd></div>
-                  <div class="span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">-</dd></div>
                 </dl>
                 <footer><a href="https://winwooddental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1CEtrMMEZu4UTEacLflc6vE7aeFN0aeX0" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1yOjAiTCb4PPIRXgwoGLuq7Cn_WNRJY8BI7RlXmDB1zA/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
 
-      </div><div class="empty" id="empty-state"><h3>Nothing in the ledger.</h3><p>Clear filters or search again.</p></div></section></main></div><script>(function(){const search=document.getElementById('search');const podFilter=document.getElementById('pod-filter');const statusFilter=document.getElementById('status-filter');const industryFilter=document.getElementById('industry-filter');const resetBtn=document.getElementById('reset-btn');const empty=document.getElementById('empty-state');const tableView=document.getElementById('table-view');const cardView=document.getElementById('card-view');const sideLinks=document.querySelectorAll('.side-link');const viewTable=document.getElementById('view-table');const viewCards=document.getElementById('view-cards');const showApiKeys=document.getElementById('show-api-keys');const total=70;function applyFilters(){const q=(search.value||'').trim().toLowerCase();const pod=podFilter.value;const status=statusFilter.value;const industry=industryFilter.value;const items=[...document.querySelectorAll('#rows .row'),...document.querySelectorAll('#card-view .card-item')];let visible=0;items.forEach(el=>{const show=(!q||el.dataset.search.includes(q))&&(!pod||el.dataset.pod===pod)&&(!status||el.dataset.status===status)&&(!industry||el.dataset.industry===industry);el.classList.toggle('hidden',!show);if(show&&el.classList.contains('row'))visible++;});document.getElementById('results-count').innerHTML='Showing <strong>'+visible+'</strong> of '+total;resetBtn.style.display=(q||pod||status||industry)?'inline-flex':'none';empty.classList.toggle('show',visible===0);tableView.style.display=visible===0?'none':(viewTable.classList.contains('active')?'':'none');cardView.style.display=visible===0?'none':(viewCards.classList.contains('active')?'grid':'none');sideLinks.forEach(link=>{const type=link.dataset.filterType;const value=link.dataset.filterValue;link.classList.toggle('active',(type==='status'&&value===status)||(type==='pod'&&value===pod)||(!value&&!status&&!pod&&type==='status'));});}search.addEventListener('input',applyFilters);podFilter.addEventListener('change',applyFilters);statusFilter.addEventListener('change',applyFilters);industryFilter.addEventListener('change',applyFilters);resetBtn.addEventListener('click',()=>{search.value='';podFilter.value='';statusFilter.value='';industryFilter.value='';applyFilters();});sideLinks.forEach(link=>link.addEventListener('click',()=>{const type=link.dataset.filterType;const value=link.dataset.filterValue;if(type==='status'){statusFilter.value=value;if(!value){podFilter.value='';industryFilter.value='';search.value='';}}if(type==='pod')podFilter.value=(podFilter.value===value)?'':value;applyFilters();}));viewTable.addEventListener('click',()=>{viewTable.classList.add('active');viewCards.classList.remove('active');tableView.style.display='';cardView.style.display='none';});viewCards.addEventListener('click',()=>{viewCards.classList.add('active');viewTable.classList.remove('active');tableView.style.display='none';cardView.style.display='grid';});showApiKeys.addEventListener('change',()=>document.body.classList.toggle('show-api-keys',showApiKeys.checked));document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==search){e.preventDefault();search.focus();}if(e.key==='Escape'&&document.activeElement===search){search.value='';applyFilters();search.blur();}});})();</script></body></html>
+      </div><div class="empty" id="empty-state"><h3>Nothing in the ledger.</h3><p>Clear filters or search again.</p></div></section></main></div><script>(function(){const search=document.getElementById('search');const podFilter=document.getElementById('pod-filter');const statusFilter=document.getElementById('status-filter');const industryFilter=document.getElementById('industry-filter');const resetBtn=document.getElementById('reset-btn');const empty=document.getElementById('empty-state');const tableView=document.getElementById('table-view');const cardView=document.getElementById('card-view');const sideLinks=document.querySelectorAll('.side-link');const viewTable=document.getElementById('view-table');const viewCards=document.getElementById('view-cards');const showApiKeys=document.getElementById('show-api-keys');const showNotes=document.getElementById('show-notes');const total=70;function applyFilters(){const q=(search.value||'').trim().toLowerCase();const pod=podFilter.value;const status=statusFilter.value;const industry=industryFilter.value;const items=[...document.querySelectorAll('#rows .row'),...document.querySelectorAll('#card-view .card-item')];let visible=0;items.forEach(el=>{const show=(!q||el.dataset.search.includes(q))&&(!pod||el.dataset.pod===pod)&&(!status||el.dataset.status===status)&&(!industry||el.dataset.industry===industry);el.classList.toggle('hidden',!show);if(show&&el.classList.contains('row'))visible++;});document.getElementById('results-count').innerHTML='Showing <strong>'+visible+'</strong> of '+total;resetBtn.style.display=(q||pod||status||industry)?'inline-flex':'none';empty.classList.toggle('show',visible===0);tableView.style.display=visible===0?'none':(viewTable.classList.contains('active')?'':'none');cardView.style.display=visible===0?'none':(viewCards.classList.contains('active')?'grid':'none');sideLinks.forEach(link=>{const type=link.dataset.filterType;const value=link.dataset.filterValue;link.classList.toggle('active',(type==='status'&&value===status)||(type==='pod'&&value===pod)||(!value&&!status&&!pod&&type==='status'));});}search.addEventListener('input',applyFilters);podFilter.addEventListener('change',applyFilters);statusFilter.addEventListener('change',applyFilters);industryFilter.addEventListener('change',applyFilters);resetBtn.addEventListener('click',()=>{search.value='';podFilter.value='';statusFilter.value='';industryFilter.value='';applyFilters();});sideLinks.forEach(link=>link.addEventListener('click',()=>{const type=link.dataset.filterType;const value=link.dataset.filterValue;if(type==='status'){statusFilter.value=value;if(!value){podFilter.value='';industryFilter.value='';search.value='';}}if(type==='pod')podFilter.value=(podFilter.value===value)?'':value;applyFilters();}));viewTable.addEventListener('click',()=>{viewTable.classList.add('active');viewCards.classList.remove('active');tableView.style.display='';cardView.style.display='none';});viewCards.addEventListener('click',()=>{viewCards.classList.add('active');viewTable.classList.remove('active');tableView.style.display='none';cardView.style.display='grid';});showApiKeys.addEventListener('change',()=>document.body.classList.toggle('show-api-keys',showApiKeys.checked));showNotes.addEventListener('change',()=>document.body.classList.toggle('show-notes',showNotes.checked));document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==search){e.preventDefault();search.focus();}if(e.key==='Escape'&&document.activeElement===search){search.value='';applyFilters();search.blur();}});})();</script></body></html>
