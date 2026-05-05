@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Standard Targeting SOP and Prompt Generator</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6f7f9;
+      color: #1f2933;
+      margin: 0;
+      padding: 12px;
+      line-height: 1.4;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: 26px;
+      line-height: 1.15;
+      color: #111827;
+    }
+
+    h1 span {
+      font-size: 20px;
+      color: #4b5563;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      margin: 0 0 14px;
+      color: #5f6b7a;
+      font-size: 14px;
+    }
+
+    .sop-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 0 0 14px;
+    }
+
+    .sop-strip div {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 9px 11px;
+      font-size: 13px;
+      color: #374151;
+    }
+
+    .builder {
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .builder h2 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      color: #ffffff;
+    }
+
+    .builder p {
+      margin: 0 0 10px;
+      color: #d1d5db;
+      font-size: 13px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 220px;
+      box-sizing: border-box;
+      border: 1px solid #374151;
+      border-radius: 10px;
+      background: #1f2937;
+      color: #f9fafb;
+      padding: 12px;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 13px;
+      line-height: 1.45;
+      resize: vertical;
+    }
+
+    textarea::placeholder {
+      color: #9ca3af;
+    }
+
+    .field-label {
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      align-items: center;
+    }
+
+    button {
+      border: 0;
+      border-radius: 9px;
+      padding: 9px 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .primary {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    .secondary {
+      background: #374151;
+      color: #ffffff;
+    }
+
+    .status {
+      font-size: 13px;
+      color: #bbf7d0;
+      min-height: 18px;
+    }
+
+    .rules {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .rule {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 12px;
+      background: #fbfcfd;
+    }
+
+    .rule h2 {
+      font-size: 16px;
+      margin: 0 0 7px;
+      color: #111827;
+    }
+
+    .principle {
+      margin: 0 0 10px;
+      color: #4b5563;
+      font-size: 13px;
+    }
+
+    .targeting {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .profile {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 14px;
+      background: #ffffff;
+    }
+
+    .profile h2 {
+      margin: 0 0 10px;
+      font-size: 17px;
+      color: #111827;
+    }
+
+    .keyword-block {
+      margin-top: 10px;
+    }
+
+    .keyword-block h3 {
+      margin: 0 0 6px;
+      color: #374151;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 2px 0;
+      font-size: 13px;
+      color: #27313f;
+    }
+
+    .note {
+      margin-top: 12px;
+      padding: 12px 14px;
+      background: #eef4ff;
+      border-left: 4px solid #2563eb;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    code {
+      background: #eef2f7;
+      border-radius: 5px;
+      padding: 1px 5px;
+    }
+
+    @media (max-width: 900px) {
+      .grid, .rules, .sop-strip, .targeting {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 12px;
+      }
+
+      .page {
+        padding: 18px;
+      }
+
+      .button-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Standard Targeting SOP<br><span>and Prompt Generator</span></h1>
+    <p class="subtitle">Choose the client practice type, use the standard website and GBP tracking terms, and expand location terms from client records.</p>
+    <div class="sop-strip">
+      <div><strong>Location terms:</strong> use all relevant client locations.</div>
+      <div><strong>Keyword style:</strong> do not include "near me".</div>
+      <div><strong>Sources:</strong> use client records for locations.</div>
+    </div>
+
+    <section class="builder">
+      <h2>Prompt Builder</h2>
+      <p>Paste client notes, practice type, and location context. The generated prompt will apply the standard targeting set below.</p>
+
+      <div class="grid">
+        <div>
+          <div class="field-label">Client / Targeting Notes</div>
+          <textarea id="targetingInput" placeholder="Paste client name, practice type, known locations, and any targeting notes here..."></textarea>
+        </div>
+        <div>
+          <div class="field-label">Generated Prompt</div>
+          <textarea id="generatedPrompt" readonly placeholder="Generated prompt appears here..."></textarea>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button class="primary" onclick="generatePrompt()">Generate</button>
+        <button class="secondary" onclick="copyPrompt()">Copy Prompt</button>
+        <button class="secondary" onclick="clearAll()">Clear</button>
+        <span id="status" class="status"></span>
+      </div>
+    </section>
+
+    <section class="rules">
+      <div class="rule">
+        <h2>1. Remove "near me" from target terms.</h2>
+        <p class="principle">Use clean service keywords. Location coverage comes from tracked client locations, not from adding "near me" to the keyword.</p>
+      </div>
+      <div class="rule">
+        <h2>2. Expand all-location terms by client records.</h2>
+        <p class="principle">When a term says <code>all locations</code>, track that keyword for every relevant location listed in the client records.</p>
+      </div>
+      <div class="rule">
+        <h2>3. Use the closest practice type.</h2>
+        <p class="principle">Pick the targeting set that best matches the client's primary business model. Use General Default when no specialty set clearly fits.</p>
+      </div>
+      <div class="rule">
+        <h2>4. Keep website and GBP sets separate.</h2>
+        <p class="principle">Website terms define broader organic targeting. GBP priority terms define the smaller local profile tracking set.</p>
+      </div>
+    </section>
+
+    <section class="targeting">
+      <div class="profile">
+        <h2>General Default</h2>
+        <div class="keyword-block">
+          <h3>Website: 16 terms</h3>
+          <ul>
+            <li>dentist (all locations)</li>
+            <li>cosmetic dentist</li>
+            <li>dental implants</li>
+            <li>emergency dentist</li>
+            <li>family dentist</li>
+            <li>invisalign</li>
+            <li>orthodontist</li>
+            <li>pediatric dentist</li>
+            <li>periodontist</li>
+            <li>teeth cleaning</li>
+            <li>braces</li>
+            <li>teeth whitening</li>
+            <li>veneers</li>
+            <li>all on 4 implants</li>
+            <li>crowns</li>
+            <li>tmj treatment</li>
+          </ul>
+        </div>
+        <div class="keyword-block">
+          <h3>GBP: 6 terms</h3>
+          <ul>
+            <li>dentist (all locations)</li>
+            <li>cosmetic dentist</li>
+            <li>dental implants</li>
+            <li>pediatric dentist</li>
+            <li>emergency dentist</li>
+            <li>invisalign</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="profile">
+        <h2>Orthodontist</h2>
+        <div class="keyword-block">
+          <h3>Website: 7 terms</h3>
+          <ul>
+            <li>orthodontist (all locations)</li>
+            <li>invisalign (all locations)</li>
+            <li>braces (all locations)</li>
+            <li>clear aligners</li>
+            <li>retainers</li>
+            <li>teen invisalign</li>
+            <li>family orthodontist</li>
+          </ul>
+        </div>
+        <div class="keyword-block">
+          <h3>GBP priority: 2 terms</h3>
+          <ul>
+            <li>orthodontist (all locations)</li>
+            <li>invisalign (all locations)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="profile">
+        <h2>Implant Practice</h2>
+        <div class="keyword-block">
+          <h3>Website: 10 terms</h3>
+          <ul>
+            <li>dental implants (all locations)</li>
+            <li>all on 4 implants (all locations)</li>
+            <li>full mouth dental implants</li>
+            <li>implant dentures</li>
+            <li>snap in dentures</li>
+            <li>bone graft</li>
+            <li>dental bridges</li>
+            <li>crowns</li>
+            <li>oral surgeon</li>
+            <li>teeth pulling</li>
+          </ul>
+        </div>
+        <div class="keyword-block">
+          <h3>GBP priority: 2 terms</h3>
+          <ul>
+            <li>dental implants (all locations)</li>
+            <li>all on 4 implants</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="profile">
+        <h2>Oral Surgery</h2>
+        <div class="keyword-block">
+          <h3>Website: 9 terms</h3>
+          <ul>
+            <li>oral surgeon (all locations)</li>
+            <li>oral surgery</li>
+            <li>teeth pulling</li>
+            <li>bone graft</li>
+            <li>emergency dentist</li>
+            <li>dental implants</li>
+            <li>wisdom teeth removal</li>
+            <li>tooth extraction</li>
+            <li>surgical extraction</li>
+          </ul>
+        </div>
+        <div class="keyword-block">
+          <h3>GBP priority: 1 term</h3>
+          <ul>
+            <li>oral surgeon (all locations)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="profile">
+        <h2>Cosmetic Dentist</h2>
+        <div class="keyword-block">
+          <h3>Website: 10 terms</h3>
+          <ul>
+            <li>cosmetic dentist (all locations)</li>
+            <li>dentist (all locations)</li>
+            <li>teeth whitening</li>
+            <li>veneers</li>
+            <li>dental bonding</li>
+            <li>clear aligners</li>
+            <li>invisalign</li>
+            <li>smile makeover</li>
+            <li>porcelain veneers</li>
+            <li>dental crowns</li>
+          </ul>
+        </div>
+        <div class="keyword-block">
+          <h3>GBP priority: 3 terms</h3>
+          <ul>
+            <li>cosmetic dentist</li>
+            <li>dentist</li>
+            <li>teeth whitening</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="profile">
+        <h2>Pediatric / Family</h2>
+        <div class="keyword-block">
+          <h3>Website: 9 terms</h3>
+          <ul>
+            <li>family dentist (all locations)</li>
+            <li>pediatric dentist (all locations)</li>
+            <li>dentist (all locations)</li>
+            <li>kids dentist (all locations)</li>
+            <li>teeth cleaning</li>
+            <li>cavity filling</li>
+            <li>dental sealants</li>
+            <li>fluoride treatment</li>
+            <li>children's dentist</li>
+          </ul>
+        </div>
+        <div class="keyword-block">
+          <h3>GBP priority: 4 terms</h3>
+          <ul>
+            <li>family dentist</li>
+            <li>pediatric dentist</li>
+            <li>dentist</li>
+            <li>kids dentist</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="note">
+      <strong>All locations:</strong> expand the keyword across every relevant client location from the client records. The keyword itself stays clean and does not include "near me".
+    </div>
+  </main>
+
+  <script>
+    const standardTargeting = `Standard targeting SOP:
+- Remove "near me" from all keyword targets.
+- Terms marked "(all locations)" should be tracked for every relevant client location from the client records.
+- Keep website terms and GBP priority terms separate.
+- Use the closest practice type. Use General Default when no specialty set clearly fits.
+
+General Default
+Website: dentist (all locations), cosmetic dentist, dental implants, emergency dentist, family dentist, invisalign, orthodontist, pediatric dentist, periodontist, teeth cleaning, braces, teeth whitening, veneers, all on 4 implants, crowns, tmj treatment
+GBP: dentist (all locations), cosmetic dentist, dental implants, pediatric dentist, emergency dentist, invisalign
+
+Orthodontist
+Website: orthodontist (all locations), invisalign (all locations), braces (all locations), clear aligners, retainers, teen invisalign, family orthodontist
+GBP priority: orthodontist (all locations), invisalign (all locations)
+
+Implant Practice
+Website: dental implants (all locations), all on 4 implants (all locations), full mouth dental implants, implant dentures, snap in dentures, bone graft, dental bridges, crowns, oral surgeon, teeth pulling
+GBP priority: dental implants (all locations), all on 4 implants
+
+Oral Surgery
+Website: oral surgeon (all locations), oral surgery, teeth pulling, bone graft, emergency dentist, dental implants, wisdom teeth removal, tooth extraction, surgical extraction
+GBP priority: oral surgeon (all locations)
+
+Cosmetic Dentist
+Website: cosmetic dentist (all locations), dentist (all locations), teeth whitening, veneers, dental bonding, clear aligners, invisalign, smile makeover, porcelain veneers, dental crowns
+GBP priority: cosmetic dentist, dentist, teeth whitening
+
+Pediatric / Family
+Website: family dentist (all locations), pediatric dentist (all locations), dentist (all locations), kids dentist (all locations), teeth cleaning, cavity filling, dental sealants, fluoride treatment, children's dentist
+GBP priority: family dentist, pediatric dentist, dentist, kids dentist`;
+
+    function buildPrompt() {
+      return [
+        "Apply the standard dental keyword targeting rules to the client notes below.",
+        "",
+        standardTargeting,
+        "",
+        "Output requirements:",
+        "- Identify the best matching practice type.",
+        "- List the website tracking terms.",
+        "- List the GBP priority tracking terms.",
+        "- Expand any '(all locations)' terms using the relevant locations from the client records or provided notes.",
+        "- If locations are missing, clearly mark the terms that need client-record location expansion.",
+        "- Do not add 'near me' to any keyword.",
+        "",
+        "Client / targeting notes:",
+        ""
+      ].join("\n");
+    }
+
+    function generatePrompt() {
+      const notes = document.getElementById("targetingInput").value.trim();
+      const output = document.getElementById("generatedPrompt");
+      const status = document.getElementById("status");
+
+      if (!notes) {
+        status.textContent = "Paste client or targeting notes first.";
+        output.value = "";
+        return;
+      }
+
+      output.value = buildPrompt() + notes;
+      status.textContent = "Prompt generated.";
+    }
+
+    async function copyPrompt() {
+      const output = document.getElementById("generatedPrompt");
+      const status = document.getElementById("status");
+
+      if (!output.value.trim()) {
+        generatePrompt();
+      }
+
+      if (!output.value.trim()) {
+        status.textContent = "Nothing to copy.";
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(output.value);
+        status.textContent = "Copied.";
+      } catch (err) {
+        output.select();
+        document.execCommand("copy");
+        status.textContent = "Copied.";
+      }
+    }
+
+    function clearAll() {
+      document.getElementById("targetingInput").value = "";
+      document.getElementById("generatedPrompt").value = "";
+      document.getElementById("status").textContent = "";
+    }
+  </script>
+</body>
+</html>
