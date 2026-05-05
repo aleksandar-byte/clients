@@ -24,6 +24,8 @@ FIELD_ORDER = [
     "Services",
     "Status",
     "Monday Item",
+    "GA4 Property ID",
+    "GSC Property",
     "Folder",
     "Sitemap",
     "Geo / Target Locations",
@@ -141,6 +143,8 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
         status_value = row.get("Status", "")
         status = html.escape(status_value)
         monday_item = html.escape(row.get("Monday Item", ""))
+        ga4_property_id = html.escape(row.get("GA4 Property ID", ""))
+        gsc_property = html.escape(row.get("GSC Property", ""))
         folder = normalize_space(row.get("Folder"))
         sitemap = normalize_space(row.get("Sitemap"))
         geo = html.escape(row.get("Geo / Target Locations", ""))
@@ -163,6 +167,8 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
               <td>{services}</td>
               <td><span class="badge {badge_class}">{status}</span></td>
               <td>{monday_item}</td>
+              <td>{ga4_property_id}</td>
+              <td>{gsc_property}</td>
               <td>{geo}</td>
               <td>{notes}</td>
             </tr>
@@ -370,6 +376,8 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
             <th>Services</th>
             <th>Status</th>
             <th>Monday Item</th>
+            <th>GA4 Property ID</th>
+            <th>GSC Property</th>
             <th>Geo / Target Locations</th>
             <th>Notes</th>
           </tr>
