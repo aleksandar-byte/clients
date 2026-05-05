@@ -216,7 +216,7 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
         start_date = normalize_space(row.get("Start Date"))
         geo_done = normalize_space(row.get("Geo Targets Done"))
         geo_planned = normalize_space(row.get("Geo Targets Planned"))
-        geo = " ".join([geo_done, geo_planned, normalize_space(row.get("Geo / Target Locations"))])
+        geo = " ".join([geo_done, geo_planned])
         notes = normalize_space(row.get("Notes"))
         monday_item = normalize_space(row.get("Monday Item"))
         ga4_property_id = normalize_space(row.get("GA4 Property ID"))
