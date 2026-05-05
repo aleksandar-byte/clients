@@ -84,9 +84,16 @@
       gap: 10px;
     }
 
-    textarea {
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    textarea,
+    select {
       width: 100%;
-      min-height: 220px;
       box-sizing: border-box;
       border: 1px solid #374151;
       border-radius: 10px;
@@ -97,6 +104,15 @@
       font-size: 13px;
       line-height: 1.45;
       resize: vertical;
+    }
+
+    textarea {
+      min-height: 220px;
+    }
+
+    select {
+      min-height: 44px;
+      appearance: auto;
     }
 
     textarea::placeholder {
@@ -227,7 +243,7 @@
     }
 
     @media (max-width: 900px) {
-      .grid, .rules, .sop-strip, .targeting {
+      .grid, .rules, .sop-strip, .targeting, .controls {
         grid-template-columns: 1fr;
       }
     }
@@ -264,22 +280,40 @@
 
     <section class="builder">
       <h2>Prompt Builder</h2>
-      <p>Paste client notes, practice type, and location context. The generated prompt will apply the standard targeting set below.</p>
+      <p>Select the specialty and enter the relevant client locations. The generator will create clean tracking rows without "near me".</p>
+
+      <div class="controls">
+        <div>
+          <div class="field-label">Specialty</div>
+          <select id="specialtySelect">
+            <option value="general">General Default</option>
+            <option value="orthodontist">Orthodontist</option>
+            <option value="implant">Implant Practice</option>
+            <option value="oral-surgery">Oral Surgery</option>
+            <option value="cosmetic">Cosmetic Dentist</option>
+            <option value="pediatric-family">Pediatric / Family</option>
+          </select>
+        </div>
+        <div>
+          <div class="field-label">Relevant Locations</div>
+          <textarea id="locationsInput" placeholder="Paste one location per line, or separate locations with commas..."></textarea>
+        </div>
+      </div>
 
       <div class="grid">
         <div>
-          <div class="field-label">Client / Targeting Notes</div>
-          <textarea id="targetingInput" placeholder="Paste client name, practice type, known locations, and any targeting notes here..."></textarea>
+          <div class="field-label">Optional Client Notes</div>
+          <textarea id="targetingInput" placeholder="Optional: paste client name, market notes, or anything that should be kept with the generated output..."></textarea>
         </div>
         <div>
-          <div class="field-label">Generated Prompt</div>
-          <textarea id="generatedPrompt" readonly placeholder="Generated prompt appears here..."></textarea>
+          <div class="field-label">Generated Variations</div>
+          <textarea id="generatedPrompt" readonly placeholder="Generated targeting rows appear here..."></textarea>
         </div>
       </div>
 
       <div class="button-row">
-        <button class="primary" onclick="generatePrompt()">Generate</button>
-        <button class="secondary" onclick="copyPrompt()">Copy Prompt</button>
+        <button class="primary" onclick="generatePrompt()">Generate Variations</button>
+        <button class="secondary" onclick="copyPrompt()">Copy Variations</button>
         <button class="secondary" onclick="clearAll()">Clear</button>
         <span id="status" class="status"></span>
       </div>
@@ -475,68 +509,180 @@
   </main>
 
   <script>
-    const standardTargeting = `Standard targeting SOP:
-- Remove "near me" from all keyword targets.
-- Terms marked "(all locations)" should be tracked for every relevant client location from the client records.
-- Keep website terms and GBP priority terms separate.
-- Use the closest practice type. Use General Default when no specialty set clearly fits.
+    const targetingSets = {
+      general: {
+        label: "General Default",
+        website: [
+          { keyword: "dentist", allLocations: true },
+          { keyword: "cosmetic dentist" },
+          { keyword: "dental implants" },
+          { keyword: "emergency dentist" },
+          { keyword: "family dentist" },
+          { keyword: "invisalign" },
+          { keyword: "orthodontist" },
+          { keyword: "pediatric dentist" },
+          { keyword: "periodontist" },
+          { keyword: "teeth cleaning" },
+          { keyword: "braces" },
+          { keyword: "teeth whitening" },
+          { keyword: "veneers" },
+          { keyword: "all on 4 implants" },
+          { keyword: "crowns" },
+          { keyword: "tmj treatment" }
+        ],
+        gbp: [
+          { keyword: "dentist", allLocations: true },
+          { keyword: "cosmetic dentist" },
+          { keyword: "dental implants" },
+          { keyword: "pediatric dentist" },
+          { keyword: "emergency dentist" },
+          { keyword: "invisalign" }
+        ]
+      },
+      orthodontist: {
+        label: "Orthodontist",
+        website: [
+          { keyword: "orthodontist", allLocations: true },
+          { keyword: "invisalign", allLocations: true },
+          { keyword: "braces", allLocations: true },
+          { keyword: "clear aligners" },
+          { keyword: "retainers" },
+          { keyword: "teen invisalign" },
+          { keyword: "family orthodontist" }
+        ],
+        gbp: [
+          { keyword: "orthodontist", allLocations: true },
+          { keyword: "invisalign", allLocations: true }
+        ]
+      },
+      implant: {
+        label: "Implant Practice",
+        website: [
+          { keyword: "dental implants", allLocations: true },
+          { keyword: "all on 4 implants", allLocations: true },
+          { keyword: "full mouth dental implants" },
+          { keyword: "implant dentures" },
+          { keyword: "snap in dentures" },
+          { keyword: "bone graft" },
+          { keyword: "dental bridges" },
+          { keyword: "crowns" },
+          { keyword: "oral surgeon" },
+          { keyword: "teeth pulling" }
+        ],
+        gbp: [
+          { keyword: "dental implants", allLocations: true },
+          { keyword: "all on 4 implants" }
+        ]
+      },
+      "oral-surgery": {
+        label: "Oral Surgery",
+        website: [
+          { keyword: "oral surgeon", allLocations: true },
+          { keyword: "oral surgery" },
+          { keyword: "teeth pulling" },
+          { keyword: "bone graft" },
+          { keyword: "emergency dentist" },
+          { keyword: "dental implants" },
+          { keyword: "wisdom teeth removal" },
+          { keyword: "tooth extraction" },
+          { keyword: "surgical extraction" }
+        ],
+        gbp: [
+          { keyword: "oral surgeon", allLocations: true }
+        ]
+      },
+      cosmetic: {
+        label: "Cosmetic Dentist",
+        website: [
+          { keyword: "cosmetic dentist", allLocations: true },
+          { keyword: "dentist", allLocations: true },
+          { keyword: "teeth whitening" },
+          { keyword: "veneers" },
+          { keyword: "dental bonding" },
+          { keyword: "clear aligners" },
+          { keyword: "invisalign" },
+          { keyword: "smile makeover" },
+          { keyword: "porcelain veneers" },
+          { keyword: "dental crowns" }
+        ],
+        gbp: [
+          { keyword: "cosmetic dentist" },
+          { keyword: "dentist" },
+          { keyword: "teeth whitening" }
+        ]
+      },
+      "pediatric-family": {
+        label: "Pediatric / Family",
+        website: [
+          { keyword: "family dentist", allLocations: true },
+          { keyword: "pediatric dentist", allLocations: true },
+          { keyword: "dentist", allLocations: true },
+          { keyword: "kids dentist", allLocations: true },
+          { keyword: "teeth cleaning" },
+          { keyword: "cavity filling" },
+          { keyword: "dental sealants" },
+          { keyword: "fluoride treatment" },
+          { keyword: "children's dentist" }
+        ],
+        gbp: [
+          { keyword: "family dentist" },
+          { keyword: "pediatric dentist" },
+          { keyword: "dentist" },
+          { keyword: "kids dentist" }
+        ]
+      }
+    };
 
-General Default
-Website: dentist (all locations), cosmetic dentist, dental implants, emergency dentist, family dentist, invisalign, orthodontist, pediatric dentist, periodontist, teeth cleaning, braces, teeth whitening, veneers, all on 4 implants, crowns, tmj treatment
-GBP: dentist (all locations), cosmetic dentist, dental implants, pediatric dentist, emergency dentist, invisalign
+    function parseLocations(rawLocations) {
+      return rawLocations
+        .split(/[\n,;]+/)
+        .map((location) => location.trim())
+        .filter(Boolean);
+    }
 
-Orthodontist
-Website: orthodontist (all locations), invisalign (all locations), braces (all locations), clear aligners, retainers, teen invisalign, family orthodontist
-GBP priority: orthodontist (all locations), invisalign (all locations)
+    function rowsForTerms(specialty, channel, terms, locations) {
+      const rows = [];
 
-Implant Practice
-Website: dental implants (all locations), all on 4 implants (all locations), full mouth dental implants, implant dentures, snap in dentures, bone graft, dental bridges, crowns, oral surgeon, teeth pulling
-GBP priority: dental implants (all locations), all on 4 implants
+      terms.forEach((term) => {
+        if (term.allLocations) {
+          const targetLocations = locations.length ? locations : ["NEEDS CLIENT RECORD LOCATION"];
+          targetLocations.forEach((location) => {
+            rows.push([specialty, channel, term.keyword, location, "all locations"]);
+          });
+          return;
+        }
 
-Oral Surgery
-Website: oral surgeon (all locations), oral surgery, teeth pulling, bone graft, emergency dentist, dental implants, wisdom teeth removal, tooth extraction, surgical extraction
-GBP priority: oral surgeon (all locations)
+        rows.push([specialty, channel, term.keyword, "Campaign default", "standard"]);
+      });
 
-Cosmetic Dentist
-Website: cosmetic dentist (all locations), dentist (all locations), teeth whitening, veneers, dental bonding, clear aligners, invisalign, smile makeover, porcelain veneers, dental crowns
-GBP priority: cosmetic dentist, dentist, teeth whitening
-
-Pediatric / Family
-Website: family dentist (all locations), pediatric dentist (all locations), dentist (all locations), kids dentist (all locations), teeth cleaning, cavity filling, dental sealants, fluoride treatment, children's dentist
-GBP priority: family dentist, pediatric dentist, dentist, kids dentist`;
-
-    function buildPrompt() {
-      return [
-        "Apply the standard dental keyword targeting rules to the client notes below.",
-        "",
-        standardTargeting,
-        "",
-        "Output requirements:",
-        "- Identify the best matching practice type.",
-        "- List the website tracking terms.",
-        "- List the GBP priority tracking terms.",
-        "- Expand any '(all locations)' terms using the relevant locations from the client records or provided notes.",
-        "- If locations are missing, clearly mark the terms that need client-record location expansion.",
-        "- Do not add 'near me' to any keyword.",
-        "",
-        "Client / targeting notes:",
-        ""
-      ].join("\n");
+      return rows;
     }
 
     function generatePrompt() {
+      const specialtyKey = document.getElementById("specialtySelect").value;
+      const locations = parseLocations(document.getElementById("locationsInput").value);
       const notes = document.getElementById("targetingInput").value.trim();
       const output = document.getElementById("generatedPrompt");
       const status = document.getElementById("status");
+      const set = targetingSets[specialtyKey];
 
-      if (!notes) {
-        status.textContent = "Paste client or targeting notes first.";
-        output.value = "";
-        return;
+      const rows = [
+        ["Specialty", "Channel", "Keyword", "Tracking Location", "Rule"],
+        ...rowsForTerms(set.label, "Website", set.website, locations),
+        ...rowsForTerms(set.label, "GBP", set.gbp, locations)
+      ];
+
+      const noteRows = notes
+        ? ["", "Notes", notes.replace(/\r?\n/g, " ")]
+        : [];
+
+      output.value = rows.map((row) => row.join("\t")).join("\n");
+      if (noteRows.length) {
+        output.value += "\n" + noteRows.join("\t");
       }
-
-      output.value = buildPrompt() + notes;
-      status.textContent = "Prompt generated.";
+      status.textContent = locations.length
+        ? `Generated ${rows.length - 1} rows for ${set.label}.`
+        : `Generated ${rows.length - 1} rows for ${set.label}; all-location rows need client-record locations.`;
     }
 
     async function copyPrompt() {
@@ -563,6 +709,8 @@ GBP priority: family dentist, pediatric dentist, dentist, kids dentist`;
     }
 
     function clearAll() {
+      document.getElementById("specialtySelect").value = "general";
+      document.getElementById("locationsInput").value = "";
       document.getElementById("targetingInput").value = "";
       document.getElementById("generatedPrompt").value = "";
       document.getElementById("status").textContent = "";
