@@ -78,12 +78,6 @@
       font-size: 13px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
     .controls {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -243,7 +237,7 @@
     }
 
     @media (max-width: 900px) {
-      .grid, .rules, .sop-strip, .targeting, .controls {
+      .rules, .sop-strip, .targeting, .controls {
         grid-template-columns: 1fr;
       }
     }
@@ -280,7 +274,7 @@
 
     <section class="builder">
       <h2>Prompt Builder</h2>
-      <p>Select the specialty and enter the relevant client locations. The generator will create clean tracking rows without "near me".</p>
+      <p>Select the specialty and enter the relevant client locations. The generator will create a clean one-column keyword list without "near me".</p>
 
       <div class="controls">
         <div>
@@ -300,15 +294,9 @@
         </div>
       </div>
 
-      <div class="grid">
-        <div>
-          <div class="field-label">Optional Client Notes</div>
-          <textarea id="targetingInput" placeholder="Optional: paste client name, market notes, or anything that should be kept with the generated output..."></textarea>
-        </div>
-        <div>
-          <div class="field-label">Generated Variations</div>
-          <textarea id="generatedPrompt" readonly placeholder="Generated targeting rows appear here..."></textarea>
-        </div>
+      <div>
+        <div class="field-label">Generated Keyword List</div>
+        <textarea id="generatedPrompt" readonly placeholder="Generated keywords appear here..."></textarea>
       </div>
 
       <div class="button-row">
@@ -640,49 +628,50 @@
         .filter(Boolean);
     }
 
-    function rowsForTerms(specialty, channel, terms, locations) {
-      const rows = [];
+    function keywordVariationsForTerms(terms, locations) {
+      const keywords = [];
 
       terms.forEach((term) => {
         if (term.allLocations) {
           const targetLocations = locations.length ? locations : ["NEEDS CLIENT RECORD LOCATION"];
           targetLocations.forEach((location) => {
-            rows.push([specialty, channel, term.keyword, location, "all locations"]);
+            keywords.push(`${term.keyword} ${location}`);
           });
           return;
         }
 
-        rows.push([specialty, channel, term.keyword, "Campaign default", "standard"]);
+        keywords.push(term.keyword);
       });
 
-      return rows;
+      return keywords;
+    }
+
+    function uniqueItems(items) {
+      const seen = new Set();
+      return items.filter((item) => {
+        const key = item.toLowerCase();
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
     }
 
     function generatePrompt() {
       const specialtyKey = document.getElementById("specialtySelect").value;
       const locations = parseLocations(document.getElementById("locationsInput").value);
-      const notes = document.getElementById("targetingInput").value.trim();
       const output = document.getElementById("generatedPrompt");
       const status = document.getElementById("status");
       const set = targetingSets[specialtyKey];
 
-      const rows = [
-        ["Specialty", "Channel", "Keyword", "Tracking Location", "Rule"],
-        ...rowsForTerms(set.label, "Website", set.website, locations),
-        ...rowsForTerms(set.label, "GBP", set.gbp, locations)
-      ];
+      const keywords = uniqueItems([
+        ...keywordVariationsForTerms(set.website, locations),
+        ...keywordVariationsForTerms(set.gbp, locations)
+      ]);
 
-      const noteRows = notes
-        ? ["", "Notes", notes.replace(/\r?\n/g, " ")]
-        : [];
-
-      output.value = rows.map((row) => row.join("\t")).join("\n");
-      if (noteRows.length) {
-        output.value += "\n" + noteRows.join("\t");
-      }
+      output.value = keywords.join("\n");
       status.textContent = locations.length
-        ? `Generated ${rows.length - 1} rows for ${set.label}.`
-        : `Generated ${rows.length - 1} rows for ${set.label}; all-location rows need client-record locations.`;
+        ? `Generated ${keywords.length} keywords for ${set.label}.`
+        : `Generated ${keywords.length} keywords for ${set.label}; all-location terms need client-record locations.`;
     }
 
     async function copyPrompt() {
@@ -711,7 +700,6 @@
     function clearAll() {
       document.getElementById("specialtySelect").value = "general";
       document.getElementById("locationsInput").value = "";
-      document.getElementById("targetingInput").value = "";
       document.getElementById("generatedPrompt").value = "";
       document.getElementById("status").textContent = "";
     }
