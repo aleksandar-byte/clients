@@ -7,6 +7,7 @@ import os
 import urllib.error
 import urllib.parse
 import urllib.request
+from datetime import datetime
 from pathlib import Path
 
 
@@ -92,15 +93,29 @@ def list_records(token: str, base_id: str, table_name: str) -> list[dict[str, st
     return records
 
 
-def status_badge_class(status: str) -> str:
-    mapping = {
-        "Active": "active",
-        "Paused": "paused",
-        "Lost / churned": "lost",
-        "Needs review": "review",
-        "Stopped": "lost",
-    }
-    return mapping.get(status, "default")
+def status_key(status: str) -> str:
+    value = normalize_space(status).casefold()
+    if value == "active":
+        return "active"
+    if value == "paused":
+        return "paused"
+    if value in {"lost / churned", "stopped", "lost"}:
+        return "lost"
+    if value == "needs review":
+        return "review"
+    return "unknown"
+
+
+def status_label(status: str) -> str:
+    return normalize_space(status) or "Unmarked"
+
+
+def pct(part: int, total: int) -> int:
+    return round((part / total) * 100) if total else 0
+
+
+def dash(value: str | None) -> str:
+    return html.escape(normalize_space(value) or "-")
 
 
 def render_link(label: str, url: str) -> str:
@@ -108,70 +123,113 @@ def render_link(label: str, url: str) -> str:
         return ""
     safe_url = html.escape(url, quote=True)
     safe_label = html.escape(label)
-    return f'<a href="{safe_url}" target="_blank" rel="noreferrer">{safe_label}</a>'
+    return f'<a href="{safe_url}" target="_blank" rel="noreferrer" class="lnk">{safe_label}</a>'
+
+
+def render_links(row: dict[str, str]) -> str:
+    links = [
+        render_link("www", row.get("Website", "")),
+        render_link("drive", row.get("Folder", "")),
+        render_link("map", row.get("Sitemap", "")),
+    ]
+    return "".join(link for link in links if link) or '<span class="muted">no links</span>'
 
 
 def summarise(rows: list[dict[str, str]]) -> dict[str, int]:
-    active = sum(1 for row in rows if row.get("Status") == "Active")
-    paused = sum(1 for row in rows if row.get("Status") == "Paused")
-    lost = sum(1 for row in rows if row.get("Status") in {"Lost / churned", "Stopped"})
-    white = sum(1 for row in rows if row.get("Pod") == "White")
-    orange = sum(1 for row in rows if row.get("Pod") == "Orange")
+    total = len(rows)
+    active = sum(1 for row in rows if status_key(row.get("Status", "")) == "active")
+    paused = sum(1 for row in rows if status_key(row.get("Status", "")) == "paused")
+    lost = sum(1 for row in rows if status_key(row.get("Status", "")) == "lost")
+    review = sum(1 for row in rows if status_key(row.get("Status", "")) == "review")
+    white = sum(1 for row in rows if normalize_space(row.get("Pod")) == "White")
+    orange = sum(1 for row in rows if normalize_space(row.get("Pod")) == "Orange")
     return {
-        "total": len(rows),
+        "total": total,
         "active": active,
         "paused": paused,
         "lost": lost,
+        "review": review,
         "white": white,
         "orange": orange,
+        "active_pct": pct(active, total),
+        "paused_pct": pct(paused, total),
+        "lost_pct": pct(lost, total),
+        "white_pct": pct(white, total),
+        "orange_pct": pct(orange, total),
     }
 
 
 def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> str:
     summary = summarise(rows)
+    issued = datetime.now().strftime("%d %b %Y")
+    source_description = (
+        f'Generated from Airtable table <code>{html.escape(table_name)}</code> '
+        f'in base <code>{html.escape(base_id)}</code>.'
+    )
+    industries = sorted({normalize_space(row.get("Industry")) for row in rows if normalize_space(row.get("Industry"))})
+    industry_options = "\n".join(
+        f'          <option value="{html.escape(industry.lower(), quote=True)}">{html.escape(industry)}</option>'
+        for industry in industries
+    )
     row_html: list[str] = []
-    for row in rows:
-        client_name = row.get("Client", "")
-        client = html.escape(client_name)
-        website = normalize_space(row.get("Website"))
-        location = html.escape(row.get("Location", ""))
-        industry = html.escape(row.get("Industry", ""))
-        pod_value = row.get("Pod", "")
-        pod = html.escape(pod_value)
-        start_date = html.escape(row.get("Start Date", ""))
-        services = html.escape(row.get("Services", ""))
-        status_value = row.get("Status", "")
-        status = html.escape(status_value)
-        monday_item = html.escape(row.get("Monday Item", ""))
-        ga4_property_id = html.escape(row.get("GA4 Property ID", ""))
-        gsc_property = html.escape(row.get("GSC Property", ""))
-        folder = normalize_space(row.get("Folder"))
-        sitemap = normalize_space(row.get("Sitemap"))
-        geo = html.escape(row.get("Geo / Target Locations", ""))
-        notes = html.escape(row.get("Notes", ""))
-        badge_class = status_badge_class(status_value)
-        website_html = render_link("website", website)
-        folder_html = render_link("folder", folder)
-        sitemap_html = render_link("sitemap", sitemap)
+    card_html: list[str] = []
+    for index, row in enumerate(rows, start=1):
+        client_name = normalize_space(row.get("Client"))
+        status = status_label(row.get("Status", ""))
+        status_class = status_key(status)
+        pod_value = normalize_space(row.get("Pod"))
+        industry = normalize_space(row.get("Industry"))
+        location = normalize_space(row.get("Location"))
+        services = normalize_space(row.get("Services"))
+        start_date = normalize_space(row.get("Start Date"))
+        geo = normalize_space(row.get("Geo / Target Locations"))
+        notes = normalize_space(row.get("Notes"))
+        monday_item = normalize_space(row.get("Monday Item"))
+        ga4_property_id = normalize_space(row.get("GA4 Property ID"))
+        gsc_property = normalize_space(row.get("GSC Property"))
+        links = render_links(row)
+        data_search = html.escape(
+            " ".join([client_name, location, industry, pod_value, services, status, geo, notes]).lower(),
+            quote=True,
+        )
+        data_pod = html.escape(pod_value.lower(), quote=True)
+        data_industry = html.escape(industry.lower(), quote=True)
+        entry_no = f"{index:03d}"
         row_html.append(
             f"""
-            <tr data-client="{html.escape(client_name.lower())}" data-pod="{html.escape(pod_value.lower())}" data-status="{html.escape(status_value.lower())}">
-              <td class="client-cell">
-                <div class="client-name">{client}</div>
-                <div class="client-links">{website_html} {folder_html} {sitemap_html}</div>
-              </td>
-              <td>{location}</td>
-              <td>{industry}</td>
-              <td>{pod}</td>
-              <td>{start_date}</td>
-              <td>{services}</td>
-              <td><span class="badge {badge_class}">{status}</span></td>
-              <td class="api-key-col">{monday_item}</td>
-              <td class="api-key-col">{ga4_property_id}</td>
-              <td class="api-key-col">{gsc_property}</td>
-              <td>{geo}</td>
-              <td>{notes}</td>
-            </tr>
+              <tr class="row" data-status="{status_class}" data-pod="{data_pod}" data-industry="{data_industry}" data-search="{data_search}">
+                <td class="cell-client"><span class="entry-num">No. {entry_no}</span><strong>{html.escape(client_name)}</strong><div class="client-links">{links}</div></td>
+                <td>{dash(location)}</td>
+                <td>{dash(industry)}</td>
+                <td><span class="pod pod-{html.escape(pod_value.lower() or 'none')}">{dash(pod_value)}</span></td>
+                <td class="mono">{dash(start_date)}</td>
+                <td>{dash(services)}</td>
+                <td><span class="badge badge-{status_class}"><span class="dot"></span>{html.escape(status)}</span></td>
+                <td class="api-key-col mono">{dash(monday_item)}</td>
+                <td class="api-key-col mono">{dash(ga4_property_id)}</td>
+                <td class="api-key-col mono">{dash(gsc_property)}</td>
+                <td class="wide">{dash(geo)}</td>
+                <td class="wide">{dash(notes)}</td>
+              </tr>
+            """
+        )
+        card_html.append(
+            f"""
+              <article class="card-item" data-status="{status_class}" data-pod="{data_pod}" data-industry="{data_industry}" data-search="{data_search}">
+                <div class="card-corner"><span class="entry-num">No. {entry_no}</span><span class="badge badge-{status_class}"><span class="dot"></span>{html.escape(status)}</span></div>
+                <h3>{html.escape(client_name)}</h3>
+                <div class="card-meta">{dash(location)} <span>/</span> {dash(industry)} <span>/</span> {dash(pod_value)}</div>
+                <dl class="card-grid">
+                  <div><dt>Started</dt><dd class="mono">{dash(start_date)}</dd></div>
+                  <div><dt>Services</dt><dd>{dash(services)}</dd></div>
+                  <div class="api-key-col"><dt>Monday</dt><dd class="mono">{dash(monday_item)}</dd></div>
+                  <div class="api-key-col"><dt>GA4</dt><dd class="mono">{dash(ga4_property_id)}</dd></div>
+                  <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">{dash(gsc_property)}</dd></div>
+                  <div class="span-2"><dt>Geo targets</dt><dd class="truncate">{dash(geo)}</dd></div>
+                  <div class="span-2"><dt>Notes</dt><dd class="truncate">{dash(notes)}</dd></div>
+                </dl>
+                <footer>{links}</footer>
+              </article>
             """
         )
 
@@ -180,268 +238,40 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Client Records</title>
+  <title>Client Records - The Roster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    :root {{
-      --bg: #f6f3eb;
-      --card: #fffdf7;
-      --ink: #1f2a2a;
-      --muted: #5d6a67;
-      --line: #d8d1c2;
-      --accent: #0e7a6d;
-      --active: #d7f4ea;
-      --paused: #fff0bf;
-      --lost: #ffd7d2;
-      --review: #dbe7ff;
-    }}
-    * {{ box-sizing: border-box; }}
-    body {{
-      margin: 0;
-      font-family: Georgia, "Aptos", serif;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at top left, rgba(14,122,109,.12), transparent 30%),
-        radial-gradient(circle at top right, rgba(212,166,92,.12), transparent 28%),
-        var(--bg);
-    }}
-    .wrap {{
-      max-width: 1500px;
-      margin: 0 auto;
-      padding: 32px 20px 56px;
-    }}
-    h1 {{
-      margin: 0 0 8px;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1;
-    }}
-    .sub {{
-      color: var(--muted);
-      max-width: 980px;
-      margin-bottom: 22px;
-    }}
-    .stats {{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 12px;
-      margin-bottom: 18px;
-    }}
-    .stat {{
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 14px 16px;
-      box-shadow: 0 10px 30px rgba(31,42,42,.05);
-    }}
-    .stat-label {{
-      font-size: .84rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .06em;
-    }}
-    .stat-value {{
-      font-size: 1.7rem;
-      margin-top: 4px;
-    }}
-    .toolbar {{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 16px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 14px;
-    }}
-    .toolbar input, .toolbar select {{
-      padding: 10px 12px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: white;
-      color: var(--ink);
-      min-width: 180px;
-    }}
-    .toggle-field {{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: white;
-      color: var(--ink);
-      cursor: pointer;
-    }}
-    .toggle-field input {{
-      width: auto;
-      min-width: 0;
-      margin: 0;
-    }}
-    .table-shell {{
-      overflow: auto;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      box-shadow: 0 14px 36px rgba(31,42,42,.06);
-    }}
-    table {{
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 1300px;
-    }}
-    th, td {{
-      padding: 14px 12px;
-      border-bottom: 1px solid var(--line);
-      vertical-align: top;
-      text-align: left;
-      font-size: .95rem;
-    }}
-    th {{
-      position: sticky;
-      top: 0;
-      z-index: 1;
-      background: #fbf8ef;
-      font-size: .8rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }}
-    tr:last-child td {{
-      border-bottom: 0;
-    }}
-    .client-cell {{
-      min-width: 260px;
-    }}
-    .client-name {{
-      font-weight: 700;
-      margin-bottom: 5px;
-    }}
-    .client-links {{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: .85rem;
-    }}
-    .client-links a {{
-      color: var(--accent);
-      text-decoration: none;
-    }}
-    .badge {{
-      display: inline-block;
-      padding: 5px 10px;
-      border-radius: 999px;
-      font-size: .82rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }}
-    .badge.active {{ background: var(--active); }}
-    .badge.paused {{ background: var(--paused); }}
-    .badge.lost {{ background: var(--lost); }}
-    .badge.review {{ background: var(--review); }}
-    .badge.default {{ background: #ece7dc; }}
-    .footer {{
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: .9rem;
-    }}
-    .hidden-row {{ display: none; }}
-    .api-key-col {{ display: none; }}
-    body.show-api-keys .api-key-col {{ display: table-cell; }}
-    @media (max-width: 900px) {{
-      .wrap {{ padding: 24px 14px 40px; }}
-      .toolbar {{ flex-direction: column; align-items: stretch; }}
-      .toolbar input, .toolbar select, .toggle-field {{ width: 100%; }}
-    }}
+    :root {{ --paper:#f1ece0; --paper-soft:#f7f3e9; --surface:#fdfaf2; --ink:#15140e; --muted:#8a8473; --line:#d8d0bc; --line-2:#c8bfa7; --accent:#c14a1d; --forest:#2d4a37; --blue:#1f3a5f; --amber:#a06814; --crimson:#952820; --shadow:0 24px 56px -24px rgba(21,20,14,.34); }}
+    * {{ box-sizing:border-box; }} body {{ margin:0; color:var(--ink); font:14px/1.45 "IBM Plex Sans", system-ui, sans-serif; background:var(--paper); background-image:radial-gradient(circle at 18% 20%, rgba(193,74,29,.045), transparent 40%), radial-gradient(circle at 90% 110%, rgba(45,74,55,.05), transparent 45%); }} a {{ color:inherit; }}
+    .app {{ display:grid; grid-template-columns:240px minmax(0, 1fr); min-height:100vh; }} .sidebar {{ position:sticky; top:0; height:100vh; overflow:auto; background:var(--ink); color:#c8c4b6; padding:28px 20px; display:flex; flex-direction:column; gap:26px; }}
+    .brand {{ font:500 22px/1 "Fraunces", serif; color:var(--paper); letter-spacing:-.02em; }} .brand span {{ color:var(--accent); font-style:italic; }} .brand-sub, .side-section h4, .side-foot, .topbar-meta, .mono, .entry-num, .toolbar-label, .meta-tag {{ font-family:"IBM Plex Mono", monospace; }}
+    .brand-sub {{ margin-top:6px; font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:#6e6856; }} .side-section h4 {{ margin:0 0 10px; padding-left:10px; font-size:9.5px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:#6e6856; }}
+    .side-link {{ display:flex; align-items:center; justify-content:space-between; padding:7px 10px; border-radius:5px; cursor:pointer; color:#c8c4b6; }} .side-link:hover, .side-link.active {{ background:#1f1d14; color:var(--paper); }} .side-link .count {{ font-family:"IBM Plex Mono", monospace; font-size:11px; color:#8a8473; }} .side-link.active .count {{ color:var(--accent); }}
+    .pod-tag {{ display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:9px; vertical-align:middle; }} .pod-white-bg {{ background:#93b5e1; }} .pod-orange-bg {{ background:#e08a5c; }} .side-foot {{ margin-top:auto; padding-top:14px; border-top:1px solid #2a281e; color:#6e6856; font-size:10.5px; line-height:1.7; }} .side-foot .meta {{ color:#c8c4b6; }}
+    .main {{ min-width:0; }} .topbar {{ position:sticky; top:0; z-index:30; display:flex; align-items:center; gap:14px; padding:12px 36px; background:rgba(241,236,224,.94); border-bottom:1px solid var(--line); backdrop-filter:saturate(140%); }} .search {{ flex:1; max-width:480px; position:relative; }} .search input {{ width:100%; padding:9px 42px 9px 14px; border:1px solid var(--line); border-radius:4px; background:var(--surface); font:inherit; outline:none; }} .kbd {{ position:absolute; right:10px; top:50%; transform:translateY(-50%); border:1px solid var(--line); padding:1px 6px; border-radius:3px; color:var(--muted); font-family:"IBM Plex Mono", monospace; font-size:10.5px; }} .topbar-spacer {{ flex:1; }} .topbar-meta {{ font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }}
+    .view-toggle {{ display:flex; border:1px solid var(--line); border-radius:4px; overflow:hidden; }} .view-toggle button {{ border:0; border-right:1px solid var(--line); background:var(--surface); padding:8px 12px; cursor:pointer; font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.06em; color:var(--muted); }} .view-toggle button:last-child {{ border-right:0; }} .view-toggle button.active {{ background:var(--ink); color:var(--paper); }}
+    .masthead {{ padding:42px 36px 26px; border-bottom:1px solid var(--line); }} .spec-strip {{ display:flex; flex-wrap:wrap; gap:8px; color:var(--muted); font-family:"IBM Plex Mono", monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; }} .title-grid {{ display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:36px; margin-top:24px; align-items:end; }} h1 {{ margin:0; font:500 clamp(42px, 8vw, 104px)/.9 "Fraunces", serif; letter-spacing:-.055em; }} h1 em {{ color:var(--accent); font-style:italic; }} .title-deck {{ color:#5a564b; font-size:18px; max-width:360px; }} .lede {{ max-width:880px; color:#5a564b; margin:24px 0 0; }}
+    .stats {{ display:grid; grid-template-columns:1.35fr repeat(5, 1fr); gap:12px; margin-top:28px; }} .stat {{ background:var(--surface); border:1px solid var(--line); padding:16px; box-shadow:var(--shadow); min-height:124px; }} .stat-label {{ color:var(--muted); text-transform:uppercase; font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.14em; }} .stat-value {{ font:600 42px/1 "Fraunces", serif; margin-top:12px; }} .stat-trend {{ color:#5a564b; font-size:12px; margin-top:8px; }} .stat-bar {{ height:4px; background:var(--line); margin-top:14px; }} .stat-bar span {{ display:block; height:100%; }}
+    .workspace {{ padding:28px 36px 48px; }} .section-head {{ display:flex; align-items:center; gap:16px; margin-bottom:16px; }} .section-head h2 {{ font:500 28px/1 "Fraunces", serif; margin:0; }} .section-head h2 em {{ color:var(--accent); }} .rule {{ flex:1; height:1px; background:var(--line); }} .meta-tag {{ color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.12em; }} .toolbar {{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:14px; }} .toolbar select, .chip, .toggle-field {{ border:1px solid var(--line); background:var(--surface); border-radius:4px; padding:8px 10px; font:inherit; color:var(--ink); }} .toolbar-label, .results-count {{ color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.1em; }} .chip, .toggle-field {{ display:inline-flex; align-items:center; gap:8px; cursor:pointer; }} .toggle-field input {{ margin:0; }} .results-count {{ margin-left:auto; }}
+    .table-shell {{ background:var(--surface); border:1px solid var(--line); box-shadow:var(--shadow); }} .table-scroll {{ overflow:auto; max-height:78vh; }} table {{ width:100%; min-width:1380px; border-collapse:separate; border-spacing:0; }} th {{ position:sticky; top:0; z-index:2; background:#eee7d8; color:#5a564b; font:600 10px "IBM Plex Mono", monospace; letter-spacing:.12em; text-transform:uppercase; text-align:left; padding:12px; border-bottom:1px solid var(--line-2); }} td {{ padding:13px 12px; border-bottom:1px solid var(--line); vertical-align:top; }} tbody tr:hover {{ background:#faf5e8; }}
+    .cell-client {{ min-width:270px; }} .cell-client strong {{ display:block; margin:4px 0 8px; }} .entry-num {{ color:var(--muted); font-size:10px; letter-spacing:.1em; text-transform:uppercase; }} .client-links, .card-item footer {{ display:flex; flex-wrap:wrap; gap:7px; }} .lnk {{ text-decoration:none; border:1px solid var(--line); padding:3px 7px; border-radius:999px; color:var(--accent); font-size:11px; background:#fffaf0; }} .badge {{ display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-weight:700; font-size:12px; white-space:nowrap; }} .badge .dot {{ width:6px; height:6px; border-radius:50%; background:currentColor; }} .badge-active {{ color:var(--forest); background:#cfddc7; }} .badge-paused {{ color:var(--amber); background:#f0d99c; }} .badge-lost {{ color:var(--crimson); background:#f0c9c2; }} .badge-review {{ color:var(--blue); background:#cdd8e3; }} .badge-unknown {{ color:#5a564b; background:#e8dfcc; }} .pod {{ font-weight:700; }} .pod-white {{ color:var(--blue); }} .pod-orange {{ color:var(--accent); }} .wide {{ min-width:240px; }} .muted {{ color:var(--muted); }} .truncate {{ overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; }} .api-key-col {{ display:none; }} body.show-api-keys .api-key-col {{ display:table-cell; }} body.show-api-keys .card-item .api-key-col {{ display:block; }}
+    .cards {{ display:none; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; }} .cards.show {{ display:grid; }} .table-shell.hide {{ display:none; }} .card-item {{ background:var(--surface); border:1px solid var(--line); padding:16px; box-shadow:var(--shadow); }} .card-corner {{ display:flex; justify-content:space-between; align-items:center; gap:12px; }} .card-item h3 {{ margin:14px 0 6px; font:600 25px/1.05 "Fraunces", serif; }} .card-meta {{ color:#5a564b; font-size:12px; }} .card-meta span {{ color:var(--muted); margin:0 5px; }} .card-grid {{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; }} .card-grid div {{ min-width:0; }} .card-grid dt {{ color:var(--muted); font-family:"IBM Plex Mono", monospace; font-size:10px; text-transform:uppercase; letter-spacing:.1em; }} .card-grid dd {{ margin:3px 0 0; }} .span-2 {{ grid-column:1 / -1; }} .empty {{ display:none; text-align:center; padding:50px; color:var(--muted); border:1px dashed var(--line-2); background:var(--surface); }} .empty.show {{ display:block; }} .hidden {{ display:none !important; }}
+    @media (max-width:960px) {{ .app {{ display:block; }} .sidebar {{ position:relative; height:auto; }} .topbar {{ padding:12px 16px; flex-wrap:wrap; }} .topbar-meta, .kbd {{ display:none; }} .masthead, .workspace {{ padding-left:16px; padding-right:16px; }} .title-grid, .stats {{ grid-template-columns:1fr; }} h1 {{ font-size:52px; }} }}
   </style>
 </head>
-<body>
-  <div class="wrap">
-    <h1>Client Records</h1>
-    <div class="sub">Generated from the Airtable <code>{html.escape(table_name)}</code> table in base <code>{html.escape(base_id)}</code>. Update Airtable and the page will republish on the next scheduled run.</div>
-    <div class="stats">
-      <div class="stat"><div class="stat-label">Total Clients</div><div class="stat-value">{summary["total"]}</div></div>
-      <div class="stat"><div class="stat-label">Active</div><div class="stat-value">{summary["active"]}</div></div>
-      <div class="stat"><div class="stat-label">Paused</div><div class="stat-value">{summary["paused"]}</div></div>
-      <div class="stat"><div class="stat-label">Lost / Churned</div><div class="stat-value">{summary["lost"]}</div></div>
-      <div class="stat"><div class="stat-label">White Pod</div><div class="stat-value">{summary["white"]}</div></div>
-      <div class="stat"><div class="stat-label">Orange Pod</div><div class="stat-value">{summary["orange"]}</div></div>
-    </div>
-    <div class="toolbar">
-      <input id="search" type="search" placeholder="Search client, location, notes..." />
-      <select id="pod">
-        <option value="">All pods</option>
-        <option value="white">White</option>
-        <option value="orange">Orange</option>
-      </select>
-      <select id="status">
-        <option value="">All statuses</option>
-        <option value="active">Active</option>
-        <option value="paused">Paused</option>
-        <option value="lost / churned">Lost / churned</option>
-        <option value="needs review">Needs review</option>
-        <option value="stopped">Stopped</option>
-      </select>
-      <label class="toggle-field">
-        <input id="show-api-keys" type="checkbox" />
-        Show API keys
-      </label>
-    </div>
-    <div class="table-shell">
-      <table>
-        <thead>
-          <tr>
-            <th>Client</th>
-            <th>Location</th>
-            <th>Industry</th>
-            <th>Pod</th>
-            <th>Start Date</th>
-            <th>Services</th>
-            <th>Status</th>
-            <th class="api-key-col">Monday Item</th>
-            <th class="api-key-col">GA4 Property ID</th>
-            <th class="api-key-col">GSC Property</th>
-            <th>Geo / Target Locations</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody id="records-body">
-          {''.join(row_html)}
-        </tbody>
-      </table>
-    </div>
-    <div class="footer">Live URL: <a href="{LIVE_URL}">{LIVE_URL}</a></div>
-  </div>
-  <script>
-    const search = document.getElementById('search');
-    const pod = document.getElementById('pod');
-    const status = document.getElementById('status');
-    const showApiKeys = document.getElementById('show-api-keys');
-    const rows = [...document.querySelectorAll('#records-body tr')];
+<body><div class="app"><aside class="sidebar"><div><div class="brand">Roster<span>&amp;</span>Co.</div><div class="brand-sub">Client Records</div></div><div class="side-section"><h4>By Status</h4><div class="side-link active" data-filter-type="status" data-filter-value=""><span>All clients</span><span class="count">{summary["total"]:03d}</span></div><div class="side-link" data-filter-type="status" data-filter-value="active"><span>Active</span><span class="count">{summary["active"]:03d}</span></div><div class="side-link" data-filter-type="status" data-filter-value="paused"><span>Paused</span><span class="count">{summary["paused"]:03d}</span></div><div class="side-link" data-filter-type="status" data-filter-value="lost"><span>Lost / churned</span><span class="count">{summary["lost"]:03d}</span></div><div class="side-link" data-filter-type="status" data-filter-value="review"><span>Needs review</span><span class="count">{summary["review"]:03d}</span></div></div><div class="side-section"><h4>By Pod</h4><div class="side-link" data-filter-type="pod" data-filter-value="white"><span><span class="pod-tag pod-white-bg"></span>White Pod</span><span class="count">{summary["white"]:03d}</span></div><div class="side-link" data-filter-type="pod" data-filter-value="orange"><span><span class="pod-tag pod-orange-bg"></span>Orange Pod</span><span class="count">{summary["orange"]:03d}</span></div></div><div class="side-foot"><div><span class="meta">Source</span></div><div>Airtable / Clients</div><br><div><span class="meta">Rendered</span></div><div>{html.escape(issued)}</div></div></aside><main class="main"><div class="topbar"><div class="search"><input id="search" type="search" placeholder="Search clients, locations, geo, notes..." autocomplete="off"><span class="kbd">/</span></div><div class="topbar-spacer"></div><div class="topbar-meta">Roster / <strong>{summary["total"]} entries</strong></div><div class="view-toggle"><button id="view-table" class="active" type="button">Table</button><button id="view-cards" type="button">Cards</button></div></div><header class="masthead"><div class="spec-strip"><span>Issued <strong>{html.escape(issued)}</strong></span><span>/</span><span>SEO & PPC roster</span><span>/</span><span>{summary["total"]} records</span></div><div class="title-grid"><h1>The Roster, <em>annotated</em>.</h1><div class="title-deck">A cleaner field guide to every client: sorted, searchable, linked, and easier to review.</div></div><p class="lede">{source_description} Update upstream first; this view rebuilds from the records pipeline. API identifiers are hidden unless you turn them on.</p><div class="stats"><div class="stat"><div class="stat-label">Total Roster</div><div class="stat-value">{summary["total"]}</div><div class="stat-trend">All tracked clients</div></div><div class="stat"><div class="stat-label">Active</div><div class="stat-value">{summary["active"]}</div><div class="stat-trend">{summary["active_pct"]}% of roster</div><div class="stat-bar"><span style="width:{summary["active_pct"]}%;background:var(--forest)"></span></div></div><div class="stat"><div class="stat-label">Paused</div><div class="stat-value">{summary["paused"]}</div><div class="stat-trend">Holding pattern</div><div class="stat-bar"><span style="width:{summary["paused_pct"]}%;background:var(--amber)"></span></div></div><div class="stat"><div class="stat-label">Churned</div><div class="stat-value">{summary["lost"]}</div><div class="stat-trend">{summary["lost_pct"]}% lost</div><div class="stat-bar"><span style="width:{summary["lost_pct"]}%;background:var(--crimson)"></span></div></div><div class="stat"><div class="stat-label">White Pod</div><div class="stat-value">{summary["white"]}</div><div class="stat-trend">{summary["white_pct"]}% share</div><div class="stat-bar"><span style="width:{summary["white_pct"]}%;background:var(--blue)"></span></div></div><div class="stat"><div class="stat-label">Orange Pod</div><div class="stat-value">{summary["orange"]}</div><div class="stat-trend">{summary["orange_pct"]}% share</div><div class="stat-bar"><span style="width:{summary["orange_pct"]}%;background:var(--accent)"></span></div></div></div></header><section class="workspace"><div class="section-head"><h2>The <em>full</em> ledger</h2><div class="rule"></div><div class="meta-tag">{summary["total"]} entries / sorted A-Z</div></div><div class="toolbar"><span class="toolbar-label">Filter -></span><select id="industry-filter"><option value="">All industries</option>
+{industry_options}
+        </select><select id="pod-filter"><option value="">All pods</option><option value="white">White pod</option><option value="orange">Orange pod</option></select><select id="status-filter"><option value="">All statuses</option><option value="active">Active</option><option value="paused">Paused</option><option value="lost">Lost / churned</option><option value="review">Needs review</option></select><label class="toggle-field"><input id="show-api-keys" type="checkbox"> Show API keys</label><button class="chip" id="reset-btn" type="button" style="display:none;">Clear x</button><div class="results-count" id="results-count">Showing <strong>{summary["total"]}</strong> of {summary["total"]}</div></div><div class="table-shell" id="table-view"><div class="table-scroll"><table><thead><tr><th>Client</th><th>Location</th><th>Industry</th><th>Pod</th><th>Started</th><th>Services</th><th>Status</th><th class="api-key-col">Monday</th><th class="api-key-col">GA4</th><th class="api-key-col">GSC</th><th>Geo targets</th><th>Notes</th></tr></thead><tbody id="rows">
+{''.join(row_html)}
+      </tbody></table></div></div><div class="cards" id="card-view">
+{''.join(card_html)}
+      </div><div class="empty" id="empty-state"><h3>Nothing in the ledger.</h3><p>Clear filters or search again.</p></div></section></main></div><script>(function(){{const search=document.getElementById('search');const podFilter=document.getElementById('pod-filter');const statusFilter=document.getElementById('status-filter');const industryFilter=document.getElementById('industry-filter');const resetBtn=document.getElementById('reset-btn');const empty=document.getElementById('empty-state');const tableView=document.getElementById('table-view');const cardView=document.getElementById('card-view');const sideLinks=document.querySelectorAll('.side-link');const viewTable=document.getElementById('view-table');const viewCards=document.getElementById('view-cards');const showApiKeys=document.getElementById('show-api-keys');const total={summary["total"]};function applyFilters(){{const q=(search.value||'').trim().toLowerCase();const pod=podFilter.value;const status=statusFilter.value;const industry=industryFilter.value;const items=[...document.querySelectorAll('#rows .row'),...document.querySelectorAll('#card-view .card-item')];let visible=0;items.forEach(el=>{{const show=(!q||el.dataset.search.includes(q))&&(!pod||el.dataset.pod===pod)&&(!status||el.dataset.status===status)&&(!industry||el.dataset.industry===industry);el.classList.toggle('hidden',!show);if(show&&el.classList.contains('row'))visible++;}});document.getElementById('results-count').innerHTML='Showing <strong>'+visible+'</strong> of '+total;resetBtn.style.display=(q||pod||status||industry)?'inline-flex':'none';empty.classList.toggle('show',visible===0);tableView.style.display=visible===0?'none':(viewTable.classList.contains('active')?'':'none');cardView.style.display=visible===0?'none':(viewCards.classList.contains('active')?'grid':'none');sideLinks.forEach(link=>{{const type=link.dataset.filterType;const value=link.dataset.filterValue;link.classList.toggle('active',(type==='status'&&value===status)||(type==='pod'&&value===pod)||(!value&&!status&&!pod&&type==='status'));}});}}search.addEventListener('input',applyFilters);podFilter.addEventListener('change',applyFilters);statusFilter.addEventListener('change',applyFilters);industryFilter.addEventListener('change',applyFilters);resetBtn.addEventListener('click',()=>{{search.value='';podFilter.value='';statusFilter.value='';industryFilter.value='';applyFilters();}});sideLinks.forEach(link=>link.addEventListener('click',()=>{{const type=link.dataset.filterType;const value=link.dataset.filterValue;if(type==='status'){{statusFilter.value=value;if(!value){{podFilter.value='';industryFilter.value='';search.value='';}}}}if(type==='pod')podFilter.value=(podFilter.value===value)?'':value;applyFilters();}}));viewTable.addEventListener('click',()=>{{viewTable.classList.add('active');viewCards.classList.remove('active');tableView.style.display='';cardView.style.display='none';}});viewCards.addEventListener('click',()=>{{viewCards.classList.add('active');viewTable.classList.remove('active');tableView.style.display='none';cardView.style.display='grid';}});showApiKeys.addEventListener('change',()=>document.body.classList.toggle('show-api-keys',showApiKeys.checked));document.addEventListener('keydown',e=>{{if(e.key==='/'&&document.activeElement!==search){{e.preventDefault();search.focus();}}if(e.key==='Escape'&&document.activeElement===search){{search.value='';applyFilters();search.blur();}}}});}})();</script></body></html>"""
 
-    function applyFilters() {{
-      const query = search.value.trim().toLowerCase();
-      const podValue = pod.value;
-      const statusValue = status.value;
 
-      for (const row of rows) {{
-        const text = row.textContent.toLowerCase();
-        const matchesQuery = !query || text.includes(query);
-        const matchesPod = !podValue || row.dataset.pod === podValue;
-        const matchesStatus = !statusValue || row.dataset.status === statusValue;
-        row.classList.toggle('hidden-row', !(matchesQuery && matchesPod && matchesStatus));
-      }}
-    }}
-
-    search.addEventListener('input', applyFilters);
-    pod.addEventListener('change', applyFilters);
-    status.addEventListener('change', applyFilters);
-    showApiKeys.addEventListener('change', () => {{
-      document.body.classList.toggle('show-api-keys', showApiKeys.checked);
-    }});
-  </script>
-</body>
-</html>
-"""
+def clean_generated_html(html_text: str) -> str:
+    return "\n".join(line.rstrip() for line in html_text.splitlines()) + "\n"
 
 
 def main() -> int:
@@ -449,7 +279,7 @@ def main() -> int:
     base_id = require_env("AIRTABLE_BASE_ID")
     table_name = os.environ.get("AIRTABLE_TABLE_NAME", "Clients")
     rows = list_records(token, base_id, table_name)
-    OUTPUT_PATH.write_text(render_html(rows, base_id, table_name), encoding="utf-8")
+    OUTPUT_PATH.write_text(clean_generated_html(render_html(rows, base_id, table_name)), encoding="utf-8")
     print(json.dumps({"output": str(OUTPUT_PATH), "row_count": len(rows)}, indent=2))
     return 0
 
