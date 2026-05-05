@@ -273,14 +273,14 @@
     <h1>Standard Targeting SOP<br><span>and Prompt Generator</span></h1>
     <p class="subtitle">Choose the client practice type, use the standard website and GBP tracking terms, and expand location terms from client records.</p>
     <div class="sop-strip">
-      <div><strong>Location terms:</strong> add a location to every keyword.</div>
+      <div><strong>Location terms:</strong> first location for all terms.</div>
       <div><strong>Keyword style:</strong> do not include "near me".</div>
       <div><strong>Sources:</strong> use client records for locations.</div>
     </div>
 
     <section class="builder">
       <h2>Prompt Builder</h2>
-      <p>Select the specialty and enter the relevant client locations. The generator will add each location to every keyword without using "near me".</p>
+      <p>Select the specialty and enter the relevant client locations. The generator uses the first location for every keyword and adds secondary locations for priority terms.</p>
 
       <div class="controls">
         <div>
@@ -319,8 +319,8 @@
         <p class="principle">Use clean service keywords. Location coverage comes from tracked client locations, not from adding "near me" to the keyword.</p>
       </div>
       <div class="rule">
-        <h2>2. Add locations to every generated keyword.</h2>
-        <p class="principle">Each selected keyword should be generated once for every relevant client location from the client records.</p>
+        <h2>2. Apply primary and secondary location logic.</h2>
+        <p class="principle">Every keyword gets the first location. Terms marked <code>all locations</code> also get each secondary location after the first.</p>
       </div>
       <div class="rule">
         <h2>3. Use the closest practice type.</h2>
@@ -498,7 +498,7 @@
     </section>
 
     <div class="note">
-      <strong>Location expansion:</strong> every generated keyword should include a relevant client location from the client records. The keyword itself stays clean and does not include "near me".
+      <strong>Tool logic:</strong> parse locations in the order entered. Location 1 is the primary location and applies to every keyword. Locations 2+ are secondary locations and apply only to terms marked <code>all locations</code>. The keyword itself stays clean and does not include "near me".
     </div>
   </main>
 
@@ -636,10 +636,17 @@
 
     function keywordVariationsForTerms(terms, locations) {
       const keywords = [];
-      const targetLocations = locations.length ? locations : ["NEEDS CLIENT RECORD LOCATION"];
+      const primaryLocation = locations[0] || "NEEDS CLIENT RECORD LOCATION";
+      const secondaryLocations = locations.slice(1);
 
       terms.forEach((term) => {
-        targetLocations.forEach((location) => {
+        keywords.push(`${term.keyword} ${primaryLocation}`);
+
+        if (!term.allLocations) {
+          return;
+        }
+
+        secondaryLocations.forEach((location) => {
           keywords.push(`${term.keyword} ${location}`);
         });
       });
@@ -672,7 +679,7 @@
       output.value = keywords.join("\n");
       status.textContent = locations.length
         ? `Generated ${keywords.length} keywords for ${set.label}.`
-        : `Generated ${keywords.length} keywords for ${set.label}; add client-record locations for final output.`;
+        : `Generated ${keywords.length} keywords for ${set.label}; add the primary client-record location for final output.`;
     }
 
     async function copyPrompt() {
