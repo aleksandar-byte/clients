@@ -166,9 +166,9 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
               <td>{start_date}</td>
               <td>{services}</td>
               <td><span class="badge {badge_class}">{status}</span></td>
-              <td>{monday_item}</td>
-              <td>{ga4_property_id}</td>
-              <td>{gsc_property}</td>
+              <td class="api-key-col">{monday_item}</td>
+              <td class="api-key-col">{ga4_property_id}</td>
+              <td class="api-key-col">{gsc_property}</td>
               <td>{geo}</td>
               <td>{notes}</td>
             </tr>
@@ -261,6 +261,22 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
       color: var(--ink);
       min-width: 180px;
     }}
+    .toggle-field {{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: white;
+      color: var(--ink);
+      cursor: pointer;
+    }}
+    .toggle-field input {{
+      width: auto;
+      min-width: 0;
+      margin: 0;
+    }}
     .table-shell {{
       overflow: auto;
       background: var(--card);
@@ -329,10 +345,12 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
       font-size: .9rem;
     }}
     .hidden-row {{ display: none; }}
+    .api-key-col {{ display: none; }}
+    body.show-api-keys .api-key-col {{ display: table-cell; }}
     @media (max-width: 900px) {{
       .wrap {{ padding: 24px 14px 40px; }}
       .toolbar {{ flex-direction: column; align-items: stretch; }}
-      .toolbar input, .toolbar select {{ width: 100%; }}
+      .toolbar input, .toolbar select, .toggle-field {{ width: 100%; }}
     }}
   </style>
 </head>
@@ -363,6 +381,10 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
         <option value="needs review">Needs review</option>
         <option value="stopped">Stopped</option>
       </select>
+      <label class="toggle-field">
+        <input id="show-api-keys" type="checkbox" />
+        Show API keys
+      </label>
     </div>
     <div class="table-shell">
       <table>
@@ -375,9 +397,9 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
             <th>Start Date</th>
             <th>Services</th>
             <th>Status</th>
-            <th>Monday Item</th>
-            <th>GA4 Property ID</th>
-            <th>GSC Property</th>
+            <th class="api-key-col">Monday Item</th>
+            <th class="api-key-col">GA4 Property ID</th>
+            <th class="api-key-col">GSC Property</th>
             <th>Geo / Target Locations</th>
             <th>Notes</th>
           </tr>
@@ -393,6 +415,7 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
     const search = document.getElementById('search');
     const pod = document.getElementById('pod');
     const status = document.getElementById('status');
+    const showApiKeys = document.getElementById('show-api-keys');
     const rows = [...document.querySelectorAll('#records-body tr')];
 
     function applyFilters() {{
@@ -412,6 +435,9 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
     search.addEventListener('input', applyFilters);
     pod.addEventListener('change', applyFilters);
     status.addEventListener('change', applyFilters);
+    showApiKeys.addEventListener('change', () => {{
+      document.body.classList.toggle('show-api-keys', showApiKeys.checked);
+    }});
   </script>
 </body>
 </html>
