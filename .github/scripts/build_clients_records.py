@@ -29,6 +29,8 @@ FIELD_ORDER = [
     "GSC Property",
     "Folder",
     "Sitemap",
+    "Geo Targets Done",
+    "Geo Targets Planned",
     "Geo / Target Locations",
     "Notes",
 ]
@@ -135,6 +137,35 @@ def render_links(row: dict[str, str]) -> str:
     return "".join(link for link in links if link) or '<span class="muted">no links</span>'
 
 
+def split_chips(value: str) -> list[str]:
+    parts = [item.strip() for item in normalize_space(value).split(",") if item.strip()]
+    chips: list[str] = []
+    index = 0
+    while index < len(parts):
+        current = parts[index]
+        if index + 1 < len(parts):
+            maybe_state = parts[index + 1]
+            if 2 <= len(maybe_state) <= 3 and maybe_state.isupper():
+                chips.append(f"{current}, {maybe_state}")
+                index += 2
+                continue
+        chips.append(current)
+        index += 1
+    return chips
+
+
+def render_geo_chips(done: str, planned: str) -> str:
+    chips = [
+        f'<span class="geo-chip geo-done">{html.escape(item)}</span>'
+        for item in split_chips(done)
+    ]
+    chips.extend(
+        f'<span class="geo-chip geo-planned">{html.escape(item)}</span>'
+        for item in split_chips(planned)
+    )
+    return "".join(chips) or '<span class="muted">no geo targets</span>'
+
+
 def summarise(rows: list[dict[str, str]]) -> dict[str, int]:
     total = len(rows)
     active = sum(1 for row in rows if status_key(row.get("Status", "")) == "active")
@@ -183,7 +214,9 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
         location = normalize_space(row.get("Location"))
         services = normalize_space(row.get("Services"))
         start_date = normalize_space(row.get("Start Date"))
-        geo = normalize_space(row.get("Geo / Target Locations"))
+        geo_done = normalize_space(row.get("Geo Targets Done"))
+        geo_planned = normalize_space(row.get("Geo Targets Planned"))
+        geo = " ".join([geo_done, geo_planned, normalize_space(row.get("Geo / Target Locations"))])
         notes = normalize_space(row.get("Notes"))
         monday_item = normalize_space(row.get("Monday Item"))
         ga4_property_id = normalize_space(row.get("GA4 Property ID"))
@@ -209,7 +242,7 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
                 <td class="api-key-col mono">{dash(monday_item)}</td>
                 <td class="api-key-col mono">{dash(ga4_property_id)}</td>
                 <td class="api-key-col mono">{dash(gsc_property)}</td>
-                <td class="wide">{dash(geo)}</td>
+                <td class="geo-cell wide">{render_geo_chips(geo_done, geo_planned)}</td>
                 <td class="notes-col wide">{dash(notes)}</td>
               </tr>
             """
@@ -226,7 +259,7 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">{dash(monday_item)}</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">{dash(ga4_property_id)}</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">{dash(gsc_property)}</dd></div>
-                  <div class="span-2"><dt>Geo targets</dt><dd class="truncate">{dash(geo)}</dd></div>
+                  <div class="span-2"><dt>Geo targets</dt><dd class="geo-cell">{render_geo_chips(geo_done, geo_planned)}</dd></div>
                   <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">{dash(notes)}</dd></div>
                 </dl>
                 <footer>{links}</footer>
@@ -257,7 +290,7 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
     .stats {{ display:grid; grid-template-columns:1.35fr repeat(5, 1fr); gap:12px; margin-top:28px; }} .stat {{ background:var(--surface); border:1px solid var(--line); padding:16px; box-shadow:var(--shadow); min-height:124px; }} .stat-label {{ color:var(--muted); text-transform:uppercase; font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.14em; }} .stat-value {{ font:600 42px/1 "Fraunces", serif; margin-top:12px; }} .stat-trend {{ color:#5a564b; font-size:12px; margin-top:8px; }} .stat-bar {{ height:4px; background:var(--line); margin-top:14px; }} .stat-bar span {{ display:block; height:100%; }}
     .workspace {{ padding:28px 36px 48px; }} .section-head {{ display:flex; align-items:center; gap:16px; margin-bottom:16px; }} .section-head h2 {{ font:500 28px/1 "Fraunces", serif; margin:0; }} .section-head h2 em {{ color:var(--accent); }} .rule {{ flex:1; height:1px; background:var(--line); }} .meta-tag {{ color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.12em; }} .toolbar {{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:14px; }} .toolbar select, .chip, .toggle-field {{ border:1px solid var(--line); background:var(--surface); border-radius:4px; padding:8px 10px; font:inherit; color:var(--ink); }} .toolbar-label, .results-count {{ color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.1em; }} .chip, .toggle-field {{ display:inline-flex; align-items:center; gap:8px; cursor:pointer; }} .toggle-field input {{ margin:0; }} .results-count {{ margin-left:auto; }}
     .table-shell {{ background:var(--surface); border:1px solid var(--line); box-shadow:var(--shadow); }} .table-scroll {{ overflow:auto; max-height:78vh; }} table {{ width:100%; min-width:1380px; border-collapse:separate; border-spacing:0; }} th {{ position:sticky; top:0; z-index:2; background:#eee7d8; color:#5a564b; font:600 10px "IBM Plex Mono", monospace; letter-spacing:.12em; text-transform:uppercase; text-align:left; padding:12px; border-bottom:1px solid var(--line-2); }} td {{ padding:13px 12px; border-bottom:1px solid var(--line); vertical-align:top; }} tbody tr:hover {{ background:#faf5e8; }}
-    .cell-client {{ min-width:270px; }} .cell-client strong {{ display:block; margin:4px 0 8px; }} .entry-num {{ color:var(--muted); font-size:10px; letter-spacing:.1em; text-transform:uppercase; }} .client-links, .card-item footer {{ display:flex; flex-wrap:wrap; gap:7px; }} .lnk {{ text-decoration:none; border:1px solid var(--line); padding:3px 7px; border-radius:999px; color:var(--accent); font-size:11px; background:#fffaf0; }} .badge {{ display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-weight:700; font-size:12px; white-space:nowrap; }} .badge .dot {{ width:6px; height:6px; border-radius:50%; background:currentColor; }} .badge-active {{ color:var(--forest); background:#cfddc7; }} .badge-paused {{ color:var(--amber); background:#f0d99c; }} .badge-lost {{ color:var(--crimson); background:#f0c9c2; }} .badge-review {{ color:var(--blue); background:#cdd8e3; }} .badge-unknown {{ color:#5a564b; background:#e8dfcc; }} .pod {{ font-weight:700; }} .pod-white {{ color:var(--blue); }} .pod-orange {{ color:var(--accent); }} .wide {{ min-width:240px; }} .muted {{ color:var(--muted); }} .truncate {{ overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; }} .api-key-col, .notes-col {{ display:none; }} body.show-api-keys .api-key-col, body.show-notes .notes-col {{ display:table-cell; }} body.show-api-keys .card-item .api-key-col, body.show-notes .card-item .notes-col {{ display:block; }}
+    .cell-client {{ min-width:270px; }} .cell-client strong {{ display:block; margin:4px 0 8px; }} .entry-num {{ color:var(--muted); font-size:10px; letter-spacing:.1em; text-transform:uppercase; }} .client-links, .card-item footer {{ display:flex; flex-wrap:wrap; gap:7px; }} .lnk {{ text-decoration:none; border:1px solid var(--line); padding:3px 7px; border-radius:999px; color:var(--accent); font-size:11px; background:#fffaf0; }} .badge {{ display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-weight:700; font-size:12px; white-space:nowrap; }} .badge .dot {{ width:6px; height:6px; border-radius:50%; background:currentColor; }} .badge-active {{ color:var(--forest); background:#cfddc7; }} .badge-paused {{ color:var(--amber); background:#f0d99c; }} .badge-lost {{ color:var(--crimson); background:#f0c9c2; }} .badge-review {{ color:var(--blue); background:#cdd8e3; }} .badge-unknown {{ color:#5a564b; background:#e8dfcc; }} .pod {{ font-weight:700; }} .pod-white {{ color:var(--blue); }} .pod-orange {{ color:var(--accent); }} .wide {{ min-width:240px; }} .muted {{ color:var(--muted); }} .truncate {{ overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; }} .geo-cell {{ display:flex; flex-wrap:wrap; gap:6px; max-width:360px; }} .geo-chip {{ display:inline-flex; align-items:center; border:1px solid var(--line); border-radius:999px; padding:3px 8px; font-size:11px; font-weight:700; line-height:1.2; }} .geo-done {{ color:var(--forest); background:#cfddc7; border-color:#adc29f; }} .geo-planned {{ color:var(--accent); background:#f3d9c6; border-color:#e3b596; }} .api-key-col, .notes-col {{ display:none; }} body.show-api-keys .api-key-col, body.show-notes .notes-col {{ display:table-cell; }} body.show-api-keys .card-item .api-key-col, body.show-notes .card-item .notes-col {{ display:block; }}
     .cards {{ display:none; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; }} .cards.show {{ display:grid; }} .table-shell.hide {{ display:none; }} .card-item {{ background:var(--surface); border:1px solid var(--line); padding:16px; box-shadow:var(--shadow); }} .card-corner {{ display:flex; justify-content:space-between; align-items:center; gap:12px; }} .card-item h3 {{ margin:14px 0 6px; font:600 25px/1.05 "Fraunces", serif; }} .card-meta {{ color:#5a564b; font-size:12px; }} .card-meta span {{ color:var(--muted); margin:0 5px; }} .card-grid {{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; }} .card-grid div {{ min-width:0; }} .card-grid dt {{ color:var(--muted); font-family:"IBM Plex Mono", monospace; font-size:10px; text-transform:uppercase; letter-spacing:.1em; }} .card-grid dd {{ margin:3px 0 0; }} .span-2 {{ grid-column:1 / -1; }} .empty {{ display:none; text-align:center; padding:50px; color:var(--muted); border:1px dashed var(--line-2); background:var(--surface); }} .empty.show {{ display:block; }} .hidden {{ display:none !important; }}
     @media (max-width:960px) {{ .app {{ display:block; }} .sidebar {{ position:relative; height:auto; }} .topbar {{ padding:12px 16px; flex-wrap:wrap; }} .topbar-meta, .kbd {{ display:none; }} .masthead, .workspace {{ padding-left:16px; padding-right:16px; }} .title-grid, .stats {{ grid-template-columns:1fr; }} h1 {{ font-size:52px; }} }}
   </style>
