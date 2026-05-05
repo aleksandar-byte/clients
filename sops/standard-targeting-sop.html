@@ -273,14 +273,14 @@
     <h1>Standard Targeting SOP<br><span>and Prompt Generator</span></h1>
     <p class="subtitle">Choose the client practice type, use the standard website and GBP tracking terms, and expand location terms from client records.</p>
     <div class="sop-strip">
-      <div><strong>Location terms:</strong> use all relevant client locations.</div>
+      <div><strong>Location terms:</strong> add a location to every keyword.</div>
       <div><strong>Keyword style:</strong> do not include "near me".</div>
       <div><strong>Sources:</strong> use client records for locations.</div>
     </div>
 
     <section class="builder">
       <h2>Prompt Builder</h2>
-      <p>Select the specialty and enter the relevant client locations. The generator will create a clean one-column keyword list without "near me".</p>
+      <p>Select the specialty and enter the relevant client locations. The generator will add each location to every keyword without using "near me".</p>
 
       <div class="controls">
         <div>
@@ -319,8 +319,8 @@
         <p class="principle">Use clean service keywords. Location coverage comes from tracked client locations, not from adding "near me" to the keyword.</p>
       </div>
       <div class="rule">
-        <h2>2. Expand all-location terms by client records.</h2>
-        <p class="principle">When a term says <code>all locations</code>, track that keyword for every relevant location listed in the client records.</p>
+        <h2>2. Add locations to every generated keyword.</h2>
+        <p class="principle">Each selected keyword should be generated once for every relevant client location from the client records.</p>
       </div>
       <div class="rule">
         <h2>3. Use the closest practice type.</h2>
@@ -498,7 +498,7 @@
     </section>
 
     <div class="note">
-      <strong>All locations:</strong> expand the keyword across every relevant client location from the client records. The keyword itself stays clean and does not include "near me".
+      <strong>Location expansion:</strong> every generated keyword should include a relevant client location from the client records. The keyword itself stays clean and does not include "near me".
     </div>
   </main>
 
@@ -636,17 +636,12 @@
 
     function keywordVariationsForTerms(terms, locations) {
       const keywords = [];
+      const targetLocations = locations.length ? locations : ["NEEDS CLIENT RECORD LOCATION"];
 
       terms.forEach((term) => {
-        if (term.allLocations) {
-          const targetLocations = locations.length ? locations : ["NEEDS CLIENT RECORD LOCATION"];
-          targetLocations.forEach((location) => {
-            keywords.push(`${term.keyword} ${location}`);
-          });
-          return;
-        }
-
-        keywords.push(term.keyword);
+        targetLocations.forEach((location) => {
+          keywords.push(`${term.keyword} ${location}`);
+        });
       });
 
       return keywords;
@@ -677,7 +672,7 @@
       output.value = keywords.join("\n");
       status.textContent = locations.length
         ? `Generated ${keywords.length} keywords for ${set.label}.`
-        : `Generated ${keywords.length} keywords for ${set.label}; all-location terms need client-record locations.`;
+        : `Generated ${keywords.length} keywords for ${set.label}; add client-record locations for final output.`;
     }
 
     async function copyPrompt() {
