@@ -1,81 +1,1511 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Team Weekly Work Board</title>
-  <style>
-    :root {
-      --bg: #f7f8f5;
-      --ink: #172023;
-      --muted: #667074;
-      --line: #d9dfd8;
-      --panel: #ffffff;
-      --green: #166859;
-      --green-soft: #e4f1ed;
-      --red: #9f3e43;
-      --red-soft: #f7e8e7;
-      --blue: #315f8a;
-      --amber: #9b6428;
-      --amber-soft: #f4ead9;
-      --sans: "Segoe UI", "Aptos", "Helvetica Neue", Arial, sans-serif;
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: var(--sans); color: var(--ink); background: var(--bg); }
-    a { color: var(--blue); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .page { max-width: 1400px; margin: 0 auto; padding: 22px; }
-    .topbar { display: flex; justify-content: space-between; gap: 18px; align-items: flex-start; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 18px; }
-    h1, h2, h3, p { margin-top: 0; }
-    h1 { font-size: 1.85rem; margin-bottom: 4px; }
-    .subtle, .empty { color: var(--muted); }
-    .metrics, .person-metrics { display: grid; grid-template-columns: repeat(4, minmax(90px, 1fr)); gap: 8px; }
-    .metrics div, .person-metrics div { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 10px; }
-    .metrics span, .person-metrics span { display: block; color: var(--muted); font-size: 0.72rem; text-transform: uppercase; }
-    .metrics strong, .person-metrics strong { font-size: 1.25rem; }
-    .nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-    .nav a { border: 1px solid var(--line); border-radius: 999px; background: var(--panel); padding: 0.35rem 0.7rem; }
-    .person-section { border: 1px solid var(--line); border-radius: 10px; background: var(--panel); padding: 14px; margin-bottom: 14px; }
-    .person-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 12px; }
-    .eyebrow { color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; margin-bottom: 4px; }
-    .person-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .panel { border-top: 5px solid var(--red); padding-top: 10px; }
-    .panel-done { border-top-color: var(--green); }
-    .panel-head { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid #edf0ec; padding-bottom: 8px; margin-bottom: 4px; }
-    .work-row { display: flex; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px solid #edf0ec; }
-    .work-row:last-child { border-bottom: 0; }
-    .work-row h3 { font-size: 0.95rem; margin-bottom: 4px; }
-    .work-row p { color: var(--muted); font-size: 0.85rem; margin-bottom: 0; }
-    .task-context { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 5px; color: var(--muted); font-size: 0.78rem; }
-    .task-context span { border: 1px solid #e4e9e2; border-radius: 999px; background: #fafbf8; padding: 0.12rem 0.45rem; }
-    .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 7px; font-size: 0.82rem; }
-    .row-meta { min-width: 100px; display: grid; justify-items: end; align-content: start; gap: 5px; color: var(--muted); font-size: 0.78rem; }
-    .row-meta strong { color: var(--ink); font-size: 0.95rem; }
-    .row-meta small { max-width: 160px; text-align: right; line-height: 1.25; }
-    .no-estimate { color: var(--muted); font-style: italic; }
-    .badge { display: inline-flex; width: fit-content; border-radius: 999px; padding: 0.18rem 0.55rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; background: #eef1ef; color: var(--muted); }
-    .badge-in-progress, .badge-working { background: var(--green-soft); color: var(--green); }
-    .badge-planned, .badge-assigned { background: var(--amber-soft); color: var(--amber); }
-    .badge-done, .badge-completed { background: #e7f3e8; color: #2f6a37; }
-    @media (max-width: 980px) { .topbar, .person-head { display: grid; } .person-grid { grid-template-columns: 1fr; } .metrics, .person-metrics { grid-template-columns: repeat(2, 1fr); } }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Team Work Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper:#f1ece0; --paper-warm:#ebe4d3; --paper-soft:#f7f3e9; --surface:#fdfaf2;
+  --ink:#15140e; --ink-2:#2c2a22; --ink-3:#5a564b; --muted:#8a8473; --rule:#1a1810;
+  --line:#d8d0bc; --line-2:#c8bfa7; --line-soft:#e4dcc7;
+  --accent:#c14a1d; --accent-soft:#f3d9c6; --forest:#2d4a37; --forest-soft:#cfddc7;
+  --deep-blue:#1f3a5f; --deep-blue-soft:#cdd8e3; --plum:#6e2f4a; --plum-soft:#e6cfd9;
+  --teal:#1f6b62; --teal-soft:#cfdfdb; --amber:#a06814; --amber-soft:#f0d99c;
+  --crimson:#952820; --crimson-soft:#f0c9c2; --muted-soft:#ded8ca;
+  --shadow-md:0 6px 24px -8px rgba(21,20,14,.18),0 2px 6px rgba(21,20,14,.06);
+  --shadow-lg:0 28px 60px -20px rgba(21,20,14,.28),0 10px 22px -10px rgba(21,20,14,.14);
+}
+* { box-sizing:border-box; }
+html, body { margin:0; padding:0; }
+body {
+  font-family:"IBM Plex Sans", system-ui, sans-serif; font-size:14px; line-height:1.45; color:var(--ink);
+  background:var(--paper);
+  background-image:radial-gradient(circle at 18% 20%, rgba(193,74,29,.045), transparent 40%),radial-gradient(circle at 90% 110%, rgba(45,74,55,.05), transparent 45%);
+}
+a { color:inherit; }
+code { font-family:"IBM Plex Mono", monospace; font-size:12px; background:var(--paper-soft); border:1px solid var(--line); padding:1px 6px; border-radius:3px; }
+.app { display:grid; grid-template-columns:260px 1fr; min-height:100vh; }
+.sidebar { background:var(--ink); color:#c8c4b6; padding:28px 20px; position:sticky; top:0; height:100vh; display:flex; flex-direction:column; gap:22px; overflow-y:auto; border-right:1px solid #000; }
+.brand { display:flex; align-items:baseline; gap:8px; font-family:"Fraunces", serif; font-weight:500; font-size:22px; color:var(--paper); letter-spacing:-.02em; line-height:1; }
+.brand .amp { color:var(--accent); font-style:italic; }
+.brand-sub,.side-foot,.topbar-meta,.filter-label,.results-count,.person-eyebrow,.pstat-label,.task-est-label,.sop-label,.link-tag,.mono { font-family:"IBM Plex Mono", monospace; }
+.brand-sub { font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:#6e6856; margin-top:6px; }
+.side-section h4 { font-family:"IBM Plex Mono", monospace; font-size:9.5px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:#6e6856; margin:0 0 10px; padding-left:10px; display:flex; align-items:center; gap:8px; }
+.side-section h4::before { content:""; width:4px; height:4px; background:var(--accent); border-radius:50%; }
+.pnav-item { display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:5px; color:#c8c4b6; text-decoration:none; transition:background .12s,color .12s; margin-bottom:2px; }
+.pnav-item:hover { background:#1f1d14; color:var(--paper); }
+.pnav-text { flex:1; min-width:0; }
+.pnav-name { font-size:13px; font-weight:500; color:var(--paper); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.pnav-meta { font-size:10px; color:#8a8473; letter-spacing:.04em; margin-top:1px; }
+.avatar { width:32px; height:32px; border-radius:6px; display:grid; place-items:center; font-family:"Fraunces", serif; font-weight:600; font-size:12px; color:var(--paper); flex-shrink:0; letter-spacing:.02em; }
+.avatar-sm { width:28px; height:28px; font-size:11px; }
+.avatar-accent { background:var(--accent); } .avatar-forest { background:var(--forest); } .avatar-deep-blue { background:var(--deep-blue); } .avatar-plum { background:var(--plum); } .avatar-teal { background:var(--teal); } .avatar-muted { background:var(--muted); }
+.cat-mini-list { display:flex; flex-direction:column; gap:5px; }
+.cat-mini { display:flex; align-items:center; gap:8px; font-family:"IBM Plex Mono", monospace; font-size:10.5px; color:#c8c4b6; padding:4px 8px; border-radius:3px; }
+.cat-mini-name { flex:1; text-transform:uppercase; letter-spacing:.08em; }
+.cat-mini-count { color:#8a8473; }
+.cat-dot,.dot { width:8px; height:8px; border-radius:2px; display:inline-block; flex-shrink:0; }
+.cat-dot-accent { background:var(--accent); } .cat-dot-forest { background:var(--forest); } .cat-dot-deep-blue { background:var(--deep-blue); } .cat-dot-plum { background:var(--plum); } .cat-dot-teal { background:var(--teal); } .cat-dot-amber { background:var(--amber); } .cat-dot-muted { background:var(--muted); }
+.side-foot { margin-top:auto; padding:14px 4px 0; border-top:1px solid #2a281e; font-size:10.5px; line-height:1.7; color:#6e6856; }
+.side-foot .meta { color:#c8c4b6; } .side-foot .key { color:var(--accent); }
+.main { min-width:0; padding:0; position:relative; }
+.topbar { display:flex; align-items:center; gap:14px; padding:12px 36px; background:var(--paper); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:30; }
+.search { flex:1; max-width:460px; position:relative; }
+.search input { width:100%; padding:9px 14px; border:1px solid var(--line); border-radius:4px; background:var(--surface); font:inherit; font-size:13px; color:var(--ink); outline:none; }
+.topbar-spacer { flex:1; }
+.topbar-meta { font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+.topbar-meta strong { color:var(--ink); font-weight:600; }
+.masthead { padding:56px 36px 28px; border-bottom:2px solid var(--rule); background:var(--paper); position:relative; }
+.masthead::before { content:""; position:absolute; top:0; left:36px; right:36px; height:1px; background:var(--rule); }
+.spec-strip { display:flex; flex-wrap:wrap; align-items:center; gap:4px 22px; font-family:"IBM Plex Mono", monospace; font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); margin-bottom:28px; padding:14px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.spec-strip .item { display:inline-flex; align-items:center; gap:8px; }
+.spec-strip .item strong { color:var(--ink); font-weight:600; }
+.spec-strip .dot { width:4px; height:4px; border-radius:50%; background:var(--accent); }
+.title-grid { display:grid; grid-template-columns:1fr auto; align-items:end; gap:36px; margin-bottom:8px; }
+h1 { font-family:"Fraunces", serif; font-weight:300; font-size:clamp(3rem,7vw,6rem); line-height:.92; letter-spacing:-.04em; margin:0; color:var(--ink); }
+h1 em,.title-deck em,.section-head h2 em,.aside-head h3 em { font-style:italic; color:var(--accent); }
+.title-deck { font-family:"Fraunces", serif; font-weight:300; font-style:italic; font-size:18px; line-height:1.4; color:var(--ink-2); max-width:280px; text-align:right; border-right:2px solid var(--accent); padding-right:14px; }
+.lede { margin:18px 0 0; max-width:620px; font-size:14.5px; line-height:1.55; color:var(--ink-2); }
+.stats { display:grid; grid-template-columns:1.4fr repeat(3,1fr); margin-top:36px; border-top:2px solid var(--rule); border-bottom:1px solid var(--line); }
+.stat { padding:20px 22px 22px; border-right:1px solid var(--line); position:relative; background:var(--paper); }
+.stat:last-child { border-right:0; }
+.stat.is-hero { background:var(--ink); color:var(--paper); border-right-color:var(--rule); }
+.stat.is-alert { background:var(--crimson-soft); border-color:rgba(149,40,32,.2); }
+.stat-label { font-family:"IBM Plex Mono", monospace; font-size:10px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+.stat-value { font-family:"Fraunces", serif; font-weight:400; font-size:56px; letter-spacing:-.045em; line-height:.9; color:var(--ink); }
+.stat.is-hero .stat-value,.stat.is-hero .stat-label strong { color:var(--paper); }
+.stat.is-alert .stat-value,.stat.is-alert .stat-label { color:var(--crimson); }
+.stat-value .unit { font-size:28px; color:var(--muted); margin-left:4px; font-style:italic; }
+.stat-trend { font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.06em; color:var(--muted); margin-top:10px; text-transform:uppercase; }
+.filter-bar { display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; padding:14px 36px; background:var(--paper-warm); border-bottom:1px solid var(--line); position:sticky; top:49px; z-index:20; }
+.filter-label { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); }
+.filter-bar select,.pfilter,.toggle-overdue,.chip-clear { padding:6px 10px; border:1px solid var(--line-2); border-radius:3px; background:var(--surface); font:inherit; font-size:11px; color:var(--ink-2); cursor:pointer; font-family:"IBM Plex Mono", monospace; letter-spacing:.04em; text-transform:uppercase; }
+.filter-bar select { appearance:auto; }
+.pfilter { display:inline-flex; align-items:center; gap:6px; }
+.pfilter.active,.chip-clear { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+.toggle-overdue { color:var(--crimson); border-color:var(--crimson); }
+.toggle-overdue.active { background:var(--crimson); color:var(--paper); }
+.results-count { margin-left:auto; font-size:11px; letter-spacing:.08em; color:var(--muted); text-transform:uppercase; }
+.results-count strong { color:var(--ink); font-weight:600; font-size:14px; font-family:"Fraunces", serif; }
+.workspace { padding:28px 36px 80px; display:grid; grid-template-columns:1fr 320px; gap:32px; }
+.workspace-main { min-width:0; } .workspace-side { min-width:0; position:sticky; top:132px; align-self:start; }
+.section-head { display:flex; align-items:baseline; gap:14px; margin:0 0 18px; }
+.section-head h2,.aside-head h3 { font-family:"Fraunces", serif; font-weight:400; font-size:22px; letter-spacing:-.02em; margin:0; color:var(--ink); }
+.section-head .rule { flex:1; height:1px; background:var(--line-2); }
+.section-head .meta-tag { font-family:"IBM Plex Mono", monospace; font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.person { background:var(--surface); border:1px solid var(--line); border-radius:6px; margin-bottom:22px; box-shadow:var(--shadow-md); overflow:hidden; }
+.person-head { padding:18px 22px; border-bottom:2px solid var(--rule); background:var(--paper-soft); display:grid; grid-template-columns:1fr auto; gap:18px; align-items:center; }
+.person-id { display:flex; align-items:center; gap:14px; }
+.person-id .avatar { width:44px; height:44px; font-size:16px; border-radius:8px; }
+.person-eyebrow { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+.person-name { font-family:"Fraunces", serif; font-weight:400; font-size:28px; letter-spacing:-.02em; line-height:1; margin:0; color:var(--ink); }
+.person-stats { display:grid; grid-template-columns:repeat(3,auto) minmax(180px,240px); gap:22px; align-items:center; }
+.pstat { display:flex; flex-direction:column; gap:2px; text-align:right; }
+.pstat-value { font-family:"Fraunces", serif; font-weight:400; font-size:28px; letter-spacing:-.02em; line-height:1; color:var(--ink); }
+.pstat-label { font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.pstat-alert .pstat-value,.pstat-alert .pstat-label { color:var(--crimson); }
+.pstat-bar-wrap { display:flex; flex-direction:column; gap:6px; }
+.pstat-bar-label { display:flex; justify-content:space-between; font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+.pstat-bar { height:4px; background:var(--line-soft); overflow:hidden; }
+.pstat-bar > span { display:block; height:100%; }
+.task { display:grid; grid-template-columns:28px 1fr; gap:14px; padding:16px 22px; border-bottom:1px solid var(--line-soft); position:relative; transition:background .12s, opacity .12s; }
+.task:last-child { border-bottom:0; } .task:hover { background:var(--paper-soft); }
+.task.hidden { display:none; } .task[data-completed="1"] { opacity:.5; } .task[data-completed="1"] .task-title { text-decoration:line-through; text-decoration-color:var(--muted); }
+.task-check { padding-top:1px; } .task-checkbox { position:absolute; opacity:0; pointer-events:none; }
+.task-check-label { display:block; width:18px; height:18px; border:1.5px solid var(--line-2); border-radius:4px; background:var(--surface); cursor:pointer; position:relative; transition:all .12s; }
+.task-check-label:hover { border-color:var(--forest); background:var(--forest-soft); }
+.task-checkbox:checked + .task-check-label { background:var(--forest); border-color:var(--forest); }
+.task-checkbox:checked + .task-check-label::after { content:""; position:absolute; left:5px; top:1px; width:5px; height:10px; border:solid var(--paper); border-width:0 2px 2px 0; transform:rotate(45deg); }
+.task-body { min-width:0; } .task-top { display:flex; gap:16px; justify-content:space-between; align-items:flex-start; margin-bottom:6px; }
+.task-title-block { flex:1; min-width:0; } .task-title { font-size:15px; font-weight:600; line-height:1.25; margin:0 0 7px; color:var(--ink); }
+.task-context { display:flex; flex-wrap:wrap; gap:5px; }
+.ctx-chip { display:inline-flex; align-items:center; gap:4px; padding:2px 6px; border-radius:3px; font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.04em; text-transform:uppercase; background:var(--paper-soft); color:var(--ink-3); border:1px solid var(--line-soft); }
+.ctx-site { color:var(--teal); background:var(--teal-soft); border-color:rgba(31,107,98,.18); }
+.ctx-none { color:var(--muted); } .cat-accent { background:var(--accent-soft); color:var(--accent); } .cat-forest { background:var(--forest-soft); color:var(--forest); } .cat-deep-blue { background:var(--deep-blue-soft); color:var(--deep-blue); } .cat-plum { background:var(--plum-soft); color:var(--plum); } .cat-teal { background:var(--teal-soft); color:var(--teal); } .cat-amber { background:var(--amber-soft); color:var(--amber); } .cat-muted { background:var(--line-soft); color:var(--ink-3); }
+.due-overdue { background:var(--crimson-soft); color:var(--crimson); border-color:rgba(149,40,32,.2); } .due-today { background:var(--amber-soft); color:var(--amber); } .due-soon { background:var(--deep-blue-soft); color:var(--deep-blue); } .due-none,.due-done { background:var(--line-soft); color:var(--muted); }
+.status-done { color:var(--forest); } .status-planned { color:var(--amber); } .status-in-progress { color:var(--teal); } .status-blocked { color:var(--crimson); }
+.task-est { text-align:right; min-width:54px; } .task-est-value { font-family:"Fraunces", serif; font-size:26px; line-height:1; letter-spacing:-.04em; color:var(--ink); }
+.task-est-label { font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-top:2px; }
+.task-desc { margin:0 0 10px; color:var(--ink-3); font-size:13px; line-height:1.45; }
+.sop-row { display:flex; flex-wrap:wrap; gap:5px; margin:0 0 10px; align-items:center; }
+.sop-label { font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-right:2px; }
+.sop-chip { font-family:"IBM Plex Mono", monospace; font-size:10px; color:var(--ink-3); background:var(--paper-soft); border:1px solid var(--line); border-radius:3px; padding:2px 6px; }
+.task-links { display:flex; flex-wrap:wrap; gap:6px; }
+.task-link { display:inline-flex; align-items:center; gap:5px; padding:4px 8px; border:1px solid var(--line); border-radius:3px; background:var(--surface); color:var(--ink-2); text-decoration:none; font-size:11.5px; }
+.task-link:hover { border-color:var(--ink); background:#fff; }
+.link-tag { font-size:9px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); }
+.person-empty,.global-empty { display:none; text-align:center; padding:42px 22px; color:var(--muted); } .global-empty.show { display:block; }
+.empty-mark { font-family:"Fraunces", serif; font-size:42px; color:var(--line-2); }
+.aside-card { background:var(--surface); border:1px solid var(--line); border-radius:6px; box-shadow:var(--shadow-md); padding:18px; margin-bottom:18px; }
+.aside-head { display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:16px; }
+.aside-head .meta { font-family:"IBM Plex Mono", monospace; font-size:10px; text-transform:uppercase; color:var(--muted); letter-spacing:.12em; }
+.cat-row { display:grid; grid-template-columns:1fr 42px; gap:8px 10px; align-items:center; margin-bottom:12px; }
+.cat-row-label { grid-column:1 / -1; display:flex; align-items:center; gap:8px; }
+.cat-name { flex:1; font-weight:500; color:var(--ink-2); }
+.cat-meta { color:var(--muted); font-size:10.5px; }
+.cat-row-bar { height:5px; background:var(--line-soft); overflow:hidden; }
+.cat-row-bar span { display:block; height:100%; }
+.cat-row-pct { text-align:right; color:var(--muted); font-size:10.5px; }
+.cap-row { display:grid; grid-template-columns:auto 1fr auto; gap:8px 10px; align-items:center; margin-bottom:12px; }
+.cap-name { font-size:13px; color:var(--ink-2); } .cap-meta { font-family:"IBM Plex Mono", monospace; color:var(--muted); font-size:11px; }
+.cap-bar { grid-column:2 / 4; height:5px; background:var(--line-soft); overflow:hidden; } .cap-bar span { display:block; height:100%; }
+.colophon { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; padding:28px 36px; color:var(--muted); font-family:"IBM Plex Mono", monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.1em; border-top:1px solid var(--line); }
+@media (max-width:1100px) { .app { grid-template-columns:1fr; } .sidebar { position:relative; height:auto; } .workspace { grid-template-columns:1fr; } .workspace-side { position:relative; top:auto; } }
+@media (max-width:760px) { .topbar,.filter-bar,.masthead,.workspace,.colophon { padding-left:18px; padding-right:18px; } .title-grid,.stats,.person-head,.person-stats { grid-template-columns:1fr; } .title-deck { text-align:left; border-right:0; border-left:2px solid var(--accent); padding:0 0 0 14px; } .stats { display:block; } .stat { border-right:0; border-bottom:1px solid var(--line); } .task-top { flex-direction:column; } .task-est { text-align:left; } }
+</style>
 </head>
 <body>
-  <main class="page">
-    <header class="topbar">
-      <div>
-        <h1>Team Weekly Work Board</h1>
-        <p class="subtle">Manager-only view. Rendered 2026-05-04 18:21. Estimates use SOP full-task minutes.</p>
+<div class="app">
+  <aside class="sidebar">
+    <div>
+      <div class="brand">SERP <span class="amp">&amp;</span> Team</div>
+      <div class="brand-sub">Weekly Work Board</div>
+    </div>
+    <div class="side-section">
+      <h4>People</h4>
+      <a href="#alex" class="pnav-item"><div class="avatar avatar-sm avatar-accent">AA</div><div class="pnav-text"><div class="pnav-name">Aleksandar Atanasoski</div><div class="pnav-meta">12 open</div></div></a><a href="#mikee" class="pnav-item"><div class="avatar avatar-sm avatar-forest">MN</div><div class="pnav-text"><div class="pnav-name">Mikee Novio</div><div class="pnav-meta">3 open</div></div></a><a href="#grethel" class="pnav-item"><div class="avatar avatar-sm avatar-deep-blue">GR</div><div class="pnav-text"><div class="pnav-name">Grethel</div><div class="pnav-meta">14 open</div></div></a><a href="#glydel" class="pnav-item"><div class="avatar avatar-sm avatar-plum">GL</div><div class="pnav-text"><div class="pnav-name">Glydel</div><div class="pnav-meta">5 open</div></div></a>
+    </div>
+    <div class="side-section">
+      <h4>Categories</h4>
+      <div class="cat-mini-list"><div class="cat-mini"><span class="cat-dot cat-dot-forest"></span><span class="cat-mini-name">Report</span><span class="cat-mini-count">14</span></div><div class="cat-mini"><span class="cat-dot cat-dot-amber"></span><span class="cat-mini-name">Spellcheck</span><span class="cat-mini-count">6</span></div><div class="cat-mini"><span class="cat-dot cat-dot-deep-blue"></span><span class="cat-mini-name">Website Qc</span><span class="cat-mini-count">4</span></div><div class="cat-mini"><span class="cat-dot cat-dot-accent"></span><span class="cat-mini-name">Gbp</span><span class="cat-mini-count">3</span></div><div class="cat-mini"><span class="cat-dot cat-dot-plum"></span><span class="cat-mini-name">Content</span><span class="cat-mini-count">2</span></div><div class="cat-mini"><span class="cat-dot cat-dot-teal"></span><span class="cat-mini-name">Campaign Tracking</span><span class="cat-mini-count">1</span></div><div class="cat-mini"><span class="cat-dot cat-dot-plum"></span><span class="cat-mini-name">Content Publishing</span><span class="cat-mini-count">1</span></div><div class="cat-mini"><span class="cat-dot cat-dot-teal"></span><span class="cat-mini-name">Delegation Check</span><span class="cat-mini-count">1</span></div><div class="cat-mini"><span class="cat-dot cat-dot-accent"></span><span class="cat-mini-name">Local Seo</span><span class="cat-mini-count">1</span></div><div class="cat-mini"><span class="cat-dot cat-dot-muted"></span><span class="cat-mini-name">Sop Update</span><span class="cat-mini-count">1</span></div></div>
+    </div>
+    <div class="side-foot">
+      <div><span class="key">Open</span> <span class="meta">34</span></div>
+      <div><span class="key">Estimated</span> <span class="meta">47h30</span></div>
+      <div><span class="key">Rendered</span> <span class="meta">2026-05-05 20:14</span></div>
+    </div>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <div class="search"><input id="search" type="search" placeholder="Search tasks, clients, links, people..."></div>
+      <div class="topbar-spacer"></div>
+      <div class="topbar-meta">Vol. <strong>05.05.2026</strong></div>
+    </div>
+    <section class="masthead">
+      <div class="spec-strip">
+        <span class="item"><span class="dot"></span>Week <strong>05.05.2026</strong></span>
+        <span class="item"><span class="dot"></span>People <strong>4</strong></span>
+        <span class="item"><span class="dot"></span>System <strong>Local tracker</strong></span>
+        <span class="item alert"><span class="dot"></span>Overdue <strong>34</strong></span>
       </div>
-      <div class="metrics">
-        <div><span>Open</span><strong>31</strong></div>
-        <div><span>Open Est.</span><strong>2580m</strong></div>
-        <div><span>Done</span><strong>5</strong></div>
-        <div><span>Done Est.</span><strong>450m</strong></div>
+      <div class="title-grid">
+        <h1>Team Work <em>Board</em></h1>
+        <div class="title-deck">A weekly operating surface for work, capacity, owners, and links.</div>
       </div>
-    </header>
-    <nav class="nav"><a href='#alex'>Aleksandar Atanasoski</a><a href='#mikee'>Mikee Novio</a><a href='#grethel'>Grethel</a><a href='#glydel'>Glydel</a></nav>
-    <section class='person-section' id='alex'><div class='person-head'><div><p class='eyebrow'>2026-05-04 to 2026-05-10</p><h2>Aleksandar Atanasoski</h2></div><div class='person-metrics'><div><span>Open</span><strong>12</strong></div><div><span>Open Est.</span><strong>960m</strong></div><div><span>Done</span><strong>0</strong></div><div><span>Done Est.</span><strong>0m</strong></div></div></div><div class='person-grid'><section class='panel panel-open'><div class='panel-head'><h3>This Week</h3><strong>960m</strong></div><article class='work-row'><div><h3>Client campaign setup and Monday tracking</h3><div class='task-context'><span>Website: website not found</span></div><p>High-priority this week: confirm each client has campaign setup and tracking represented in Monday.</p></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>campaign tracking</span><strong>60m</strong><small>Grethel: Google Properties (GTM, GA, GSC, WC)</small></div></article><article class='work-row'><div><h3>Lorton Town Dental SEO QC spellcheck</h3><div class='task-context'><span>Website: lortontowndental.com</span></div><p>Recent QC/post-QC spellcheck pass. Include business information check and quality score where applicable.</p><div class='links'><a href='https://serpagency.monday.com/boards/7814702110/pulses/11406812858'>Lorton Town Dental client</a><a href='https://serpagency.monday.com/boards/6982782532/pulses/11506869732'>Lorton Town Dental</a><a href='https://serpagency.monday.com/boards/6982782532/pulses/11085427475'>Lorton Town Dental</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>spellcheck</span><strong>30m</strong><small>Aira: Spellcheck</small></div></article><article class='work-row'><div><h3>Ashburn pre-launch QC spellcheck</h3><div class='task-context'><span>Website: ashburnfamilydentalcare.kinsta.cloud, www.arlingtondentalcenter.com</span></div><p>Recent QC/post-QC spellcheck pass. Include business information check and quality score where applicable.</p><div class='links'><a href='https://serpagency.monday.com/boards/620254537/pulses/11683911869'>Ashburn build</a><a href='https://docs.google.com/spreadsheets/d/14MZtMiUZXBv2B_n5Dh-qFi9gdc3ALhHj/edit?gid=733771117#gid=733771117'>Ashburn sitemap sheet</a><a href='https://www.arlingtondentalcenter.com/'>Ashburn -&gt; <code>https://ashburnfamilydentalcare.com/</code> (live site from Monday updates); original source site to review against</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>spellcheck</span><strong>30m</strong><small>Aira: Spellcheck</small></div></article><article class='work-row'><div><h3>Loftus post-launch QC spellcheck</h3><div class='task-context'><span>Website: loftusdentistincoeurdalene.kinsta.cloud</span></div><p>Recent QC/post-QC spellcheck pass. Include business information check and quality score where applicable.</p><div class='links'><a href='https://serpagency.monday.com/boards/620254537/pulses/11459922043'>Loftus build</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/11824641367'>Loftus post-launch context ticket</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/11783138770'>Post-Launch QC</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>spellcheck</span><strong>30m</strong><small>Aira: Spellcheck</small></div></article><article class='work-row'><div><h3>Clear Lake post-launch QC spellcheck</h3><div class='task-context'><span>Website: clearlakeu.kinsta.cloud</span></div><p>Recent QC/post-QC spellcheck pass. Include business information check and quality score where applicable.</p><div class='links'><a href='https://serpagency.monday.com/boards/620254537/pulses/11583406797'>Clear Lake build</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/11783862097'>Clear Lake pre-launch QC ticket</a><a href='https://serpagency.monday.com/boards/6982782532/pulses/11837163118'>Clear Lake</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>spellcheck</span><strong>30m</strong><small>Aira: Spellcheck</small></div></article><article class='work-row'><div><h3>The Dental Club post-launch QC spellcheck</h3><div class='task-context'><span>Website: thedentalclub.kinsta.cloud</span></div><p>Recent QC/post-QC spellcheck pass. Include business information check and quality score where applicable.</p><div class='links'><a href='https://serpagency.monday.com/boards/620254537/pulses/11546650915'>The Dental Club Monday pulse</a><a href='https://docs.google.com/document/d/1GjJNq-GpisrkM3nkHREi7RH_JtvDrscNYhiif_2l2tk/edit?tab=t.0'>The Dental Club QC doc</a><a href='https://serpagency.monday.com/boards/9496422576/pulses/11832345770'>The Dental Club SEO QC task</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>spellcheck</span><strong>30m</strong><small>Aira: Spellcheck</small></div></article><article class='work-row'><div><h3>Northwest General Dentistry pre-launch QC spellcheck</h3><div class='task-context'><span>Website: book.nwgd.net</span></div><p>Recent QC/post-QC spellcheck pass. Include business information check and quality score where applicable.</p><div class='links'><a href='https://serpagency.monday.com/boards/620254537/pulses/11743526185'>Northwest General Dentistry build</a><a href='https://serpagency.monday.com/boards/6982782532/pulses/11680666171'>Northwest General Dentistry</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>spellcheck</span><strong>30m</strong><small>Aira: Spellcheck</small></div></article><article class='work-row'><div><h3>Northwest General Dentistry pre-launch QC</h3><div class='task-context'><span>Website: book.nwgd.net</span></div><p>Confirm pre-launch checks before handoff.</p><div class='links'><a href='https://serpagency.monday.com/boards/620254537/pulses/11743526185'>Northwest General Dentistry build</a><a href='https://serpagency.monday.com/boards/6982782532/pulses/11680666171'>Northwest General Dentistry</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>qc</span><strong>90m</strong><small>Mikee: Website QC</small></div></article><article class='work-row'><div><h3>Northwest General Dentistry / CR Smiles campaigns</h3><div class='task-context'><span>Website: book.nwgd.net</span></div><p>Campaigns are created; confirm ownership and delegation are set correctly.</p><div class='links'><a href='https://serpagency.monday.com/boards/620254537/pulses/11743526185'>Northwest General Dentistry build</a><a href='https://serpagency.monday.com/boards/6982782532/pulses/11680666171'>Northwest General Dentistry</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>delegation check</span><span class='no-estimate'>no est.</span><small>No workload rule matched</small></div></article><article class='work-row'><div><h3>Empower Dental Rancho</h3><div class='task-context'><span>Website: empowerdentalgroup.com</span></div><p>Name cleanup, citations refresh, and Apple Maps.</p><div class='links'><a href='https://serpagency.monday.com/boards/7441724825/pulses/11290572749'>Empower Dental Lab GBP ticket</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/8713490440'>Citations Refresh</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/8343879676'>Citations refresh</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>local seo</span><strong>60m</strong><small>Mikee: Citations</small></div></article><article class='work-row'><div><h3>Empower Dental Lab</h3><div class='task-context'><span>Website: empowerdentalgroup.com</span></div><p>Open new GBP; this is late. Use approved name/category once client approval is confirmed.</p><div class='links'><a href='https://serpagency.monday.com/boards/7441724825/pulses/11290572749'>Empower Dental Lab GBP ticket</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>gbp</span><strong>120m</strong><small>Glydel: GBP Full Optimization (Products, services, area)</small></div></article><article class='work-row'><div><h3>WQA, sitemap, analytics, content audit</h3><div class='task-context'><span>Website: website not found</span></div><p>Lower priority than delivery work right now.</p><div class='links'><a href='https://serpagency.monday.com/boards/18409825242/pulses/11819307785'>Brio sitemap task</a><a href='https://serpagency.monday.com/boards/18410018587/pulses/11831573217'>Synergy sitemap task</a><a href='https://docs.google.com/spreadsheets/d/1tK1hnZNb8nu_u8_FyFMNRoWBxNPsZVI5B0IKhrFA96s/edit?gid=1164454692#gid=1164454692'>Synergy sitemap sheet</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>sop update</span><strong>450m</strong><small>Grethel: Audit + Grethel: Google Properties (GTM, GA, GSC, WC) + Mikee: Sitemap + Glydel: Content - Articles (full - image, internal, cta)</small></div></article></section><section class='panel panel-done'><div class='panel-head'><h3>Done</h3><strong>0m</strong></div><p class='empty'>Nothing marked done yet.</p></section></div></section><section class='person-section' id='mikee'><div class='person-head'><div><p class='eyebrow'>2026-05-04 to 2026-05-10</p><h2>Mikee Novio</h2></div><div class='person-metrics'><div><span>Open</span><strong>3</strong></div><div><span>Open Est.</span><strong>490m</strong></div><div><span>Done</span><strong>0</strong></div><div><span>Done Est.</span><strong>0m</strong></div></div></div><div class='person-grid'><section class='panel panel-open'><div class='panel-head'><h3>This Week</h3><strong>490m</strong></div><article class='work-row'><div><h3>Loftus Family Dental post-launch QC</h3><div class='task-context'><span>Website: loftusdentistincoeurdalene.kinsta.cloud</span></div><p>Check Ahrefs technical items, tracking, GSC, GA4, GBP, GTM/conversion actions, and lander pointing.</p><div class='links'><a href='https://serpagency.monday.com/boards/620254537/pulses/11459922043'>Loftus build</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/11824641367'>Loftus post-launch context ticket</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/11712877419'>Ahrefs Technical</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>website qc</span><strong>190m</strong><small>Grethel: Google Properties (GTM, GA, GSC, WC) + Mikee: Website QC + Glydel: GBP Optimization (Normal + Local Falcon Suggestions Implementation)</small></div></article><article class='work-row'><div><h3>Clear Lake post-launch QC</h3><div class='task-context'><span>Website: clearlakeu.kinsta.cloud</span></div><p>Confirm tracking, landers, and platform linking after launch.</p><div class='links'><a href='https://serpagency.slack.com/archives/D08QF163W03/p1775056376907929'>Clear Lake sitemap follow-up</a><a href='https://serpagency.monday.com/boards/620254537/pulses/11583406797'>Clear Lake build</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/11783862097'>Clear Lake pre-launch QC ticket</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>website qc</span><strong>150m</strong><small>Grethel: Google Properties (GTM, GA, GSC, WC) + Mikee: Website QC</small></div></article><article class='work-row'><div><h3>The Dental Club post-launch QC</h3><div class='task-context'><span>Website: thedentalclub.kinsta.cloud</span></div><p>Confirm tracking, landers, and platform linking after launch.</p><div class='links'><a href='https://serpagency.monday.com/boards/620254537/pulses/11546650915'>The Dental Club Monday pulse</a><a href='https://serpagency.monday.com/boards/9496422576/pulses/11832345770'>The Dental Club SEO QC task</a><a href='https://serpagency.monday.com/boards/6982782532/pulses/11747675809'>The Dental Club</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>website qc</span><strong>150m</strong><small>Grethel: Google Properties (GTM, GA, GSC, WC) + Mikee: Website QC</small></div></article></section><section class='panel panel-done'><div class='panel-head'><h3>Done</h3><strong>0m</strong></div><p class='empty'>Nothing marked done yet.</p></section></div></section><section class='person-section' id='grethel'><div class='person-head'><div><p class='eyebrow'>2026-04-20 to 2026-04-26</p><h2>Grethel</h2></div><div class='person-metrics'><div><span>Open</span><strong>11</strong></div><div><span>Open Est.</span><strong>990m</strong></div><div><span>Done</span><strong>5</strong></div><div><span>Done Est.</span><strong>450m</strong></div></div></div><div class='person-grid'><section class='panel panel-open'><div class='panel-head'><h3>This Week</h3><strong>990m</strong></div><article class='work-row'><div><h3>Downtown Dental Nashville</h3><div class='task-context'><span>Website: www.downtowndentalnashville.com</span></div><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11811066820</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11811066820'>Downtown Dental Nashville</a><a href='https://serpagency.monday.com/boards/7495771241/pulses/18015737126'>Downtown Dental Nashville</a><a href='https://serpagency.monday.com/boards/620254537/pulses/18037695013'>Downtown Dental Nashville</a></div></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Leep Tescher Helfman and Zanze</h3><div class='task-context'><span>Website: website not found</span></div><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810987906</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11810987906'>Leep Tescher Helfman and Zanze</a><a href='https://serpagency.monday.com/boards/6982782532/pulses/11584831242'>Leep Tescher Helfman and Zanze</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Dulce Dental</h3><div class='task-context'><span>Website: www.mydulcedental.com</span></div><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11795184352</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11795184352'>Dulce Dental</a><a href='https://serpagency.monday.com/boards/7495771241/pulses/9413852605'>Dulce Dental</a></div></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Davis Dental</h3><div class='task-context'><span>Website: stg-davisdental-stg.kinsta.cloud, smiles4jonesboro.com</span></div><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810704918</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11810704918'>Davis Dental</a><a href='https://serpagency.monday.com/boards/7495771241/pulses/11377060937'>Davis Dental</a><a href='https://serpagency.monday.com/boards/620254537/pulses/11290843009'>Davis Dental</a></div></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Oasis Smile Studio</h3><div class='task-context'><span>Website: oasissmilestudio.com</span></div><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810756761</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11810756761'>Oasis Smile Studio</a><a href='https://serpagency.monday.com/boards/7495771241/pulses/8585445984'>Oasis Smile Studio</a></div></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>University Dental</h3><div class='task-context'><span>Website: universitydental.kinsta.cloud, www.universitydentalsandiego.com</span></div><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810887794</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11810887794'>University Dental</a><a href='https://serpagency.monday.com/boards/7495771241/pulses/18375010972'>University Dental</a><a href='https://serpagency.monday.com/boards/620254537/pulses/10725724020'>University Dental</a></div></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Farhoumand Dentistry</h3><div class='task-context'><span>Website: farhoumanddentistry.kinsta.cloud</span></div><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810939169</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11810939169'>Farhoumand Dentistry</a><a href='https://serpagency.monday.com/boards/7495771241/pulses/11517843596'>Farhoumand Dentistry</a><a href='https://serpagency.monday.com/boards/620254537/pulses/11522883206'>Farhoumand Dentistry</a></div></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Q and A Dental Care</h3><div class='task-context'><span>Website: www.qandadentalcare.com</span></div><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11810998868</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11810998868'>Q and A Dental Care</a><a href='https://serpagency.monday.com/boards/7495771241/pulses/9635470989'>Q and A Dental Care</a></div></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Commonwealth Dentistry</h3><div class='task-context'><span>Website: website not found</span></div><p>Orange; Grethel explicitly listed as co-owner; Monday item <code>11782422654</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11782422654'>Commonwealth Dentistry</a><a href='https://serpagency.monday.com/boards/7814702110/pulses/11406866552'>Commonwealth Dentistry</a></div></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Dental Studio of Palm Harbor</h3><div class='task-context'><span>Website: dentalstudioofpalmharbor.kinsta.cloud, yourpalmharbordentist.com</span></div><p>Orange; Grethel explicitly listed as co-owner; Monday item <code>11778866818</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11778866818'>Dental Studio of Palm Harbor</a><a href='https://serpagency.monday.com/boards/7814702110/pulses/11406800953'>Dental Studio of Palm Harbor</a><a href='https://serpagency.monday.com/boards/620254537/pulses/10767382110'>Dental Studio of Palm Harbor</a></div></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>NK Family Dental</h3><div class='task-context'><span>Website: nkfamilydental.kinsta.cloud</span></div><p>Orange; Grethel explicitly listed as co-owner; Monday item <code>11778876807</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11778876807'>NK Family Dental</a><a href='https://serpagency.monday.com/boards/7814702110/pulses/11406800772'>NK Family Dental</a><a href='https://serpagency.monday.com/boards/620254537/pulses/10673332444'>NK Family Dental</a></div></div><div class='row-meta'><span class='badge badge-in-progress'>in progress</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article></section><section class='panel panel-done'><div class='panel-head'><h3>Done</h3><strong>450m</strong></div><article class='work-row'><div><h3>Michael Bleeker DMD</h3><div class='task-context'><span>Website: www.michaellbleekerdmd.com</span></div><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11741916305</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11741916305'>Michael Bleeker DMD</a><a href='https://serpagency.monday.com/boards/6982782532/pulses/11641989874'>Michael Bleeker DMD</a></div></div><div class='row-meta'><span class='badge badge-done'>done</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Tabor Dental</h3><div class='task-context'><span>Website: website not found</span></div><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11741869632</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11741869632'>Tabor Dental</a><a href='https://serpagency.monday.com/boards/7495771241/pulses/8060588723'>Tabor Dental</a></div></div><div class='row-meta'><span class='badge badge-done'>done</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Winwood Dental</h3><div class='task-context'><span>Website: winwooddental.com</span></div><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11742693455</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11742693455'>Winwood Dental</a><a href='https://serpagency.monday.com/boards/7495771241/pulses/9312639165'>Winwood Dental</a><a href='https://serpagency.monday.com/boards/620254537/pulses/9363506159'>Winwood Dental</a></div></div><div class='row-meta'><span class='badge badge-done'>done</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>Loftus Family Dental</h3><div class='task-context'><span>Website: loftusdentistincoeurdalene.kinsta.cloud</span></div><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11801228840</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11801228840'>Loftus Family Dental</a><a href='https://serpagency.monday.com/boards/7495771241/pulses/11473884532'>Loftus Family Dental</a><a href='https://serpagency.monday.com/boards/620254537/pulses/11459922043'>Loftus Family Dental</a></div></div><div class='row-meta'><span class='badge badge-done'>done</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article><article class='work-row'><div><h3>South Florida Sedation Dentistry</h3><div class='task-context'><span>Website: southflsedation.kinsta.cloud, www.southfloridasedationdentistry.com</span></div><p>White; effective owner Grethel by blank-owner rule; Monday item <code>11795316728</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/6982782532/pulses/11795316728'>South Florida Sedation Dentistry</a><a href='https://serpagency.monday.com/boards/7495771241/pulses/18183666938'>South Florida Sedation Dentistry</a><a href='https://serpagency.monday.com/boards/620254537/pulses/18370030945'>South Florida Sedation Dentistry</a></div></div><div class='row-meta'><span class='badge badge-done'>done</span><span>report</span><strong>90m</strong><small>Grethel: Report</small></div></article></section></div></section><section class='person-section' id='glydel'><div class='person-head'><div><p class='eyebrow'>2026-04-27 to 2026-05-03</p><h2>Glydel</h2></div><div class='person-metrics'><div><span>Open</span><strong>5</strong></div><div><span>Open Est.</span><strong>140m</strong></div><div><span>Done</span><strong>0</strong></div><div><span>Done Est.</span><strong>0m</strong></div></div></div><div class='person-grid'><section class='panel panel-open'><div class='panel-head'><h3>This Week</h3><strong>140m</strong></div><article class='work-row'><div><h3>Open urgent content ticket</h3><div class='task-context'><span>Website: website not found</span></div><p>Needs ticket opened by end of day.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770146011'>Content</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770474236'>Content</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>content</span><strong>20m</strong><small>Glydel: Content - Articles (full - image, internal, cta)</small></div></article><article class='work-row'><div><h3>Submit content for publishing</h3><div class='task-context'><span>Website: website not found</span></div><p>Needs publishing handoff by end of week.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770146011'>Content</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770474236'>Content</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>content publishing</span><strong>20m</strong><small>Glydel: Content - Articles (full - image, internal, cta)</small></div></article><article class='work-row'><div><h3>Wagner GBP optimization</h3><div class='task-context'><span>Website: website not found</span></div><p>GBP optimization note from manager weekly task list.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.monday.com/boards/9496422576/pulses/9784820539'>Simply Veneers GBP schedule task</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/9871491519'>GBP Optimization</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>gbp</span><strong>40m</strong><small>Glydel: GBP Optimization (Normal + Local Falcon Suggestions Implementation)</small></div></article><article class='work-row'><div><h3>Simply Veneers GBP optimization</h3><div class='task-context'><span>Website: www.simplyveneers.com</span></div><p>Linked Monday task: <code>https://serpagency.monday.com/boards/9496422576/pulses/9784820539</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/9496422576/pulses/9784820539'>GBP post Schedule</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.monday.com/boards/620254537/pulses/6003631752'>Simply Veneers</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>gbp</span><strong>40m</strong><small>Glydel: GBP Optimization (Normal + Local Falcon Suggestions Implementation)</small></div></article><article class='work-row'><div><h3>Images and content work</h3><div class='task-context'><span>Website: website not found</span></div><p>Manager note: content includes images and content.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770145247'>Images</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>content</span><strong>20m</strong><small>Glydel: Content - Articles (full - image, internal, cta)</small></div></article></section><section class='panel panel-done'><div class='panel-head'><h3>Done</h3><strong>0m</strong></div><p class='empty'>Nothing marked done yet.</p></section></div></section>
+      <p class="lede">Generated from local team-management notes, Monday cache, client records, and SOP workload estimates. Checkbox changes are visual only and do not update source notes.</p>
+      <div class="stats">
+        <div class="stat is-hero"><div class="stat-label">Open workload</div><div class="stat-value">47h30</div><div class="stat-trend">34 open tasks</div></div>
+        <div class="stat"><div class="stat-label">Done</div><div class="stat-value">0</div><div class="stat-trend">current week</div></div>
+        <div class="stat is-alert"><div class="stat-label">Overdue</div><div class="stat-value">34</div><div class="stat-trend">based on due date</div></div>
+        <div class="stat"><div class="stat-label">Missing sites</div><div class="stat-value">13</div><div class="stat-trend">domain not resolved</div></div>
+      </div>
+    </section>
+    <div class="filter-bar">
+      <span class="filter-label">Filter</span>
+      <select id="cat-filter"><option value="">All categories</option><option value="report">Report</option><option value="spellcheck">Spellcheck</option><option value="website-qc">Website Qc</option><option value="gbp">Gbp</option><option value="content">Content</option><option value="campaign-tracking">Campaign Tracking</option><option value="content-publishing">Content Publishing</option><option value="delegation-check">Delegation Check</option><option value="local-seo">Local Seo</option><option value="sop-update">Sop Update</option></select>
+      <button class="pfilter" data-person-filter="alex"><span class="dot cat-dot-accent"></span>Aleksandar</button><button class="pfilter" data-person-filter="mikee"><span class="dot cat-dot-forest"></span>Mikee</button><button class="pfilter" data-person-filter="grethel"><span class="dot cat-dot-deep-blue"></span>Grethel</button><button class="pfilter" data-person-filter="glydel"><span class="dot cat-dot-plum"></span>Glydel</button>
+      <button class="toggle-overdue" id="overdue-toggle">Overdue <span class="count">34</span></button>
+      <button class="chip-clear" id="reset-btn" style="display:none;"><span class="x">x</span> Clear</button>
+      <div class="results-count">Showing <strong>34</strong> of 34</div>
+    </div>
+    <section class="workspace">
+      <div class="workspace-main">
+        <div class="section-head"><h2>This week's <em>work</em></h2><div class="rule"></div><div class="meta-tag">34 tasks</div></div>
+        
+    <section class="person" id="alex" data-person="alex">
+      <div class="person-head">
+        <div class="person-id">
+          <div class="avatar avatar-accent">AA</div>
+          <div>
+            <div class="person-eyebrow">Owner</div>
+            <h2 class="person-name">Aleksandar Atanasoski</h2>
+          </div>
+        </div>
+        <div class="person-stats">
+          <div class="pstat">
+            <div class="pstat-value">12</div>
+            <div class="pstat-label">open</div>
+          </div>
+          <div class="pstat">
+            <div class="pstat-value">16h</div>
+            <div class="pstat-label">est.</div>
+          </div>
+          <div class="pstat pstat-alert">
+            <div class="pstat-value">12</div>
+            <div class="pstat-label">overdue</div>
+          </div>
+          <div class="pstat-bar-wrap">
+            <div class="pstat-bar-label"><span>capacity</span><span class="mono">40%</span></div>
+            <div class="pstat-bar"><span style="width:40%;background:var(--accent);"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="task-list">
+        <article class="task" data-task-id="alex-0" data-person="alex" data-category="gbp" data-status="planned" data-overdue="1" data-search="empower dental lab open new gbp; this is late. use approved name/category once client approval is confirmed. aleksandar atanasoski gbp empowerdentalgroup.com empower dental lab gbp ticket" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-alex-0" class="task-checkbox">
+            <label for="chk-alex-0" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Empower Dental Lab</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">empowerdentalgroup.com</span>
+                  <span class="ctx-chip cat cat-accent">Gbp</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">2h</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Open new GBP; this is late. Use approved name/category once client approval is confirmed.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Glydel: GBP Full Optimization (Products, services, area)</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/7441724825/pulses/11290572749" target="_blank" rel="noreferrer" class="task-link" title="Empower Dental Lab GBP ticket"><span class="link-tag">monday</span><span class="link-label">Empower Dental Lab GBP ticket</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="alex-1" data-person="alex" data-category="spellcheck" data-status="planned" data-overdue="1" data-search="ashburn pre-launch qc spellcheck recent qc/post-qc spellcheck pass. include business information check and quality score where applicable. aleksandar atanasoski spellcheck ashburnfamilydentalcare.kinsta.cloud www.arlingtondentalcenter.com ashburn build ashburn sitemap sheet ashburn -&gt; `https://ashburnfamilydentalcare.com/` (live site from monday updates); original source site to review against" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-alex-1" class="task-checkbox">
+            <label for="chk-alex-1" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Ashburn pre-launch QC spellcheck</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">ashburnfamilydentalcare.kinsta.cloud, www.arlingtondentalcenter.com</span>
+                  <span class="ctx-chip cat cat-amber">Spellcheck</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">30m</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Recent QC/post-QC spellcheck pass. Include business information check and quality score where applicable.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Aira: Spellcheck</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/620254537/pulses/11683911869" target="_blank" rel="noreferrer" class="task-link" title="Ashburn build"><span class="link-tag">monday</span><span class="link-label">Ashburn build</span></a><a href="https://docs.google.com/spreadsheets/d/14MZtMiUZXBv2B_n5Dh-qFi9gdc3ALhHj/edit?gid=733771117#gid=733771117" target="_blank" rel="noreferrer" class="task-link" title="Ashburn sitemap sheet"><span class="link-tag">doc</span><span class="link-label">Ashburn sitemap sheet</span></a><a href="https://www.arlingtondentalcenter.com/" target="_blank" rel="noreferrer" class="task-link" title="Ashburn -&gt; `https://ashburnfamilydentalcare.com/` (live site from Monday updates); original source site to review against"><span class="link-tag">web</span><span class="link-label">Ashburn -&gt; <code>https://ashburnfamilydentalcare.com/</code> (live site from Monday updates); original source site to review against</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="alex-2" data-person="alex" data-category="spellcheck" data-status="planned" data-overdue="1" data-search="clear lake post-launch qc spellcheck recent qc/post-qc spellcheck pass. include business information check and quality score where applicable. aleksandar atanasoski spellcheck clearlakeu.kinsta.cloud clear lake build clear lake pre-launch qc ticket clear lake" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-alex-2" class="task-checkbox">
+            <label for="chk-alex-2" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Clear Lake post-launch QC spellcheck</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">clearlakeu.kinsta.cloud</span>
+                  <span class="ctx-chip cat cat-amber">Spellcheck</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">30m</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Recent QC/post-QC spellcheck pass. Include business information check and quality score where applicable.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Aira: Spellcheck</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/620254537/pulses/11583406797" target="_blank" rel="noreferrer" class="task-link" title="Clear Lake build"><span class="link-tag">monday</span><span class="link-label">Clear Lake build</span></a><a href="https://serpagency.monday.com/boards/7441724825/pulses/11783862097" target="_blank" rel="noreferrer" class="task-link" title="Clear Lake pre-launch QC ticket"><span class="link-tag">monday</span><span class="link-label">Clear Lake pre-launch QC ticket</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11837163118" target="_blank" rel="noreferrer" class="task-link" title="Clear Lake"><span class="link-tag">monday</span><span class="link-label">Clear Lake</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="alex-3" data-person="alex" data-category="campaign-tracking" data-status="planned" data-overdue="1" data-search="client campaign setup and monday tracking high-priority this week: confirm each client has campaign setup and tracking represented in monday. aleksandar atanasoski campaign tracking  " data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-alex-3" class="task-checkbox">
+            <label for="chk-alex-3" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Client campaign setup and Monday tracking</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-none">no website</span>
+                  <span class="ctx-chip cat cat-teal">Campaign Tracking</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">High-priority this week: confirm each client has campaign setup and tracking represented in Monday.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Google Properties (GTM, GA, GSC, WC)</span></div>
+            
+          </div>
+        </article>
+
+        <article class="task" data-task-id="alex-4" data-person="alex" data-category="local-seo" data-status="planned" data-overdue="1" data-search="empower dental rancho name cleanup, citations refresh, and apple maps. aleksandar atanasoski local seo empowerdentalgroup.com empower dental lab gbp ticket citations refresh citations refresh" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-alex-4" class="task-checkbox">
+            <label for="chk-alex-4" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Empower Dental Rancho</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">empowerdentalgroup.com</span>
+                  <span class="ctx-chip cat cat-accent">Local Seo</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Name cleanup, citations refresh, and Apple Maps.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Mikee: Citations</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/7441724825/pulses/11290572749" target="_blank" rel="noreferrer" class="task-link" title="Empower Dental Lab GBP ticket"><span class="link-tag">monday</span><span class="link-label">Empower Dental Lab GBP ticket</span></a><a href="https://serpagency.monday.com/boards/7441724825/pulses/8713490440" target="_blank" rel="noreferrer" class="task-link" title="Citations Refresh"><span class="link-tag">monday</span><span class="link-label">Citations Refresh</span></a><a href="https://serpagency.monday.com/boards/7441724825/pulses/8343879676" target="_blank" rel="noreferrer" class="task-link" title="Citations refresh"><span class="link-tag">monday</span><span class="link-label">Citations refresh</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="alex-5" data-person="alex" data-category="spellcheck" data-status="planned" data-overdue="1" data-search="loftus post-launch qc spellcheck recent qc/post-qc spellcheck pass. include business information check and quality score where applicable. aleksandar atanasoski spellcheck loftusdentistincoeurdalene.kinsta.cloud loftus build loftus post-launch context ticket post-launch qc" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-alex-5" class="task-checkbox">
+            <label for="chk-alex-5" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Loftus post-launch QC spellcheck</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">loftusdentistincoeurdalene.kinsta.cloud</span>
+                  <span class="ctx-chip cat cat-amber">Spellcheck</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">30m</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Recent QC/post-QC spellcheck pass. Include business information check and quality score where applicable.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Aira: Spellcheck</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/620254537/pulses/11459922043" target="_blank" rel="noreferrer" class="task-link" title="Loftus build"><span class="link-tag">monday</span><span class="link-label">Loftus build</span></a><a href="https://serpagency.monday.com/boards/7441724825/pulses/11824641367" target="_blank" rel="noreferrer" class="task-link" title="Loftus post-launch context ticket"><span class="link-tag">monday</span><span class="link-label">Loftus post-launch context ticket</span></a><a href="https://serpagency.monday.com/boards/7441724825/pulses/11783138770" target="_blank" rel="noreferrer" class="task-link" title="Post-Launch QC"><span class="link-tag">monday</span><span class="link-label">Post-Launch QC</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="alex-6" data-person="alex" data-category="spellcheck" data-status="planned" data-overdue="1" data-search="lorton town dental seo qc spellcheck recent qc/post-qc spellcheck pass. include business information check and quality score where applicable. aleksandar atanasoski spellcheck lortontowndental.com lorton town dental client lorton town dental lorton town dental" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-alex-6" class="task-checkbox">
+            <label for="chk-alex-6" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Lorton Town Dental SEO QC spellcheck</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">lortontowndental.com</span>
+                  <span class="ctx-chip cat cat-amber">Spellcheck</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">30m</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Recent QC/post-QC spellcheck pass. Include business information check and quality score where applicable.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Aira: Spellcheck</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/7814702110/pulses/11406812858" target="_blank" rel="noreferrer" class="task-link" title="Lorton Town Dental client"><span class="link-tag">monday</span><span class="link-label">Lorton Town Dental client</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11506869732" target="_blank" rel="noreferrer" class="task-link" title="Lorton Town Dental"><span class="link-tag">monday</span><span class="link-label">Lorton Town Dental</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11085427475" target="_blank" rel="noreferrer" class="task-link" title="Lorton Town Dental"><span class="link-tag">monday</span><span class="link-label">Lorton Town Dental</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="alex-7" data-person="alex" data-category="delegation-check" data-status="planned" data-overdue="1" data-search="northwest general dentistry / cr smiles campaigns campaigns are created; confirm ownership and delegation are set correctly. aleksandar atanasoski delegation check book.nwgd.net northwest general dentistry build northwest general dentistry" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-alex-7" class="task-checkbox">
+            <label for="chk-alex-7" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Northwest General Dentistry / CR Smiles campaigns</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">book.nwgd.net</span>
+                  <span class="ctx-chip cat cat-teal">Delegation Check</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">--</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Campaigns are created; confirm ownership and delegation are set correctly.</p>
+            
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/620254537/pulses/11743526185" target="_blank" rel="noreferrer" class="task-link" title="Northwest General Dentistry build"><span class="link-tag">monday</span><span class="link-label">Northwest General Dentistry build</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11680666171" target="_blank" rel="noreferrer" class="task-link" title="Northwest General Dentistry"><span class="link-tag">monday</span><span class="link-label">Northwest General Dentistry</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="alex-8" data-person="alex" data-category="website-qc" data-status="planned" data-overdue="1" data-search="northwest general dentistry pre-launch qc confirm pre-launch checks before handoff. aleksandar atanasoski website qc book.nwgd.net northwest general dentistry build northwest general dentistry" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-alex-8" class="task-checkbox">
+            <label for="chk-alex-8" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Northwest General Dentistry pre-launch QC</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">book.nwgd.net</span>
+                  <span class="ctx-chip cat cat-deep-blue">Website Qc</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Confirm pre-launch checks before handoff.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Mikee: Website QC</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/620254537/pulses/11743526185" target="_blank" rel="noreferrer" class="task-link" title="Northwest General Dentistry build"><span class="link-tag">monday</span><span class="link-label">Northwest General Dentistry build</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11680666171" target="_blank" rel="noreferrer" class="task-link" title="Northwest General Dentistry"><span class="link-tag">monday</span><span class="link-label">Northwest General Dentistry</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="alex-9" data-person="alex" data-category="spellcheck" data-status="planned" data-overdue="1" data-search="northwest general dentistry pre-launch qc spellcheck recent qc/post-qc spellcheck pass. include business information check and quality score where applicable. aleksandar atanasoski spellcheck book.nwgd.net northwest general dentistry build northwest general dentistry" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-alex-9" class="task-checkbox">
+            <label for="chk-alex-9" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Northwest General Dentistry pre-launch QC spellcheck</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">book.nwgd.net</span>
+                  <span class="ctx-chip cat cat-amber">Spellcheck</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">30m</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Recent QC/post-QC spellcheck pass. Include business information check and quality score where applicable.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Aira: Spellcheck</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/620254537/pulses/11743526185" target="_blank" rel="noreferrer" class="task-link" title="Northwest General Dentistry build"><span class="link-tag">monday</span><span class="link-label">Northwest General Dentistry build</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11680666171" target="_blank" rel="noreferrer" class="task-link" title="Northwest General Dentistry"><span class="link-tag">monday</span><span class="link-label">Northwest General Dentistry</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="alex-10" data-person="alex" data-category="spellcheck" data-status="planned" data-overdue="1" data-search="the dental club post-launch qc spellcheck recent qc/post-qc spellcheck pass. include business information check and quality score where applicable. aleksandar atanasoski spellcheck thedentalclub.kinsta.cloud the dental club monday pulse the dental club qc doc the dental club seo qc task" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-alex-10" class="task-checkbox">
+            <label for="chk-alex-10" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">The Dental Club post-launch QC spellcheck</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">thedentalclub.kinsta.cloud</span>
+                  <span class="ctx-chip cat cat-amber">Spellcheck</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">30m</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Recent QC/post-QC spellcheck pass. Include business information check and quality score where applicable.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Aira: Spellcheck</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/620254537/pulses/11546650915" target="_blank" rel="noreferrer" class="task-link" title="The Dental Club Monday pulse"><span class="link-tag">monday</span><span class="link-label">The Dental Club Monday pulse</span></a><a href="https://docs.google.com/document/d/1GjJNq-GpisrkM3nkHREi7RH_JtvDrscNYhiif_2l2tk/edit?tab=t.0" target="_blank" rel="noreferrer" class="task-link" title="The Dental Club QC doc"><span class="link-tag">doc</span><span class="link-label">The Dental Club QC doc</span></a><a href="https://serpagency.monday.com/boards/9496422576/pulses/11832345770" target="_blank" rel="noreferrer" class="task-link" title="The Dental Club SEO QC task"><span class="link-tag">monday</span><span class="link-label">The Dental Club SEO QC task</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="alex-11" data-person="alex" data-category="sop-update" data-status="planned" data-overdue="1" data-search="wqa, sitemap, analytics, content audit lower priority than delivery work right now. aleksandar atanasoski sop update  brio sitemap task synergy sitemap task synergy sitemap sheet" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-alex-11" class="task-checkbox">
+            <label for="chk-alex-11" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">WQA, sitemap, analytics, content audit</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-none">no website</span>
+                  <span class="ctx-chip cat cat-muted">Sop Update</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">7h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Lower priority than delivery work right now.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Audit</span><span class="sop-chip">Grethel: Google Properties (GTM, GA, GSC, WC)</span><span class="sop-chip">Mikee: Sitemap</span><span class="sop-chip">Glydel: Content - Articles (full - image, internal, cta)</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/18409825242/pulses/11819307785" target="_blank" rel="noreferrer" class="task-link" title="Brio sitemap task"><span class="link-tag">monday</span><span class="link-label">Brio sitemap task</span></a><a href="https://serpagency.monday.com/boards/18410018587/pulses/11831573217" target="_blank" rel="noreferrer" class="task-link" title="Synergy sitemap task"><span class="link-tag">monday</span><span class="link-label">Synergy sitemap task</span></a><a href="https://docs.google.com/spreadsheets/d/1tK1hnZNb8nu_u8_FyFMNRoWBxNPsZVI5B0IKhrFA96s/edit?gid=1164454692#gid=1164454692" target="_blank" rel="noreferrer" class="task-link" title="Synergy sitemap sheet"><span class="link-tag">doc</span><span class="link-label">Synergy sitemap sheet</span></a></div>
+          </div>
+        </article>
+</div>
+      <div class="person-empty" data-empty-for="alex" style="display:none;">
+        <div class="empty-mark">0</div>
+        <p>No tasks match the current filter for Aleksandar Atanasoski.</p>
+      </div>
+    </section>
+
+    <section class="person" id="mikee" data-person="mikee">
+      <div class="person-head">
+        <div class="person-id">
+          <div class="avatar avatar-forest">MN</div>
+          <div>
+            <div class="person-eyebrow">Owner</div>
+            <h2 class="person-name">Mikee Novio</h2>
+          </div>
+        </div>
+        <div class="person-stats">
+          <div class="pstat">
+            <div class="pstat-value">3</div>
+            <div class="pstat-label">open</div>
+          </div>
+          <div class="pstat">
+            <div class="pstat-value">8h10</div>
+            <div class="pstat-label">est.</div>
+          </div>
+          <div class="pstat pstat-alert">
+            <div class="pstat-value">3</div>
+            <div class="pstat-label">overdue</div>
+          </div>
+          <div class="pstat-bar-wrap">
+            <div class="pstat-bar-label"><span>capacity</span><span class="mono">20%</span></div>
+            <div class="pstat-bar"><span style="width:20%;background:var(--forest);"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="task-list">
+        <article class="task" data-task-id="mikee-0" data-person="mikee" data-category="website-qc" data-status="planned" data-overdue="1" data-search="clear lake post-launch qc confirm tracking, landers, and platform linking after launch. mikee novio website qc clearlakeu.kinsta.cloud clear lake sitemap follow-up clear lake build clear lake pre-launch qc ticket" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-mikee-0" class="task-checkbox">
+            <label for="chk-mikee-0" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Clear Lake post-launch QC</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">clearlakeu.kinsta.cloud</span>
+                  <span class="ctx-chip cat cat-deep-blue">Website Qc</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">2h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Confirm tracking, landers, and platform linking after launch.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Google Properties (GTM, GA, GSC, WC)</span><span class="sop-chip">Mikee: Website QC</span></div>
+            <div class="task-links"><a href="https://serpagency.slack.com/archives/D08QF163W03/p1775056376907929" target="_blank" rel="noreferrer" class="task-link" title="Clear Lake sitemap follow-up"><span class="link-tag">slack</span><span class="link-label">Clear Lake sitemap follow-up</span></a><a href="https://serpagency.monday.com/boards/620254537/pulses/11583406797" target="_blank" rel="noreferrer" class="task-link" title="Clear Lake build"><span class="link-tag">monday</span><span class="link-label">Clear Lake build</span></a><a href="https://serpagency.monday.com/boards/7441724825/pulses/11783862097" target="_blank" rel="noreferrer" class="task-link" title="Clear Lake pre-launch QC ticket"><span class="link-tag">monday</span><span class="link-label">Clear Lake pre-launch QC ticket</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="mikee-1" data-person="mikee" data-category="website-qc" data-status="planned" data-overdue="1" data-search="the dental club post-launch qc confirm tracking, landers, and platform linking after launch. mikee novio website qc thedentalclub.kinsta.cloud the dental club monday pulse the dental club seo qc task the dental club" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-mikee-1" class="task-checkbox">
+            <label for="chk-mikee-1" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">The Dental Club post-launch QC</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">thedentalclub.kinsta.cloud</span>
+                  <span class="ctx-chip cat cat-deep-blue">Website Qc</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">2h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Confirm tracking, landers, and platform linking after launch.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Google Properties (GTM, GA, GSC, WC)</span><span class="sop-chip">Mikee: Website QC</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/620254537/pulses/11546650915" target="_blank" rel="noreferrer" class="task-link" title="The Dental Club Monday pulse"><span class="link-tag">monday</span><span class="link-label">The Dental Club Monday pulse</span></a><a href="https://serpagency.monday.com/boards/9496422576/pulses/11832345770" target="_blank" rel="noreferrer" class="task-link" title="The Dental Club SEO QC task"><span class="link-tag">monday</span><span class="link-label">The Dental Club SEO QC task</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11747675809" target="_blank" rel="noreferrer" class="task-link" title="The Dental Club"><span class="link-tag">monday</span><span class="link-label">The Dental Club</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="mikee-2" data-person="mikee" data-category="website-qc" data-status="planned" data-overdue="1" data-search="loftus family dental post-launch qc check ahrefs technical items, tracking, gsc, ga4, gbp, gtm/conversion actions, and lander pointing. mikee novio website qc loftusdentistincoeurdalene.kinsta.cloud loftus build loftus post-launch context ticket ahrefs technical" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-mikee-2" class="task-checkbox">
+            <label for="chk-mikee-2" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Loftus Family Dental post-launch QC</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">loftusdentistincoeurdalene.kinsta.cloud</span>
+                  <span class="ctx-chip cat cat-deep-blue">Website Qc</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 1d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">3h10</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Check Ahrefs technical items, tracking, GSC, GA4, GBP, GTM/conversion actions, and lander pointing.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Google Properties (GTM, GA, GSC, WC)</span><span class="sop-chip">Mikee: Website QC</span><span class="sop-chip">Glydel: GBP Optimization (Normal</span><span class="sop-chip">Local Falcon Suggestions Implementation)</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/620254537/pulses/11459922043" target="_blank" rel="noreferrer" class="task-link" title="Loftus build"><span class="link-tag">monday</span><span class="link-label">Loftus build</span></a><a href="https://serpagency.monday.com/boards/7441724825/pulses/11824641367" target="_blank" rel="noreferrer" class="task-link" title="Loftus post-launch context ticket"><span class="link-tag">monday</span><span class="link-label">Loftus post-launch context ticket</span></a><a href="https://serpagency.monday.com/boards/7441724825/pulses/11712877419" target="_blank" rel="noreferrer" class="task-link" title="Ahrefs Technical"><span class="link-tag">monday</span><span class="link-label">Ahrefs Technical</span></a></div>
+          </div>
+        </article>
+</div>
+      <div class="person-empty" data-empty-for="mikee" style="display:none;">
+        <div class="empty-mark">0</div>
+        <p>No tasks match the current filter for Mikee Novio.</p>
+      </div>
+    </section>
+
+    <section class="person" id="grethel" data-person="grethel">
+      <div class="person-head">
+        <div class="person-id">
+          <div class="avatar avatar-deep-blue">GR</div>
+          <div>
+            <div class="person-eyebrow">Owner</div>
+            <h2 class="person-name">Grethel</h2>
+          </div>
+        </div>
+        <div class="person-stats">
+          <div class="pstat">
+            <div class="pstat-value">14</div>
+            <div class="pstat-label">open</div>
+          </div>
+          <div class="pstat">
+            <div class="pstat-value">21h</div>
+            <div class="pstat-label">est.</div>
+          </div>
+          <div class="pstat pstat-alert">
+            <div class="pstat-value">14</div>
+            <div class="pstat-label">overdue</div>
+          </div>
+          <div class="pstat-bar-wrap">
+            <div class="pstat-bar-label"><span>capacity</span><span class="mono">52%</span></div>
+            <div class="pstat-bar"><span style="width:52%;background:var(--deep-blue);"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="task-list">
+        <article class="task" data-task-id="grethel-0" data-person="grethel" data-category="report" data-status="in progress" data-overdue="1" data-search="central avenue dental report white pod; due 2026-04-27; meeting -; range not found in cached comments; monday item `11842692468`; [report doc](https://docs.google.com/document/d/1fbjbendtyxouftiuf0gjk4_bradmkafisu6g2zuyra4/edit?usp=sharing) grethel report  central avenue dental central avenue dental" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-grethel-0" class="task-checkbox">
+            <label for="chk-grethel-0" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Central Avenue Dental report</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-none">no website</span>
+                  <span class="ctx-chip cat cat-forest">Report</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 8d</span>
+                  <span class="ctx-chip status status-in-progress">In Progress</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">White pod; due 2026-04-27; meeting -; range not found in cached comments; Monday item <code>11842692468</code>; <a href="https://docs.google.com/document/d/1fBJBeNDTyxouFTIUF0gjk4_bradMkafisU6G2zuYra4/edit?usp=sharing">Report doc</a></p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Report</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/6982782532/pulses/11842692468" target="_blank" rel="noreferrer" class="task-link" title="Central Avenue Dental"><span class="link-tag">monday</span><span class="link-label">Central Avenue Dental</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/7457554742" target="_blank" rel="noreferrer" class="task-link" title="Central Avenue Dental"><span class="link-tag">monday</span><span class="link-label">Central Avenue Dental</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="grethel-1" data-person="grethel" data-category="report" data-status="planned" data-overdue="1" data-search="gilman orthodontics report white pod; due 2026-04-27; meeting -; range not found in cached comments; monday item `11839892229`; [report doc](https://docs.google.com/document/d/1bir7dbfuuetcpvyezq39vfxtlmpdj2mtevdb3rotba0/edit?usp=sharing) grethel report  gilman orthodontics gilman orthodontics" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-grethel-1" class="task-checkbox">
+            <label for="chk-grethel-1" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Gilman Orthodontics report</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-none">no website</span>
+                  <span class="ctx-chip cat cat-forest">Report</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 8d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">White pod; due 2026-04-27; meeting -; range not found in cached comments; Monday item <code>11839892229</code>; <a href="https://docs.google.com/document/d/1BIR7DbfUUetcPVyeZq39VFxTlmpdj2MTEvDB3ROTba0/edit?usp=sharing">Report doc</a></p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Report</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/6982782532/pulses/11839892229" target="_blank" rel="noreferrer" class="task-link" title="Gilman Orthodontics"><span class="link-tag">monday</span><span class="link-label">Gilman Orthodontics</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11557742094" target="_blank" rel="noreferrer" class="task-link" title="Gilman Orthodontics"><span class="link-tag">monday</span><span class="link-label">Gilman Orthodontics</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="grethel-2" data-person="grethel" data-category="report" data-status="planned" data-overdue="1" data-search="az cosmetic dental report orange pod; due 2026-04-28; meeting 2026-04-28; range not found in cached comments; monday item `11817132654`; [report doc](https://docs.google.com/document/d/1eevkwsfjkn_v3ikfphdl9nxpwj4zuw1rjnpfbnrd7ty/edit?tab=t.0#heading=h.2tsxonuyysri) grethel report azfamilydentistry.com az cosmetic dental az cosmetic dental" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-grethel-2" class="task-checkbox">
+            <label for="chk-grethel-2" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">AZ Cosmetic Dental report</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">azfamilydentistry.com</span>
+                  <span class="ctx-chip cat cat-forest">Report</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 7d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Orange pod; due 2026-04-28; meeting 2026-04-28; range not found in cached comments; Monday item <code>11817132654</code>; <a href="https://docs.google.com/document/d/1eEvkwSFJKn_v3IKFpHdL9NxpwJ4Zuw1rJnpFbnRd7TY/edit?tab=t.0#heading=h.2tsxonuyysri">Report doc</a></p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Report</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/6982782532/pulses/11817132654" target="_blank" rel="noreferrer" class="task-link" title="AZ Cosmetic Dental"><span class="link-tag">monday</span><span class="link-label">AZ Cosmetic Dental</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11593649968" target="_blank" rel="noreferrer" class="task-link" title="AZ Cosmetic Dental"><span class="link-tag">monday</span><span class="link-label">AZ Cosmetic Dental</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="grethel-3" data-person="grethel" data-category="report" data-status="planned" data-overdue="1" data-search="cdoc report orange pod; due 2026-04-28; meeting 2026-04-29; range not found in cached comments; monday item `11817148057`; [report doc](https://docs.google.com/document/d/16ufmqld74ap7uliwxasj2o0zxwjsz4ry_1w5p8zrfoc/edit?tab=t.0#heading=h.4dpu6546l5s7) grethel report  cdoc edit" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-grethel-3" class="task-checkbox">
+            <label for="chk-grethel-3" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">CDOC report</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-none">no website</span>
+                  <span class="ctx-chip cat cat-forest">Report</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 7d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Orange pod; due 2026-04-28; meeting 2026-04-29; range not found in cached comments; Monday item <code>11817148057</code>; <a href="https://docs.google.com/document/d/16UfmqLD74AP7ULIWXAsJ2O0zXwJSz4ry_1w5p8ZRfOc/edit?tab=t.0#heading=h.4dpu6546l5s7">Report doc</a></p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Report</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/6982782532/pulses/11817148057" target="_blank" rel="noreferrer" class="task-link" title="CDOC"><span class="link-tag">monday</span><span class="link-label">CDOC</span></a><a href="https://serpagency.monday.com/boards/7441724825/pulses/8691237914" target="_blank" rel="noreferrer" class="task-link" title="Edit"><span class="link-tag">monday</span><span class="link-label">Edit</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="grethel-4" data-person="grethel" data-category="report" data-status="planned" data-overdue="1" data-search="dental wellness report orange pod; due 2026-04-28; meeting 2026-04-28; range not found in cached comments; monday item `11817039846`; [report doc](https://docs.google.com/document/d/1rqucac9r2sgn_qieewiowtkfgn_ytw4ieuylku9uolm/edit?tab=t.0#heading=h.4dpu6546l5s7) grethel report www.1dentalwellness.com dental wellness dental wellness" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-grethel-4" class="task-checkbox">
+            <label for="chk-grethel-4" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Dental Wellness report</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">www.1dentalwellness.com</span>
+                  <span class="ctx-chip cat cat-forest">Report</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 7d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Orange pod; due 2026-04-28; meeting 2026-04-28; range not found in cached comments; Monday item <code>11817039846</code>; <a href="https://docs.google.com/document/d/1RQuCAC9R2SGN_QIEeWioWTKfGN_yTW4iEUyLKu9uolM/edit?tab=t.0#heading=h.4dpu6546l5s7">Report doc</a></p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Report</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/6982782532/pulses/11817039846" target="_blank" rel="noreferrer" class="task-link" title="Dental Wellness"><span class="link-tag">monday</span><span class="link-label">Dental Wellness</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11712442691" target="_blank" rel="noreferrer" class="task-link" title="Dental Wellness"><span class="link-tag">monday</span><span class="link-label">Dental Wellness</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="grethel-5" data-person="grethel" data-category="report" data-status="planned" data-overdue="1" data-search="edg report white pod; due 2026-04-28; meeting -; range not found in cached comments; monday item `11855769000` grethel report  edg edg" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-grethel-5" class="task-checkbox">
+            <label for="chk-grethel-5" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">EDG report</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-none">no website</span>
+                  <span class="ctx-chip cat cat-forest">Report</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 7d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">White pod; due 2026-04-28; meeting -; range not found in cached comments; Monday item <code>11855769000</code></p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Report</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/6982782532/pulses/11855769000" target="_blank" rel="noreferrer" class="task-link" title="EDG"><span class="link-tag">monday</span><span class="link-label">EDG</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11741763974" target="_blank" rel="noreferrer" class="task-link" title="EDG"><span class="link-tag">monday</span><span class="link-label">EDG</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="grethel-6" data-person="grethel" data-category="report" data-status="planned" data-overdue="1" data-search="friendly dental group report white pod; due 2026-04-28; meeting -; range not found in cached comments; monday item `11842758248` grethel report  friendly dental group friendly dental group" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-grethel-6" class="task-checkbox">
+            <label for="chk-grethel-6" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Friendly Dental Group report</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-none">no website</span>
+                  <span class="ctx-chip cat cat-forest">Report</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 7d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">White pod; due 2026-04-28; meeting -; range not found in cached comments; Monday item <code>11842758248</code></p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Report</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/6982782532/pulses/11842758248" target="_blank" rel="noreferrer" class="task-link" title="Friendly Dental Group"><span class="link-tag">monday</span><span class="link-label">Friendly Dental Group</span></a><a href="https://serpagency.monday.com/boards/7495771241/pulses/11406312071" target="_blank" rel="noreferrer" class="task-link" title="Friendly Dental Group"><span class="link-tag">monday</span><span class="link-label">Friendly Dental Group</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="grethel-7" data-person="grethel" data-category="report" data-status="planned" data-overdue="1" data-search="mount jackson dental report orange pod; due 2026-04-28; meeting 2026-04-30; range not found in cached comments; monday item `11817190047`; [report doc](https://docs.google.com/document/d/1mrdxapk6e5dtqed7ibibhnugn9wzmw9ili96pgn8v90/edit?tab=t.0) grethel report www.mountjacksondentalcare.com mount jackson dental mount jackson" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-grethel-7" class="task-checkbox">
+            <label for="chk-grethel-7" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Mount Jackson Dental report</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">www.mountjacksondentalcare.com</span>
+                  <span class="ctx-chip cat cat-forest">Report</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 7d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Orange pod; due 2026-04-28; meeting 2026-04-30; range not found in cached comments; Monday item <code>11817190047</code>; <a href="https://docs.google.com/document/d/1MRDXapk6e5DtQEd7IBibhNugn9wzMw9iLi96pGN8V90/edit?tab=t.0">Report doc</a></p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Report</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/6982782532/pulses/11817190047" target="_blank" rel="noreferrer" class="task-link" title="Mount Jackson Dental"><span class="link-tag">monday</span><span class="link-label">Mount Jackson Dental</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11715206401" target="_blank" rel="noreferrer" class="task-link" title="Mount Jackson"><span class="link-tag">monday</span><span class="link-label">Mount Jackson</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="grethel-8" data-person="grethel" data-category="report" data-status="planned" data-overdue="1" data-search="north atlanta center for cosmetic and implant dentistry report white pod; due 2026-04-28; meeting -; range not found in cached comments; monday item `11855754407`; [report doc](https://docs.google.com/document/d/1vxtamk8kxerwf9ofs8rd3fykthxndyqy5iptvzyvt3m/edit?usp=sharing) grethel report buforddentist.com north atlanta center for cosmetic and implant dentistry north atlanta center for cosmetic and implant dentistry" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-grethel-8" class="task-checkbox">
+            <label for="chk-grethel-8" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">North Atlanta Center for Cosmetic and Implant Dentistry report</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">buforddentist.com</span>
+                  <span class="ctx-chip cat cat-forest">Report</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 7d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">White pod; due 2026-04-28; meeting -; range not found in cached comments; Monday item <code>11855754407</code>; <a href="https://docs.google.com/document/d/1vXTamK8kXErwF9ofs8rD3fYktHxNDyQy5iptvzyvt3M/edit?usp=sharing">Report doc</a></p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Report</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/6982782532/pulses/11855754407" target="_blank" rel="noreferrer" class="task-link" title="North Atlanta Center for Cosmetic and Implant Dentistry"><span class="link-tag">monday</span><span class="link-label">North Atlanta Center for Cosmetic and Implant Dentistry</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11741722160" target="_blank" rel="noreferrer" class="task-link" title="North Atlanta Center for Cosmetic and Implant Dentistry"><span class="link-tag">monday</span><span class="link-label">North Atlanta Center for Cosmetic and Implant Dentistry</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="grethel-9" data-person="grethel" data-category="report" data-status="planned" data-overdue="1" data-search="one ortho report orange pod; due 2026-04-28; meeting 2026-04-28; range not found in cached comments; monday item `11817136657`; [report doc](https://docs.google.com/document/d/1mbozbwovocuzemobrkgnepsjfqrz-vecamaa1hv7j9a/edit?tab=t.0) grethel report  one ortho one ortho" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-grethel-9" class="task-checkbox">
+            <label for="chk-grethel-9" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">One Ortho report</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-none">no website</span>
+                  <span class="ctx-chip cat cat-forest">Report</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 7d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Orange pod; due 2026-04-28; meeting 2026-04-28; range not found in cached comments; Monday item <code>11817136657</code>; <a href="https://docs.google.com/document/d/1MbOZBwoVocUZemobrkgNEpSJFQrZ-vEcAMaA1HV7j9A/edit?tab=t.0">Report doc</a></p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Report</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/6982782532/pulses/11817136657" target="_blank" rel="noreferrer" class="task-link" title="One Ortho"><span class="link-tag">monday</span><span class="link-label">One Ortho</span></a><a href="https://serpagency.monday.com/boards/620254537/pulses/18037725126" target="_blank" rel="noreferrer" class="task-link" title="One Ortho"><span class="link-tag">monday</span><span class="link-label">One Ortho</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="grethel-10" data-person="grethel" data-category="report" data-status="planned" data-overdue="1" data-search="smile312 report orange pod; due 2026-04-28; meeting 2026-04-28; range not found in cached comments; monday item `11817145622`; [report doc](https://docs.google.com/document/d/1oykpy4n0yto7m750xj4od0cr4jq-yp3ri8chfcwyt7a/edit?tab=t.0#heading=h.2tsxonuyysri) grethel report  smile312 smile312" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-grethel-10" class="task-checkbox">
+            <label for="chk-grethel-10" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Smile312 report</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-none">no website</span>
+                  <span class="ctx-chip cat cat-forest">Report</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 7d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Orange pod; due 2026-04-28; meeting 2026-04-28; range not found in cached comments; Monday item <code>11817145622</code>; <a href="https://docs.google.com/document/d/1OYkPY4N0yTO7m750XJ4OD0CR4jq-yp3Ri8ChfCwyt7A/edit?tab=t.0#heading=h.2tsxonuyysri">Report doc</a></p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Report</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/6982782532/pulses/11817145622" target="_blank" rel="noreferrer" class="task-link" title="Smile312"><span class="link-tag">monday</span><span class="link-label">Smile312</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11593648447" target="_blank" rel="noreferrer" class="task-link" title="Smile312"><span class="link-tag">monday</span><span class="link-label">Smile312</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="grethel-11" data-person="grethel" data-category="report" data-status="planned" data-overdue="1" data-search="starlite dental report orange pod; due 2026-04-28; meeting 2026-04-29; range not found in cached comments; monday item `11817135121`; [report doc](https://docs.google.com/document/d/1a3iywhrzqkqcxfwqhhvg9t2cyqm1dtwpi2ogrnf4zo8/edit?tab=t.0#heading=h.f5zytdlaw110) grethel report www.starlitedental.com starlite dental starlite dental" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-grethel-11" class="task-checkbox">
+            <label for="chk-grethel-11" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Starlite Dental report</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">www.starlitedental.com</span>
+                  <span class="ctx-chip cat cat-forest">Report</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 7d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Orange pod; due 2026-04-28; meeting 2026-04-29; range not found in cached comments; Monday item <code>11817135121</code>; <a href="https://docs.google.com/document/d/1a3IYwHrZQkqcXfWQhhVg9t2cYQm1dTWPI2ogrnF4Zo8/edit?tab=t.0#heading=h.f5zytdlaw110">Report doc</a></p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Mikee: Website QC</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/6982782532/pulses/11817135121" target="_blank" rel="noreferrer" class="task-link" title="Starlite Dental"><span class="link-tag">monday</span><span class="link-label">Starlite Dental</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11715105901" target="_blank" rel="noreferrer" class="task-link" title="Starlite Dental"><span class="link-tag">monday</span><span class="link-label">Starlite Dental</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="grethel-12" data-person="grethel" data-category="report" data-status="planned" data-overdue="1" data-search="vista ridge dental report orange pod; due 2026-04-28; meeting 2026-04-28; range not found in cached comments; monday item `11817077431`; [report doc](https://docs.google.com/document/d/1r28ceeljtc8iluweh1s_p-yq9x1uakoctprig7txtvs/edit?tab=t.0) grethel report vistaridgedental.com vista ridge dental vista ridge dental" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-grethel-12" class="task-checkbox">
+            <label for="chk-grethel-12" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Vista Ridge Dental report</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">vistaridgedental.com</span>
+                  <span class="ctx-chip cat cat-forest">Report</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 7d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Orange pod; due 2026-04-28; meeting 2026-04-28; range not found in cached comments; Monday item <code>11817077431</code>; <a href="https://docs.google.com/document/d/1R28CeELJtC8ILUweH1s_P-yq9X1UAkoCTpRiG7txTvs/edit?tab=t.0">Report doc</a></p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Report</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/6982782532/pulses/11817077431" target="_blank" rel="noreferrer" class="task-link" title="Vista Ridge Dental"><span class="link-tag">monday</span><span class="link-label">Vista Ridge Dental</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11679333968" target="_blank" rel="noreferrer" class="task-link" title="Vista Ridge Dental"><span class="link-tag">monday</span><span class="link-label">Vista Ridge Dental</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="grethel-13" data-person="grethel" data-category="report" data-status="planned" data-overdue="1" data-search="wagner sleep dental report orange pod; due 2026-04-28; meeting 2026-04-29; range not found in cached comments; monday item `11817162347`; [report doc](https://docs.google.com/document/d/1nkrlhrx1bplkezvvibcbf2wcxyflqoh1evzxnwp_lyo/edit?tab=t.0#heading=h.4dpu6546l5s7) grethel report www.wagnersleepdentist.com wagner sleep dental wagner sleep" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-grethel-13" class="task-checkbox">
+            <label for="chk-grethel-13" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Wagner Sleep Dental report</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">www.wagnersleepdentist.com</span>
+                  <span class="ctx-chip cat cat-forest">Report</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 7d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">1h30</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Orange pod; due 2026-04-28; meeting 2026-04-29; range not found in cached comments; Monday item <code>11817162347</code>; <a href="https://docs.google.com/document/d/1NkRLHrx1BpLKEZvVIBCBF2WcxYfLQOH1EvzXNwP_lYo/edit?tab=t.0#heading=h.4dpu6546l5s7">Report doc</a></p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Grethel: Report</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/6982782532/pulses/11817162347" target="_blank" rel="noreferrer" class="task-link" title="Wagner Sleep Dental"><span class="link-tag">monday</span><span class="link-label">Wagner Sleep Dental</span></a><a href="https://serpagency.monday.com/boards/6982782532/pulses/11596898265" target="_blank" rel="noreferrer" class="task-link" title="Wagner Sleep"><span class="link-tag">monday</span><span class="link-label">Wagner Sleep</span></a></div>
+          </div>
+        </article>
+</div>
+      <div class="person-empty" data-empty-for="grethel" style="display:none;">
+        <div class="empty-mark">0</div>
+        <p>No tasks match the current filter for Grethel.</p>
+      </div>
+    </section>
+
+    <section class="person" id="glydel" data-person="glydel">
+      <div class="person-head">
+        <div class="person-id">
+          <div class="avatar avatar-plum">GL</div>
+          <div>
+            <div class="person-eyebrow">Owner</div>
+            <h2 class="person-name">Glydel</h2>
+          </div>
+        </div>
+        <div class="person-stats">
+          <div class="pstat">
+            <div class="pstat-value">5</div>
+            <div class="pstat-label">open</div>
+          </div>
+          <div class="pstat">
+            <div class="pstat-value">2h20</div>
+            <div class="pstat-label">est.</div>
+          </div>
+          <div class="pstat pstat-alert">
+            <div class="pstat-value">5</div>
+            <div class="pstat-label">overdue</div>
+          </div>
+          <div class="pstat-bar-wrap">
+            <div class="pstat-bar-label"><span>capacity</span><span class="mono">6%</span></div>
+            <div class="pstat-bar"><span style="width:6%;background:var(--plum);"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="task-list">
+        <article class="task" data-task-id="glydel-0" data-person="glydel" data-category="content" data-status="planned" data-overdue="1" data-search="open urgent content ticket needs ticket opened by end of day. glydel content  content and images update content content" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-glydel-0" class="task-checkbox">
+            <label for="chk-glydel-0" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Open urgent content ticket</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-none">no website</span>
+                  <span class="ctx-chip cat cat-plum">Content</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 5d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">20m</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Needs ticket opened by end of day.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Glydel: Content - Articles (full - image, internal, cta)</span></div>
+            <div class="task-links"><a href="https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859" target="_blank" rel="noreferrer" class="task-link" title="Content and images update"><span class="link-tag">slack</span><span class="link-label">Content and images update</span></a><a href="https://serpagency.monday.com/boards/6770104330/pulses/6770146011" target="_blank" rel="noreferrer" class="task-link" title="Content"><span class="link-tag">monday</span><span class="link-label">Content</span></a><a href="https://serpagency.monday.com/boards/6770104330/pulses/6770474236" target="_blank" rel="noreferrer" class="task-link" title="Content"><span class="link-tag">monday</span><span class="link-label">Content</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="glydel-1" data-person="glydel" data-category="content-publishing" data-status="planned" data-overdue="1" data-search="submit content for publishing needs publishing handoff by end of week. glydel content publishing  content and images update content content" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-glydel-1" class="task-checkbox">
+            <label for="chk-glydel-1" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Submit content for publishing</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-none">no website</span>
+                  <span class="ctx-chip cat cat-plum">Content Publishing</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 5d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">20m</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Needs publishing handoff by end of week.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Glydel: Content - Articles (full - image, internal, cta)</span></div>
+            <div class="task-links"><a href="https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859" target="_blank" rel="noreferrer" class="task-link" title="Content and images update"><span class="link-tag">slack</span><span class="link-label">Content and images update</span></a><a href="https://serpagency.monday.com/boards/6770104330/pulses/6770146011" target="_blank" rel="noreferrer" class="task-link" title="Content"><span class="link-tag">monday</span><span class="link-label">Content</span></a><a href="https://serpagency.monday.com/boards/6770104330/pulses/6770474236" target="_blank" rel="noreferrer" class="task-link" title="Content"><span class="link-tag">monday</span><span class="link-label">Content</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="glydel-2" data-person="glydel" data-category="content" data-status="planned" data-overdue="1" data-search="images and content work manager note: content includes images and content. glydel content  content and images update gbp optimization and posting note images" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-glydel-2" class="task-checkbox">
+            <label for="chk-glydel-2" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Images and content work</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-none">no website</span>
+                  <span class="ctx-chip cat cat-plum">Content</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 5d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">20m</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Manager note: content includes images and content.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Glydel: Content - Articles (full - image, internal, cta)</span></div>
+            <div class="task-links"><a href="https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859" target="_blank" rel="noreferrer" class="task-link" title="Content and images update"><span class="link-tag">slack</span><span class="link-label">Content and images update</span></a><a href="https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129" target="_blank" rel="noreferrer" class="task-link" title="GBP optimization and posting note"><span class="link-tag">slack</span><span class="link-label">GBP optimization and posting note</span></a><a href="https://serpagency.monday.com/boards/6770104330/pulses/6770145247" target="_blank" rel="noreferrer" class="task-link" title="Images"><span class="link-tag">monday</span><span class="link-label">Images</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="glydel-3" data-person="glydel" data-category="gbp" data-status="planned" data-overdue="1" data-search="simply veneers gbp optimization linked monday task: `https://serpagency.monday.com/boards/9496422576/pulses/9784820539`. glydel gbp www.simplyveneers.com gbp post schedule gbp optimization and posting note simply veneers" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-glydel-3" class="task-checkbox">
+            <label for="chk-glydel-3" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Simply Veneers GBP optimization</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-site">www.simplyveneers.com</span>
+                  <span class="ctx-chip cat cat-accent">Gbp</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 5d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">40m</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">Linked Monday task: <code>https://serpagency.monday.com/boards/9496422576/pulses/9784820539</code>.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Glydel: GBP Optimization (Normal</span><span class="sop-chip">Local Falcon Suggestions Implementation)</span></div>
+            <div class="task-links"><a href="https://serpagency.monday.com/boards/9496422576/pulses/9784820539" target="_blank" rel="noreferrer" class="task-link" title="GBP post Schedule"><span class="link-tag">monday</span><span class="link-label">GBP post Schedule</span></a><a href="https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129" target="_blank" rel="noreferrer" class="task-link" title="GBP optimization and posting note"><span class="link-tag">slack</span><span class="link-label">GBP optimization and posting note</span></a><a href="https://serpagency.monday.com/boards/620254537/pulses/6003631752" target="_blank" rel="noreferrer" class="task-link" title="Simply Veneers"><span class="link-tag">monday</span><span class="link-label">Simply Veneers</span></a></div>
+          </div>
+        </article>
+
+        <article class="task" data-task-id="glydel-4" data-person="glydel" data-category="gbp" data-status="planned" data-overdue="1" data-search="wagner gbp optimization gbp optimization note from manager weekly task list. glydel gbp  gbp optimization and posting note simply veneers gbp schedule task gbp optimization" data-completed="0">
+          <div class="task-check">
+            <input type="checkbox" id="chk-glydel-4" class="task-checkbox">
+            <label for="chk-glydel-4" class="task-check-label" title="Mark done"></label>
+          </div>
+          <div class="task-body">
+            <div class="task-top">
+              <div class="task-title-block">
+                <h3 class="task-title">Wagner GBP optimization</h3>
+                <div class="task-context">
+                  <span class="ctx-chip ctx-none">no website</span>
+                  <span class="ctx-chip cat cat-accent">Gbp</span>
+                  <span class="ctx-chip due due-overdue">Overdue - 5d</span>
+                  <span class="ctx-chip status status-planned">Planned</span>
+                </div>
+              </div>
+              <div class="task-est">
+                <div class="task-est-value">40m</div>
+                <div class="task-est-label">est.</div>
+              </div>
+            </div>
+            <p class="task-desc">GBP optimization note from manager weekly task list.</p>
+            <div class="sop-row"><span class="sop-label">SOP</span><span class="sop-chip">Glydel: GBP Optimization (Normal</span><span class="sop-chip">Local Falcon Suggestions Implementation)</span></div>
+            <div class="task-links"><a href="https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129" target="_blank" rel="noreferrer" class="task-link" title="GBP optimization and posting note"><span class="link-tag">slack</span><span class="link-label">GBP optimization and posting note</span></a><a href="https://serpagency.monday.com/boards/9496422576/pulses/9784820539" target="_blank" rel="noreferrer" class="task-link" title="Simply Veneers GBP schedule task"><span class="link-tag">monday</span><span class="link-label">Simply Veneers GBP schedule task</span></a><a href="https://serpagency.monday.com/boards/7441724825/pulses/9871491519" target="_blank" rel="noreferrer" class="task-link" title="GBP Optimization"><span class="link-tag">monday</span><span class="link-label">GBP Optimization</span></a></div>
+          </div>
+        </article>
+</div>
+      <div class="person-empty" data-empty-for="glydel" style="display:none;">
+        <div class="empty-mark">0</div>
+        <p>No tasks match the current filter for Glydel.</p>
+      </div>
+    </section>
+
+        <div class="global-empty" id="global-empty">
+          <div class="empty-mark">0</div>
+          <h3>Nothing on the board.</h3>
+          <p>Clear filters or search again.</p>
+        </div>
+      </div>
+      <aside class="workspace-side">
+        <div class="aside-card">
+          <div class="aside-head"><h3>Where the <em>time</em> goes</h3><div class="meta">10 cats</div></div>
+          
+      <div class="cat-row">
+        <div class="cat-row-label">
+          <span class="cat-dot cat-dot-forest"></span>
+          <span class="cat-name">Report</span>
+          <span class="cat-meta mono">14 tasks &middot; 21h</span>
+        </div>
+        <div class="cat-row-bar"><span style="width:44%;background:var(--forest);"></span></div>
+        <div class="cat-row-pct mono">44%</div>
+      </div>
+      <div class="cat-row">
+        <div class="cat-row-label">
+          <span class="cat-dot cat-dot-amber"></span>
+          <span class="cat-name">Spellcheck</span>
+          <span class="cat-meta mono">6 tasks &middot; 3h</span>
+        </div>
+        <div class="cat-row-bar"><span style="width:6%;background:var(--amber);"></span></div>
+        <div class="cat-row-pct mono">6%</div>
+      </div>
+      <div class="cat-row">
+        <div class="cat-row-label">
+          <span class="cat-dot cat-dot-deep-blue"></span>
+          <span class="cat-name">Website Qc</span>
+          <span class="cat-meta mono">4 tasks &middot; 9h40</span>
+        </div>
+        <div class="cat-row-bar"><span style="width:20%;background:var(--deep-blue);"></span></div>
+        <div class="cat-row-pct mono">20%</div>
+      </div>
+      <div class="cat-row">
+        <div class="cat-row-label">
+          <span class="cat-dot cat-dot-accent"></span>
+          <span class="cat-name">Gbp</span>
+          <span class="cat-meta mono">3 tasks &middot; 3h20</span>
+        </div>
+        <div class="cat-row-bar"><span style="width:7%;background:var(--accent);"></span></div>
+        <div class="cat-row-pct mono">7%</div>
+      </div>
+      <div class="cat-row">
+        <div class="cat-row-label">
+          <span class="cat-dot cat-dot-plum"></span>
+          <span class="cat-name">Content</span>
+          <span class="cat-meta mono">2 tasks &middot; 40m</span>
+        </div>
+        <div class="cat-row-bar"><span style="width:1%;background:var(--plum);"></span></div>
+        <div class="cat-row-pct mono">1%</div>
+      </div>
+      <div class="cat-row">
+        <div class="cat-row-label">
+          <span class="cat-dot cat-dot-teal"></span>
+          <span class="cat-name">Campaign Tracking</span>
+          <span class="cat-meta mono">1 tasks &middot; 1h</span>
+        </div>
+        <div class="cat-row-bar"><span style="width:2%;background:var(--teal);"></span></div>
+        <div class="cat-row-pct mono">2%</div>
+      </div>
+      <div class="cat-row">
+        <div class="cat-row-label">
+          <span class="cat-dot cat-dot-plum"></span>
+          <span class="cat-name">Content Publishing</span>
+          <span class="cat-meta mono">1 tasks &middot; 20m</span>
+        </div>
+        <div class="cat-row-bar"><span style="width:1%;background:var(--plum);"></span></div>
+        <div class="cat-row-pct mono">1%</div>
+      </div>
+      <div class="cat-row">
+        <div class="cat-row-label">
+          <span class="cat-dot cat-dot-teal"></span>
+          <span class="cat-name">Delegation Check</span>
+          <span class="cat-meta mono">1 tasks &middot; 0m</span>
+        </div>
+        <div class="cat-row-bar"><span style="width:0%;background:var(--teal);"></span></div>
+        <div class="cat-row-pct mono">0%</div>
+      </div>
+      <div class="cat-row">
+        <div class="cat-row-label">
+          <span class="cat-dot cat-dot-accent"></span>
+          <span class="cat-name">Local Seo</span>
+          <span class="cat-meta mono">1 tasks &middot; 1h</span>
+        </div>
+        <div class="cat-row-bar"><span style="width:2%;background:var(--accent);"></span></div>
+        <div class="cat-row-pct mono">2%</div>
+      </div>
+      <div class="cat-row">
+        <div class="cat-row-label">
+          <span class="cat-dot cat-dot-muted"></span>
+          <span class="cat-name">Sop Update</span>
+          <span class="cat-meta mono">1 tasks &middot; 7h30</span>
+        </div>
+        <div class="cat-row-bar"><span style="width:16%;background:var(--muted);"></span></div>
+        <div class="cat-row-pct mono">16%</div>
+      </div>
+        </div>
+        <div class="aside-card">
+          <div class="aside-head"><h3>Workload <em>by owner</em></h3><div class="meta">vs. 40h</div></div>
+          
+          <div class="cap-row">
+            <div class="avatar avatar-accent">AA</div>
+            <div class="cap-name">Aleksandar Atanasoski</div>
+            <div class="cap-meta">16h</div>
+            <div class="cap-bar"><span style="width:40%;background:var(--accent)"></span></div>
+          </div>
+          <div class="cap-row">
+            <div class="avatar avatar-forest">MN</div>
+            <div class="cap-name">Mikee Novio</div>
+            <div class="cap-meta">8h10</div>
+            <div class="cap-bar"><span style="width:20%;background:var(--forest)"></span></div>
+          </div>
+          <div class="cap-row">
+            <div class="avatar avatar-deep-blue">GR</div>
+            <div class="cap-name">Grethel</div>
+            <div class="cap-meta">21h</div>
+            <div class="cap-bar"><span style="width:52%;background:var(--deep-blue)"></span></div>
+          </div>
+          <div class="cap-row">
+            <div class="avatar avatar-plum">GL</div>
+            <div class="cap-name">Glydel</div>
+            <div class="cap-meta">2h20</div>
+            <div class="cap-bar"><span style="width:6%;background:var(--plum)"></span></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+    <div class="colophon">
+      <div>Set in <em>Fraunces</em> &amp; IBM Plex.</div>
+      <div>-</div>
+      <div>05.05.2026</div>
+      <div>-</div>
+      <div>Estimates: SOP minutes</div>
+      <div>-</div>
+      <div>34 tasks &middot; 47h30 queued</div>
+    </div>
   </main>
+</div>
+<script>
+(function(){
+  const search = document.getElementById('search');
+  const catFilter = document.getElementById('cat-filter');
+  const overdueToggle = document.getElementById('overdue-toggle');
+  const resetBtn = document.getElementById('reset-btn');
+  const globalEmpty = document.getElementById('global-empty');
+  const pfilters = document.querySelectorAll('.pfilter');
+  const resultsCountWrap = document.querySelector('.results-count');
+  const total = 34;
+  let activePerson = null;
+  let overdueOnly = false;
+
+  function applyFilters() {
+    const q = (search.value || '').trim().toLowerCase();
+    const cat = catFilter.value;
+    let visible = 0;
+    document.querySelectorAll('.task').forEach(el => {
+      const matchSearch = !q || el.dataset.search.includes(q);
+      const matchCat = !cat || el.dataset.category === cat;
+      const matchPerson = !activePerson || el.dataset.person === activePerson;
+      const matchOverdue = !overdueOnly || el.dataset.overdue === '1';
+      const show = matchSearch && matchCat && matchPerson && matchOverdue;
+      el.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    document.querySelectorAll('.person').forEach(person => {
+      const pid = person.dataset.person;
+      const visibleInPerson = person.querySelectorAll('.task:not(.hidden)').length;
+      const emptyEl = person.querySelector('.person-empty');
+      if (activePerson && activePerson !== pid) {
+        person.style.display = 'none';
+      } else {
+        person.style.display = '';
+        emptyEl.style.display = visibleInPerson === 0 && (q || cat || overdueOnly) ? 'block' : 'none';
+      }
+    });
+    resultsCountWrap.innerHTML = 'Showing <strong>' + visible + '</strong> of ' + total;
+    const anyFilter = q || cat || activePerson || overdueOnly;
+    resetBtn.style.display = anyFilter ? 'inline-flex' : 'none';
+    globalEmpty.classList.toggle('show', visible === 0 && !!anyFilter);
+  }
+  search.addEventListener('input', applyFilters);
+  catFilter.addEventListener('change', applyFilters);
+  pfilters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pid = btn.dataset.personFilter;
+      if (activePerson === pid) {
+        activePerson = null;
+        btn.classList.remove('active');
+      } else {
+        activePerson = pid;
+        pfilters.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+      applyFilters();
+    });
+  });
+  overdueToggle.addEventListener('click', () => {
+    overdueOnly = !overdueOnly;
+    overdueToggle.classList.toggle('active', overdueOnly);
+    applyFilters();
+  });
+  resetBtn.addEventListener('click', () => {
+    search.value = '';
+    catFilter.value = '';
+    activePerson = null;
+    overdueOnly = false;
+    pfilters.forEach(b => b.classList.remove('active'));
+    overdueToggle.classList.remove('active');
+    applyFilters();
+  });
+  document.querySelectorAll('.task-checkbox').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const task = cb.closest('.task');
+      task.dataset.completed = cb.checked ? '1' : '0';
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== search) {
+      e.preventDefault();
+      search.focus();
+    }
+    if (e.key === 'Escape' && document.activeElement === search) {
+      search.value = '';
+      applyFilters();
+      search.blur();
+    }
+  });
+})();
+</script>
 </body>
 </html>
