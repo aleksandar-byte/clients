@@ -27,6 +27,7 @@ FIELD_ORDER = [
     "Monday Item",
     "GA4 Property ID",
     "GSC Property",
+    "GBP Link",
     "Folder",
     "Sitemap",
     "Geo Targets Done",
@@ -131,6 +132,7 @@ def render_link(label: str, url: str) -> str:
 def render_links(row: dict[str, str]) -> str:
     links = [
         render_link("www", row.get("Website", "")),
+        render_link("GBP", row.get("GBP Link", "")),
         render_link("drive", row.get("Folder", "")),
         render_link("map", row.get("Sitemap", "")),
     ]
@@ -221,9 +223,10 @@ def render_html(rows: list[dict[str, str]], base_id: str, table_name: str) -> st
         monday_item = normalize_space(row.get("Monday Item"))
         ga4_property_id = normalize_space(row.get("GA4 Property ID"))
         gsc_property = normalize_space(row.get("GSC Property"))
+        gbp_link = normalize_space(row.get("GBP Link"))
         links = render_links(row)
         data_search = html.escape(
-            " ".join([client_name, location, industry, pod_value, services, status, geo, notes]).lower(),
+            " ".join([client_name, location, industry, pod_value, services, status, geo, notes, gbp_link]).lower(),
             quote=True,
         )
         data_pod = html.escape(pod_value.lower(), quote=True)
