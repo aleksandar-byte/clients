@@ -28,7 +28,6 @@
 </head>
 <body><div class="app"><aside class="sidebar"><div><div class="brand">Roster<span>&amp;</span>Co.</div><div class="brand-sub">Client Records</div></div><div class="side-section"><h4>By Status</h4><div class="side-link" data-filter-type="status" data-filter-value=""><span>All clients</span><span class="count">074</span></div><div class="side-link active" data-filter-type="status" data-filter-value="active"><span>Active</span><span class="count">054</span></div><div class="side-link" data-filter-type="inactive" data-filter-value="true"><span>Paused / churned</span><span class="count">014</span></div><div class="side-link" data-filter-type="status" data-filter-value="review"><span>Needs review</span><span class="count">000</span></div></div><div class="side-section"><h4>By Pod</h4><div class="side-link" data-filter-type="pod" data-filter-value="white"><span><span class="pod-tag pod-white-bg"></span>White Pod</span><span class="count">048</span></div><div class="side-link" data-filter-type="pod" data-filter-value="orange"><span><span class="pod-tag pod-orange-bg"></span>Orange Pod</span><span class="count">024</span></div></div><div class="side-foot"><div><span class="meta">Source</span></div><div>Airtable / Clients</div><br><div><span class="meta">Rendered</span></div><div>06 May 2026</div></div></aside><main class="main"><div class="topbar"><div class="search"><input id="search" type="search" placeholder="Search clients, locations, geo, notes..." autocomplete="off"><span class="kbd">/</span></div><div class="topbar-spacer"></div><div class="topbar-meta">Roster / <strong>74 entries</strong></div><div class="view-toggle"><button id="view-table" class="active" type="button">Table</button><button id="view-cards" type="button">Cards</button></div></div><header class="masthead"><div class="spec-strip"><span>Issued <strong>06 May 2026</strong></span><span>/</span><span>SEO & PPC roster</span><span>/</span><span>74 records</span></div><div class="title-grid"><h1>The Roster, <em>annotated</em>.</h1><div class="title-deck">A cleaner field guide to every client: sorted, searchable, linked, and easier to review.</div></div><p class="lede">Generated from Airtable table <code>Clients</code> in base <code>app2h8wYoS13DnCcm</code>. Update upstream first; this view rebuilds from the records pipeline. API identifiers are hidden unless you turn them on.</p><div class="stats"><div class="stat"><div class="stat-label">Total Roster</div><div class="stat-value">74</div><div class="stat-trend">All tracked clients</div></div><div class="stat"><div class="stat-label">Active</div><div class="stat-value">54</div><div class="stat-trend">73% of roster</div><div class="stat-bar"><span style="width:73%;background:var(--forest)"></span></div></div><div class="stat"><div class="stat-label">Paused / Churned</div><div class="stat-value">14</div><div class="stat-trend">19% inactive</div><div class="stat-bar"><span style="width:19%;background:var(--crimson)"></span></div></div><div class="stat"><div class="stat-label">White Pod</div><div class="stat-value">48</div><div class="stat-trend">65% share</div><div class="stat-bar"><span style="width:65%;background:var(--blue)"></span></div></div><div class="stat"><div class="stat-label">Orange Pod</div><div class="stat-value">24</div><div class="stat-trend">32% share</div><div class="stat-bar"><span style="width:32%;background:var(--accent)"></span></div></div></div></header><section class="workspace"><div class="section-head"><h2>The <em>full</em> ledger</h2><div class="rule"></div><div class="meta-tag">74 entries / sorted A-Z</div></div><div class="toolbar"><span class="toolbar-label">Filter -></span><select id="industry-filter"><option value="">All industries</option>
           <option value="dental">Dental</option>
-          <option value="dental group">Dental Group</option>
           <option value="floral">Floral</option>
           <option value="legal">Legal</option>
         </select><select id="pod-filter"><option value="">All pods</option><option value="white">White pod</option><option value="orange">Orange pod</option></select><select id="status-filter"><option value="">All statuses</option><option value="active" selected>Active</option><option value="inactive">Paused / churned</option><option value="review">Needs review</option></select><label class="toggle-field"><input id="show-api-keys" type="checkbox"> Show API keys</label><label class="toggle-field"><input id="show-notes" type="checkbox"> Show notes</label><button class="chip" id="reset-btn" type="button" style="display:none;">Clear x</button><div class="results-count" id="results-count">Showing <strong>54</strong> of 74</div></div><div class="table-shell" id="table-view"><div class="table-scroll"><table><thead><tr><th>Client</th><th>Location</th><th>Industry</th><th>Pod</th><th>Started</th><th>Services</th><th>Status</th><th class="api-key-col">Monday</th><th class="api-key-col">GA4</th><th class="api-key-col">GSC</th><th>Geo targets</th><th class="notes-col">Notes</th></tr></thead><tbody id="rows">
@@ -288,23 +287,8 @@
                 <td class="notes-col wide">Content: ready; Churned client as of 2026-05-04.</td>
               </tr>
 
-              <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="coastland dental burbank, ca dental white seo, ppc, web build active  glendale, ca, pasadena, ca, north hollywood, ca, studio city, ca, sun valley, ca empower sub-practice - monday metadata inherited from empower dental group parent item.">
-                <td class="cell-client"><span class="entry-num">No. 018</span><strong>Coastland Dental</strong><div class="client-links"><a href="https://coastlanddental.com/" target="_blank" rel="noreferrer" class="lnk">www</a></div></td>
-                <td>Burbank, CA</td>
-                <td>Dental</td>
-                <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2026-01-05</td>
-                <td>SEO, PPC, Web build</td>
-                <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
-                <td class="api-key-col mono">10914292332</td>
-                <td class="api-key-col mono">521504526</td>
-                <td class="api-key-col mono">sc-domain:coastlanddental.com</td>
-                <td class="geo-cell wide"><span class="geo-chip geo-planned">Glendale, CA</span><span class="geo-chip geo-planned">Pasadena, CA</span><span class="geo-chip geo-planned">North Hollywood, CA</span><span class="geo-chip geo-planned">Studio City, CA</span><span class="geo-chip geo-planned">Sun Valley, CA</span></td>
-                <td class="notes-col wide">Empower sub-practice - Monday metadata inherited from Empower Dental Group parent item.</td>
-              </tr>
-
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="commonwealth family dentistry- dr. breeden chester, va dental orange ppc, seo, website active  chesterfield, va, colonial heights, va, hopewell, va, petersburg, va, richmond, va ">
-                <td class="cell-client"><span class="entry-num">No. 019</span><strong>Commonwealth Family Dentistry- Dr. Breeden</strong><div class="client-links"><a href="https://commonwealthfamilydentistry.com/" target="_blank" rel="noreferrer" class="lnk">www</a></div></td>
+                <td class="cell-client"><span class="entry-num">No. 018</span><strong>Commonwealth Family Dentistry- Dr. Breeden</strong><div class="client-links"><a href="https://commonwealthfamilydentistry.com/" target="_blank" rel="noreferrer" class="lnk">www</a></div></td>
                 <td>Chester, VA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
@@ -319,7 +303,7 @@
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="davis dental jonesboro, ar dental white seo active  paragould, ar, brookland, ar, trumann, ar, bono, ar, bay, ar ">
-                <td class="cell-client"><span class="entry-num">No. 020</span><strong>Davis Dental</strong><div class="client-links"><a href="https://smiles4jonesboro.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://docs.google.com/spreadsheets/d/1UNTzw_mi7PAWcA2RBF12CfUyI4t6rxodsI43JBWSQAU/edit?gid=1310801267#gid=1310801267" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
+                <td class="cell-client"><span class="entry-num">No. 019</span><strong>Davis Dental</strong><div class="client-links"><a href="https://smiles4jonesboro.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://docs.google.com/spreadsheets/d/1UNTzw_mi7PAWcA2RBF12CfUyI4t6rxodsI43JBWSQAU/edit?gid=1310801267#gid=1310801267" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
                 <td>Jonesboro, AR</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
@@ -334,7 +318,7 @@
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="dental care center of hollywood hollywood, fl dental white seo, ppc active  hallandale beach, fl, dania beach, fl, pembroke pines, fl, miramar, fl, aventura, fl ">
-                <td class="cell-client"><span class="entry-num">No. 021</span><strong>Dental Care Center of Hollywood</strong><div class="client-links"><a href="https://www.dentalcenterofhollywood.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1JPSX3QHmP2MD3m65MwrxZcQ8l7u4k2g2" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1OHnIcMJ2iwI_AFPvRl3wV7rD0ju-jNRy8n5wk8hj_Ko/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
+                <td class="cell-client"><span class="entry-num">No. 020</span><strong>Dental Care Center of Hollywood</strong><div class="client-links"><a href="https://www.dentalcenterofhollywood.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1JPSX3QHmP2MD3m65MwrxZcQ8l7u4k2g2" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1OHnIcMJ2iwI_AFPvRl3wV7rD0ju-jNRy8n5wk8hj_Ko/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
                 <td>Hollywood, FL</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
@@ -349,7 +333,7 @@
               </tr>
 
               <tr class="row" data-status="active" data-pod="orange" data-industry="dental" data-search="dental studio of palm harbor palm harbor, fl dental orange seo, website active  clearwater, fl, dunedin, fl, tarpon springs, fl, largo, fl, safety harbor, fl ">
-                <td class="cell-client"><span class="entry-num">No. 022</span><strong>Dental Studio of Palm Harbor</strong><div class="client-links"><a href="https://yourpalmharbordentist.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1ubskxUs7_3Sjlhy6kpAxHJtJwHHU9U9O" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1GPyI9I-ljAWAbl1YfPVUy2ejSiPEg4lE5h3RGydyK_I/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
+                <td class="cell-client"><span class="entry-num">No. 021</span><strong>Dental Studio of Palm Harbor</strong><div class="client-links"><a href="https://yourpalmharbordentist.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1ubskxUs7_3Sjlhy6kpAxHJtJwHHU9U9O" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1GPyI9I-ljAWAbl1YfPVUy2ejSiPEg4lE5h3RGydyK_I/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
                 <td>Palm Harbor, FL</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
@@ -364,7 +348,7 @@
               </tr>
 
               <tr class="row" data-status="lost" data-pod="orange" data-industry="dental" data-search="dental wellness sioux falls, sd dental orange ppc, seo, ppc, website lost / churned  brandon, sd, harrisburg, sd, tea, sd, dell rapids, sd, hartford, sd churned client as of 2026-05-04.">
-                <td class="cell-client"><span class="entry-num">No. 023</span><strong>Dental Wellness</strong><div class="client-links"><a href="https://www.1dentalwellness.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/19o391XD9tTL2GUMeZWWLsIThW2TOD9fm" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1fBVgvHfWBuu9l2HOyY_T0hpAcYTDv_fnm6v2Ml2F9s0/edit" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
+                <td class="cell-client"><span class="entry-num">No. 022</span><strong>Dental Wellness</strong><div class="client-links"><a href="https://www.1dentalwellness.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/19o391XD9tTL2GUMeZWWLsIThW2TOD9fm" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1fBVgvHfWBuu9l2HOyY_T0hpAcYTDv_fnm6v2Ml2F9s0/edit" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
                 <td>Sioux Falls, SD</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
@@ -379,7 +363,7 @@
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="downtown dental nashville nashville, tn dental white seo, ppc, web build active east nashville, germantown, midtown, north nashville, the gulch  ">
-                <td class="cell-client"><span class="entry-num">No. 024</span><strong>Downtown Dental Nashville</strong><div class="client-links"><a href="https://www.downtowndentalnashville.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1mxKqoFYpaBECA1XRjb5dLXOcp_fizJI5" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1BjK3vY48-arL1VFgkMnGF-kPjIjA92LQKYCD6IxoV9E/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
+                <td class="cell-client"><span class="entry-num">No. 023</span><strong>Downtown Dental Nashville</strong><div class="client-links"><a href="https://www.downtowndentalnashville.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1mxKqoFYpaBECA1XRjb5dLXOcp_fizJI5" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1BjK3vY48-arL1VFgkMnGF-kPjIjA92LQKYCD6IxoV9E/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
                 <td>Nashville, TN</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
@@ -394,7 +378,7 @@
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="dr.goins plano, tx dental white  active  ooltewah, tn, dalton, ga, east brainerd, tn, apison, tn ">
-                <td class="cell-client"><span class="entry-num">No. 025</span><strong>Dr.Goins</strong><div class="client-links"><a href="https://greatstarthealthysmiles.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1M8agm4YTOQ1efpGKA4-As7V4eNn2DGeL" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1srAhoLDen-9T8St-TJG42hpvAB6VVSzwW7Gxe8Wjzro/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
+                <td class="cell-client"><span class="entry-num">No. 024</span><strong>Dr.Goins</strong><div class="client-links"><a href="https://greatstarthealthysmiles.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1M8agm4YTOQ1efpGKA4-As7V4eNn2DGeL" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1srAhoLDen-9T8St-TJG42hpvAB6VVSzwW7Gxe8Wjzro/edit?gid=1730513032#gid=1730513032" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
                 <td>Plano, TX</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
@@ -409,7 +393,7 @@
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="dulce dental dulce, nm dental white seo, ppc active west dallas, oak cliff, cedar crest, kessler park bishop arts district ">
-                <td class="cell-client"><span class="entry-num">No. 026</span><strong>Dulce Dental</strong><div class="client-links"><a href="https://www.mydulcedental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1aPjsU9pN1XzrnyFLrVOpDlexZwjyw4tR" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/19HMc2iHrqYeEW7wNljNBi7fB8jFj1izWKOS5ohx3B4E/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
+                <td class="cell-client"><span class="entry-num">No. 025</span><strong>Dulce Dental</strong><div class="client-links"><a href="https://www.mydulcedental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1aPjsU9pN1XzrnyFLrVOpDlexZwjyw4tR" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/19HMc2iHrqYeEW7wNljNBi7fB8jFj1izWKOS5ohx3B4E/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
                 <td>Dulce, NM</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
@@ -424,7 +408,7 @@
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="emerald coast fort walton beach, fl dental white seo active  mary esther, fl, wright, fl, destin, fl, shalimar, fl, niceville, fl ">
-                <td class="cell-client"><span class="entry-num">No. 027</span><strong>Emerald Coast</strong><div class="client-links"><a href="https://emeraldcoastdentistry.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1C-o9duznIRwMZqQ3C6P_u8wze9TtXfEv" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1fcQCdnOhm85-Xn2-RxXbMYHcxAe481tRzQ15-XBJ52U/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
+                <td class="cell-client"><span class="entry-num">No. 026</span><strong>Emerald Coast</strong><div class="client-links"><a href="https://emeraldcoastdentistry.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1C-o9duznIRwMZqQ3C6P_u8wze9TtXfEv" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1fcQCdnOhm85-Xn2-RxXbMYHcxAe481tRzQ15-XBJ52U/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
                 <td>Fort Walton Beach, FL</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
@@ -438,23 +422,23 @@
                 <td class="notes-col wide">-</td>
               </tr>
 
-              <tr class="row" data-status="active" data-pod="white" data-industry="dental group" data-search="empower  dental group white seo, ppc, web build active  rancho cucamonga, ca, glendale, ca, upland, ca, burbank, ca, pasadena, ca empower parent group item - child practices are tracked as separate records.">
-                <td class="cell-client"><span class="entry-num">No. 028</span><strong>Empower</strong><div class="client-links"><a href="https://empowerdentalgroup.com/" target="_blank" rel="noreferrer" class="lnk">www</a></div></td>
-                <td>-</td>
-                <td>Dental Group</td>
+              <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="empower dental coastland burbank, ca dental white seo, ppc, web build active  glendale, ca, pasadena, ca, north hollywood, ca, studio city, ca, sun valley, ca empower sub-practice - monday metadata inherited from empower dental group parent item.">
+                <td class="cell-client"><span class="entry-num">No. 027</span><strong>Empower Dental Coastland</strong><div class="client-links"><a href="https://coastlanddental.com/" target="_blank" rel="noreferrer" class="lnk">www</a></div></td>
+                <td>Burbank, CA</td>
+                <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
                 <td class="mono">2026-01-05</td>
                 <td>SEO, PPC, Web build</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">10914292332</td>
                 <td class="api-key-col mono">-</td>
-                <td class="api-key-col mono">sc-domain:empowerdentalgroup.com</td>
-                <td class="geo-cell wide"><span class="geo-chip geo-planned">Rancho Cucamonga, CA</span><span class="geo-chip geo-planned">Glendale, CA</span><span class="geo-chip geo-planned">Upland, CA</span><span class="geo-chip geo-planned">Burbank, CA</span><span class="geo-chip geo-planned">Pasadena, CA</span></td>
-                <td class="notes-col wide">Empower parent group item - child practices are tracked as separate records.</td>
+                <td class="api-key-col mono">sc-domain:coastlanddental.com</td>
+                <td class="geo-cell wide"><span class="geo-chip geo-planned">Glendale, CA</span><span class="geo-chip geo-planned">Pasadena, CA</span><span class="geo-chip geo-planned">North Hollywood, CA</span><span class="geo-chip geo-planned">Studio City, CA</span><span class="geo-chip geo-planned">Sun Valley, CA</span></td>
+                <td class="notes-col wide">Empower sub-practice - Monday metadata inherited from Empower Dental Group parent item.</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="empower dental glendale glendale, ca dental white seo, ppc, web build active  burbank, ca, pasadena, ca, north hollywood, ca, la canada flintridge, ca, eagle rock, ca empower sub-practice - monday metadata inherited from empower dental group parent item.">
-                <td class="cell-client"><span class="entry-num">No. 029</span><strong>Empower Dental Glendale</strong><div class="client-links"><a href="https://empowerdentalglendale.com/" target="_blank" rel="noreferrer" class="lnk">www</a></div></td>
+                <td class="cell-client"><span class="entry-num">No. 028</span><strong>Empower Dental Glendale</strong><div class="client-links"><a href="https://empowerdentalglendale.com/" target="_blank" rel="noreferrer" class="lnk">www</a></div></td>
                 <td>Glendale, CA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
@@ -466,6 +450,21 @@
                 <td class="api-key-col mono">sc-domain:empowerdentalglendale.com</td>
                 <td class="geo-cell wide"><span class="geo-chip geo-planned">Burbank, CA</span><span class="geo-chip geo-planned">Pasadena, CA</span><span class="geo-chip geo-planned">North Hollywood, CA</span><span class="geo-chip geo-planned">La Canada Flintridge, CA</span><span class="geo-chip geo-planned">Eagle Rock, CA</span></td>
                 <td class="notes-col wide">Empower sub-practice - Monday metadata inherited from Empower Dental Group parent item.</td>
+              </tr>
+
+              <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="empower dental rancho rancho cucamonga, ca dental white seo, ppc, web build active  rancho cucamonga, ca, glendale, ca, upland, ca, burbank, ca, pasadena, ca empower sub-practice - monday metadata inherited from empower dental group parent item.; empower rancho record - monday metadata inherited from empower dental group parent item.">
+                <td class="cell-client"><span class="entry-num">No. 029</span><strong>Empower Dental Rancho</strong><div class="client-links"><a href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer" class="lnk">www</a></div></td>
+                <td>Rancho Cucamonga, CA</td>
+                <td>Dental</td>
+                <td><span class="pod pod-white">White</span></td>
+                <td class="mono">2026-01-05</td>
+                <td>SEO, PPC, Web build</td>
+                <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
+                <td class="api-key-col mono">10914292332</td>
+                <td class="api-key-col mono">521563642</td>
+                <td class="api-key-col mono">sc-domain:dentalcarecalifornia.com</td>
+                <td class="geo-cell wide"><span class="geo-chip geo-planned">Rancho Cucamonga, CA</span><span class="geo-chip geo-planned">Glendale, CA</span><span class="geo-chip geo-planned">Upland, CA</span><span class="geo-chip geo-planned">Burbank, CA</span><span class="geo-chip geo-planned">Pasadena, CA</span></td>
+                <td class="notes-col wide">Empower sub-practice - Monday metadata inherited from Empower Dental Group parent item.; Empower Rancho record - Monday metadata inherited from Empower Dental Group parent item.</td>
               </tr>
 
               <tr class="row" data-status="active" data-pod="white" data-industry="dental" data-search="empower dental upland upland, ca dental white seo, ppc, web build active  rancho cucamonga, ca, ontario, ca, claremont, ca, montclair, ca, fontana, ca empower sub-practice - monday metadata inherited from empower dental group parent item.">
@@ -1417,24 +1416,8 @@
                 <footer><a href="https://www.classicdentalarts.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1PiUBZs7UhS1F8rwYjBr6fuOnNrkQer-f" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1YNv7GwOJjRJJ-DZztzv93P3fk9Df6XIrXjyskkmJh80/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
 
-              <article class="card-item" data-status="active" data-pod="white" data-industry="dental" data-search="coastland dental burbank, ca dental white seo, ppc, web build active  glendale, ca, pasadena, ca, north hollywood, ca, studio city, ca, sun valley, ca empower sub-practice - monday metadata inherited from empower dental group parent item.">
-                <div class="card-corner"><span class="entry-num">No. 018</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
-                <h3>Coastland Dental</h3>
-                <div class="card-meta">Burbank, CA <span>/</span> Dental <span>/</span> White</div>
-                <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
-                  <div class="api-key-col"><dt>Monday</dt><dd class="mono">10914292332</dd></div>
-                  <div class="api-key-col"><dt>GA4</dt><dd class="mono">521504526</dd></div>
-                  <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:coastlanddental.com</dd></div>
-                  <div class="span-2"><dt>Geo targets</dt><dd class="geo-cell"><span class="geo-chip geo-planned">Glendale, CA</span><span class="geo-chip geo-planned">Pasadena, CA</span><span class="geo-chip geo-planned">North Hollywood, CA</span><span class="geo-chip geo-planned">Studio City, CA</span><span class="geo-chip geo-planned">Sun Valley, CA</span></dd></div>
-                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Empower sub-practice - Monday metadata inherited from Empower Dental Group parent item.</dd></div>
-                </dl>
-                <footer><a href="https://coastlanddental.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
-              </article>
-
               <article class="card-item" data-status="active" data-pod="orange" data-industry="dental" data-search="commonwealth family dentistry- dr. breeden chester, va dental orange ppc, seo, website active  chesterfield, va, colonial heights, va, hopewell, va, petersburg, va, richmond, va ">
-                <div class="card-corner"><span class="entry-num">No. 019</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
+                <div class="card-corner"><span class="entry-num">No. 018</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
                 <h3>Commonwealth Family Dentistry- Dr. Breeden</h3>
                 <div class="card-meta">Chester, VA <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
@@ -1450,7 +1433,7 @@
               </article>
 
               <article class="card-item" data-status="active" data-pod="white" data-industry="dental" data-search="davis dental jonesboro, ar dental white seo active  paragould, ar, brookland, ar, trumann, ar, bono, ar, bay, ar ">
-                <div class="card-corner"><span class="entry-num">No. 020</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
+                <div class="card-corner"><span class="entry-num">No. 019</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
                 <h3>Davis Dental</h3>
                 <div class="card-meta">Jonesboro, AR <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
@@ -1466,7 +1449,7 @@
               </article>
 
               <article class="card-item" data-status="active" data-pod="white" data-industry="dental" data-search="dental care center of hollywood hollywood, fl dental white seo, ppc active  hallandale beach, fl, dania beach, fl, pembroke pines, fl, miramar, fl, aventura, fl ">
-                <div class="card-corner"><span class="entry-num">No. 021</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
+                <div class="card-corner"><span class="entry-num">No. 020</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
                 <h3>Dental Care Center of Hollywood</h3>
                 <div class="card-meta">Hollywood, FL <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
@@ -1482,7 +1465,7 @@
               </article>
 
               <article class="card-item" data-status="active" data-pod="orange" data-industry="dental" data-search="dental studio of palm harbor palm harbor, fl dental orange seo, website active  clearwater, fl, dunedin, fl, tarpon springs, fl, largo, fl, safety harbor, fl ">
-                <div class="card-corner"><span class="entry-num">No. 022</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
+                <div class="card-corner"><span class="entry-num">No. 021</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
                 <h3>Dental Studio of Palm Harbor</h3>
                 <div class="card-meta">Palm Harbor, FL <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
@@ -1498,7 +1481,7 @@
               </article>
 
               <article class="card-item" data-status="lost" data-pod="orange" data-industry="dental" data-search="dental wellness sioux falls, sd dental orange ppc, seo, ppc, website lost / churned  brandon, sd, harrisburg, sd, tea, sd, dell rapids, sd, hartford, sd churned client as of 2026-05-04.">
-                <div class="card-corner"><span class="entry-num">No. 023</span><span class="badge badge-lost"><span class="dot"></span>Lost / churned</span></div>
+                <div class="card-corner"><span class="entry-num">No. 022</span><span class="badge badge-lost"><span class="dot"></span>Lost / churned</span></div>
                 <h3>Dental Wellness</h3>
                 <div class="card-meta">Sioux Falls, SD <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
@@ -1514,7 +1497,7 @@
               </article>
 
               <article class="card-item" data-status="active" data-pod="white" data-industry="dental" data-search="downtown dental nashville nashville, tn dental white seo, ppc, web build active east nashville, germantown, midtown, north nashville, the gulch  ">
-                <div class="card-corner"><span class="entry-num">No. 024</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
+                <div class="card-corner"><span class="entry-num">No. 023</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
                 <h3>Downtown Dental Nashville</h3>
                 <div class="card-meta">Nashville, TN <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
@@ -1530,7 +1513,7 @@
               </article>
 
               <article class="card-item" data-status="active" data-pod="white" data-industry="dental" data-search="dr.goins plano, tx dental white  active  ooltewah, tn, dalton, ga, east brainerd, tn, apison, tn ">
-                <div class="card-corner"><span class="entry-num">No. 025</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
+                <div class="card-corner"><span class="entry-num">No. 024</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
                 <h3>Dr.Goins</h3>
                 <div class="card-meta">Plano, TX <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
@@ -1546,7 +1529,7 @@
               </article>
 
               <article class="card-item" data-status="active" data-pod="white" data-industry="dental" data-search="dulce dental dulce, nm dental white seo, ppc active west dallas, oak cliff, cedar crest, kessler park bishop arts district ">
-                <div class="card-corner"><span class="entry-num">No. 026</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
+                <div class="card-corner"><span class="entry-num">No. 025</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
                 <h3>Dulce Dental</h3>
                 <div class="card-meta">Dulce, NM <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
@@ -1562,7 +1545,7 @@
               </article>
 
               <article class="card-item" data-status="active" data-pod="white" data-industry="dental" data-search="emerald coast fort walton beach, fl dental white seo active  mary esther, fl, wright, fl, destin, fl, shalimar, fl, niceville, fl ">
-                <div class="card-corner"><span class="entry-num">No. 027</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
+                <div class="card-corner"><span class="entry-num">No. 026</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
                 <h3>Emerald Coast</h3>
                 <div class="card-meta">Fort Walton Beach, FL <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
@@ -1577,24 +1560,24 @@
                 <footer><a href="https://emeraldcoastdentistry.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://drive.google.com/drive/folders/1C-o9duznIRwMZqQ3C6P_u8wze9TtXfEv" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1fcQCdnOhm85-Xn2-RxXbMYHcxAe481tRzQ15-XBJ52U/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
 
-              <article class="card-item" data-status="active" data-pod="white" data-industry="dental group" data-search="empower  dental group white seo, ppc, web build active  rancho cucamonga, ca, glendale, ca, upland, ca, burbank, ca, pasadena, ca empower parent group item - child practices are tracked as separate records.">
-                <div class="card-corner"><span class="entry-num">No. 028</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
-                <h3>Empower</h3>
-                <div class="card-meta">- <span>/</span> Dental Group <span>/</span> White</div>
+              <article class="card-item" data-status="active" data-pod="white" data-industry="dental" data-search="empower dental coastland burbank, ca dental white seo, ppc, web build active  glendale, ca, pasadena, ca, north hollywood, ca, studio city, ca, sun valley, ca empower sub-practice - monday metadata inherited from empower dental group parent item.">
+                <div class="card-corner"><span class="entry-num">No. 027</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
+                <h3>Empower Dental Coastland</h3>
+                <div class="card-meta">Burbank, CA <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
                   <div><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
                   <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">10914292332</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
-                  <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:empowerdentalgroup.com</dd></div>
-                  <div class="span-2"><dt>Geo targets</dt><dd class="geo-cell"><span class="geo-chip geo-planned">Rancho Cucamonga, CA</span><span class="geo-chip geo-planned">Glendale, CA</span><span class="geo-chip geo-planned">Upland, CA</span><span class="geo-chip geo-planned">Burbank, CA</span><span class="geo-chip geo-planned">Pasadena, CA</span></dd></div>
-                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Empower parent group item - child practices are tracked as separate records.</dd></div>
+                  <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:coastlanddental.com</dd></div>
+                  <div class="span-2"><dt>Geo targets</dt><dd class="geo-cell"><span class="geo-chip geo-planned">Glendale, CA</span><span class="geo-chip geo-planned">Pasadena, CA</span><span class="geo-chip geo-planned">North Hollywood, CA</span><span class="geo-chip geo-planned">Studio City, CA</span><span class="geo-chip geo-planned">Sun Valley, CA</span></dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Empower sub-practice - Monday metadata inherited from Empower Dental Group parent item.</dd></div>
                 </dl>
-                <footer><a href="https://empowerdentalgroup.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
+                <footer><a href="https://coastlanddental.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
               </article>
 
               <article class="card-item" data-status="active" data-pod="white" data-industry="dental" data-search="empower dental glendale glendale, ca dental white seo, ppc, web build active  burbank, ca, pasadena, ca, north hollywood, ca, la canada flintridge, ca, eagle rock, ca empower sub-practice - monday metadata inherited from empower dental group parent item.">
-                <div class="card-corner"><span class="entry-num">No. 029</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
+                <div class="card-corner"><span class="entry-num">No. 028</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
                 <h3>Empower Dental Glendale</h3>
                 <div class="card-meta">Glendale, CA <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
@@ -1607,6 +1590,22 @@
                   <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Empower sub-practice - Monday metadata inherited from Empower Dental Group parent item.</dd></div>
                 </dl>
                 <footer><a href="https://empowerdentalglendale.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
+              </article>
+
+              <article class="card-item" data-status="active" data-pod="white" data-industry="dental" data-search="empower dental rancho rancho cucamonga, ca dental white seo, ppc, web build active  rancho cucamonga, ca, glendale, ca, upland, ca, burbank, ca, pasadena, ca empower sub-practice - monday metadata inherited from empower dental group parent item.; empower rancho record - monday metadata inherited from empower dental group parent item.">
+                <div class="card-corner"><span class="entry-num">No. 029</span><span class="badge badge-active"><span class="dot"></span>Active</span></div>
+                <h3>Empower Dental Rancho</h3>
+                <div class="card-meta">Rancho Cucamonga, CA <span>/</span> Dental <span>/</span> White</div>
+                <dl class="card-grid">
+                  <div><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
+                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
+                  <div class="api-key-col"><dt>Monday</dt><dd class="mono">10914292332</dd></div>
+                  <div class="api-key-col"><dt>GA4</dt><dd class="mono">521563642</dd></div>
+                  <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:dentalcarecalifornia.com</dd></div>
+                  <div class="span-2"><dt>Geo targets</dt><dd class="geo-cell"><span class="geo-chip geo-planned">Rancho Cucamonga, CA</span><span class="geo-chip geo-planned">Glendale, CA</span><span class="geo-chip geo-planned">Upland, CA</span><span class="geo-chip geo-planned">Burbank, CA</span><span class="geo-chip geo-planned">Pasadena, CA</span></dd></div>
+                  <div class="notes-col span-2"><dt>Notes</dt><dd class="truncate">Empower sub-practice - Monday metadata inherited from Empower Dental Group parent item.; Empower Rancho record - Monday metadata inherited from Empower Dental Group parent item.</dd></div>
+                </dl>
+                <footer><a href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer" class="lnk">www</a></footer>
               </article>
 
               <article class="card-item" data-status="active" data-pod="white" data-industry="dental" data-search="empower dental upland upland, ca dental white seo, ppc, web build active  rancho cucamonga, ca, ontario, ca, claremont, ca, montclair, ca, fontana, ca empower sub-practice - monday metadata inherited from empower dental group parent item.">
