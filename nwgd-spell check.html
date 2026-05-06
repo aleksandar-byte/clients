@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spell Check Audit - https://www.nwgd.net/</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17202a;
+      --muted: #667085;
+      --line: #d9e2ec;
+      --paper: #ffffff;
+      --soft: #f5f7fa;
+      --accent: #0f766e;
+      --accent-soft: #e6fffb;
+      --warn: #b42318;
+      --warn-soft: #fff1f0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      color: var(--ink);
+      background: var(--soft);
+    }
+    header {
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      padding: 32px clamp(20px, 4vw, 48px);
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px clamp(16px, 3vw, 32px) 48px;
+    }
+    h1, h2 { margin: 0; letter-spacing: 0; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 18px; }
+    a { color: var(--accent); overflow-wrap: anywhere; }
+    .subtitle { margin: 8px 0 0; color: var(--muted); }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .metric {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    .metric strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+    }
+    .empty-state, .page-group {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-top: 18px;
+    }
+    .empty-state { padding: 28px; }
+    .empty-state p { color: var(--muted); margin-bottom: 0; }
+    .page-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .issue-count {
+      align-self: flex-start;
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: var(--warn-soft);
+      color: var(--warn);
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 980px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+    th {
+      background: #f8fafc;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .source-text, .suggested-text {
+      display: inline-block;
+      border-radius: 6px;
+      padding: 4px 6px;
+    }
+    .source-text { background: var(--warn-soft); }
+    .suggested-text { background: var(--accent-soft); }
+    @media (max-width: 720px) {
+      .page-heading { display: block; }
+      .issue-count { display: inline-block; margin-top: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Spell Check Audit</h1>
+    <p class="subtitle"><a href="https://www.nwgd.net/" target="_blank" rel="noreferrer">https://www.nwgd.net/</a> &middot; Generated 2026-05-06T21:40:36.056440</p>
+    <div class="summary-grid">
+      <div class="metric"><span>Reviewed</span><strong>54</strong></div>
+      <div class="metric"><span>Flagged Pages</span><strong>6</strong></div>
+      <div class="metric"><span>Total Issues</span><strong>10</strong></div>
+      <div class="metric"><span>Errors</span><strong>0</strong></div>
+      <div class="metric"><span>Estimated Cost</span><strong>$0.0316272</strong></div>
+    </div>
+  </header>
+  <main>
+    
+                <section class="page-group">
+                  <div class="page-heading">
+                    <div>
+                      <h2>Privacy Policy | Northwest General Dentistry</h2>
+                      <a href="https://www.nwgd.net/privacy-policy/" target="_blank" rel="noreferrer">https://www.nwgd.net/privacy-policy/</a>
+                    </div>
+                    <span class="issue-count">5 issues</span>
+                  </div>
+                  <div class="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Field</th>
+                          <th>Type</th>
+                          <th>Confidence</th>
+                          <th>Current Text</th>
+                          <th>Suggested Text</th>
+                          <th>Notes</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>main_content_text</td><td>spelling</td><td>1.0</td><td><span class="source-text">web site</span></td><td><span class="suggested-text">website</span></td><td>&quot;Web site&quot; is typically written as one word, &quot;website.&quot;</td></tr><tr><td>main_content_text</td><td>hyphenation</td><td>1.0</td><td><span class="source-text">third party vendor</span></td><td><span class="suggested-text">third-party vendor</span></td><td>When &quot;third party&quot; functions as a compound adjective modifying a noun, it should be hyphenated.</td></tr><tr><td>main_content_text</td><td>hyphenation</td><td>1.0</td><td><span class="source-text">third party companies</span></td><td><span class="suggested-text">third-party companies</span></td><td>When &quot;third party&quot; functions as a compound adjective modifying a noun, it should be hyphenated.</td></tr><tr><td>main_content_text</td><td>hyphenation</td><td>1.0</td><td><span class="source-text">third party link</span></td><td><span class="suggested-text">third-party link</span></td><td>When &quot;third party&quot; functions as a compound adjective modifying a noun, it should be hyphenated.</td></tr><tr><td>main_content_text</td><td>hyphenation</td><td>1.0</td><td><span class="source-text">third party sites or services</span></td><td><span class="suggested-text">third-party sites or services</span></td><td>When &quot;third party&quot; functions as a compound adjective modifying a noun, it should be hyphenated.</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+                
+                <section class="page-group">
+                  <div class="page-heading">
+                    <div>
+                      <h2>Dentist Houston TX | Northwest General Dentistry</h2>
+                      <a href="https://www.nwgd.net/" target="_blank" rel="noreferrer">https://www.nwgd.net/</a>
+                    </div>
+                    <span class="issue-count">1 issues</span>
+                  </div>
+                  <div class="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Field</th>
+                          <th>Type</th>
+                          <th>Confidence</th>
+                          <th>Current Text</th>
+                          <th>Suggested Text</th>
+                          <th>Notes</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>main_content_text</td><td>hyphenation</td><td>1.0</td><td><span class="source-text">general practice residency</span></td><td><span class="suggested-text">general-practice residency</span></td><td>When &#x27;general practice&#x27; functions as a compound adjective modifying &#x27;residency,&#x27; it should be hyphenated for clarity and grammatical correctness.</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+                
+                <section class="page-group">
+                  <div class="page-heading">
+                    <div>
+                      <h2>Emergency Dental Care in Houston, TX | Northwest Dentistry</h2>
+                      <a href="https://www.nwgd.net/emergency-dental-care/" target="_blank" rel="noreferrer">https://www.nwgd.net/emergency-dental-care/</a>
+                    </div>
+                    <span class="issue-count">1 issues</span>
+                  </div>
+                  <div class="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Field</th>
+                          <th>Type</th>
+                          <th>Confidence</th>
+                          <th>Current Text</th>
+                          <th>Suggested Text</th>
+                          <th>Notes</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>main_content_text</td><td>hyphenation_error</td><td>1.0</td><td><span class="source-text">re-placing</span></td><td><span class="suggested-text">replacing</span></td><td>The word &#x27;replacing&#x27; is typically written as one word without a hyphen, meaning to put something back in its previous place.</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+                
+                <section class="page-group">
+                  <div class="page-heading">
+                    <div>
+                      <h2>Dental Veneers in Houston TX | Northwest General Dentistry</h2>
+                      <a href="https://www.nwgd.net/cosmetic-dentistry/veneers/" target="_blank" rel="noreferrer">https://www.nwgd.net/cosmetic-dentistry/veneers/</a>
+                    </div>
+                    <span class="issue-count">1 issues</span>
+                  </div>
+                  <div class="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Field</th>
+                          <th>Type</th>
+                          <th>Confidence</th>
+                          <th>Current Text</th>
+                          <th>Suggested Text</th>
+                          <th>Notes</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>main_content_text</td><td>grammar</td><td>1.0</td><td><span class="source-text">the front surface of teeth</span></td><td><span class="suggested-text">the front surfaces of teeth</span></td><td>When referring to multiple &#x27;shells&#x27; covering multiple &#x27;teeth&#x27;, &#x27;surface&#x27; should be plural (&#x27;surfaces&#x27;) to maintain grammatical agreement.</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+                
+                <section class="page-group">
+                  <div class="page-heading">
+                    <div>
+                      <h2>Thank You - Northwest General Dentistry</h2>
+                      <a href="https://www.nwgd.net/thank-you/" target="_blank" rel="noreferrer">https://www.nwgd.net/thank-you/</a>
+                    </div>
+                    <span class="issue-count">1 issues</span>
+                  </div>
+                  <div class="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Field</th>
+                          <th>Type</th>
+                          <th>Confidence</th>
+                          <th>Current Text</th>
+                          <th>Suggested Text</th>
+                          <th>Notes</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>main_content_text</td><td>Spelling</td><td>1.0</td><td><span class="source-text">Dentsitry</span></td><td><span class="suggested-text">Dentistry</span></td><td>Typo: &#x27;Dentsitry&#x27; should be &#x27;Dentistry&#x27;.</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+                
+                <section class="page-group">
+                  <div class="page-heading">
+                    <div>
+                      <h2>What to Expect During Your Visit | Northwest Dentistry</h2>
+                      <a href="https://www.nwgd.net/first-visit/" target="_blank" rel="noreferrer">https://www.nwgd.net/first-visit/</a>
+                    </div>
+                    <span class="issue-count">1 issues</span>
+                  </div>
+                  <div class="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Field</th>
+                          <th>Type</th>
+                          <th>Confidence</th>
+                          <th>Current Text</th>
+                          <th>Suggested Text</th>
+                          <th>Notes</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>main_content_text</td><td>grammar</td><td>1.0</td><td><span class="source-text">jaw joints, and gums, and oral cancer screening</span></td><td><span class="suggested-text">jaw joints, gums, and oral cancer screening</span></td><td>The conjunction &#x27;and&#x27; is used redundantly in the list. It should appear only once before the final item in a series.</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+                
+  </main>
+</body>
+</html>
