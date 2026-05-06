@@ -16,7 +16,6 @@
       --red: #9f3e43;
       --red-soft: #f7e8e7;
       --blue: #315f8a;
-      --blue-soft: #e6eef7;
       --amber: #9b6428;
       --amber-soft: #f4ead9;
       --mono: "Consolas", "SFMono-Regular", monospace;
@@ -36,36 +35,39 @@
     .metric { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 10px; }
     .metric-label { display: block; color: var(--muted); font-size: 0.72rem; margin-bottom: 4px; text-transform: uppercase; }
     .metric strong { font-size: 1.35rem; }
-    .note, .quadrant { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
-    .note { padding: 12px; }
-    .note h2 { font-size: 0.95rem; margin-bottom: 8px; }
     .board { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .quadrant { min-height: 250px; padding: 14px; border-top: 5px solid var(--blue); }
+    .report-schedule { margin-bottom: 14px; }
+    .schedule-title { display: flex; justify-content: space-between; gap: 14px; align-items: start; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 14px; margin-bottom: 10px; }
+    .schedule-title span { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; }
+    .schedule-title h2 { margin-bottom: 4px; }
+    .schedule-title p { color: var(--muted); margin-bottom: 0; }
+    .schedule-title strong { white-space: nowrap; }
+    .schedule-warning { border: 1px solid #efd4a7; border-radius: 8px; background: #fff7e9; color: #75501f; padding: 10px 12px; margin: 0 0 10px; }
+    .pod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pod-schedule, .quadrant { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 14px; }
+    .quadrant { min-height: 250px; border-top: 5px solid var(--blue); }
     .quadrant-this-week { border-top-color: var(--red); }
     .quadrant-done { border-top-color: var(--green); }
     .quadrant-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
     .quadrant-head h2 { font-size: 1rem; margin-bottom: 0; }
     .quadrant-head span { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; }
-    .work-row { display: flex; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px solid #edf0ec; }
-    .work-row:last-child { border-bottom: 0; }
-    .work-row h3 { font-size: 0.95rem; margin-bottom: 4px; }
-    .work-row p { color: var(--muted); font-size: 0.85rem; margin-bottom: 0; }
+    .work-row, .report-card { display: flex; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px solid #edf0ec; }
+    .report-card { display: block; }
+    .work-row:last-child, .report-card:last-child { border-bottom: 0; }
+    .work-row h3, .report-card h3 { font-size: 0.95rem; margin-bottom: 4px; }
+    .work-row p, .report-card p { color: var(--muted); font-size: 0.85rem; margin-bottom: 0; }
     .task-context { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 5px; color: var(--muted); font-size: 0.78rem; }
     .task-context span { border: 1px solid #e4e9e2; border-radius: 999px; background: #fafbf8; padding: 0.12rem 0.45rem; }
     .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 7px; font-size: 0.82rem; }
     .row-meta { min-width: 94px; display: grid; justify-items: end; align-content: start; gap: 5px; color: var(--muted); font-size: 0.78rem; }
-    .row-meta strong { color: var(--ink); font-size: 0.95rem; }
-    .no-estimate { color: var(--muted); font-style: italic; }
     .badge { display: inline-flex; width: fit-content; border-radius: 999px; padding: 0.18rem 0.55rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; background: #eef1ef; color: var(--muted); }
     .badge-in-progress, .badge-working { background: var(--green-soft); color: var(--green); }
     .badge-planned, .badge-assigned, .badge-manual { background: var(--amber-soft); color: var(--amber); }
     .badge-done, .badge-completed { background: #e7f3e8; color: #2f6a37; }
     .badge-blocked { background: var(--red-soft); color: var(--red); }
-    ul, ol { margin: 0; padding-left: 1.15rem; }
-    li + li { margin-top: 0.35rem; }
-    .empty, .empty-li { color: var(--muted); }
-    @media (max-width: 940px) { .board, .strip { grid-template-columns: 1fr; } .metrics { min-width: 0; width: 100%; } }
-    @media (max-width: 640px) { .page { padding: 14px; } .metrics { grid-template-columns: repeat(2, 1fr); } .work-row { display: grid; } .row-meta { justify-items: start; } }
+    .empty { color: var(--muted); }
+    @media (max-width: 940px) { .board, .pod-grid { grid-template-columns: 1fr; } .metrics { min-width: 0; width: 100%; } }
+    @media (max-width: 640px) { .page { padding: 14px; } .work-row { display: grid; } .row-meta { justify-items: start; } }
   </style>
 </head>
 <body>
@@ -73,15 +75,17 @@
     <header class="topbar">
       <div>
         <h1>Glydel Weekly Tasks</h1>
-        <p class="subtle">Week: 2026-04-27 to 2026-05-03. Rendered 2026-05-04 17:13.</p>
+        <p class="subtle">Week: 2026-05-04 to 2026-05-10. Rendered 2026-05-06 17:38.</p>
       </div>
       <div class="metrics">
-        <div class='metric'><span class='metric-label'>This Week</span><strong>5</strong></div><div class='metric'><span class='metric-label'>Done</span><strong>0</strong></div>
+        <div class="metric"><span class="metric-label">This Week</span><strong>3</strong></div>
+        <div class="metric"><span class="metric-label">Done</span><strong>4</strong></div>
       </div>
     </header>
+    
     <section class="board">
-      <section class='quadrant quadrant-this-week'><div class='quadrant-head'><span>to do this week</span><h2>This Week</h2><strong>5 tasks</strong></div><article class='work-row'><div><h3>Open urgent content ticket</h3><div class='task-context'><span>Website: website not found</span></div><p>Needs ticket opened by end of day.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770146011'>Content</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770474236'>Content</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>content</span></div></article><article class='work-row'><div><h3>Submit content for publishing</h3><div class='task-context'><span>Website: website not found</span></div><p>Needs publishing handoff by end of week.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770146011'>Content</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770474236'>Content</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>content publishing</span></div></article><article class='work-row'><div><h3>Wagner GBP optimization</h3><div class='task-context'><span>Website: website not found</span></div><p>GBP optimization note from manager weekly task list.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.monday.com/boards/9496422576/pulses/9784820539'>Simply Veneers GBP schedule task</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/9871491519'>GBP Optimization</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>gbp</span></div></article><article class='work-row'><div><h3>Simply Veneers GBP optimization</h3><div class='task-context'><span>Website: www.simplyveneers.com</span></div><p>Linked Monday task: <code>https://serpagency.monday.com/boards/9496422576/pulses/9784820539</code>.</p><div class='links'><a href='https://serpagency.monday.com/boards/9496422576/pulses/9784820539'>GBP post Schedule</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.monday.com/boards/620254537/pulses/6003631752'>Simply Veneers</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>gbp</span></div></article><article class='work-row'><div><h3>Images and content work</h3><div class='task-context'><span>Website: website not found</span></div><p>Manager note: content includes images and content.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770145247'>Images</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>content</span></div></article></section>
-      <section class='quadrant quadrant-done'><div class='quadrant-head'><span>completed this week</span><h2>Done</h2><strong>0 tasks</strong></div><p class='empty'>Nothing here right now.</p></section>
+      <section class='quadrant quadrant-this-week'><div class='quadrant-head'><span>to do this week</span><h2>This Week</h2><strong>3 tasks</strong></div><article class='work-row'><div><h3>Confirm Lorton Town Dental GBP/posts completion</h3><div class='task-context'><span>Website: lortontowndental.com</span><span>Due: 2026-05-06</span></div><p>Alex requested high-priority Lorton GBP optimization and post scheduling; Glydel replied &quot;on it&quot;. Need confirmation whether complete. Slack: <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775745683721489</code>.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1774896592965179'>GBP optimization tracker review</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775745683721489'>Lorton GBP/posts thread</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>review</span></div></article><article class='work-row'><div><h3>Review Glydel GBP optimization tracker</h3><div class='task-context'><span>Website: website not found</span><span>Due: 2026-05-06</span></div><p>Glydel logged GBP optimizations and asked Alex to review so changes can be reverted if needed. Slack: <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1774896592965179</code>.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775854256703989'>Internal linking sheet review</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1774896592965179'>GBP optimization tracker review</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>review</span></div></article><article class='work-row'><div><h3>Review Glydel internal linking sheet and method</h3><div class='task-context'><span>Website: website not found</span><span>Due: 2026-05-06</span></div><p>Glydel asked if the sheet/method was correct. Alex feedback needed: add exact phrase/snippet and placement instructions where possible, and avoid extra internal links to contact/blog pages. Slack: <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775854256703989</code>.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775854256703989'>Internal linking sheet review</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1774896592965179'>GBP optimization tracker review</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/10692552129'>Internal Linking</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>review</span></div></article></section>
+      <section class='quadrant quadrant-done'><div class='quadrant-head'><span>completed this week</span><h2>Done</h2><strong>4 tasks</strong></div><article class='work-row'><div><h3>Wagner and Simply Veneers GBP content scheduling</h3><div class='task-context'><span>Website: www.simplyveneers.com</span><span>Due: 2026-04-02</span></div><p>Glydel said GBP content was scheduled for both Wagner and Simply Veneers: 24 pieces for Simply, 18 for Wagner, scheduled every 7 days. Slack: <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775148039568689</code>.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1774896592965179'>GBP optimization tracker review</a></div></div><div class='row-meta'><span class='badge badge-done'>done</span><span>gbp</span></div></article><article class='work-row'><div><h3>Palm Harbor GBP product/image work</h3><div class='task-context'><span>Website: yourpalmharbordentist.com</span><span>Due: 2026-04-09</span></div><p>Glydel reported Palm Harbor done after waiting on Alex approval for edited GBP product images. Slack: <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775749325465879</code>.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775124518161129'>GBP optimization and posting note</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1774896592965179'>GBP optimization tracker review</a></div></div><div class='row-meta'><span class='badge badge-done'>done</span><span>gbp</span></div></article><article class='work-row'><div><h3>PR content support</h3><div class='task-context'><span>Website: website not found</span><span>Due: 2026-04-09</span></div><p>Glydel completed the PR work, added the link to the ticket, and updated Mikee for QC. Slack: <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775762948560349</code>.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775045972493859'>Content and images update</a><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775762948560349'>PR support completed</a><a href='https://serpagency.monday.com/boards/6770104330/pulses/6770146011'>Content</a></div></div><div class='row-meta'><span class='badge badge-done'>done</span><span>pr support</span></div></article><article class='work-row'><div><h3>Website access request follow-through</h3><div class='task-context'><span>Website: emeraldcoastdentistry.com, newwavedental.com</span><span>Due: 2026-04-10</span></div><p>Glydel created/updated access request work: Davis, Bleeker, and New Wave Dental added to 1Password; Emerald Coast blog drafted; Orange clients still waiting on website team/Jay. Slack: <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775828364318579</code>.</p><div class='links'><a href='https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1775828364318579'>Website access follow-through</a><a href='https://serpagency.monday.com/boards/7446198439/pulses/11709025701'>Website Access Request</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/11708982684'>Website Access Request</a></div></div><div class='row-meta'><span class='badge badge-done'>done</span><span>access</span></div></article></section>
     </section>
   </main>
 </body>

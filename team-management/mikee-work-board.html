@@ -16,7 +16,6 @@
       --red: #9f3e43;
       --red-soft: #f7e8e7;
       --blue: #315f8a;
-      --blue-soft: #e6eef7;
       --amber: #9b6428;
       --amber-soft: #f4ead9;
       --mono: "Consolas", "SFMono-Regular", monospace;
@@ -36,36 +35,39 @@
     .metric { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 10px; }
     .metric-label { display: block; color: var(--muted); font-size: 0.72rem; margin-bottom: 4px; text-transform: uppercase; }
     .metric strong { font-size: 1.35rem; }
-    .note, .quadrant { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
-    .note { padding: 12px; }
-    .note h2 { font-size: 0.95rem; margin-bottom: 8px; }
     .board { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .quadrant { min-height: 250px; padding: 14px; border-top: 5px solid var(--blue); }
+    .report-schedule { margin-bottom: 14px; }
+    .schedule-title { display: flex; justify-content: space-between; gap: 14px; align-items: start; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 14px; margin-bottom: 10px; }
+    .schedule-title span { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; }
+    .schedule-title h2 { margin-bottom: 4px; }
+    .schedule-title p { color: var(--muted); margin-bottom: 0; }
+    .schedule-title strong { white-space: nowrap; }
+    .schedule-warning { border: 1px solid #efd4a7; border-radius: 8px; background: #fff7e9; color: #75501f; padding: 10px 12px; margin: 0 0 10px; }
+    .pod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pod-schedule, .quadrant { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 14px; }
+    .quadrant { min-height: 250px; border-top: 5px solid var(--blue); }
     .quadrant-this-week { border-top-color: var(--red); }
     .quadrant-done { border-top-color: var(--green); }
     .quadrant-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
     .quadrant-head h2 { font-size: 1rem; margin-bottom: 0; }
     .quadrant-head span { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; }
-    .work-row { display: flex; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px solid #edf0ec; }
-    .work-row:last-child { border-bottom: 0; }
-    .work-row h3 { font-size: 0.95rem; margin-bottom: 4px; }
-    .work-row p { color: var(--muted); font-size: 0.85rem; margin-bottom: 0; }
+    .work-row, .report-card { display: flex; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px solid #edf0ec; }
+    .report-card { display: block; }
+    .work-row:last-child, .report-card:last-child { border-bottom: 0; }
+    .work-row h3, .report-card h3 { font-size: 0.95rem; margin-bottom: 4px; }
+    .work-row p, .report-card p { color: var(--muted); font-size: 0.85rem; margin-bottom: 0; }
     .task-context { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 5px; color: var(--muted); font-size: 0.78rem; }
     .task-context span { border: 1px solid #e4e9e2; border-radius: 999px; background: #fafbf8; padding: 0.12rem 0.45rem; }
     .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 7px; font-size: 0.82rem; }
     .row-meta { min-width: 94px; display: grid; justify-items: end; align-content: start; gap: 5px; color: var(--muted); font-size: 0.78rem; }
-    .row-meta strong { color: var(--ink); font-size: 0.95rem; }
-    .no-estimate { color: var(--muted); font-style: italic; }
     .badge { display: inline-flex; width: fit-content; border-radius: 999px; padding: 0.18rem 0.55rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; background: #eef1ef; color: var(--muted); }
     .badge-in-progress, .badge-working { background: var(--green-soft); color: var(--green); }
     .badge-planned, .badge-assigned, .badge-manual { background: var(--amber-soft); color: var(--amber); }
     .badge-done, .badge-completed { background: #e7f3e8; color: #2f6a37; }
     .badge-blocked { background: var(--red-soft); color: var(--red); }
-    ul, ol { margin: 0; padding-left: 1.15rem; }
-    li + li { margin-top: 0.35rem; }
-    .empty, .empty-li { color: var(--muted); }
-    @media (max-width: 940px) { .board, .strip { grid-template-columns: 1fr; } .metrics { min-width: 0; width: 100%; } }
-    @media (max-width: 640px) { .page { padding: 14px; } .metrics { grid-template-columns: repeat(2, 1fr); } .work-row { display: grid; } .row-meta { justify-items: start; } }
+    .empty { color: var(--muted); }
+    @media (max-width: 940px) { .board, .pod-grid { grid-template-columns: 1fr; } .metrics { min-width: 0; width: 100%; } }
+    @media (max-width: 640px) { .page { padding: 14px; } .work-row { display: grid; } .row-meta { justify-items: start; } }
   </style>
 </head>
 <body>
@@ -73,15 +75,17 @@
     <header class="topbar">
       <div>
         <h1>Mikee Novio Weekly Tasks</h1>
-        <p class="subtle">Week: 2026-05-04 to 2026-05-10. Rendered 2026-05-04 18:21.</p>
+        <p class="subtle">Week: 2026-05-04 to 2026-05-10. Rendered 2026-05-06 17:38.</p>
       </div>
       <div class="metrics">
-        <div class='metric'><span class='metric-label'>This Week</span><strong>3</strong></div><div class='metric'><span class='metric-label'>Done</span><strong>0</strong></div>
+        <div class="metric"><span class="metric-label">This Week</span><strong>0</strong></div>
+        <div class="metric"><span class="metric-label">Done</span><strong>3</strong></div>
       </div>
     </header>
+    
     <section class="board">
-      <section class='quadrant quadrant-this-week'><div class='quadrant-head'><span>to do this week</span><h2>This Week</h2><strong>3 tasks</strong></div><article class='work-row'><div><h3>Loftus Family Dental post-launch QC</h3><div class='task-context'><span>Website: loftusdentistincoeurdalene.kinsta.cloud</span></div><p>Check Ahrefs technical items, tracking, GSC, GA4, GBP, GTM/conversion actions, and lander pointing.</p><div class='links'><a href='https://serpagency.monday.com/boards/620254537/pulses/11459922043'>Loftus build</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/11824641367'>Loftus post-launch context ticket</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/11712877419'>Ahrefs Technical</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>website qc</span></div></article><article class='work-row'><div><h3>Clear Lake post-launch QC</h3><div class='task-context'><span>Website: clearlakeu.kinsta.cloud</span></div><p>Confirm tracking, landers, and platform linking after launch.</p><div class='links'><a href='https://serpagency.slack.com/archives/D08QF163W03/p1775056376907929'>Clear Lake sitemap follow-up</a><a href='https://serpagency.monday.com/boards/620254537/pulses/11583406797'>Clear Lake build</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/11783862097'>Clear Lake pre-launch QC ticket</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>website qc</span></div></article><article class='work-row'><div><h3>The Dental Club post-launch QC</h3><div class='task-context'><span>Website: thedentalclub.kinsta.cloud</span></div><p>Confirm tracking, landers, and platform linking after launch.</p><div class='links'><a href='https://serpagency.monday.com/boards/620254537/pulses/11546650915'>The Dental Club Monday pulse</a><a href='https://serpagency.monday.com/boards/9496422576/pulses/11832345770'>The Dental Club SEO QC task</a><a href='https://serpagency.monday.com/boards/6982782532/pulses/11747675809'>The Dental Club</a></div></div><div class='row-meta'><span class='badge badge-planned'>planned</span><span>website qc</span></div></article></section>
-      <section class='quadrant quadrant-done'><div class='quadrant-head'><span>completed this week</span><h2>Done</h2><strong>0 tasks</strong></div><p class='empty'>Nothing here right now.</p></section>
+      <section class='quadrant quadrant-this-week'><div class='quadrant-head'><span>to do this week</span><h2>This Week</h2><strong>0 tasks</strong></div><p class='empty'>Nothing here right now.</p></section>
+      <section class='quadrant quadrant-done'><div class='quadrant-head'><span>completed this week</span><h2>Done</h2><strong>3 tasks</strong></div><article class='work-row'><div><h3>Clear Lake post-launch QC</h3><div class='task-context'><span>Website: clearlakeu.kinsta.cloud</span><span>Due: 2026-05-04</span></div><p>Post-launch QC completed by Mikee. Scope: tracking, landers, and platform linking after launch.</p><div class='links'><a href='https://serpagency.slack.com/archives/D08QF163W03/p1775056376907929'>Clear Lake sitemap follow-up</a><a href='https://serpagency.monday.com/boards/620254537/pulses/11583406797'>Clear Lake build</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/11783862097'>Clear Lake pre-launch QC ticket</a></div></div><div class='row-meta'><span class='badge badge-done'>done</span><span>website qc</span></div></article><article class='work-row'><div><h3>Loftus Family Dental post-launch QC</h3><div class='task-context'><span>Website: loftusdentistincoeurdalene.kinsta.cloud</span><span>Due: 2026-05-04</span></div><p>Post-launch QC completed by Mikee. Scope: Ahrefs technical items, tracking, GSC, GA4, GBP, GTM/conversion actions, and lander pointing.</p><div class='links'><a href='https://serpagency.monday.com/boards/620254537/pulses/11459922043'>Loftus build</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/11824641367'>Loftus post-launch context ticket</a><a href='https://serpagency.monday.com/boards/7441724825/pulses/11712877419'>Ahrefs Technical</a></div></div><div class='row-meta'><span class='badge badge-done'>done</span><span>website qc</span></div></article><article class='work-row'><div><h3>The Dental Club post-launch QC</h3><div class='task-context'><span>Website: thedentalclub.kinsta.cloud</span><span>Due: 2026-05-04</span></div><p>Post-launch QC completed by Mikee. Scope: tracking, landers, and platform linking after launch.</p><div class='links'><a href='https://serpagency.monday.com/boards/620254537/pulses/11546650915'>The Dental Club Monday pulse</a><a href='https://serpagency.monday.com/boards/9496422576/pulses/11832345770'>The Dental Club SEO QC task</a><a href='https://serpagency.monday.com/boards/6982782532/pulses/11747675809'>The Dental Club</a></div></div><div class='row-meta'><span class='badge badge-done'>done</span><span>website qc</span></div></article></section>
     </section>
   </main>
 </body>
