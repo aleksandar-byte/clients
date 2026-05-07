@@ -21,7 +21,7 @@
     .stats { display:grid; grid-template-columns:1.35fr repeat(2, 1fr); gap:12px; margin-top:28px; } .stat { background:var(--surface); border:1px solid var(--line); padding:16px; box-shadow:var(--shadow); min-height:124px; } .stat-click { cursor:pointer; text-align:left; color:inherit; font:inherit; } .stat-click:hover { border-color:var(--accent); transform:translateY(-1px); } .stat-label { color:var(--muted); text-transform:uppercase; font-family:"IBM Plex Mono", monospace; font-size:10px; letter-spacing:.14em; } .stat-value { font:600 42px/1 "Fraunces", serif; margin-top:12px; } .stat-trend { color:#5a564b; font-size:12px; margin-top:8px; } .stat-bar { height:4px; background:var(--line); margin-top:14px; } .stat-bar span { display:block; height:100%; }
     .workspace { padding:28px 36px 48px; } .section-head { display:flex; align-items:center; gap:16px; margin-bottom:16px; } .section-head h2 { font:500 28px/1 "Fraunces", serif; margin:0; } .section-head h2 em { color:var(--accent); } .rule { flex:1; height:1px; background:var(--line); } .meta-tag { color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.12em; } .toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:14px; } .toolbar select, .chip, .toggle-field { border:1px solid var(--line); background:var(--surface); border-radius:4px; padding:8px 10px; font:inherit; color:var(--ink); } .toolbar-label, .results-count { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.1em; } .chip, .toggle-field { display:inline-flex; align-items:center; gap:8px; cursor:pointer; } .toggle-field input { margin:0; } .results-count { margin-left:auto; }
     .table-shell { background:var(--surface); border:1px solid var(--line); box-shadow:var(--shadow); } .table-scroll { overflow:auto; max-height:78vh; } table { width:100%; min-width:1380px; border-collapse:separate; border-spacing:0; } th { position:sticky; top:0; z-index:2; background:#eee7d8; color:#5a564b; font:600 10px "IBM Plex Mono", monospace; letter-spacing:.12em; text-transform:uppercase; text-align:left; padding:12px; border-bottom:1px solid var(--line-2); } td { padding:13px 12px; border-bottom:1px solid var(--line); vertical-align:top; } tbody tr:hover { background:#faf5e8; }
-    .cell-client { min-width:270px; } .cell-client strong { display:block; margin:4px 0 8px; } .entry-num { color:var(--muted); font-size:10px; letter-spacing:.1em; text-transform:uppercase; } .client-links, .card-item footer { display:flex; flex-wrap:wrap; gap:7px; } .lnk { text-decoration:none; border:1px solid var(--line); padding:3px 7px; border-radius:999px; color:var(--accent); font-size:11px; background:#fffaf0; } .badge { display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-weight:700; font-size:12px; white-space:nowrap; } .badge .dot { width:6px; height:6px; border-radius:50%; background:currentColor; } .badge-active { color:var(--forest); background:#cfddc7; } .badge-paused { color:var(--amber); background:#f0d99c; } .badge-lost { color:var(--crimson); background:#f0c9c2; } .badge-review { color:var(--blue); background:#cdd8e3; } .badge-unknown { color:#5a564b; background:#e8dfcc; } .pod { font-weight:700; } .pod-white { color:var(--blue); } .pod-orange { color:var(--accent); } .wide { min-width:240px; } .muted { color:var(--muted); } .truncate { overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; } .geo-cell { display:flex; flex-wrap:wrap; gap:6px; max-width:360px; } .geo-chip { display:inline-flex; align-items:center; border:1px solid var(--line); border-radius:999px; padding:3px 8px; font-size:11px; font-weight:700; line-height:1.2; } .geo-done { color:var(--forest); background:#cfddc7; border-color:#adc29f; } .geo-planned { color:var(--accent); background:#f3d9c6; border-color:#e3b596; } .api-key-col, .notes-col { display:none; } body.show-api-keys .api-key-col, body.show-notes .notes-col { display:table-cell; } body.show-api-keys .card-item .api-key-col, body.show-notes .card-item .notes-col { display:block; }
+    .cell-client { min-width:270px; } .cell-client strong { display:block; margin:4px 0 8px; } .entry-num { color:var(--muted); font-size:10px; letter-spacing:.1em; text-transform:uppercase; } .client-links, .card-item footer { display:flex; flex-wrap:wrap; gap:7px; } .lnk { text-decoration:none; border:1px solid var(--line); padding:3px 7px; border-radius:999px; color:var(--accent); font-size:11px; background:#fffaf0; } .badge { display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-weight:700; font-size:12px; white-space:nowrap; } .badge .dot { width:6px; height:6px; border-radius:50%; background:currentColor; } .badge-active { color:var(--forest); background:#cfddc7; } .badge-paused { color:var(--amber); background:#f0d99c; } .badge-lost { color:var(--crimson); background:#f0c9c2; } .badge-review { color:var(--blue); background:#cdd8e3; } .badge-unknown { color:#5a564b; background:#e8dfcc; } .pod { font-weight:700; } .pod-white { color:var(--blue); } .pod-orange { color:var(--accent); } .wide { min-width:240px; } .muted { color:var(--muted); } .truncate { overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; } .geo-cell { display:flex; flex-wrap:wrap; gap:6px; max-width:360px; } .geo-chip { display:inline-flex; align-items:center; border:1px solid var(--line); border-radius:999px; padding:3px 8px; font-size:11px; font-weight:700; line-height:1.2; } .geo-done { color:var(--forest); background:#cfddc7; border-color:#adc29f; } .geo-planned { color:var(--accent); background:#f3d9c6; border-color:#e3b596; } .api-key-col, .extra-col, .notes-col { display:none; } body.show-all-columns .api-key-col, body.show-all-columns .extra-col, body.show-notes .notes-col { display:table-cell; } body.show-all-columns .card-item .api-key-col, body.show-all-columns .card-item .extra-col, body.show-notes .card-item .notes-col { display:block; }
     .cards { display:none; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; } .cards.show { display:grid; } .table-shell.hide { display:none; } .card-item { background:var(--surface); border:1px solid var(--line); padding:16px; box-shadow:var(--shadow); } .card-corner { display:flex; justify-content:space-between; align-items:center; gap:12px; } .card-item h3 { margin:14px 0 6px; font:600 25px/1.05 "Fraunces", serif; } .card-meta { color:#5a564b; font-size:12px; } .card-meta span { color:var(--muted); margin:0 5px; } .card-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; } .card-grid div { min-width:0; } .card-grid dt { color:var(--muted); font-family:"IBM Plex Mono", monospace; font-size:10px; text-transform:uppercase; letter-spacing:.1em; } .card-grid dd { margin:3px 0 0; } .span-2 { grid-column:1 / -1; } .empty { display:none; text-align:center; padding:50px; color:var(--muted); border:1px dashed var(--line-2); background:var(--surface); } .empty.show { display:block; } .hidden { display:none !important; }
     @media (max-width:960px) { .app { display:block; } .sidebar { position:relative; height:auto; } .topbar { padding:12px 16px; flex-wrap:wrap; } .topbar-meta, .kbd { display:none; } .masthead, .workspace { padding-left:16px; padding-right:16px; } .title-grid, .stats { grid-template-columns:1fr; } h1 { font-size:52px; } }
   </style>
@@ -30,16 +30,16 @@
           <option value="dental">Dental</option>
           <option value="floral">Floral</option>
           <option value="legal">Legal</option>
-        </select><select id="pod-filter"><option value="">All pods</option><option value="white">White pod</option><option value="orange">Orange pod</option></select><select id="status-filter"><option value="">All statuses</option><option value="active-seo" selected>Active SEO</option><option value="active">Active all</option><option value="inactive">Paused / inactive</option><option value="review">Needs review</option></select><label class="toggle-field"><input id="show-api-keys" type="checkbox"> Show API keys</label><label class="toggle-field"><input id="show-notes" type="checkbox"> Show notes</label><button class="chip" id="reset-btn" type="button" style="display:none;">Clear x</button><div class="results-count" id="results-count">Showing <strong>51</strong> of 74</div></div><div class="table-shell" id="table-view"><div class="table-scroll"><table><thead><tr><th>Client</th><th>Location</th><th>Industry</th><th>Pod</th><th>Started</th><th>Launched</th><th>Services</th><th>Status</th><th class="api-key-col">Monday</th><th class="api-key-col">GA4</th><th class="api-key-col">GSC</th><th>Geo targets</th><th class="notes-col">Notes</th></tr></thead><tbody id="rows">
+        </select><select id="pod-filter"><option value="">All pods</option><option value="white">White pod</option><option value="orange">Orange pod</option></select><select id="status-filter"><option value="">All statuses</option><option value="active-seo" selected>Active SEO</option><option value="active">Active all</option><option value="inactive">Paused / inactive</option><option value="review">Needs review</option></select><label class="toggle-field"><input id="show-all-columns" type="checkbox"> Show all columns</label><label class="toggle-field"><input id="show-notes" type="checkbox"> Show notes</label><button class="chip" id="reset-btn" type="button" style="display:none;">Clear x</button><div class="results-count" id="results-count">Showing <strong>51</strong> of 74</div></div><div class="table-shell" id="table-view"><div class="table-scroll"><table><thead><tr><th>Client</th><th>Location</th><th>Industry</th><th>Pod</th><th class="extra-col">Started</th><th class="extra-col">Launched</th><th class="extra-col">Services</th><th>Status</th><th class="api-key-col">Monday</th><th class="api-key-col">GA4</th><th class="api-key-col">GSC</th><th>Geo targets</th><th class="notes-col">Notes</th></tr></thead><tbody id="rows">
 
               <tr class="row" data-status="lost" data-active-seo="false" data-pod="orange" data-industry="dental" data-search="1000 smiles thousand oaks, ca dental orange hosting lost / churned thousand oaks, camarillo, reseda westlake village, agoura hills website launched 2024-05-16 per web team - builds board item 6242741180 (1000 smiles dental group; launched projects; done). direct link: https://serpagency.monday.com/boards/620254537/pulses/6242741180.; churned client as of 2026-05-04. https://www.google.com/maps/search/?api=1&amp;query=1000%20smiles%20thousand%20oaks%2c%20ca">
                 <td class="cell-client"><span class="entry-num">No. 001</span><strong>1000 Smiles</strong><div class="client-links"><a href="https://www.1000smiles.la/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://www.google.com/maps/search/?api=1&amp;query=1000%20Smiles%20Thousand%20Oaks%2C%20CA" target="_blank" rel="noreferrer" class="lnk">GBP</a><a href="https://drive.google.com/drive/folders/10hKP-ypzAcbAx8IfWgVZuTlrO-fSD-_A" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1aptk3CtGtbshzMmYqS6bA2ChB0toldWxfgIm84ovzrI/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></div></td>
                 <td>Thousand Oaks, CA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2024-03-06</td>
-                <td class="mono">2024-05-16</td>
-                <td>Hosting</td>
+                <td class="extra-col mono">2024-03-06</td>
+                <td class="extra-col mono">2024-05-16</td>
+                <td class="extra-col">Hosting</td>
                 <td><span class="badge badge-lost"><span class="dot"></span>Lost / churned</span></td>
                 <td class="api-key-col mono">7396322190</td>
                 <td class="api-key-col mono">436301877</td>
@@ -53,9 +53,9 @@
                 <td>Charlotte, NC</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2024-03-08</td>
-                <td class="mono">2024-06-06</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">2024-03-08</td>
+                <td class="extra-col mono">2024-06-06</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">7495772951</td>
                 <td class="api-key-col mono">444929412</td>
@@ -69,9 +69,9 @@
                 <td>Charlotte, NC</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2022-08-03</td>
-                <td class="mono">2023-01-20</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">2022-08-03</td>
+                <td class="extra-col mono">2023-01-20</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">7495772512</td>
                 <td class="api-key-col mono">355847151</td>
@@ -85,9 +85,9 @@
                 <td>Columbia, SC</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2025-12-01</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2025-12-01</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">7495773337</td>
                 <td class="api-key-col mono">452733558</td>
@@ -101,9 +101,9 @@
                 <td>Charlotte, NC</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2023-01-11</td>
-                <td class="mono">2023-06-07</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">2023-01-11</td>
+                <td class="extra-col mono">2023-06-07</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">7495773223</td>
                 <td class="api-key-col mono">387730680</td>
@@ -117,9 +117,9 @@
                 <td>Greensboro, NC</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2024-08-20</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2024-08-20</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">7495773194</td>
                 <td class="api-key-col mono">-</td>
@@ -133,9 +133,9 @@
                 <td>Fairlawn, OH</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2023-08-24</td>
-                <td class="mono">2025-09-25</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">2023-08-24</td>
+                <td class="extra-col mono">2025-09-25</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">7396322017</td>
                 <td class="api-key-col mono">307689199</td>
@@ -149,9 +149,9 @@
                 <td>Ashburn, VA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2026-03-27</td>
-                <td class="mono">2026-05-04</td>
-                <td>PPC, SEO, Website</td>
+                <td class="extra-col mono">2026-03-27</td>
+                <td class="extra-col mono">2026-05-04</td>
+                <td class="extra-col">PPC, SEO, Website</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">11634420508</td>
                 <td class="api-key-col mono">535803422</td>
@@ -165,9 +165,9 @@
                 <td>-</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2026-01-28</td>
-                <td class="mono">2026-03-17</td>
-                <td>PPC, SEO, Website</td>
+                <td class="extra-col mono">2026-01-28</td>
+                <td class="extra-col mono">2026-03-17</td>
+                <td class="extra-col">PPC, SEO, Website</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">11406694596</td>
                 <td class="api-key-col mono">524198926</td>
@@ -181,9 +181,9 @@
                 <td>Redding, CA</td>
                 <td>Legal</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2025-07-17</td>
-                <td>SEO</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2025-07-17</td>
+                <td class="extra-col">SEO</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">7863279341</td>
                 <td class="api-key-col mono">-</td>
@@ -197,9 +197,9 @@
                 <td>Burbank, CA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2026-01-05</td>
-                <td class="mono">2026-04-29</td>
-                <td>SEO, PPC, Web build</td>
+                <td class="extra-col mono">2026-01-05</td>
+                <td class="extra-col mono">2026-04-29</td>
+                <td class="extra-col">SEO, PPC, Web build</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">10914292332</td>
                 <td class="api-key-col mono">521523657</td>
@@ -213,9 +213,9 @@
                 <td>New York, NY</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2019-10-21</td>
-                <td class="mono">-</td>
-                <td>Hosting</td>
+                <td class="extra-col mono">2019-10-21</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">Hosting</td>
                 <td><span class="badge badge-paused"><span class="dot"></span>Paused</span></td>
                 <td class="api-key-col mono">7396321736</td>
                 <td class="api-key-col mono">324813499</td>
@@ -229,9 +229,9 @@
                 <td>Windsor Mill, MD</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2025-11-25</td>
-                <td>SEO, PPC, Web build</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2025-11-25</td>
+                <td class="extra-col">SEO, PPC, Web build</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">9921643009</td>
                 <td class="api-key-col mono">503640778</td>
@@ -245,9 +245,9 @@
                 <td>Boynton Beach, FL</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2025-11-07</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2025-11-07</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">8970105641</td>
                 <td class="api-key-col mono">487695762</td>
@@ -261,9 +261,9 @@
                 <td>Woodbridge, VA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">-</td>
-                <td class="mono">-</td>
-                <td>PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">PPC</td>
                 <td><span class="badge badge-lost"><span class="dot"></span>Lost / churned</span></td>
                 <td class="api-key-col mono">18309913616</td>
                 <td class="api-key-col mono">-</td>
@@ -277,9 +277,9 @@
                 <td>Manalapan Township, NJ</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2024-07-18</td>
-                <td class="mono">2024-10-23</td>
-                <td>SEO</td>
+                <td class="extra-col mono">2024-07-18</td>
+                <td class="extra-col mono">2024-10-23</td>
+                <td class="extra-col">SEO</td>
                 <td><span class="badge badge-lost"><span class="dot"></span>Lost / churned</span></td>
                 <td class="api-key-col mono">7396322282</td>
                 <td class="api-key-col mono">468405979</td>
@@ -293,9 +293,9 @@
                 <td>Chester, VA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2026-01-25</td>
-                <td class="mono">2026-02-27</td>
-                <td>PPC, SEO, Website</td>
+                <td class="extra-col mono">2026-01-25</td>
+                <td class="extra-col mono">2026-02-27</td>
+                <td class="extra-col">PPC, SEO, Website</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">11406866552</td>
                 <td class="api-key-col mono">498866939</td>
@@ -309,9 +309,9 @@
                 <td>Katy, TX</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2025-04-21</td>
-                <td class="mono">2025-06-12</td>
-                <td>PPC, SEO</td>
+                <td class="extra-col mono">2025-04-21</td>
+                <td class="extra-col mono">2025-06-12</td>
+                <td class="extra-col">PPC, SEO</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">8970445282</td>
                 <td class="api-key-col mono">374820919; 487862743</td>
@@ -325,9 +325,9 @@
                 <td>Jonesboro, AR</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2026-03-18</td>
-                <td>SEO</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2026-03-18</td>
+                <td class="extra-col">SEO</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">11377060937</td>
                 <td class="api-key-col mono">429656901</td>
@@ -341,9 +341,9 @@
                 <td>Hollywood, FL</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2026-01-07</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2026-01-07</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">18365122656</td>
                 <td class="api-key-col mono">514042477</td>
@@ -357,9 +357,9 @@
                 <td>Palm Harbor, FL</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2025-12-03</td>
-                <td class="mono">2026-02-13</td>
-                <td>SEO, Website</td>
+                <td class="extra-col mono">2025-12-03</td>
+                <td class="extra-col mono">2026-02-13</td>
+                <td class="extra-col">SEO, Website</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">11406800953</td>
                 <td class="api-key-col mono">525303914</td>
@@ -373,9 +373,9 @@
                 <td>Sioux Falls, SD</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2025-11-18</td>
-                <td class="mono">2026-02-04</td>
-                <td>PPC, SEO, PPC, Website</td>
+                <td class="extra-col mono">2025-11-18</td>
+                <td class="extra-col mono">2026-02-04</td>
+                <td class="extra-col">PPC, SEO, PPC, Website</td>
                 <td><span class="badge badge-lost"><span class="dot"></span>Lost / churned</span></td>
                 <td class="api-key-col mono">11406756101, 8585441483, 11406798824</td>
                 <td class="api-key-col mono">391270518</td>
@@ -389,9 +389,9 @@
                 <td>Nashville, TN</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2025-12-08</td>
-                <td>SEO, PPC, Web build</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2025-12-08</td>
+                <td class="extra-col">SEO, PPC, Web build</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">18015737126</td>
                 <td class="api-key-col mono">358067808</td>
@@ -405,9 +405,9 @@
                 <td>Plano, TX</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2026-04-01</td>
-                <td>-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2026-04-01</td>
+                <td class="extra-col">-</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">326588351; 368194289</td>
@@ -421,9 +421,9 @@
                 <td>Dulce, NM</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2025-11-07</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2025-11-07</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">9413852605</td>
                 <td class="api-key-col mono">507654974</td>
@@ -437,9 +437,9 @@
                 <td>Fort Walton Beach, FL</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">-</td>
-                <td>SEO</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">SEO</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">7396322344</td>
                 <td class="api-key-col mono">324815221</td>
@@ -453,9 +453,9 @@
                 <td>Burbank, CA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2026-01-05</td>
-                <td class="mono">2026-04-29</td>
-                <td>SEO, PPC, Web build</td>
+                <td class="extra-col mono">2026-01-05</td>
+                <td class="extra-col mono">2026-04-29</td>
+                <td class="extra-col">SEO, PPC, Web build</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">10914292332</td>
                 <td class="api-key-col mono">-</td>
@@ -469,9 +469,9 @@
                 <td>Glendale, CA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2026-01-05</td>
-                <td class="mono">2026-04-29</td>
-                <td>SEO, PPC, Web build</td>
+                <td class="extra-col mono">2026-01-05</td>
+                <td class="extra-col mono">2026-04-29</td>
+                <td class="extra-col">SEO, PPC, Web build</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">10914292332</td>
                 <td class="api-key-col mono">521515992</td>
@@ -485,9 +485,9 @@
                 <td>Pasadena, CA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2026-01-05</td>
-                <td class="mono">2026-04-29</td>
-                <td>SEO, PPC, Web build</td>
+                <td class="extra-col mono">2026-01-05</td>
+                <td class="extra-col mono">2026-04-29</td>
+                <td class="extra-col">SEO, PPC, Web build</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">10914292332</td>
                 <td class="api-key-col mono">521505728</td>
@@ -501,9 +501,9 @@
                 <td>Rancho Cucamonga, CA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2026-01-05</td>
-                <td class="mono">2026-04-29</td>
-                <td>SEO, PPC, Web build</td>
+                <td class="extra-col mono">2026-01-05</td>
+                <td class="extra-col mono">2026-04-29</td>
+                <td class="extra-col">SEO, PPC, Web build</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">10914292332</td>
                 <td class="api-key-col mono">521563642</td>
@@ -517,9 +517,9 @@
                 <td>Upland, CA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2026-01-05</td>
-                <td class="mono">2026-04-29</td>
-                <td>SEO, PPC, Web build</td>
+                <td class="extra-col mono">2026-01-05</td>
+                <td class="extra-col mono">2026-04-29</td>
+                <td class="extra-col">SEO, PPC, Web build</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">10914292332</td>
                 <td class="api-key-col mono">521511151</td>
@@ -533,9 +533,9 @@
                 <td>Winston-Salem, North Carolina</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2025-01-10</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2025-01-10</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">7976789937</td>
                 <td class="api-key-col mono">472298657</td>
@@ -549,9 +549,9 @@
                 <td>Richmond, TX</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">-</td>
-                <td>-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">-</td>
                 <td><span class="badge badge-unknown"><span class="dot"></span>Unmarked</span></td>
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">327323383</td>
@@ -565,9 +565,9 @@
                 <td>Pembroke Pines, FL</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2026-02-05</td>
-                <td>SEO, PPC, Web build</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2026-02-05</td>
+                <td class="extra-col">SEO, PPC, Web build</td>
                 <td><span class="badge badge-lost"><span class="dot"></span>Lost / churned</span></td>
                 <td class="api-key-col mono">18037400747</td>
                 <td class="api-key-col mono">509395779</td>
@@ -581,9 +581,9 @@
                 <td>Bethlehem, PA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2025-12-23</td>
-                <td class="mono">-</td>
-                <td>PPC</td>
+                <td class="extra-col mono">2025-12-23</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">PPC</td>
                 <td><span class="badge badge-lost"><span class="dot"></span>Lost / churned</span></td>
                 <td class="api-key-col mono">11406829912</td>
                 <td class="api-key-col mono">-</td>
@@ -597,9 +597,9 @@
                 <td>Lorton, VA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2025-12-16</td>
-                <td class="mono">-</td>
-                <td>PPC, SEO, Website</td>
+                <td class="extra-col mono">2025-12-16</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">PPC, SEO, Website</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">11406812858</td>
                 <td class="api-key-col mono">524312145</td>
@@ -613,9 +613,9 @@
                 <td>Houston, TX</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2023-05-10</td>
-                <td class="mono">2023-05-26</td>
-                <td>SEO, FB, PPC</td>
+                <td class="extra-col mono">2023-05-10</td>
+                <td class="extra-col mono">2023-05-26</td>
+                <td class="extra-col">SEO, FB, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">7495772603</td>
                 <td class="api-key-col mono">327323383</td>
@@ -629,9 +629,9 @@
                 <td>New Orleans, LA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2025-12-12</td>
-                <td>SEO, Web build, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2025-12-12</td>
+                <td class="extra-col">SEO, Web build, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">18255174577</td>
                 <td class="api-key-col mono">511484037</td>
@@ -645,9 +645,9 @@
                 <td>Jacksonville, FL</td>
                 <td>Legal</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2025-07-17</td>
-                <td>SEO</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2025-07-17</td>
+                <td class="extra-col">SEO</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">7678158460</td>
                 <td class="api-key-col mono">-</td>
@@ -661,9 +661,9 @@
                 <td>Scottsdale, AZ</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2026-03-18</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2026-03-18</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">11073677686</td>
                 <td class="api-key-col mono">522053218</td>
@@ -677,9 +677,9 @@
                 <td>-</td>
                 <td>Floral</td>
                 <td><span class="pod pod-none">-</span></td>
-                <td class="mono">-</td>
-                <td class="mono">-</td>
-                <td>-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">-</td>
                 <td><span class="badge badge-unknown"><span class="dot"></span>Unmarked</span></td>
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">-</td>
@@ -693,9 +693,9 @@
                 <td>Leland, NC</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">-</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-paused"><span class="dot"></span>Paused</span></td>
                 <td class="api-key-col mono">7495773445</td>
                 <td class="api-key-col mono">-</td>
@@ -709,9 +709,9 @@
                 <td>Mount Jackson, VA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2025-04-10</td>
-                <td class="mono">2025-10-27</td>
-                <td>PPC, SEO</td>
+                <td class="extra-col mono">2025-04-10</td>
+                <td class="extra-col mono">2025-10-27</td>
+                <td class="extra-col">PPC, SEO</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">9554722676</td>
                 <td class="api-key-col mono">509820688</td>
@@ -725,9 +725,9 @@
                 <td>Acworth, GA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2018-08-13</td>
-                <td class="mono">-</td>
-                <td>SEO, SEO, PPC</td>
+                <td class="extra-col mono">2018-08-13</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">SEO, SEO, PPC</td>
                 <td><span class="badge badge-lost"><span class="dot"></span>Lost / churned</span></td>
                 <td class="api-key-col mono">7396321692, 7737535192</td>
                 <td class="api-key-col mono">-</td>
@@ -741,9 +741,9 @@
                 <td>New York, NY</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2024-09-26</td>
-                <td class="mono">2024-11-19</td>
-                <td>SEO, Website only</td>
+                <td class="extra-col mono">2024-09-26</td>
+                <td class="extra-col mono">2024-11-19</td>
+                <td class="extra-col">SEO, Website only</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">8864440888</td>
                 <td class="api-key-col mono">469557877</td>
@@ -757,9 +757,9 @@
                 <td>-</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">-</td>
-                <td>-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">-</td>
                 <td><span class="badge badge-unknown"><span class="dot"></span>Unmarked</span></td>
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">536098401</td>
@@ -773,9 +773,9 @@
                 <td>Raleigh, NC</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2026-03-18</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2026-03-18</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">11228475001</td>
                 <td class="api-key-col mono">528075650</td>
@@ -789,9 +789,9 @@
                 <td>Chicago, IL</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2026-02-05</td>
-                <td>-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2026-02-05</td>
+                <td class="extra-col">-</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">383127764</td>
@@ -805,9 +805,9 @@
                 <td>-</td>
                 <td>Dental</td>
                 <td><span class="pod pod-none">-</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2026-03-16</td>
-                <td>SEO</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2026-03-16</td>
+                <td class="extra-col">SEO</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">524935222</td>
@@ -821,9 +821,9 @@
                 <td>New York, NY</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2025-03-20</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2025-03-20</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">8585445984</td>
                 <td class="api-key-col mono">482364757</td>
@@ -837,9 +837,9 @@
                 <td>Huntington Beach, CA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">-</td>
-                <td>web hosting only, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">web hosting only, PPC</td>
                 <td><span class="badge badge-paused"><span class="dot"></span>Paused</span></td>
                 <td class="api-key-col mono">8927703519</td>
                 <td class="api-key-col mono">-</td>
@@ -853,9 +853,9 @@
                 <td>Fredericksburg, VA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2025-09-11</td>
-                <td class="mono">2025-11-20</td>
-                <td>SEO</td>
+                <td class="extra-col mono">2025-09-11</td>
+                <td class="extra-col mono">2025-11-20</td>
+                <td class="extra-col">SEO</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">8642651206</td>
                 <td class="api-key-col mono">509818434</td>
@@ -869,9 +869,9 @@
                 <td>-</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2026-02-28</td>
-                <td class="mono">-</td>
-                <td>SEO</td>
+                <td class="extra-col mono">2026-02-28</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">SEO</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">11376144739</td>
                 <td class="api-key-col mono">487812865</td>
@@ -885,9 +885,9 @@
                 <td>Macedonia, OH</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2025-09-18</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2025-09-18</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">9635470989</td>
                 <td class="api-key-col mono">498071898</td>
@@ -901,9 +901,9 @@
                 <td>Raytown</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2024-12-07</td>
-                <td class="mono">2025-10-17</td>
-                <td>Hosting</td>
+                <td class="extra-col mono">2024-12-07</td>
+                <td class="extra-col mono">2025-10-17</td>
+                <td class="extra-col">Hosting</td>
                 <td><span class="badge badge-paused"><span class="dot"></span>Paused</span></td>
                 <td class="api-key-col mono">8163461596</td>
                 <td class="api-key-col mono">472568749</td>
@@ -917,9 +917,9 @@
                 <td>Woodland Hills, CA</td>
                 <td>Legal</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2024-03-23</td>
-                <td class="mono">2024-04-09</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">2024-03-23</td>
+                <td class="extra-col mono">2024-04-09</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-lost"><span class="dot"></span>Lost / churned</span></td>
                 <td class="api-key-col mono">7495773375</td>
                 <td class="api-key-col mono">433452846</td>
@@ -933,9 +933,9 @@
                 <td>Newport Beach, CA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2024-01-25</td>
-                <td class="mono">2024-03-06</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">2024-01-25</td>
+                <td class="extra-col mono">2024-03-06</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">7396322369</td>
                 <td class="api-key-col mono">-</td>
@@ -949,9 +949,9 @@
                 <td>Salt Lake City, UT</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2026-02-10</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2026-02-10</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-lost"><span class="dot"></span>Lost / churned</span></td>
                 <td class="api-key-col mono">18386514163</td>
                 <td class="api-key-col mono">516291123</td>
@@ -965,9 +965,9 @@
                 <td>Chicago, IL</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2025-10-20</td>
-                <td class="mono">2025-11-26</td>
-                <td>PPC, SEO, Website</td>
+                <td class="extra-col mono">2025-10-20</td>
+                <td class="extra-col mono">2025-11-26</td>
+                <td class="extra-col">PPC, SEO, Website</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">18309920682</td>
                 <td class="api-key-col mono">514398123</td>
@@ -981,9 +981,9 @@
                 <td>Livermore, CA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">2023-05-05</td>
-                <td class="mono">2022-02-04</td>
-                <td>SEO, SEO, PPC</td>
+                <td class="extra-col mono">2023-05-05</td>
+                <td class="extra-col mono">2022-02-04</td>
+                <td class="extra-col">SEO, SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">7396321977, 7495773152</td>
                 <td class="api-key-col mono">324849615</td>
@@ -997,9 +997,9 @@
                 <td>San Francisco, CA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2026-01-07</td>
-                <td>SEO, PPC, Web build</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2026-01-07</td>
+                <td class="extra-col">SEO, PPC, Web build</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">18056078972</td>
                 <td class="api-key-col mono">511819202</td>
@@ -1013,9 +1013,9 @@
                 <td>Niceville, FL Miramar Beach, FL Crestview, FL</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2026-01-07</td>
-                <td>SEO, PPC, Web build</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2026-01-07</td>
+                <td class="extra-col">SEO, PPC, Web build</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">9820714164</td>
                 <td class="api-key-col mono">488682828</td>
@@ -1029,9 +1029,9 @@
                 <td>West Palm Beach, FL</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2026-02-05</td>
-                <td>SEO, PPC, Web build</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2026-02-05</td>
+                <td class="extra-col">SEO, PPC, Web build</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">18183666938</td>
                 <td class="api-key-col mono">509729524</td>
@@ -1045,9 +1045,9 @@
                 <td>McKinney, TX</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2025-01-22</td>
-                <td class="mono">2025-02-27</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">2025-01-22</td>
+                <td class="extra-col mono">2025-02-27</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">9454892282</td>
                 <td class="api-key-col mono">480137399</td>
@@ -1061,9 +1061,9 @@
                 <td>Wake Forest, NC</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">-</td>
-                <td>SEO</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">SEO</td>
                 <td><span class="badge badge-lost"><span class="dot"></span>Lost / churned</span></td>
                 <td class="api-key-col mono">7396321739, 7903735761</td>
                 <td class="api-key-col mono">324823841</td>
@@ -1077,9 +1077,9 @@
                 <td>Gillette, WY</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">-</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">11696327691</td>
                 <td class="api-key-col mono">424499987</td>
@@ -1093,9 +1093,9 @@
                 <td>Rockwall, TX</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2026-01-21</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2026-01-21</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">7396321775, 8060588723</td>
                 <td class="api-key-col mono">324863672</td>
@@ -1109,9 +1109,9 @@
                 <td>Midtown East, NY</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2025-11-13</td>
-                <td class="mono">2026-03-17</td>
-                <td>PPC</td>
+                <td class="extra-col mono">2025-11-13</td>
+                <td class="extra-col mono">2026-03-17</td>
+                <td class="extra-col">PPC</td>
                 <td><span class="badge badge-lost"><span class="dot"></span>Lost / churned</span></td>
                 <td class="api-key-col mono">11406755521</td>
                 <td class="api-key-col mono">-</td>
@@ -1125,9 +1125,9 @@
                 <td>Oxford, NC</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">-</td>
-                <td>SEO, PPC</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col">SEO, PPC</td>
                 <td><span class="badge badge-paused"><span class="dot"></span>Paused</span></td>
                 <td class="api-key-col mono">7495773466</td>
                 <td class="api-key-col mono">-</td>
@@ -1141,9 +1141,9 @@
                 <td>San Diego, CA</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2026-02-18</td>
-                <td>SEO, PPC, Web build</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2026-02-18</td>
+                <td class="extra-col">SEO, PPC, Web build</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">18375010972</td>
                 <td class="api-key-col mono">514401802</td>
@@ -1157,9 +1157,9 @@
                 <td>Fort Worth, TX</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2025-10-21</td>
-                <td>-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2025-10-21</td>
+                <td class="extra-col">-</td>
                 <td><span class="badge badge-unknown"><span class="dot"></span>Unmarked</span></td>
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">506945156</td>
@@ -1173,9 +1173,9 @@
                 <td>Raleigh, North Carolina</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2024-10-03</td>
-                <td>-</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2024-10-03</td>
+                <td class="extra-col">-</td>
                 <td><span class="badge badge-unknown"><span class="dot"></span>Unmarked</span></td>
                 <td class="api-key-col mono">-</td>
                 <td class="api-key-col mono">445378328</td>
@@ -1189,9 +1189,9 @@
                 <td>Indianapolis, IN</td>
                 <td>Dental</td>
                 <td><span class="pod pod-orange">Orange</span></td>
-                <td class="mono">2025-08-30</td>
-                <td class="mono">2025-10-21</td>
-                <td>PPC, SEO, Website</td>
+                <td class="extra-col mono">2025-08-30</td>
+                <td class="extra-col mono">2025-10-21</td>
+                <td class="extra-col">PPC, SEO, Website</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">10003184805</td>
                 <td class="api-key-col mono">509825713</td>
@@ -1205,9 +1205,9 @@
                 <td>Lebanon, TN</td>
                 <td>Dental</td>
                 <td><span class="pod pod-white">White</span></td>
-                <td class="mono">-</td>
-                <td class="mono">2025-07-25</td>
-                <td>PPC, web hosting only, SEO</td>
+                <td class="extra-col mono">-</td>
+                <td class="extra-col mono">2025-07-25</td>
+                <td class="extra-col">PPC, web hosting only, SEO</td>
                 <td><span class="badge badge-active"><span class="dot"></span>Active</span></td>
                 <td class="api-key-col mono">9312639165</td>
                 <td class="api-key-col mono">492628937</td>
@@ -1223,9 +1223,9 @@
                 <h3>1000 Smiles</h3>
                 <div class="card-meta">Thousand Oaks, CA <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2024-03-06</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2024-05-16</dd></div>
-                  <div><dt>Services</dt><dd>Hosting</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2024-03-06</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2024-05-16</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>Hosting</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7396322190</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">436301877</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:1000smiles.la</dd></div>
@@ -1240,9 +1240,9 @@
                 <h3>[MDS] Central Ave Dental</h3>
                 <div class="card-meta">Charlotte, NC <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2024-03-08</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2024-06-06</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2024-03-08</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2024-06-06</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7495772951</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">444929412</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.centralavenuedental.com/</dd></div>
@@ -1257,9 +1257,9 @@
                 <h3>[MDS] Charlotte Dental Associates</h3>
                 <div class="card-meta">Charlotte, NC <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2022-08-03</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2023-01-20</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2022-08-03</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2023-01-20</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7495772512</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">355847151</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://charlottedentalassociatesnc.com/</dd></div>
@@ -1274,9 +1274,9 @@
                 <h3>[MDS] Elmtree Dental</h3>
                 <div class="card-meta">Columbia, SC <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-12-01</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-12-01</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7495773337</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">452733558</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:elmtreefamilydental.com</dd></div>
@@ -1291,9 +1291,9 @@
                 <h3>[MDS] Smart Ortho</h3>
                 <div class="card-meta">Charlotte, NC <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2023-01-11</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2023-06-07</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2023-01-11</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2023-06-07</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7495773223</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">387730680</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.smartorthodontics.com/</dd></div>
@@ -1308,9 +1308,9 @@
                 <h3>[MDS] Vivid Dental - Greensboro</h3>
                 <div class="card-meta">Greensboro, NC <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2024-08-20</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2024-08-20</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7495773194</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:vividdental.com</dd></div>
@@ -1325,9 +1325,9 @@
                 <h3>AR Smiles</h3>
                 <div class="card-meta">Fairlawn, OH <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2023-08-24</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-09-25</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2023-08-24</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-09-25</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7396322017</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">307689199</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:arsmilesdental.com</dd></div>
@@ -1342,9 +1342,9 @@
                 <h3>Ashburn Family Dental Care</h3>
                 <div class="card-meta">Ashburn, VA <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2026-03-27</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-05-04</dd></div>
-                  <div><dt>Services</dt><dd>PPC, SEO, Website</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2026-03-27</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-05-04</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>PPC, SEO, Website</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">11634420508</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">535803422</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:ashburnfamilydentalcare.com</dd></div>
@@ -1359,9 +1359,9 @@
                 <h3>AZ Cosmetic Dental</h3>
                 <div class="card-meta">- <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2026-01-28</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-03-17</dd></div>
-                  <div><dt>Services</dt><dd>PPC, SEO, Website</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2026-01-28</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-03-17</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>PPC, SEO, Website</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">11406694596</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">524198926</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:azfamilydentistry.com</dd></div>
@@ -1376,9 +1376,9 @@
                 <h3>Ben Helfman</h3>
                 <div class="card-meta">Redding, CA <span>/</span> Legal <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-07-17</dd></div>
-                  <div><dt>Services</dt><dd>SEO</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-07-17</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7863279341</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:lthzlaw.com</dd></div>
@@ -1393,9 +1393,9 @@
                 <h3>Bright Craft</h3>
                 <div class="card-meta">Burbank, CA <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-04-29</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-04-29</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">10914292332</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">521523657</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://brightcraftcenter.com/</dd></div>
@@ -1410,9 +1410,9 @@
                 <h3>Bright Healthy Smiles</h3>
                 <div class="card-meta">New York, NY <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2019-10-21</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>Hosting</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2019-10-21</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>Hosting</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7396321736</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">324813499</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:brighthealthysmiles.com</dd></div>
@@ -1427,9 +1427,9 @@
                 <h3>Bryant Ortho</h3>
                 <div class="card-meta">Windsor Mill, MD <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-11-25</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-11-25</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">9921643009</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">503640778</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://bryantortho.net/</dd></div>
@@ -1444,9 +1444,9 @@
                 <h3>Cap Dental</h3>
                 <div class="card-meta">Boynton Beach, FL <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-11-07</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-11-07</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">8970105641</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">487695762</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:mycapdental.com</dd></div>
@@ -1461,9 +1461,9 @@
                 <h3>Charm Dental</h3>
                 <div class="card-meta">Woodbridge, VA <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">18309913616</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
@@ -1478,9 +1478,9 @@
                 <h3>Classic Dental Arts</h3>
                 <div class="card-meta">Manalapan Township, NJ <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2024-07-18</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2024-10-23</dd></div>
-                  <div><dt>Services</dt><dd>SEO</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2024-07-18</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2024-10-23</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7396322282</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">468405979</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:classicdentalarts.com</dd></div>
@@ -1495,9 +1495,9 @@
                 <h3>Commonwealth Family Dentistry- Dr. Breeden</h3>
                 <div class="card-meta">Chester, VA <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2026-01-25</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-02-27</dd></div>
-                  <div><dt>Services</dt><dd>PPC, SEO, Website</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2026-01-25</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-02-27</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>PPC, SEO, Website</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">11406866552</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">498866939</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://commonwealthfamilydentistry.com/</dd></div>
@@ -1512,9 +1512,9 @@
                 <h3>CR Smiles</h3>
                 <div class="card-meta">Katy, TX <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2025-04-21</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-06-12</dd></div>
-                  <div><dt>Services</dt><dd>PPC, SEO</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2025-04-21</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-06-12</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>PPC, SEO</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">8970445282</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">374820919; 487862743</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.crsmilesdentistkatytx.com/</dd></div>
@@ -1529,9 +1529,9 @@
                 <h3>Davis Dental</h3>
                 <div class="card-meta">Jonesboro, AR <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-03-18</dd></div>
-                  <div><dt>Services</dt><dd>SEO</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-03-18</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">11377060937</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">429656901</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://smiles4jonesboro.com/</dd></div>
@@ -1546,9 +1546,9 @@
                 <h3>Dental Care Center of Hollywood</h3>
                 <div class="card-meta">Hollywood, FL <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-01-07</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-01-07</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">18365122656</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">514042477</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:dentalcenterofhollywood.com</dd></div>
@@ -1563,9 +1563,9 @@
                 <h3>Dental Studio of Palm Harbor</h3>
                 <div class="card-meta">Palm Harbor, FL <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2025-12-03</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-02-13</dd></div>
-                  <div><dt>Services</dt><dd>SEO, Website</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2025-12-03</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-02-13</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, Website</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">11406800953</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">525303914</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://yourpalmharbordentist.com/</dd></div>
@@ -1580,9 +1580,9 @@
                 <h3>Dental Wellness</h3>
                 <div class="card-meta">Sioux Falls, SD <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2025-11-18</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-02-04</dd></div>
-                  <div><dt>Services</dt><dd>PPC, SEO, PPC, Website</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2025-11-18</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-02-04</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>PPC, SEO, PPC, Website</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">11406756101, 8585441483, 11406798824</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">391270518</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.1dentalwellness.com/</dd></div>
@@ -1597,9 +1597,9 @@
                 <h3>Downtown Dental Nashville</h3>
                 <div class="card-meta">Nashville, TN <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-12-08</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-12-08</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">18015737126</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">358067808</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.downtowndentalnashville.com/</dd></div>
@@ -1614,9 +1614,9 @@
                 <h3>Dr.Goins</h3>
                 <div class="card-meta">Plano, TX <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-04-01</dd></div>
-                  <div><dt>Services</dt><dd>-</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-04-01</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>-</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">326588351; 368194289</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:greatstarthealthysmiles.com</dd></div>
@@ -1631,9 +1631,9 @@
                 <h3>Dulce Dental</h3>
                 <div class="card-meta">Dulce, NM <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-11-07</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-11-07</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">9413852605</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">507654974</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.mydulcedental.com/</dd></div>
@@ -1648,9 +1648,9 @@
                 <h3>Emerald Coast</h3>
                 <div class="card-meta">Fort Walton Beach, FL <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>SEO</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7396322344</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">324815221</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.emeraldcoastdentistry.com/</dd></div>
@@ -1665,9 +1665,9 @@
                 <h3>Empower Dental Coastland</h3>
                 <div class="card-meta">Burbank, CA <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-04-29</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-04-29</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">10914292332</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:coastlanddental.com</dd></div>
@@ -1682,9 +1682,9 @@
                 <h3>Empower Dental Glendale</h3>
                 <div class="card-meta">Glendale, CA <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-04-29</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-04-29</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">10914292332</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">521515992</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:empowerdentalglendale.com</dd></div>
@@ -1699,9 +1699,9 @@
                 <h3>Empower Dental Pasadena</h3>
                 <div class="card-meta">Pasadena, CA <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-04-29</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-04-29</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">10914292332</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">521505728</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://empowerdentalpasadena.com/</dd></div>
@@ -1716,9 +1716,9 @@
                 <h3>Empower Dental Rancho</h3>
                 <div class="card-meta">Rancho Cucamonga, CA <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-04-29</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-04-29</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">10914292332</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">521563642</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:dentalcarecalifornia.com</dd></div>
@@ -1733,9 +1733,9 @@
                 <h3>Empower Dental Upland</h3>
                 <div class="card-meta">Upland, CA <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-04-29</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2026-01-05</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-04-29</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">10914292332</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">521511151</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:empowerdentalupland.com</dd></div>
@@ -1750,9 +1750,9 @@
                 <h3>Encore Dental Studio</h3>
                 <div class="card-meta">Winston-Salem, North Carolina <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-01-10</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-01-10</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7976789937</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">472298657</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://edswinstonsalemdentist.com/</dd></div>
@@ -1767,9 +1767,9 @@
                 <h3>Haven Dentistry</h3>
                 <div class="card-meta">Richmond, TX <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>-</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>-</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">327323383</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.lovettdental.com/</dd></div>
@@ -1784,9 +1784,9 @@
                 <h3>Joy Dental Pines</h3>
                 <div class="card-meta">Pembroke Pines, FL <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-02-05</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-02-05</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">18037400747</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">509395779</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:joydentalpines.com</dd></div>
@@ -1801,9 +1801,9 @@
                 <h3>Lehigh Dental - DR Petrillo</h3>
                 <div class="card-meta">Bethlehem, PA <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2025-12-23</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2025-12-23</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">11406829912</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
@@ -1818,9 +1818,9 @@
                 <h3>Lorton Town Dental</h3>
                 <div class="card-meta">Lorton, VA <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2025-12-16</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>PPC, SEO, Website</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2025-12-16</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>PPC, SEO, Website</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">11406812858</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">524312145</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:lortontowndental.com</dd></div>
@@ -1835,9 +1835,9 @@
                 <h3>Lovett Dental</h3>
                 <div class="card-meta">Houston, TX <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2023-05-10</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2023-05-26</dd></div>
-                  <div><dt>Services</dt><dd>SEO, FB, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2023-05-10</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2023-05-26</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, FB, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7495772603</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">327323383</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.lovettdental.com/</dd></div>
@@ -1852,9 +1852,9 @@
                 <h3>Maison LA</h3>
                 <div class="card-meta">New Orleans, LA <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-12-12</dd></div>
-                  <div><dt>Services</dt><dd>SEO, Web build, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-12-12</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, Web build, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">18255174577</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">511484037</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://maisonladental.com/</dd></div>
@@ -1869,9 +1869,9 @@
                 <h3>Michael Berry</h3>
                 <div class="card-meta">Jacksonville, FL <span>/</span> Legal <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-07-17</dd></div>
-                  <div><dt>Services</dt><dd>SEO</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-07-17</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7678158460</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:mjbfirm.com</dd></div>
@@ -1886,9 +1886,9 @@
                 <h3>Michael Bleeker</h3>
                 <div class="card-meta">Scottsdale, AZ <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-03-18</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-03-18</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">11073677686</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">522053218</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:michaellbleekerdmd.com</dd></div>
@@ -1903,9 +1903,9 @@
                 <h3>Molly&#x27;s Florals</h3>
                 <div class="card-meta">- <span>/</span> Floral <span>/</span> -</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>-</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>-</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
@@ -1920,9 +1920,9 @@
                 <h3>MORE Dental - Total Smiles Leland</h3>
                 <div class="card-meta">Leland, NC <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7495773445</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://totalsmilesofleland.com/</dd></div>
@@ -1937,9 +1937,9 @@
                 <h3>Mount Jackson Dental</h3>
                 <div class="card-meta">Mount Jackson, VA <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2025-04-10</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-10-27</dd></div>
-                  <div><dt>Services</dt><dd>PPC, SEO</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2025-04-10</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-10-27</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>PPC, SEO</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">9554722676</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">509820688</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.mountjacksondentalcare.com/</dd></div>
@@ -1954,9 +1954,9 @@
                 <h3>Mountain View</h3>
                 <div class="card-meta">Acworth, GA <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2018-08-13</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>SEO, SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2018-08-13</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7396321692, 7737535192</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
@@ -1971,9 +1971,9 @@
                 <h3>My Teeth &amp; Me</h3>
                 <div class="card-meta">New York, NY <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2024-09-26</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2024-11-19</dd></div>
-                  <div><dt>Services</dt><dd>SEO, Website only</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2024-09-26</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2024-11-19</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, Website only</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">8864440888</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">469557877</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.myteethandme.com/</dd></div>
@@ -1988,9 +1988,9 @@
                 <h3>NC Complete Dentistry</h3>
                 <div class="card-meta">- <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>-</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>-</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">536098401</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:nccompletedentistry.com</dd></div>
@@ -2005,9 +2005,9 @@
                 <h3>New wave Dental</h3>
                 <div class="card-meta">Raleigh, NC <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-03-18</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-03-18</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">11228475001</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">528075650</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://newwavedental.com/</dd></div>
@@ -2022,9 +2022,9 @@
                 <h3>NK Family Dentistry</h3>
                 <div class="card-meta">Chicago, IL <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-02-05</dd></div>
-                  <div><dt>Services</dt><dd>-</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-02-05</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>-</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">383127764</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://nkfamilydental.com/</dd></div>
@@ -2039,9 +2039,9 @@
                 <h3>North Atlanta Center for Cosmetic &amp; Implant Dentistry</h3>
                 <div class="card-meta">- <span>/</span> Dental <span>/</span> -</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-03-16</dd></div>
-                  <div><dt>Services</dt><dd>SEO</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-03-16</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">524935222</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:buforddentist.com</dd></div>
@@ -2056,9 +2056,9 @@
                 <h3>Oasis Smile Studio</h3>
                 <div class="card-meta">New York, NY <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-03-20</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-03-20</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">8585445984</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">482364757</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:oasissmilestudio.com</dd></div>
@@ -2073,9 +2073,9 @@
                 <h3>OC Specialties</h3>
                 <div class="card-meta">Huntington Beach, CA <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>web hosting only, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>web hosting only, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">8927703519</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
@@ -2090,9 +2090,9 @@
                 <h3>One Orthodontics</h3>
                 <div class="card-meta">Fredericksburg, VA <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2025-09-11</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-11-20</dd></div>
-                  <div><dt>Services</dt><dd>SEO</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2025-09-11</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-11-20</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">8642651206</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">509818434</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:1-orthodontics.com</dd></div>
@@ -2107,9 +2107,9 @@
                 <h3>Polished Dentistry</h3>
                 <div class="card-meta">- <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2026-02-28</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>SEO</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2026-02-28</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">11376144739</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">487812865</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://polishedgeneralandcosmeticdentistry.com/</dd></div>
@@ -2124,9 +2124,9 @@
                 <h3>Q and A Dental Care</h3>
                 <div class="card-meta">Macedonia, OH <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-09-18</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-09-18</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">9635470989</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">498071898</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.qandadentalcare.com/</dd></div>
@@ -2141,9 +2141,9 @@
                 <h3>Raytown Dentist</h3>
                 <div class="card-meta">Raytown <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2024-12-07</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-10-17</dd></div>
-                  <div><dt>Services</dt><dd>Hosting</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2024-12-07</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-10-17</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>Hosting</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">8163461596</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">472568749</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:raytowndentist.com</dd></div>
@@ -2158,9 +2158,9 @@
                 <h3>Rodich Law</h3>
                 <div class="card-meta">Woodland Hills, CA <span>/</span> Legal <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2024-03-23</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2024-04-09</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2024-03-23</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2024-04-09</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7495773375</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">433452846</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:rodichlaw.com</dd></div>
@@ -2175,9 +2175,9 @@
                 <h3>Simply Veneers</h3>
                 <div class="card-meta">Newport Beach, CA <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2024-01-25</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2024-03-06</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2024-01-25</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2024-03-06</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7396322369</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:simplyveneers.com</dd></div>
@@ -2192,9 +2192,9 @@
                 <h3>SLCsmiles - DR gleave</h3>
                 <div class="card-meta">Salt Lake City, UT <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-02-10</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-02-10</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">18386514163</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">516291123</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:slcsmiles.com</dd></div>
@@ -2209,9 +2209,9 @@
                 <h3>Smile 312</h3>
                 <div class="card-meta">Chicago, IL <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2025-10-20</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-11-26</dd></div>
-                  <div><dt>Services</dt><dd>PPC, SEO, Website</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2025-10-20</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-11-26</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>PPC, SEO, Website</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">18309920682</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">514398123</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:smile312.com</dd></div>
@@ -2226,9 +2226,9 @@
                 <h3>Smile Line</h3>
                 <div class="card-meta">Livermore, CA <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2023-05-05</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2022-02-04</dd></div>
-                  <div><dt>Services</dt><dd>SEO, SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2023-05-05</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2022-02-04</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7396321977, 7495773152</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">324849615</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://smilelinedentistry.com/</dd></div>
@@ -2243,9 +2243,9 @@
                 <h3>Smile SF</h3>
                 <div class="card-meta">San Francisco, CA <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-01-07</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-01-07</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">18056078972</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">511819202</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:sanfranciscodentistsmilesf.com</dd></div>
@@ -2260,9 +2260,9 @@
                 <h3>Smileology</h3>
                 <div class="card-meta">Niceville, FL Miramar Beach, FL Crestview, FL <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-01-07</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-01-07</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">9820714164</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">488682828</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:smileology.com</dd></div>
@@ -2277,9 +2277,9 @@
                 <h3>South Florida Sedation Dentistry</h3>
                 <div class="card-meta">West Palm Beach, FL <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-02-05</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-02-05</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">18183666938</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">509729524</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://www.southfloridasedationdentistry.com/</dd></div>
@@ -2294,9 +2294,9 @@
                 <h3>Starlite Dental</h3>
                 <div class="card-meta">McKinney, TX <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2025-01-22</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-02-27</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2025-01-22</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-02-27</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">9454892282</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">480137399</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:starlitedental.com</dd></div>
@@ -2311,9 +2311,9 @@
                 <h3>Supremia Dentistry</h3>
                 <div class="card-meta">Wake Forest, NC <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>SEO</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7396321739, 7903735761</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">324823841</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">https://supremiadentistry.com/</dd></div>
@@ -2328,9 +2328,9 @@
                 <h3>Synergy Dental Center</h3>
                 <div class="card-meta">Gillette, WY <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">11696327691</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">424499987</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
@@ -2345,9 +2345,9 @@
                 <h3>Tabor Dentistry</h3>
                 <div class="card-meta">Rockwall, TX <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-01-21</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-01-21</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7396321775, 8060588723</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">324863672</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:smilesthatrock.com</dd></div>
@@ -2362,9 +2362,9 @@
                 <h3>The Dental Parlour</h3>
                 <div class="card-meta">Midtown East, NY <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2025-11-13</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-03-17</dd></div>
-                  <div><dt>Services</dt><dd>PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2025-11-13</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-03-17</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">11406755521</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:dentalparlour.com</dd></div>
@@ -2379,9 +2379,9 @@
                 <h3>Total Smiles of Roxboro</h3>
                 <div class="card-meta">Oxford, NC <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">-</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">7495773466</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
@@ -2396,9 +2396,9 @@
                 <h3>University Dental</h3>
                 <div class="card-meta">San Diego, CA <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2026-02-18</dd></div>
-                  <div><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2026-02-18</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>SEO, PPC, Web build</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">18375010972</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">514401802</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:universitydentalsandiego.com</dd></div>
@@ -2413,9 +2413,9 @@
                 <h3>Vista Ridge Dental</h3>
                 <div class="card-meta">Fort Worth, TX <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-10-21</dd></div>
-                  <div><dt>Services</dt><dd>-</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-10-21</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>-</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">506945156</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:vistaridgedental.com</dd></div>
@@ -2430,9 +2430,9 @@
                 <h3>Vivid Dental - Raleigh</h3>
                 <div class="card-meta">Raleigh, North Carolina <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2024-10-03</dd></div>
-                  <div><dt>Services</dt><dd>-</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2024-10-03</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>-</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">-</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">445378328</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">-</dd></div>
@@ -2447,9 +2447,9 @@
                 <h3>Wagner Sleep Dental</h3>
                 <div class="card-meta">Indianapolis, IN <span>/</span> Dental <span>/</span> Orange</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">2025-08-30</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-10-21</dd></div>
-                  <div><dt>Services</dt><dd>PPC, SEO, Website</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">2025-08-30</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-10-21</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>PPC, SEO, Website</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">10003184805</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">509825713</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:wagnersleepdentist.com</dd></div>
@@ -2464,9 +2464,9 @@
                 <h3>Winwood Dental</h3>
                 <div class="card-meta">Lebanon, TN <span>/</span> Dental <span>/</span> White</div>
                 <dl class="card-grid">
-                  <div><dt>Started</dt><dd class="mono">-</dd></div>
-                  <div><dt>Launched</dt><dd class="mono">2025-07-25</dd></div>
-                  <div><dt>Services</dt><dd>PPC, web hosting only, SEO</dd></div>
+                  <div class="extra-col"><dt>Started</dt><dd class="mono">-</dd></div>
+                  <div class="extra-col"><dt>Launched</dt><dd class="mono">2025-07-25</dd></div>
+                  <div class="extra-col"><dt>Services</dt><dd>PPC, web hosting only, SEO</dd></div>
                   <div class="api-key-col"><dt>Monday</dt><dd class="mono">9312639165</dd></div>
                   <div class="api-key-col"><dt>GA4</dt><dd class="mono">492628937</dd></div>
                   <div class="api-key-col span-2"><dt>GSC</dt><dd class="mono truncate">sc-domain:winwooddental.com</dd></div>
@@ -2476,4 +2476,4 @@
                 <footer><a href="https://winwooddental.com/" target="_blank" rel="noreferrer" class="lnk">www</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Winwood%20Dental%20Lebanon%2C%20TN" target="_blank" rel="noreferrer" class="lnk">GBP</a><a href="https://drive.google.com/drive/folders/1CEtrMMEZu4UTEacLflc6vE7aeFN0aeX0" target="_blank" rel="noreferrer" class="lnk">drive</a><a href="https://docs.google.com/spreadsheets/d/1yOjAiTCb4PPIRXgwoGLuq7Cn_WNRJY8BI7RlXmDB1zA/edit?usp=drive_link" target="_blank" rel="noreferrer" class="lnk">map</a></footer>
               </article>
 
-      </div><div class="empty" id="empty-state"><h3>Nothing in the ledger.</h3><p>Clear filters or search again.</p></div></section></main></div><script>(function(){const search=document.getElementById('search');const podFilter=document.getElementById('pod-filter');const statusFilter=document.getElementById('status-filter');const industryFilter=document.getElementById('industry-filter');const resetBtn=document.getElementById('reset-btn');const empty=document.getElementById('empty-state');const tableView=document.getElementById('table-view');const cardView=document.getElementById('card-view');const sideLinks=document.querySelectorAll('.side-link');const viewTable=document.getElementById('view-table');const viewCards=document.getElementById('view-cards');const showApiKeys=document.getElementById('show-api-keys');const showNotes=document.getElementById('show-notes');const statFilters=document.querySelectorAll('[data-stat-filter]');const total=74;function applyFilters(){const q=(search.value||'').trim().toLowerCase();const pod=podFilter.value;const status=statusFilter.value;const industry=industryFilter.value;const items=[...document.querySelectorAll('#rows .row'),...document.querySelectorAll('#card-view .card-item')];let visible=0;items.forEach(el=>{const matchesStatus=!status||el.dataset.status===status||(status==='active-seo'&&el.dataset.activeSeo==='true')||(status==='inactive'&&['paused','lost'].includes(el.dataset.status));const show=(!q||el.dataset.search.includes(q))&&(!pod||el.dataset.pod===pod)&&matchesStatus&&(!industry||el.dataset.industry===industry);el.classList.toggle('hidden',!show);if(show&&el.classList.contains('row'))visible++;});document.getElementById('results-count').innerHTML='Showing <strong>'+visible+'</strong> of '+total;resetBtn.style.display=(q||pod||status||industry)?'inline-flex':'none';empty.classList.toggle('show',visible===0);tableView.style.display=visible===0?'none':(viewTable.classList.contains('active')?'':'none');cardView.style.display=visible===0?'none':(viewCards.classList.contains('active')?'grid':'none');sideLinks.forEach(link=>{const type=link.dataset.filterType;const value=link.dataset.filterValue;link.classList.toggle('active',(type==='status'&&value===status)||(type==='inactive'&&status==='inactive')||(type==='pod'&&value===pod)||(!value&&!status&&!pod&&type==='status'));});}search.addEventListener('input',applyFilters);podFilter.addEventListener('change',applyFilters);statusFilter.addEventListener('change',applyFilters);industryFilter.addEventListener('change',applyFilters);resetBtn.addEventListener('click',()=>{search.value='';podFilter.value='';statusFilter.value='';industryFilter.value='';applyFilters();});sideLinks.forEach(link=>link.addEventListener('click',()=>{const type=link.dataset.filterType;const value=link.dataset.filterValue;if(type==='status'){statusFilter.value=value;if(!value){podFilter.value='';industryFilter.value='';search.value='';}}if(type==='inactive')statusFilter.value='inactive';if(type==='pod')podFilter.value=(podFilter.value===value)?'':value;applyFilters();}));statFilters.forEach(stat=>stat.addEventListener('click',()=>{const filter=stat.dataset.statFilter;search.value='';industryFilter.value='';statusFilter.value='active-seo';podFilter.value=filter==='pod'?(stat.dataset.podValue||''):'';applyFilters();}));viewTable.addEventListener('click',()=>{viewTable.classList.add('active');viewCards.classList.remove('active');tableView.style.display='';cardView.style.display='none';});viewCards.addEventListener('click',()=>{viewCards.classList.add('active');viewTable.classList.remove('active');tableView.style.display='none';cardView.style.display='grid';});showApiKeys.addEventListener('change',()=>document.body.classList.toggle('show-api-keys',showApiKeys.checked));showNotes.addEventListener('change',()=>document.body.classList.toggle('show-notes',showNotes.checked));document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==search){e.preventDefault();search.focus();}if(e.key==='Escape'&&document.activeElement===search){search.value='';applyFilters();search.blur();}});applyFilters();})();</script></body></html>
+      </div><div class="empty" id="empty-state"><h3>Nothing in the ledger.</h3><p>Clear filters or search again.</p></div></section></main></div><script>(function(){const search=document.getElementById('search');const podFilter=document.getElementById('pod-filter');const statusFilter=document.getElementById('status-filter');const industryFilter=document.getElementById('industry-filter');const resetBtn=document.getElementById('reset-btn');const empty=document.getElementById('empty-state');const tableView=document.getElementById('table-view');const cardView=document.getElementById('card-view');const sideLinks=document.querySelectorAll('.side-link');const viewTable=document.getElementById('view-table');const viewCards=document.getElementById('view-cards');const showAllColumns=document.getElementById('show-all-columns');const showNotes=document.getElementById('show-notes');const statFilters=document.querySelectorAll('[data-stat-filter]');const total=74;function applyFilters(){const q=(search.value||'').trim().toLowerCase();const pod=podFilter.value;const status=statusFilter.value;const industry=industryFilter.value;const items=[...document.querySelectorAll('#rows .row'),...document.querySelectorAll('#card-view .card-item')];let visible=0;items.forEach(el=>{const matchesStatus=!status||el.dataset.status===status||(status==='active-seo'&&el.dataset.activeSeo==='true')||(status==='inactive'&&['paused','lost'].includes(el.dataset.status));const show=(!q||el.dataset.search.includes(q))&&(!pod||el.dataset.pod===pod)&&matchesStatus&&(!industry||el.dataset.industry===industry);el.classList.toggle('hidden',!show);if(show&&el.classList.contains('row'))visible++;});document.getElementById('results-count').innerHTML='Showing <strong>'+visible+'</strong> of '+total;resetBtn.style.display=(q||pod||status||industry)?'inline-flex':'none';empty.classList.toggle('show',visible===0);tableView.style.display=visible===0?'none':(viewTable.classList.contains('active')?'':'none');cardView.style.display=visible===0?'none':(viewCards.classList.contains('active')?'grid':'none');sideLinks.forEach(link=>{const type=link.dataset.filterType;const value=link.dataset.filterValue;link.classList.toggle('active',(type==='status'&&value===status)||(type==='inactive'&&status==='inactive')||(type==='pod'&&value===pod)||(!value&&!status&&!pod&&type==='status'));});}search.addEventListener('input',applyFilters);podFilter.addEventListener('change',applyFilters);statusFilter.addEventListener('change',applyFilters);industryFilter.addEventListener('change',applyFilters);resetBtn.addEventListener('click',()=>{search.value='';podFilter.value='';statusFilter.value='';industryFilter.value='';applyFilters();});sideLinks.forEach(link=>link.addEventListener('click',()=>{const type=link.dataset.filterType;const value=link.dataset.filterValue;if(type==='status'){statusFilter.value=value;if(!value){podFilter.value='';industryFilter.value='';search.value='';}}if(type==='inactive')statusFilter.value='inactive';if(type==='pod')podFilter.value=(podFilter.value===value)?'':value;applyFilters();}));statFilters.forEach(stat=>stat.addEventListener('click',()=>{const filter=stat.dataset.statFilter;search.value='';industryFilter.value='';statusFilter.value='active-seo';podFilter.value=filter==='pod'?(stat.dataset.podValue||''):'';applyFilters();}));viewTable.addEventListener('click',()=>{viewTable.classList.add('active');viewCards.classList.remove('active');tableView.style.display='';cardView.style.display='none';});viewCards.addEventListener('click',()=>{viewCards.classList.add('active');viewTable.classList.remove('active');tableView.style.display='none';cardView.style.display='grid';});showAllColumns.addEventListener('change',()=>document.body.classList.toggle('show-all-columns',showAllColumns.checked));showNotes.addEventListener('change',()=>document.body.classList.toggle('show-notes',showNotes.checked));document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==search){e.preventDefault();search.focus();}if(e.key==='Escape'&&document.activeElement===search){search.value='';applyFilters();search.blur();}});applyFilters();})();</script></body></html>
