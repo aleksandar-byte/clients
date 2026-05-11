@@ -29,6 +29,7 @@ button.active { background:var(--ink); color:white; }
 h3 { margin:3px 0 8px; font-size:18px; }
 .meta { display:flex; flex-wrap:wrap; gap:8px; color:var(--muted); font:12px Arial, sans-serif; }
 .meta span,.pill { border:1px solid var(--line); border-radius:999px; padding:3px 8px; text-decoration:none; background:#fff; }
+.meta .deadline { border-color:#c99a45; color:#7b4a00; background:#fff7e8; }
 .pill.site { color:var(--blue); }
 .pill.muted { color:var(--muted); }
 .item-side { display:flex; flex-direction:column; align-items:flex-end; gap:8px; font:12px Arial, sans-serif; }
@@ -53,7 +54,7 @@ h3 { margin:3px 0 8px; font-size:18px; }
   <section class="top">
     <div>
       <h1>Website Build<br>+ QC Board</h1>
-      <p class="sub">A source-backed operating board for active builds, launch readiness, post-launch QC, sitemap/build handoffs, and pod Slack signals. Default ticket window: last 30 days, with active web builds always shown.</p>
+      <p class="sub">A source-backed operating board for active builds, launch readiness, post-launch QC, sitemap/build handoffs, and pod Slack signals. Items are sorted newest date first using deadline, then timeline, then Monday update date.</p>
     </div>
     <div class="stats">
       <div class="stat"><span>Builds</span><strong>7</strong></div>
@@ -75,18 +76,86 @@ h3 { margin:3px 0 8px; font-size:18px; }
       
       <article class="item" data-pod="white" data-kind="build">
         <div class="item-main">
-          <div class="eyebrow">Build - White - Done / Done / Working / On Hold</div>
-          <h3>Haven Dentistry</h3>
+          <div class="eyebrow">Build - White - Done / Working</div>
+          <h3>EDG Coastland</h3>
           <div class="meta">
-            <span>Haven Dentistry</span>
-            <span>2024-05-14</span>
-            <span>Jay Alison Tan</span>
-            <a class="pill site" href="https://www.lovettdental.com/dental-offices-tx/haven-dentistry/" target="_blank" rel="noreferrer">www.lovettdental.com</a>
+            <span>EDG Coastland</span>
+            <span class="deadline">Deadline: 2026-04-16</span>
+            <span>Joanne</span>
+            <span class="pill muted">domain missing</span>
           </div>
         </div>
         <div class="item-side">
           <span class="priority">normal</span>
-          <a href="https://serpagency.monday.com/boards/620254537/pulses/6640826625" target="_blank" rel="noreferrer">Monday</a>
+          <a href="https://serpagency.monday.com/boards/620254537/pulses/11768290182" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="choose pod" data-kind="build">
+        <div class="item-main">
+          <div class="eyebrow">Build - Choose Pod - Done / Working</div>
+          <h3>New Client Kickoff - Carolina Complete</h3>
+          <div class="meta">
+            <span>Carolina Complete</span>
+            <span class="deadline">Deadline: 2026-04-16</span>
+            <span>Liza</span>
+            <a class="pill site" href="https://nccompletedentistry.com/" target="_blank" rel="noreferrer">nccompletedentistry.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">normal</span>
+          <a href="https://serpagency.monday.com/boards/620254537/pulses/11768787936" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="choose pod" data-kind="build">
+        <div class="item-main">
+          <div class="eyebrow">Build - Choose Pod - Done / Working</div>
+          <h3>SERP Dental</h3>
+          <div class="meta">
+            <span>SERP Dental</span>
+            <span class="deadline">Deadline: 2026-04-15</span>
+            <span>Joanne</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">normal</span>
+          <a href="https://serpagency.monday.com/boards/620254537/pulses/11756821059" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="build">
+        <div class="item-main">
+          <div class="eyebrow">Build - Orange - Done / Working</div>
+          <h3>Dr.Alhadad- Brio Dental Care Springfield</h3>
+          <div class="meta">
+            <span>Dr.Alhadad- Brio Dental Care Springfield</span>
+            <span class="deadline">Deadline: 2026-04-06</span>
+            <span>Jay Alison Tan</span>
+            <a class="pill site" href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer">www.qandadentalcare.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">normal</span>
+          <a href="https://serpagency.monday.com/boards/620254537/pulses/11684718559" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="build">
+        <div class="item-main">
+          <div class="eyebrow">Build - White - Done / Done / Waiting</div>
+          <h3>Total Smiles of Leland</h3>
+          <div class="meta">
+            <span>Total Smiles of Leland</span>
+            <span class="deadline">Deadline: 2024-09-06</span>
+            <span>Jay Alison Tan</span>
+            <a class="pill site" href="https://www.totalsmilesnc.com/" target="_blank" rel="noreferrer">www.totalsmilesnc.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">normal</span>
+          <a href="https://serpagency.monday.com/boards/620254537/pulses/7380675884" target="_blank" rel="noreferrer">Monday</a>
         </div>
       </article>
 
@@ -96,7 +165,7 @@ h3 { margin:3px 0 8px; font-size:18px; }
           <h3>Total Smiles of Roxboro</h3>
           <div class="meta">
             <span>Total Smiles of Roxboro</span>
-            <span>2024-05-20</span>
+            <span class="deadline">Deadline: 2024-05-20</span>
             <span>Ericka Marie Valencia</span>
             <a class="pill site" href="https://www.totalsmilesnc.com/" target="_blank" rel="noreferrer">www.totalsmilesnc.com</a>
           </div>
@@ -109,86 +178,18 @@ h3 { margin:3px 0 8px; font-size:18px; }
 
       <article class="item" data-pod="white" data-kind="build">
         <div class="item-main">
-          <div class="eyebrow">Build - White - Done / Done / Waiting</div>
-          <h3>Total Smiles of Leland</h3>
+          <div class="eyebrow">Build - White - Done / Done / Working / On Hold</div>
+          <h3>Haven Dentistry</h3>
           <div class="meta">
-            <span>Total Smiles of Leland</span>
-            <span>2024-09-06</span>
+            <span>Haven Dentistry</span>
+            <span class="deadline">Deadline: 2024-05-14</span>
             <span>Jay Alison Tan</span>
-            <a class="pill site" href="https://www.totalsmilesnc.com/" target="_blank" rel="noreferrer">www.totalsmilesnc.com</a>
+            <a class="pill site" href="https://www.lovettdental.com/dental-offices-tx/haven-dentistry/" target="_blank" rel="noreferrer">www.lovettdental.com</a>
           </div>
         </div>
         <div class="item-side">
           <span class="priority">normal</span>
-          <a href="https://serpagency.monday.com/boards/620254537/pulses/7380675884" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="build">
-        <div class="item-main">
-          <div class="eyebrow">Build - Orange - Done / Working</div>
-          <h3>Dr.Alhadad- Brio Dental Care Springfield</h3>
-          <div class="meta">
-            <span>Dr.Alhadad- Brio Dental Care Springfield</span>
-            <span>2026-04-06</span>
-            <span>Jay Alison Tan</span>
-            <a class="pill site" href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer">www.qandadentalcare.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">normal</span>
-          <a href="https://serpagency.monday.com/boards/620254537/pulses/11684718559" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="choose pod" data-kind="build">
-        <div class="item-main">
-          <div class="eyebrow">Build - Choose Pod - Done / Working</div>
-          <h3>SERP Dental</h3>
-          <div class="meta">
-            <span>SERP Dental</span>
-            <span>2026-04-15</span>
-            <span>Joanne</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">normal</span>
-          <a href="https://serpagency.monday.com/boards/620254537/pulses/11756821059" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="choose pod" data-kind="build">
-        <div class="item-main">
-          <div class="eyebrow">Build - Choose Pod - Done / Working</div>
-          <h3>New Client Kickoff - Carolina Complete</h3>
-          <div class="meta">
-            <span>Carolina Complete</span>
-            <span>2026-04-16</span>
-            <span>Liza</span>
-            <a class="pill site" href="https://nccompletedentistry.com/" target="_blank" rel="noreferrer">nccompletedentistry.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">normal</span>
-          <a href="https://serpagency.monday.com/boards/620254537/pulses/11768787936" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="build">
-        <div class="item-main">
-          <div class="eyebrow">Build - White - Done / Working</div>
-          <h3>EDG Coastland</h3>
-          <div class="meta">
-            <span>EDG Coastland</span>
-            <span>2026-04-16</span>
-            <span>Joanne</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">normal</span>
-          <a href="https://serpagency.monday.com/boards/620254537/pulses/11768290182" target="_blank" rel="noreferrer">Monday</a>
+          <a href="https://serpagency.monday.com/boards/620254537/pulses/6640826625" target="_blank" rel="noreferrer">Monday</a>
         </div>
       </article>
 
@@ -196,919 +197,460 @@ h3 { margin:3px 0 8px; font-size:18px; }
       
       <article class="item hot" data-pod="white" data-kind="qc / ticket">
         <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Loftus Landers</h3>
-          <div class="meta">
-            <span>Loftus</span>
-            <span>2026-03-16</span>
-            <span>Angelly Ross Buena</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11517269113" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
           <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>No GBP Access</h3>
+          <h3>Scott Adishian Landers</h3>
           <div class="meta">
-            <span>Dulce Dental</span>
-            <span>2026-03-17</span>
-            <span>Angelly Ross Buena</span>
-            <a class="pill site" href="https://www.mydulcedental.com/" target="_blank" rel="noreferrer">www.mydulcedental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11530700926" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Remove WC tagging from One-Ortho-</h3>
-          <div class="meta">
-            <span>One Orthodontics</span>
-            <span>2026-03-17 17:00</span>
-            <span>Jay Alison Tan, Ericka Marie Valencia, Marcelo Beilin, Grethel</span>
-            <a class="pill site" href="https://1-orthodontics.com/" target="_blank" rel="noreferrer">1-orthodontics.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11530318889" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Addtnl Content</h3>
-          <div class="meta">
-            <span>Dr. Gleave -SLC</span>
-            <span>2026-03-23</span>
-            <span>Criseanne Aira Garcia</span>
-            <a class="pill site" href="https://slcsmiles.com/" target="_blank" rel="noreferrer">slcsmiles.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11572824795" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>WC tracking/GTM setup</h3>
-          <div class="meta">
-            <span>Farhoumand Dentistry</span>
-            <span>2026-03-23</span>
-            <span>Grethel, Liza</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11576784916" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Cap Website Edits 2/19</h3>
-          <div class="meta">
-            <span>Cap Dental</span>
-            <span>2026-03-24</span>
-            <span>Liza</span>
-            <a class="pill site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11582594117" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Working</div>
-          <h3>Loftus Dental Content - Landing Pages</h3>
-          <div class="meta">
-            <span>Loftus</span>
-            <span>2026-03-25</span>
+            <span>Scott Adishian Landers</span>
+            <span class="deadline">Deadline: 2026-05-06</span>
             <span>Devin Taule</span>
-            <a class="pill site" href="https://dentistincoeurdalene.com/" target="_blank" rel="noreferrer">dentistincoeurdalene.com</a>
+            <a class="pill site" href="https://www.scottadishiandds.com/" target="_blank" rel="noreferrer">www.scottadishiandds.com</a>
           </div>
         </div>
         <div class="item-side">
           <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11592820020" target="_blank" rel="noreferrer">Monday</a>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11937982319" target="_blank" rel="noreferrer">Monday</a>
         </div>
       </article>
 
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Dental Parlour - Team &amp; Form edits-3-24</h3>
-          <div class="meta">
-            <span>Dental</span>
-            <span>2026-03-25 17:00</span>
-            <span>Jay Alison Tan, Ericka Marie Valencia</span>
-            <a class="pill site" href="https://dentalparlour.com/" target="_blank" rel="noreferrer">dentalparlour.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11596643458" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>One-Ortho Web Edits 3/21</h3>
-          <div class="meta">
-            <span>One Orthodontics</span>
-            <span>2026-03-25 17:00</span>
-            <span>Jay Alison Tan, Aleksandar Atanasoski, Ericka Marie Valencia, Ann Sereno</span>
-            <a class="pill site" href="https://1-orthodontics.com/" target="_blank" rel="noreferrer">1-orthodontics.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11578052187" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Location Page for New Office</h3>
-          <div class="meta">
-            <span>Cap Dental</span>
-            <span>2026-04-03</span>
-            <span>Criseanne Aira Garcia</span>
-            <a class="pill site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11670318735" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Sitemap: Clear Lake Dental Care</h3>
-          <div class="meta">
-            <span>Clear Lake Dental</span>
-            <span>2026-04-03</span>
-            <span>Criseanne Aira Garcia</span>
-            <a class="pill site" href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer">www.qandadentalcare.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11668467737" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>EDG BrightCraft Sitemap</h3>
-          <div class="meta">
-            <span>EDG BrightCraft</span>
-            <span>2026-04-03</span>
-            <span>Criseanne Aira Garcia</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11667701613" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Website Edits 4-3: Common Wealth</h3>
-          <div class="meta">
-            <span>Commonwealth Dentistry</span>
-            <span>2026-04-08 18:00</span>
-            <span>Aleksandar Atanasoski, Ericka Marie Valencia</span>
-            <a class="pill site" href="https://commonwealthfamilydentistry.com/" target="_blank" rel="noreferrer">commonwealthfamilydentistry.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11703073313" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Website Edits 04/09</h3>
-          <div class="meta">
-            <span>Empower Dental Group</span>
-            <span>2026-04-09</span>
-            <span>Angelly Ross Buena</span>
-            <a class="pill site" href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer">dentalcarecalifornia.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11716875735" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Website Build &amp; Sitemap</h3>
-          <div class="meta">
-            <span>Empower Dental Pasadena</span>
-            <span>2026-04-09</span>
-            <span>Criseanne Aira Garcia</span>
-            <a class="pill site" href="https://empowerdentalpasadena.com/" target="_blank" rel="noreferrer">empowerdentalpasadena.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11714047236" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>NP Matchback</h3>
-          <div class="meta">
-            <span>NP Matchback</span>
-            <span>2026-04-09</span>
-            <span>owner missing</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11716826692" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Ahrefs Technical</h3>
-          <div class="meta">
-            <span>South Florida Sedation Dentistry</span>
-            <span>2026-04-09</span>
-            <span>Glydel Silvestre, Liza</span>
-            <a class="pill site" href="https://www.southfloridasedationdentistry.com/" target="_blank" rel="noreferrer">www.southfloridasedationdentistry.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11712877419" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>One-Ortho Web edit</h3>
-          <div class="meta">
-            <span>One Orthodontics</span>
-            <span>2026-04-09 15:00</span>
-            <span>Jay Alison Tan, Ericka Marie Valencia</span>
-            <a class="pill site" href="https://1-orthodontics.com/" target="_blank" rel="noreferrer">1-orthodontics.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11669188431" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Ahrefs Technical</h3>
-          <div class="meta">
-            <span>AZ Cosmetic Dentistry</span>
-            <span>2026-04-10 15:00</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://azfamilydentistry.com/" target="_blank" rel="noreferrer">azfamilydentistry.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11712069743" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - Waiting</div>
-          <h3>Ahrefs Technical</h3>
-          <div class="meta">
-            <span>Commonwealth Family  Dental</span>
-            <span>2026-04-10 15:00</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://commonwealthfamilydentistry.com/" target="_blank" rel="noreferrer">commonwealthfamilydentistry.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11712493184" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
         <div class="item-main">
           <div class="eyebrow">QC / Ticket - Orange - Assigned</div>
-          <h3>Ahrefs Technical</h3>
+          <h3>New Online Booking Link- Ashburn Family Dental Care</h3>
           <div class="meta">
-            <span>Dental Wellness</span>
-            <span>2026-04-10 15:00</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://www.1dentalwellness.com/" target="_blank" rel="noreferrer">www.1dentalwellness.com</a>
+            <span>Ashburn Family Dental</span>
+            <span class="deadline">Deadline: 2026-05-06 18:00</span>
+            <span>Jay Alison Tan, Ericka Marie Valencia</span>
+            <a class="pill site" href="https://ashburnfamilydentalcare.com/" target="_blank" rel="noreferrer">ashburnfamilydentalcare.com</a>
           </div>
         </div>
         <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11712619321" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Post-Website Review Edits</h3>
-          <div class="meta">
-            <span>Clear Lake Dental</span>
-            <span>2026-04-11</span>
-            <span>Devin Taule</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11726725189" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Website Edits 04/10</h3>
-          <div class="meta">
-            <span>Riot Glass</span>
-            <span>2026-04-12</span>
-            <span>Joanne</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11730006896" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Cap 2nd Location</h3>
-          <div class="meta">
-            <span>Cap Dental</span>
-            <span>2026-04-13</span>
-            <span>Liza, Criseanne Aira Garcia</span>
-            <a class="pill site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11736311992" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Add Happy Patients</h3>
-          <div class="meta">
-            <span>Coastland Dental</span>
-            <span>2026-04-13</span>
-            <span>Joanne</span>
-            <a class="pill site" href="https://coastlanddental.com/" target="_blank" rel="noreferrer">coastlanddental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11741119829" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Update DNS on GoDaddy</h3>
-          <div class="meta">
-            <span>Council Oak Perio</span>
-            <span>2026-04-13</span>
-            <span>Joanne</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11738942962" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Invisalign Lander</h3>
-          <div class="meta">
-            <span>Smile SF</span>
-            <span>2026-04-13</span>
-            <span>Devin Taule</span>
-            <a class="pill site" href="https://sanfranciscodentistsmilesf.com/" target="_blank" rel="noreferrer">sanfranciscodentistsmilesf.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11737993774" target="_blank" rel="noreferrer">Monday</a>
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11939944758" target="_blank" rel="noreferrer">Monday</a>
         </div>
       </article>
 
       <article class="item hot" data-pod="white" data-kind="qc / ticket">
         <div class="item-main">
           <div class="eyebrow">QC / Ticket - White - Working</div>
-          <h3>Menu Structure</h3>
+          <h3>Post-Presentation Website Edits</h3>
           <div class="meta">
-            <span>Cap Dental</span>
-            <span>2026-04-14</span>
-            <span>Liza, Criseanne Aira Garcia</span>
-            <a class="pill site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11748040266" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Add script</h3>
-          <div class="meta">
-            <span>Joy Dental</span>
-            <span>2026-04-14</span>
-            <span>Devin Taule</span>
-            <a class="pill site" href="https://joydentalpines.com/" target="_blank" rel="noreferrer">joydentalpines.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11747419149" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Preferred Testimonial Video</h3>
-          <div class="meta">
-            <span>Smile SF</span>
-            <span>2026-04-15</span>
-            <span>Joanne</span>
-            <a class="pill site" href="https://sanfranciscodentistsmilesf.com/" target="_blank" rel="noreferrer">sanfranciscodentistsmilesf.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11759900838" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Captcha on Forms</h3>
-          <div class="meta">
-            <span>Ben Helfman | Leep Tescher Helfman and Zanze</span>
-            <span>2026-04-16</span>
-            <span>Devin Taule</span>
-            <a class="pill site" href="https://www.lthzlaw.com/" target="_blank" rel="noreferrer">www.lthzlaw.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11770107273" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Captcha on Forms</h3>
-          <div class="meta">
-            <span>Cap Dental</span>
-            <span>2026-04-16</span>
-            <span>Liza</span>
-            <a class="pill site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11770116382" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>NCC Migration</h3>
-          <div class="meta">
-            <span>Carolina Complete</span>
-            <span>2026-04-16</span>
-            <span>Joanne</span>
-            <a class="pill site" href="https://nccompletedentistry.com/" target="_blank" rel="noreferrer">nccompletedentistry.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11771773464" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Captcha on Forms</h3>
-          <div class="meta">
-            <span>North Atlanta Center</span>
-            <span>2026-04-16</span>
-            <span>Devin Taule</span>
-            <a class="pill site" href="https://buforddentist.com/" target="_blank" rel="noreferrer">buforddentist.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11770093503" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Lorton Town Dental - Website Edits</h3>
-          <div class="meta">
-            <span>Lorton Town Dental</span>
-            <span>2026-04-16 18:00</span>
-            <span>Jay Alison Tan, Aleksandar Atanasoski</span>
-            <a class="pill site" href="https://lortontowndental.com/" target="_blank" rel="noreferrer">lortontowndental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11769032974" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Post Meeting Website Edits</h3>
-          <div class="meta">
-            <span>Empower Dental Group</span>
-            <span>2026-04-20</span>
-            <span>Joanne</span>
-            <a class="pill site" href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer">dentalcarecalifornia.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11801077285" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Issue</h3>
-          <div class="meta">
-            <span>Downtown Dental</span>
-            <span>2026-04-20 18:00</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://www.downtowndentalnashville.com/" target="_blank" rel="noreferrer">www.downtowndentalnashville.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11759390601" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Assets Sunsetting</h3>
-          <div class="meta">
-            <span>Sunshine Clean Pros</span>
-            <span>2026-04-21</span>
-            <span>Joanne</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11810167443" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Website Edits 04/17</h3>
-          <div class="meta">
-            <span>Loftus Family Dental</span>
-            <span>2026-04-22</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://dentistincoeurdalene.com/" target="_blank" rel="noreferrer">dentistincoeurdalene.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11824641367" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Add doctor</h3>
-          <div class="meta">
-            <span>Smile Line Dentistry</span>
-            <span>2026-04-23</span>
-            <span>Devin Taule</span>
-            <a class="pill site" href="https://smilelinedentistry.com/" target="_blank" rel="noreferrer">smilelinedentistry.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11832814133" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Post Monthly Meeting Tasks</h3>
-          <div class="meta">
-            <span>University Dental</span>
-            <span>2026-04-23</span>
-            <span>Marcelo Beilin, Devin Taule</span>
-            <a class="pill site" href="https://www.universitydentalsandiego.com/" target="_blank" rel="noreferrer">www.universitydentalsandiego.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11834596197" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Remove Dr. Dillon</h3>
-          <div class="meta">
-            <span>Davis Dental</span>
-            <span>2026-04-24</span>
-            <span>Devin Taule</span>
-            <a class="pill site" href="https://drpetrillo.com/" target="_blank" rel="noreferrer">drpetrillo.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11838284123" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>CTA Buttons</h3>
-          <div class="meta">
-            <span>Farhoumand Dentistry</span>
-            <span>2026-04-24</span>
+            <span>Northwest General Dentistry</span>
+            <span class="deadline">Deadline: 2026-05-05</span>
             <span>Liza</span>
             <span class="pill muted">domain missing</span>
           </div>
         </div>
         <div class="item-side">
           <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11846558888" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Sedation  Lander</h3>
-          <div class="meta">
-            <span>Clear Lake Dantal</span>
-            <span>2026-04-27</span>
-            <span>Devin Taule, Marcelo Beilin</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11858844314" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Doctor&#x27;s List</h3>
-          <div class="meta">
-            <span>Empower Dental Group</span>
-            <span>2026-04-28</span>
-            <span>Joanne</span>
-            <a class="pill site" href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer">dentalcarecalifornia.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11872838453" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Issue found</h3>
-          <div class="meta">
-            <span>Smileology</span>
-            <span>2026-04-28</span>
-            <span>Liza</span>
-            <a class="pill site" href="https://smileology.com/" target="_blank" rel="noreferrer">smileology.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11875741387" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Lorton Dental records</h3>
-          <div class="meta">
-            <span>Lorton Town Dental</span>
-            <span>2026-04-28 18:00</span>
-            <span>Jay Alison Tan</span>
-            <a class="pill site" href="https://lortontowndental.com/" target="_blank" rel="noreferrer">lortontowndental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11858799119" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>New Dr. Bio and Photos</h3>
-          <div class="meta">
-            <span>Empower Dental Group</span>
-            <span>2026-04-29</span>
-            <span>Joanne</span>
-            <a class="pill site" href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer">www.qandadentalcare.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11885950657" target="_blank" rel="noreferrer">Monday</a>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11926972281" target="_blank" rel="noreferrer">Monday</a>
         </div>
       </article>
 
       <article class="item hot" data-pod="white" data-kind="qc / ticket">
         <div class="item-main">
           <div class="eyebrow">QC / Ticket - White - Tickets - QUEUE</div>
-          <h3>Form Codes for Residential</h3>
+          <h3>Import EDG Forms</h3>
           <div class="meta">
-            <span>Riot Glass</span>
-            <span>2026-04-29</span>
+            <span>Import EDG Forms</span>
+            <span class="deadline">Deadline: 2026-05-05</span>
+            <span>owner missing</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11929192860" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>Spell Check - The Dental Club</h3>
+          <div class="meta">
+            <span>The Dental Club</span>
+            <span class="deadline">Deadline: 2026-05-05</span>
+            <span>Jay Alison Tan</span>
+            <a class="pill site" href="https://dentalparlour.com/" target="_blank" rel="noreferrer">dentalparlour.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11928736738" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>Spell Check - Lovett Dental</h3>
+          <div class="meta">
+            <span>Lovett Dental</span>
+            <span class="deadline">Deadline: 2026-05-05</span>
+            <span>Joanne</span>
+            <a class="pill site" href="https://www.lovettdental.com/" target="_blank" rel="noreferrer">www.lovettdental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11928774551" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>Spell Check - Loftus Family Dental</h3>
+          <div class="meta">
+            <span>Loftus Family Dental</span>
+            <span class="deadline">Deadline: 2026-05-05</span>
+            <span>Joanne</span>
+            <a class="pill site" href="https://dentistincoeurdalene.com/" target="_blank" rel="noreferrer">dentistincoeurdalene.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11928764449" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>Spell Check - Farhoumand Dentistry</h3>
+          <div class="meta">
+            <span>Farhoumand Dentistry</span>
+            <span class="deadline">Deadline: 2026-05-05</span>
+            <span>Joanne</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11928779279" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>EDG Coastland - Spell Check</h3>
+          <div class="meta">
+            <span>EDG Coastland</span>
+            <span class="deadline">Deadline: 2026-05-05</span>
+            <span>Joanne</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11931929820" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>Spell Check - EDG Rancho</h3>
+          <div class="meta">
+            <span>EDG - Rancho</span>
+            <span class="deadline">Deadline: 2026-05-05</span>
+            <span>Joanne</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11928709322" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>Gold Invisalign Logo</h3>
+          <div class="meta">
+            <span>Central Avenue Dental</span>
+            <span class="deadline">Deadline: 2026-05-05</span>
+            <span>Devin Taule</span>
+            <a class="pill site" href="https://www.centralavenuedental.com/" target="_blank" rel="noreferrer">www.centralavenuedental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11928034639" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Spell Check - Ashburn Family Dental Care</h3>
+          <div class="meta">
+            <span>Ashburn Family Dental Care</span>
+            <span class="deadline">Deadline: 2026-05-05</span>
+            <span>Ericka Marie Valencia</span>
+            <a class="pill site" href="https://ashburnfamilydentalcare.com/" target="_blank" rel="noreferrer">ashburnfamilydentalcare.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11928753222" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - Assigned</div>
+          <h3>ARC Dental -ADA compliance update &amp; WP Credentials</h3>
+          <div class="meta">
+            <span>ARC Dental Health</span>
+            <span class="deadline">Deadline: 2026-05-05 18:00</span>
+            <span>Jay Alison Tan</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Medium</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11933856297" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Tickets - QUEUE</div>
+          <h3>Issue found</h3>
+          <div class="meta">
+            <span>University Dental</span>
+            <span class="deadline">Deadline: 2026-05-05</span>
+            <span>owner missing</span>
+            <a class="pill site" href="https://www.universitydentalsandiego.com/" target="_blank" rel="noreferrer">www.universitydentalsandiego.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11936028797" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>Issue found</h3>
+          <div class="meta">
+            <span>South Florida Sedation Dentistry</span>
+            <span class="deadline">Deadline: 2026-05-05</span>
+            <span>Liza</span>
+            <a class="pill site" href="https://www.southfloridasedationdentistry.com/" target="_blank" rel="noreferrer">www.southfloridasedationdentistry.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11935631113" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>Northwest General Dentistry - Ahrefs</h3>
+          <div class="meta">
+            <span>Northwest General Dentistry</span>
+            <span class="deadline">Deadline: 2026-05-05</span>
+            <span>Liza</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11935439522" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>SERP Dental Tasks</h3>
+          <div class="meta">
+            <span>SERP Dental Tasks</span>
+            <span class="deadline">Deadline: 2026-05-04</span>
             <span>Joanne</span>
             <span class="pill muted">domain missing</span>
           </div>
         </div>
         <div class="item-side">
           <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11882410800" target="_blank" rel="noreferrer">Monday</a>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11919214829" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Working</div>
+          <h3>Dr. Tigran&#x27;s Photo</h3>
+          <div class="meta">
+            <span>Empower Dental Group - BrightCraft</span>
+            <span class="deadline">Deadline: 2026-05-04</span>
+            <span>owner missing</span>
+            <a class="pill site" href="https://drpetrillo.com/" target="_blank" rel="noreferrer">drpetrillo.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11916640381" target="_blank" rel="noreferrer">Monday</a>
         </div>
       </article>
 
       <article class="item hot" data-pod="white" data-kind="qc / ticket">
         <div class="item-main">
           <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Emergency Dental Signage</h3>
+          <h3>Post Launch QC</h3>
           <div class="meta">
-            <span>Smileology</span>
-            <span>2026-04-29</span>
-            <span>Aleksandar Atanasoski, Mikee Novio</span>
-            <a class="pill site" href="https://smileology.com/" target="_blank" rel="noreferrer">smileology.com</a>
+            <span>Clear Lake Dental</span>
+            <span class="deadline">Deadline: 2026-05-04</span>
+            <span>Aleksandar Atanasoski, Mikee Novio, Criseanne Aira Garcia, Devin Taule</span>
+            <span class="pill muted">domain missing</span>
           </div>
         </div>
         <div class="item-side">
           <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11885818189" target="_blank" rel="noreferrer">Monday</a>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11919251274" target="_blank" rel="noreferrer">Monday</a>
         </div>
       </article>
 
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+      <article class="item" data-pod="white" data-kind="qc / ticket">
         <div class="item-main">
           <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>GTM Synergy</h3>
+          <h3>Need scheduling form</h3>
           <div class="meta">
-            <span>GTM Synergy</span>
-            <span>2026-04-30</span>
-            <span>Grethel, Ericka Marie Valencia</span>
-            <span class="pill muted">domain missing</span>
+            <span>Synergy Dental</span>
+            <span class="deadline">Deadline: 2026-05-04</span>
+            <span>Ericka Marie Valencia</span>
+            <a class="pill site" href="https://mysynergydental.com/" target="_blank" rel="noreferrer">mysynergydental.com</a>
           </div>
         </div>
         <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11893327968" target="_blank" rel="noreferrer">Monday</a>
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11921025443" target="_blank" rel="noreferrer">Monday</a>
         </div>
       </article>
 
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+      <article class="item" data-pod="white" data-kind="qc / ticket">
         <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Malware Scan</h3>
+          <div class="eyebrow">QC / Ticket - White - Working</div>
+          <h3>Issue found</h3>
           <div class="meta">
-            <span>NCC</span>
-            <span>2026-04-30</span>
+            <span>Smile Line Dentistry</span>
+            <span class="deadline">Deadline: 2026-05-04</span>
+            <span>Liza</span>
+            <a class="pill site" href="https://smilelinedentistry.com/" target="_blank" rel="noreferrer">smilelinedentistry.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11923151045" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>Invisalign Price Update</h3>
+          <div class="meta">
+            <span>New Wave Dental of Raleigh</span>
+            <span class="deadline">Deadline: 2026-05-04</span>
             <span>Devin Taule</span>
+            <a class="pill site" href="https://newwavedental.com/" target="_blank" rel="noreferrer">newwavedental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11920983984" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Working</div>
+          <h3>Farhoumand Spelling and Typos</h3>
+          <div class="meta">
+            <span>Farhoumand Dentistry</span>
+            <span class="deadline">Deadline: 2026-05-04</span>
+            <span>Liza</span>
             <span class="pill muted">domain missing</span>
           </div>
         </div>
         <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11893466265" target="_blank" rel="noreferrer">Monday</a>
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11919748234" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>EDG Post Launch Tasks</h3>
+          <div class="meta">
+            <span>Empower Dental Group</span>
+            <span class="deadline">Deadline: 2026-05-04</span>
+            <span>Criseanne Aira Garcia, Mikee Novio, Joanne, Angelly Ross Buena</span>
+            <a class="pill site" href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer">dentalcarecalifornia.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11918260684" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>Ashburn - Ahrefs Health Score</h3>
+          <div class="meta">
+            <span>Ashburn Family Dental</span>
+            <span class="deadline">Deadline: 2026-05-04</span>
+            <span>Ericka Marie Valencia</span>
+            <a class="pill site" href="https://ashburnfamilydentalcare.com/" target="_blank" rel="noreferrer">ashburnfamilydentalcare.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11917416155" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - Tickets - QUEUE</div>
+          <h3>Issue found</h3>
+          <div class="meta">
+            <span>Arsmiles Dental</span>
+            <span class="deadline">Deadline: 2026-05-03 03:00</span>
+            <span>Jay Alison Tan, Ericka Marie Valencia</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11908370398" target="_blank" rel="noreferrer">Monday</a>
         </div>
       </article>
 
       <article class="item hot" data-pod="orange" data-kind="qc / ticket">
         <div class="item-main">
           <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Domain Access for Implant Engine: Lorton</h3>
+          <h3>Blog Issue</h3>
           <div class="meta">
-            <span>Lorton Town Dental</span>
-            <span>2026-04-30 18:00</span>
-            <span>Jay Alison Tan</span>
-            <a class="pill site" href="https://lortontowndental.com/" target="_blank" rel="noreferrer">lortontowndental.com</a>
+            <span>Vista Ridge</span>
+            <span class="deadline">Timeline: 2026-04-28 - 2026-05-01</span>
+            <span>Ericka Marie Valencia</span>
+            <a class="pill site" href="https://vistaridgedental.com/" target="_blank" rel="noreferrer">vistaridgedental.com</a>
           </div>
         </div>
         <div class="item-side">
           <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11896029452" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Team Bio Updates- NK Family Dental</h3>
-          <div class="meta">
-            <span>NK Family Dentistry</span>
-            <span>2026-04-30 18:00</span>
-            <span>Devin Taule</span>
-            <a class="pill site" href="https://nkfamilydental.com/" target="_blank" rel="noreferrer">nkfamilydental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11894247413" target="_blank" rel="noreferrer">Monday</a>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11867944044" target="_blank" rel="noreferrer">Monday</a>
         </div>
       </article>
 
@@ -1118,7 +660,7 @@ h3 { margin:3px 0 8px; font-size:18px; }
           <h3>Change services on Landers</h3>
           <div class="meta">
             <span>Synergy</span>
-            <span>2026-05-01</span>
+            <span class="deadline">Deadline: 2026-05-01</span>
             <span>Ericka Marie Valencia</span>
             <span class="pill muted">domain missing</span>
           </div>
@@ -1135,7 +677,7 @@ h3 { margin:3px 0 8px; font-size:18px; }
           <h3>Polished - Website &amp; Navigation Revisions</h3>
           <div class="meta">
             <span>Polished Dentistry</span>
-            <span>2026-05-01 15:00</span>
+            <span class="deadline">Deadline: 2026-05-01 15:00</span>
             <span>Jay Alison Tan, Aleksandar Atanasoski, Ericka Marie Valencia, Devin Taule</span>
             <a class="pill site" href="https://polishedgeneralandcosmeticdentistry.com/" target="_blank" rel="noreferrer">polishedgeneralandcosmeticdentistry.com</a>
           </div>
@@ -1152,7 +694,7 @@ h3 { margin:3px 0 8px; font-size:18px; }
           <h3>Add click to call tracking via GA- Lorton Town Dental</h3>
           <div class="meta">
             <span>Lorton Town Dental</span>
-            <span>2026-05-01 18:00</span>
+            <span class="deadline">Deadline: 2026-05-01 18:00</span>
             <span>Aleksandar Atanasoski, Grethel</span>
             <a class="pill site" href="https://lortontowndental.com/" target="_blank" rel="noreferrer">lortontowndental.com</a>
           </div>
@@ -1163,442 +705,13 @@ h3 { margin:3px 0 8px; font-size:18px; }
         </div>
       </article>
 
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Post Launch QC</h3>
-          <div class="meta">
-            <span>Clear Lake Dental</span>
-            <span>2026-05-04</span>
-            <span>Aleksandar Atanasoski, Mikee Novio, Criseanne Aira Garcia, Devin Taule</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11919251274" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Working</div>
-          <h3>Dr. Tigran&#x27;s Photo</h3>
-          <div class="meta">
-            <span>Empower Dental Group - BrightCraft</span>
-            <span>2026-05-04</span>
-            <span>owner missing</span>
-            <a class="pill site" href="https://drpetrillo.com/" target="_blank" rel="noreferrer">drpetrillo.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11916640381" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>SERP Dental Tasks</h3>
-          <div class="meta">
-            <span>SERP Dental Tasks</span>
-            <span>2026-05-04</span>
-            <span>Joanne</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11919214829" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Tickets - QUEUE</div>
-          <h3>Import EDG Forms</h3>
-          <div class="meta">
-            <span>Import EDG Forms</span>
-            <span>2026-05-05</span>
-            <span>owner missing</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11929192860" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Working</div>
-          <h3>Post-Presentation Website Edits</h3>
-          <div class="meta">
-            <span>Northwest General Dentistry</span>
-            <span>2026-05-05</span>
-            <span>Liza</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11926972281" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Scott Adishian Landers</h3>
-          <div class="meta">
-            <span>Scott Adishian Landers</span>
-            <span>2026-05-06</span>
-            <span>Devin Taule</span>
-            <a class="pill site" href="https://www.scottadishiandds.com/" target="_blank" rel="noreferrer">www.scottadishiandds.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11937982319" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Ahrefs Technical</h3>
-          <div class="meta">
-            <span>Dental Parlour</span>
-            <span>2026-04-21 - 2026-04-30</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://dentalparlour.com/" target="_blank" rel="noreferrer">dentalparlour.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11797834099" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - Working</div>
-          <h3>Ahrefs Technical</h3>
-          <div class="meta">
-            <span>Lorton Town Dental</span>
-            <span>2026-04-09 - 2026-04-10</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://lortontowndental.com/" target="_blank" rel="noreferrer">lortontowndental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11711136386" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>One Ortho - Locational Landers</h3>
-          <div class="meta">
-            <span>One Orthodontics</span>
-            <span>2026-04-01 - 2026-04-01</span>
-            <span>Jay Alison Tan, Ericka Marie Valencia, Criseanne Aira Garcia</span>
-            <a class="pill site" href="https://1-orthodontics.com/" target="_blank" rel="noreferrer">1-orthodontics.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11619990610" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Robots Blocking Ahrefs</h3>
-          <div class="meta">
-            <span>University Dental</span>
-            <span>2026-04-08 - 2026-04-11</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://www.universitydentalsandiego.com/" target="_blank" rel="noreferrer">www.universitydentalsandiego.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11704493750" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Technical Issues</h3>
-          <div class="meta">
-            <span>University Dental</span>
-            <span>2026-04-08 - 2026-04-11</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://www.universitydentalsandiego.com/" target="_blank" rel="noreferrer">www.universitydentalsandiego.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11704205654" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Blog Issue</h3>
-          <div class="meta">
-            <span>Vista Ridge</span>
-            <span>2026-04-28 - 2026-05-01</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://vistaridgedental.com/" target="_blank" rel="noreferrer">vistaridgedental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11867944044" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Working</div>
-          <h3>Portal Edits</h3>
-          <div class="meta">
-            <span>QMi</span>
-            <span>2025-10-02</span>
-            <span>Joanne</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/18097278606" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Monitoring</div>
-          <h3>Dental Lab GBP</h3>
-          <div class="meta">
-            <span>EDG Dental Lab</span>
-            <span>2026-02-16</span>
-            <span>Aleksandar Atanasoski, Angelly Ross Buena</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11290572749" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - Assigned</div>
-          <h3>Palm Harbor Web Edits 03/30</h3>
-          <div class="meta">
-            <span>Dental Studio of Palm Harbor</span>
-            <span>2026-03-30 16:00</span>
-            <span>Jay Alison Tan</span>
-            <a class="pill site" href="https://yourpalmharbordentist.com/" target="_blank" rel="noreferrer">yourpalmharbordentist.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11631019588" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Check WC organic tracking</h3>
-          <div class="meta">
-            <span>Dental Care Center of Hollywood</span>
-            <span>2026-04-08</span>
-            <span>Joanne, Grethel</span>
-            <a class="pill site" href="https://www.dentalcenterofhollywood.com/" target="_blank" rel="noreferrer">www.dentalcenterofhollywood.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11702533644" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Ahrefs Technical</h3>
-          <div class="meta">
-            <span>Children&#x27;s Dentistry of Chattanooga</span>
-            <span>2026-04-10 15:00</span>
-            <span>Ericka Marie Valencia</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11712056846" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Dental Artistry Plugin Audits</h3>
-          <div class="meta">
-            <span>Dental Artistry</span>
-            <span>2026-04-16</span>
-            <span>Devin Taule</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11771791031" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Working</div>
-          <h3>40 years in Service</h3>
-          <div class="meta">
-            <span>QMi</span>
-            <span>2026-04-18</span>
-            <span>Joanne</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11266972979" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Fluoride Myths Article: Bright Health Smiles</h3>
-          <div class="meta">
-            <span>Bright Healthy Smiles</span>
-            <span>2026-04-20 18:00</span>
-            <span>Jay Alison Tan</span>
-            <a class="pill site" href="https://brighthealthysmiles.com/" target="_blank" rel="noreferrer">brighthealthysmiles.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11797230119" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Working</div>
-          <h3>Riot Residential Website Edits 04/21</h3>
-          <div class="meta">
-            <span>Riot Glass</span>
-            <span>2026-04-21</span>
-            <span>Joanne</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11811455283" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - Assigned</div>
-          <h3>Lorton Blog Issuess</h3>
-          <div class="meta">
-            <span>Lorton Town Dental</span>
-            <span>2026-04-22 18:00</span>
-            <span>Jay Alison Tan</span>
-            <a class="pill site" href="https://lortontowndental.com/" target="_blank" rel="noreferrer">lortontowndental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11819111397" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Clear Lake - Ahrefs Healthscore</h3>
-          <div class="meta">
-            <span>Clear Lake Dental</span>
-            <span>2026-04-30</span>
-            <span>Devin Taule</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11893956718" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      
-      <details class="overflow">
-        <summary>Show 44 lower-priority current-window QC/ticket records</summary>
-        
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Loftus - Ahrefs Healthscore</h3>
-          <div class="meta">
-            <span>Loftus</span>
-            <span>2026-04-30</span>
-            <span>Ericka Marie Valencia</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11893931954" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>The Dental Club - Ahrefs Health Score</h3>
-          <div class="meta">
-            <span>The Dental Club</span>
-            <span>2026-04-30</span>
-            <span>Devin Taule</span>
-            <a class="pill site" href="https://dentalparlour.com/" target="_blank" rel="noreferrer">dentalparlour.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11893507306" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
       <article class="item" data-pod="white" data-kind="qc / ticket">
         <div class="item-main">
           <div class="eyebrow">QC / Ticket - White - QC</div>
           <h3>Add T&amp;Cs to landers and website</h3>
           <div class="meta">
             <span>University Dental</span>
-            <span>2026-05-01</span>
+            <span class="deadline">Deadline: 2026-05-01</span>
             <span>Liza</span>
             <a class="pill site" href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer">www.qandadentalcare.com</a>
           </div>
@@ -1615,7 +728,7 @@ h3 { margin:3px 0 8px; font-size:18px; }
           <h3>Polished - Issue Found (Possible Website Edit)</h3>
           <div class="meta">
             <span>Polished Dentistry</span>
-            <span>2026-05-01 15:00</span>
+            <span class="deadline">Deadline: 2026-05-01 15:00</span>
             <span>Jay Alison Tan, Ericka Marie Valencia, Devin Taule</span>
             <a class="pill site" href="https://polishedgeneralandcosmeticdentistry.com/" target="_blank" rel="noreferrer">polishedgeneralandcosmeticdentistry.com</a>
           </div>
@@ -1626,659 +739,13 @@ h3 { margin:3px 0 8px; font-size:18px; }
         </div>
       </article>
 
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Working</div>
-          <h3>Issue found</h3>
-          <div class="meta">
-            <span>Smile Line Dentistry</span>
-            <span>2026-05-04</span>
-            <span>Liza</span>
-            <a class="pill site" href="https://smilelinedentistry.com/" target="_blank" rel="noreferrer">smilelinedentistry.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11923151045" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Need scheduling form</h3>
-          <div class="meta">
-            <span>Synergy Dental</span>
-            <span>2026-05-04</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://mysynergydental.com/" target="_blank" rel="noreferrer">mysynergydental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11921025443" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Spell Check - Ashburn Family Dental Care</h3>
-          <div class="meta">
-            <span>Ashburn Family Dental Care</span>
-            <span>2026-05-05</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://ashburnfamilydentalcare.com/" target="_blank" rel="noreferrer">ashburnfamilydentalcare.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11928753222" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Gold Invisalign Logo</h3>
-          <div class="meta">
-            <span>Central Avenue Dental</span>
-            <span>2026-05-05</span>
-            <span>Devin Taule</span>
-            <a class="pill site" href="https://www.centralavenuedental.com/" target="_blank" rel="noreferrer">www.centralavenuedental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11928034639" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Spell Check - EDG Rancho</h3>
-          <div class="meta">
-            <span>EDG - Rancho</span>
-            <span>2026-05-05</span>
-            <span>Joanne</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11928709322" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>EDG Coastland - Spell Check</h3>
-          <div class="meta">
-            <span>EDG Coastland</span>
-            <span>2026-05-05</span>
-            <span>Joanne</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11931929820" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Spell Check - Farhoumand Dentistry</h3>
-          <div class="meta">
-            <span>Farhoumand Dentistry</span>
-            <span>2026-05-05</span>
-            <span>Joanne</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11928779279" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Spell Check - Loftus Family Dental</h3>
-          <div class="meta">
-            <span>Loftus Family Dental</span>
-            <span>2026-05-05</span>
-            <span>Joanne</span>
-            <a class="pill site" href="https://dentistincoeurdalene.com/" target="_blank" rel="noreferrer">dentistincoeurdalene.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11928764449" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Spell Check - Lovett Dental</h3>
-          <div class="meta">
-            <span>Lovett Dental</span>
-            <span>2026-05-05</span>
-            <span>Joanne</span>
-            <a class="pill site" href="https://www.lovettdental.com/" target="_blank" rel="noreferrer">www.lovettdental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11928774551" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Spell Check - The Dental Club</h3>
-          <div class="meta">
-            <span>The Dental Club</span>
-            <span>2026-05-05</span>
-            <span>Jay Alison Tan</span>
-            <a class="pill site" href="https://dentalparlour.com/" target="_blank" rel="noreferrer">dentalparlour.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11928736738" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - Assigned</div>
-          <h3>New Online Booking Link- Ashburn Family Dental Care</h3>
-          <div class="meta">
-            <span>Ashburn Family Dental</span>
-            <span>2026-05-06 18:00</span>
-            <span>Jay Alison Tan, Ericka Marie Valencia</span>
-            <a class="pill site" href="https://ashburnfamilydentalcare.com/" target="_blank" rel="noreferrer">ashburnfamilydentalcare.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11939944758" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Ahrefs Technical</h3>
-          <div class="meta">
-            <span>Great Healthy Smiles</span>
-            <span>2026-04-02 - 2026-04-05</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://brighthealthysmiles.com/" target="_blank" rel="noreferrer">brighthealthysmiles.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11660205557" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - Assigned</div>
-          <h3>Ahrefs Technical</h3>
-          <div class="meta">
-            <span>NK Dental</span>
-            <span>no due</span>
-            <span>Ericka Marie Valencia</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11660204968" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Page Speed Optimization</h3>
-          <div class="meta">
-            <span>Tabor Dental</span>
-            <span>2025-04-03</span>
-            <span>Devin Taule, Liza</span>
-            <a class="pill site" href="https://www.smilesthatrock.com/" target="_blank" rel="noreferrer">www.smilesthatrock.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Medium</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/8856591630" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Website Access Request</h3>
-          <div class="meta">
-            <span>Multiple Clients</span>
-            <span>2026-04-09 15:00</span>
-            <span>Jay Alison Tan, Devin Taule</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Medium</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11709025701" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>No Blog page</h3>
-          <div class="meta">
-            <span>Multiple Clients</span>
-            <span>2026-04-16 15:00</span>
-            <span>Jay Alison Tan</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Medium</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11765793172" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Dental Wellness- Image/Layout Issue</h3>
-          <div class="meta">
-            <span>Dental Wellness</span>
-            <span>2026-04-20 18:00</span>
-            <span>Jay Alison Tan, Ericka Marie Valencia, Devin Taule</span>
-            <a class="pill site" href="https://www.1dentalwellness.com/" target="_blank" rel="noreferrer">www.1dentalwellness.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Medium</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11801187028" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - Assigned</div>
-          <h3>ARC Dental -ADA compliance update &amp; WP Credentials</h3>
-          <div class="meta">
-            <span>ARC Dental Health</span>
-            <span>2026-05-05 18:00</span>
-            <span>Jay Alison Tan</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Medium</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11933856297" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>AZ Cosmetic Dental - service pages</h3>
-          <div class="meta">
-            <span>AZ Cosmetic Dentistry</span>
-            <span>2026-04-10 - 2026-04-10</span>
-            <span>Jay Alison Tan</span>
-            <a class="pill site" href="https://azfamilydentistry.com/" target="_blank" rel="noreferrer">azfamilydentistry.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Medium</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11712062209" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - PAUSED // Bandwidth</div>
-          <h3>Page Speed Optimization</h3>
-          <div class="meta">
-            <span>Q and A Dental Care</span>
-            <span>2025-11-07</span>
-            <span>Liza</span>
-            <a class="pill site" href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer">www.qandadentalcare.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/18368411371" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Crestview Px Form</h3>
-          <div class="meta">
-            <span>Smileology</span>
-            <span>2026-01-12</span>
-            <span>Angelly Ross Buena</span>
-            <a class="pill site" href="https://smileology.com/" target="_blank" rel="noreferrer">smileology.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/10980532739" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Content Posting Aug-Dec 2025</h3>
-          <div class="meta">
-            <span>MJB Law Firm</span>
-            <span>2026-01-16</span>
-            <span>Mikee Novio, Liza</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11027383014" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Technical SEO Tabor</h3>
-          <div class="meta">
-            <span>Tabor Dental Associates</span>
-            <span>2026-01-22</span>
-            <span>Devin Taule, Liza</span>
-            <a class="pill site" href="https://charlottedentalassociatesnc.com/" target="_blank" rel="noreferrer">charlottedentalassociatesnc.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11072490490" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Patient Engagement Pic and Vid</h3>
-          <div class="meta">
-            <span>Smile SF</span>
-            <span>2026-02-09</span>
-            <span>Mikee Novio</span>
-            <a class="pill site" href="https://sanfranciscodentistsmilesf.com/" target="_blank" rel="noreferrer">sanfranciscodentistsmilesf.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11232325393" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Post Monthly Meeting Tasks</h3>
-          <div class="meta">
-            <span>Cap Dental</span>
-            <span>2026-03-11</span>
-            <span>Liza</span>
-            <a class="pill site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11484420506" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Ashref Technical</h3>
-          <div class="meta">
-            <span>Downtown Dental Nashville</span>
-            <span>2026-04-13</span>
-            <span>Liza</span>
-            <a class="pill site" href="https://www.downtowndentalnashville.com/" target="_blank" rel="noreferrer">www.downtowndentalnashville.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11736008485" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - Tickets - QUEUE</div>
-          <h3>Issue found</h3>
-          <div class="meta">
-            <span>Dental Wellness-Lander</span>
-            <span>2026-04-20 03:00</span>
-            <span>Jay Alison Tan, Ericka Marie Valencia</span>
-            <a class="pill site" href="https://www.1dentalwellness.com/" target="_blank" rel="noreferrer">www.1dentalwellness.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11791077789" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Update About Page</h3>
-          <div class="meta">
-            <span>Downtown Dental Nashville</span>
-            <span>2026-04-23</span>
-            <span>owner missing</span>
-            <a class="pill site" href="https://www.downtowndentalnashville.com/" target="_blank" rel="noreferrer">www.downtowndentalnashville.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11833650109" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - QC</div>
-          <h3>Negative KWs</h3>
-          <div class="meta">
-            <span>Empower Dental Group</span>
-            <span>2026-04-29</span>
-            <span>Marcelo Beilin</span>
-            <a class="pill site" href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer">dentalcarecalifornia.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11882743309" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - QC</div>
-          <h3>Issue found</h3>
-          <div class="meta">
-            <span>Aspire Family</span>
-            <span>2026-04-29 03:00</span>
-            <span>Ericka Marie Valencia</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11873962313" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - Orange - Tickets - QUEUE</div>
-          <h3>Issue found</h3>
-          <div class="meta">
-            <span>Arsmiles Dental</span>
-            <span>2026-05-03 03:00</span>
-            <span>Jay Alison Tan, Ericka Marie Valencia</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11908370398" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Ashburn - Ahrefs Health Score</h3>
-          <div class="meta">
-            <span>Ashburn Family Dental</span>
-            <span>2026-05-04</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://ashburnfamilydentalcare.com/" target="_blank" rel="noreferrer">ashburnfamilydentalcare.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11917416155" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>EDG Post Launch Tasks</h3>
-          <div class="meta">
-            <span>Empower Dental Group</span>
-            <span>2026-05-04</span>
-            <span>Criseanne Aira Garcia, Mikee Novio, Joanne, Angelly Ross Buena</span>
-            <a class="pill site" href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer">dentalcarecalifornia.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11918260684" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Working</div>
-          <h3>Farhoumand Spelling and Typos</h3>
-          <div class="meta">
-            <span>Farhoumand Dentistry</span>
-            <span>2026-05-04</span>
-            <span>Liza</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11919748234" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Invisalign Price Update</h3>
-          <div class="meta">
-            <span>New Wave Dental of Raleigh</span>
-            <span>2026-05-04</span>
-            <span>Devin Taule</span>
-            <a class="pill site" href="https://newwavedental.com/" target="_blank" rel="noreferrer">newwavedental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11920983984" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Northwest General Dentistry - Ahrefs</h3>
-          <div class="meta">
-            <span>Northwest General Dentistry</span>
-            <span>2026-05-05</span>
-            <span>Liza</span>
-            <span class="pill muted">domain missing</span>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11935439522" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Assigned</div>
-          <h3>Issue found</h3>
-          <div class="meta">
-            <span>South Florida Sedation Dentistry</span>
-            <span>2026-05-05</span>
-            <span>Liza</span>
-            <a class="pill site" href="https://www.southfloridasedationdentistry.com/" target="_blank" rel="noreferrer">www.southfloridasedationdentistry.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11935631113" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="white" data-kind="qc / ticket">
-        <div class="item-main">
-          <div class="eyebrow">QC / Ticket - White - Tickets - QUEUE</div>
-          <h3>Issue found</h3>
-          <div class="meta">
-            <span>University Dental</span>
-            <span>2026-05-05</span>
-            <span>owner missing</span>
-            <a class="pill site" href="https://www.universitydentalsandiego.com/" target="_blank" rel="noreferrer">www.universitydentalsandiego.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11936028797" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
       <article class="item" data-pod="orange" data-kind="qc / ticket">
         <div class="item-main">
           <div class="eyebrow">QC / Ticket - Orange - Tickets - QUEUE</div>
           <h3>Update Ascend Point BLOG-</h3>
           <div class="meta">
             <span>Ascend Point</span>
-            <span>no due</span>
+            <span class="deadline">Updated: 2026-04-30</span>
             <span>owner missing</span>
             <span class="pill muted">domain missing</span>
           </div>
@@ -2295,7 +762,7 @@ h3 { margin:3px 0 8px; font-size:18px; }
           <h3>New item</h3>
           <div class="meta">
             <span>New item</span>
-            <span>no due</span>
+            <span class="deadline">Updated: 2026-04-30</span>
             <span>owner missing</span>
             <span class="pill muted">domain missing</span>
           </div>
@@ -2303,6 +770,1540 @@ h3 { margin:3px 0 8px; font-size:18px; }
         <div class="item-side">
           <span class="priority">Average</span>
           <a href="https://serpagency.monday.com/boards/7446198439/pulses/11894185730" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Team Bio Updates- NK Family Dental</h3>
+          <div class="meta">
+            <span>NK Family Dentistry</span>
+            <span class="deadline">Deadline: 2026-04-30 18:00</span>
+            <span>Devin Taule</span>
+            <a class="pill site" href="https://nkfamilydental.com/" target="_blank" rel="noreferrer">nkfamilydental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11894247413" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Malware Scan</h3>
+          <div class="meta">
+            <span>NCC</span>
+            <span class="deadline">Deadline: 2026-04-30</span>
+            <span>Devin Taule</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11893466265" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Domain Access for Implant Engine: Lorton</h3>
+          <div class="meta">
+            <span>Lorton Town Dental</span>
+            <span class="deadline">Deadline: 2026-04-30 18:00</span>
+            <span>Jay Alison Tan</span>
+            <a class="pill site" href="https://lortontowndental.com/" target="_blank" rel="noreferrer">lortontowndental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11896029452" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>GTM Synergy</h3>
+          <div class="meta">
+            <span>GTM Synergy</span>
+            <span class="deadline">Deadline: 2026-04-30</span>
+            <span>Grethel, Ericka Marie Valencia</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11893327968" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Ahrefs Technical</h3>
+          <div class="meta">
+            <span>Dental Parlour</span>
+            <span class="deadline">Timeline: 2026-04-21 - 2026-04-30</span>
+            <span>Ericka Marie Valencia</span>
+            <a class="pill site" href="https://dentalparlour.com/" target="_blank" rel="noreferrer">dentalparlour.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11797834099" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>The Dental Club - Ahrefs Health Score</h3>
+          <div class="meta">
+            <span>The Dental Club</span>
+            <span class="deadline">Deadline: 2026-04-30</span>
+            <span>Devin Taule</span>
+            <a class="pill site" href="https://dentalparlour.com/" target="_blank" rel="noreferrer">dentalparlour.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11893507306" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Loftus - Ahrefs Healthscore</h3>
+          <div class="meta">
+            <span>Loftus</span>
+            <span class="deadline">Deadline: 2026-04-30</span>
+            <span>Ericka Marie Valencia</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11893931954" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Clear Lake - Ahrefs Healthscore</h3>
+          <div class="meta">
+            <span>Clear Lake Dental</span>
+            <span class="deadline">Deadline: 2026-04-30</span>
+            <span>Devin Taule</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11893956718" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>Emergency Dental Signage</h3>
+          <div class="meta">
+            <span>Smileology</span>
+            <span class="deadline">Deadline: 2026-04-29</span>
+            <span>Aleksandar Atanasoski, Mikee Novio</span>
+            <a class="pill site" href="https://smileology.com/" target="_blank" rel="noreferrer">smileology.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11885818189" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Tickets - QUEUE</div>
+          <h3>Form Codes for Residential</h3>
+          <div class="meta">
+            <span>Riot Glass</span>
+            <span class="deadline">Deadline: 2026-04-29</span>
+            <span>Joanne</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11882410800" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>New Dr. Bio and Photos</h3>
+          <div class="meta">
+            <span>Empower Dental Group</span>
+            <span class="deadline">Deadline: 2026-04-29</span>
+            <span>Joanne</span>
+            <a class="pill site" href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer">www.qandadentalcare.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11885950657" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Negative KWs</h3>
+          <div class="meta">
+            <span>Empower Dental Group</span>
+            <span class="deadline">Deadline: 2026-04-29</span>
+            <span>Marcelo Beilin</span>
+            <a class="pill site" href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer">dentalcarecalifornia.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11882743309" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Issue found</h3>
+          <div class="meta">
+            <span>Aspire Family</span>
+            <span class="deadline">Deadline: 2026-04-29 03:00</span>
+            <span>Ericka Marie Valencia</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11873962313" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Issue found</h3>
+          <div class="meta">
+            <span>Smileology</span>
+            <span class="deadline">Deadline: 2026-04-28</span>
+            <span>Liza</span>
+            <a class="pill site" href="https://smileology.com/" target="_blank" rel="noreferrer">smileology.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11875741387" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Lorton Dental records</h3>
+          <div class="meta">
+            <span>Lorton Town Dental</span>
+            <span class="deadline">Deadline: 2026-04-28 18:00</span>
+            <span>Jay Alison Tan</span>
+            <a class="pill site" href="https://lortontowndental.com/" target="_blank" rel="noreferrer">lortontowndental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11858799119" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Doctor&#x27;s List</h3>
+          <div class="meta">
+            <span>Empower Dental Group</span>
+            <span class="deadline">Deadline: 2026-04-28</span>
+            <span>Joanne</span>
+            <a class="pill site" href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer">dentalcarecalifornia.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11872838453" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Sedation  Lander</h3>
+          <div class="meta">
+            <span>Clear Lake Dantal</span>
+            <span class="deadline">Deadline: 2026-04-27</span>
+            <span>Devin Taule, Marcelo Beilin</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11858844314" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>CTA Buttons</h3>
+          <div class="meta">
+            <span>Farhoumand Dentistry</span>
+            <span class="deadline">Deadline: 2026-04-24</span>
+            <span>Liza</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11846558888" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Remove Dr. Dillon</h3>
+          <div class="meta">
+            <span>Davis Dental</span>
+            <span class="deadline">Deadline: 2026-04-24</span>
+            <span>Devin Taule</span>
+            <a class="pill site" href="https://drpetrillo.com/" target="_blank" rel="noreferrer">drpetrillo.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11838284123" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Post Monthly Meeting Tasks</h3>
+          <div class="meta">
+            <span>University Dental</span>
+            <span class="deadline">Deadline: 2026-04-23</span>
+            <span>Marcelo Beilin, Devin Taule</span>
+            <a class="pill site" href="https://www.universitydentalsandiego.com/" target="_blank" rel="noreferrer">www.universitydentalsandiego.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11834596197" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Add doctor</h3>
+          <div class="meta">
+            <span>Smile Line Dentistry</span>
+            <span class="deadline">Deadline: 2026-04-23</span>
+            <span>Devin Taule</span>
+            <a class="pill site" href="https://smilelinedentistry.com/" target="_blank" rel="noreferrer">smilelinedentistry.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11832814133" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Update About Page</h3>
+          <div class="meta">
+            <span>Downtown Dental Nashville</span>
+            <span class="deadline">Deadline: 2026-04-23</span>
+            <span>owner missing</span>
+            <a class="pill site" href="https://www.downtowndentalnashville.com/" target="_blank" rel="noreferrer">www.downtowndentalnashville.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11833650109" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Website Edits 04/17</h3>
+          <div class="meta">
+            <span>Loftus Family Dental</span>
+            <span class="deadline">Deadline: 2026-04-22</span>
+            <span>Ericka Marie Valencia</span>
+            <a class="pill site" href="https://dentistincoeurdalene.com/" target="_blank" rel="noreferrer">dentistincoeurdalene.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11824641367" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - Assigned</div>
+          <h3>Lorton Blog Issuess</h3>
+          <div class="meta">
+            <span>Lorton Town Dental</span>
+            <span class="deadline">Deadline: 2026-04-22 18:00</span>
+            <span>Jay Alison Tan</span>
+            <a class="pill site" href="https://lortontowndental.com/" target="_blank" rel="noreferrer">lortontowndental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11819111397" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Assets Sunsetting</h3>
+          <div class="meta">
+            <span>Sunshine Clean Pros</span>
+            <span class="deadline">Deadline: 2026-04-21</span>
+            <span>Joanne</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11810167443" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Working</div>
+          <h3>Riot Residential Website Edits 04/21</h3>
+          <div class="meta">
+            <span>Riot Glass</span>
+            <span class="deadline">Deadline: 2026-04-21</span>
+            <span>Joanne</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11811455283" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Post Meeting Website Edits</h3>
+          <div class="meta">
+            <span>Empower Dental Group</span>
+            <span class="deadline">Deadline: 2026-04-20</span>
+            <span>Joanne</span>
+            <a class="pill site" href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer">dentalcarecalifornia.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11801077285" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Issue</h3>
+          <div class="meta">
+            <span>Downtown Dental</span>
+            <span class="deadline">Deadline: 2026-04-20 18:00</span>
+            <span>Ericka Marie Valencia</span>
+            <a class="pill site" href="https://www.downtowndentalnashville.com/" target="_blank" rel="noreferrer">www.downtowndentalnashville.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11759390601" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Fluoride Myths Article: Bright Health Smiles</h3>
+          <div class="meta">
+            <span>Bright Healthy Smiles</span>
+            <span class="deadline">Deadline: 2026-04-20 18:00</span>
+            <span>Jay Alison Tan</span>
+            <a class="pill site" href="https://brighthealthysmiles.com/" target="_blank" rel="noreferrer">brighthealthysmiles.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11797230119" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Dental Wellness- Image/Layout Issue</h3>
+          <div class="meta">
+            <span>Dental Wellness</span>
+            <span class="deadline">Deadline: 2026-04-20 18:00</span>
+            <span>Jay Alison Tan, Ericka Marie Valencia, Devin Taule</span>
+            <a class="pill site" href="https://www.1dentalwellness.com/" target="_blank" rel="noreferrer">www.1dentalwellness.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Medium</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11801187028" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - Tickets - QUEUE</div>
+          <h3>Issue found</h3>
+          <div class="meta">
+            <span>Dental Wellness-Lander</span>
+            <span class="deadline">Deadline: 2026-04-20 03:00</span>
+            <span>Jay Alison Tan, Ericka Marie Valencia</span>
+            <a class="pill site" href="https://www.1dentalwellness.com/" target="_blank" rel="noreferrer">www.1dentalwellness.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11791077789" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Working</div>
+          <h3>40 years in Service</h3>
+          <div class="meta">
+            <span>QMi</span>
+            <span class="deadline">Deadline: 2026-04-18</span>
+            <span>Joanne</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11266972979" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Captcha on Forms</h3>
+          <div class="meta">
+            <span>North Atlanta Center</span>
+            <span class="deadline">Deadline: 2026-04-16</span>
+            <span>Devin Taule</span>
+            <a class="pill site" href="https://buforddentist.com/" target="_blank" rel="noreferrer">buforddentist.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11770093503" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Lorton Town Dental - Website Edits</h3>
+          <div class="meta">
+            <span>Lorton Town Dental</span>
+            <span class="deadline">Deadline: 2026-04-16 18:00</span>
+            <span>Jay Alison Tan, Aleksandar Atanasoski</span>
+            <a class="pill site" href="https://lortontowndental.com/" target="_blank" rel="noreferrer">lortontowndental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11769032974" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>NCC Migration</h3>
+          <div class="meta">
+            <span>Carolina Complete</span>
+            <span class="deadline">Deadline: 2026-04-16</span>
+            <span>Joanne</span>
+            <a class="pill site" href="https://nccompletedentistry.com/" target="_blank" rel="noreferrer">nccompletedentistry.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11771773464" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Captcha on Forms</h3>
+          <div class="meta">
+            <span>Cap Dental</span>
+            <span class="deadline">Deadline: 2026-04-16</span>
+            <span>Liza</span>
+            <a class="pill site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11770116382" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Captcha on Forms</h3>
+          <div class="meta">
+            <span>Ben Helfman | Leep Tescher Helfman and Zanze</span>
+            <span class="deadline">Deadline: 2026-04-16</span>
+            <span>Devin Taule</span>
+            <a class="pill site" href="https://www.lthzlaw.com/" target="_blank" rel="noreferrer">www.lthzlaw.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11770107273" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Dental Artistry Plugin Audits</h3>
+          <div class="meta">
+            <span>Dental Artistry</span>
+            <span class="deadline">Deadline: 2026-04-16</span>
+            <span>Devin Taule</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11771791031" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>No Blog page</h3>
+          <div class="meta">
+            <span>Multiple Clients</span>
+            <span class="deadline">Deadline: 2026-04-16 15:00</span>
+            <span>Jay Alison Tan</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Medium</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11765793172" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Preferred Testimonial Video</h3>
+          <div class="meta">
+            <span>Smile SF</span>
+            <span class="deadline">Deadline: 2026-04-15</span>
+            <span>Joanne</span>
+            <a class="pill site" href="https://sanfranciscodentistsmilesf.com/" target="_blank" rel="noreferrer">sanfranciscodentistsmilesf.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11759900838" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Add script</h3>
+          <div class="meta">
+            <span>Joy Dental</span>
+            <span class="deadline">Deadline: 2026-04-14</span>
+            <span>Devin Taule</span>
+            <a class="pill site" href="https://joydentalpines.com/" target="_blank" rel="noreferrer">joydentalpines.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11747419149" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Working</div>
+          <h3>Menu Structure</h3>
+          <div class="meta">
+            <span>Cap Dental</span>
+            <span class="deadline">Deadline: 2026-04-14</span>
+            <span>Liza, Criseanne Aira Garcia</span>
+            <a class="pill site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11748040266" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Invisalign Lander</h3>
+          <div class="meta">
+            <span>Smile SF</span>
+            <span class="deadline">Deadline: 2026-04-13</span>
+            <span>Devin Taule</span>
+            <a class="pill site" href="https://sanfranciscodentistsmilesf.com/" target="_blank" rel="noreferrer">sanfranciscodentistsmilesf.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11737993774" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Update DNS on GoDaddy</h3>
+          <div class="meta">
+            <span>Council Oak Perio</span>
+            <span class="deadline">Deadline: 2026-04-13</span>
+            <span>Joanne</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11738942962" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Add Happy Patients</h3>
+          <div class="meta">
+            <span>Coastland Dental</span>
+            <span class="deadline">Deadline: 2026-04-13</span>
+            <span>Joanne</span>
+            <a class="pill site" href="https://coastlanddental.com/" target="_blank" rel="noreferrer">coastlanddental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11741119829" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Cap 2nd Location</h3>
+          <div class="meta">
+            <span>Cap Dental</span>
+            <span class="deadline">Deadline: 2026-04-13</span>
+            <span>Liza, Criseanne Aira Garcia</span>
+            <a class="pill site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11736311992" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      
+      <details class="overflow">
+        <summary>Show 44 lower-priority current-window QC/ticket records</summary>
+        
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Ashref Technical</h3>
+          <div class="meta">
+            <span>Downtown Dental Nashville</span>
+            <span class="deadline">Deadline: 2026-04-13</span>
+            <span>Liza</span>
+            <a class="pill site" href="https://www.downtowndentalnashville.com/" target="_blank" rel="noreferrer">www.downtowndentalnashville.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11736008485" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Website Edits 04/10</h3>
+          <div class="meta">
+            <span>Riot Glass</span>
+            <span class="deadline">Deadline: 2026-04-12</span>
+            <span>Joanne</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11730006896" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Robots Blocking Ahrefs</h3>
+          <div class="meta">
+            <span>University Dental</span>
+            <span class="deadline">Timeline: 2026-04-08 - 2026-04-11</span>
+            <span>Ericka Marie Valencia</span>
+            <a class="pill site" href="https://www.universitydentalsandiego.com/" target="_blank" rel="noreferrer">www.universitydentalsandiego.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11704493750" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Technical Issues</h3>
+          <div class="meta">
+            <span>University Dental</span>
+            <span class="deadline">Timeline: 2026-04-08 - 2026-04-11</span>
+            <span>Ericka Marie Valencia</span>
+            <a class="pill site" href="https://www.universitydentalsandiego.com/" target="_blank" rel="noreferrer">www.universitydentalsandiego.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11704205654" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Post-Website Review Edits</h3>
+          <div class="meta">
+            <span>Clear Lake Dental</span>
+            <span class="deadline">Deadline: 2026-04-11</span>
+            <span>Devin Taule</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11726725189" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - Working</div>
+          <h3>Ahrefs Technical</h3>
+          <div class="meta">
+            <span>Lorton Town Dental</span>
+            <span class="deadline">Timeline: 2026-04-09 - 2026-04-10</span>
+            <span>Ericka Marie Valencia</span>
+            <a class="pill site" href="https://lortontowndental.com/" target="_blank" rel="noreferrer">lortontowndental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11711136386" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - Assigned</div>
+          <h3>Ahrefs Technical</h3>
+          <div class="meta">
+            <span>Dental Wellness</span>
+            <span class="deadline">Deadline: 2026-04-10 15:00</span>
+            <span>Ericka Marie Valencia</span>
+            <a class="pill site" href="https://www.1dentalwellness.com/" target="_blank" rel="noreferrer">www.1dentalwellness.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11712619321" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - Waiting</div>
+          <h3>Ahrefs Technical</h3>
+          <div class="meta">
+            <span>Commonwealth Family  Dental</span>
+            <span class="deadline">Deadline: 2026-04-10 15:00</span>
+            <span>Ericka Marie Valencia</span>
+            <a class="pill site" href="https://commonwealthfamilydentistry.com/" target="_blank" rel="noreferrer">commonwealthfamilydentistry.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11712493184" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Ahrefs Technical</h3>
+          <div class="meta">
+            <span>AZ Cosmetic Dentistry</span>
+            <span class="deadline">Deadline: 2026-04-10 15:00</span>
+            <span>Ericka Marie Valencia</span>
+            <a class="pill site" href="https://azfamilydentistry.com/" target="_blank" rel="noreferrer">azfamilydentistry.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11712069743" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Ahrefs Technical</h3>
+          <div class="meta">
+            <span>Children&#x27;s Dentistry of Chattanooga</span>
+            <span class="deadline">Deadline: 2026-04-10 15:00</span>
+            <span>Ericka Marie Valencia</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11712056846" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>AZ Cosmetic Dental - service pages</h3>
+          <div class="meta">
+            <span>AZ Cosmetic Dentistry</span>
+            <span class="deadline">Timeline: 2026-04-10 - 2026-04-10</span>
+            <span>Jay Alison Tan</span>
+            <a class="pill site" href="https://azfamilydentistry.com/" target="_blank" rel="noreferrer">azfamilydentistry.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Medium</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11712062209" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Ahrefs Technical</h3>
+          <div class="meta">
+            <span>South Florida Sedation Dentistry</span>
+            <span class="deadline">Deadline: 2026-04-09</span>
+            <span>Glydel Silvestre, Liza</span>
+            <a class="pill site" href="https://www.southfloridasedationdentistry.com/" target="_blank" rel="noreferrer">www.southfloridasedationdentistry.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11712877419" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>One-Ortho Web edit</h3>
+          <div class="meta">
+            <span>One Orthodontics</span>
+            <span class="deadline">Deadline: 2026-04-09 15:00</span>
+            <span>Jay Alison Tan, Ericka Marie Valencia</span>
+            <a class="pill site" href="https://1-orthodontics.com/" target="_blank" rel="noreferrer">1-orthodontics.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11669188431" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>NP Matchback</h3>
+          <div class="meta">
+            <span>NP Matchback</span>
+            <span class="deadline">Deadline: 2026-04-09</span>
+            <span>owner missing</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11716826692" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>Website Build &amp; Sitemap</h3>
+          <div class="meta">
+            <span>Empower Dental Pasadena</span>
+            <span class="deadline">Deadline: 2026-04-09</span>
+            <span>Criseanne Aira Garcia</span>
+            <a class="pill site" href="https://empowerdentalpasadena.com/" target="_blank" rel="noreferrer">empowerdentalpasadena.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11714047236" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Website Edits 04/09</h3>
+          <div class="meta">
+            <span>Empower Dental Group</span>
+            <span class="deadline">Deadline: 2026-04-09</span>
+            <span>Angelly Ross Buena</span>
+            <a class="pill site" href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer">dentalcarecalifornia.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11716875735" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Website Access Request</h3>
+          <div class="meta">
+            <span>Multiple Clients</span>
+            <span class="deadline">Deadline: 2026-04-09 15:00</span>
+            <span>Jay Alison Tan, Devin Taule</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Medium</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11709025701" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Website Edits 4-3: Common Wealth</h3>
+          <div class="meta">
+            <span>Commonwealth Dentistry</span>
+            <span class="deadline">Deadline: 2026-04-08 18:00</span>
+            <span>Aleksandar Atanasoski, Ericka Marie Valencia</span>
+            <a class="pill site" href="https://commonwealthfamilydentistry.com/" target="_blank" rel="noreferrer">commonwealthfamilydentistry.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11703073313" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Check WC organic tracking</h3>
+          <div class="meta">
+            <span>Dental Care Center of Hollywood</span>
+            <span class="deadline">Deadline: 2026-04-08</span>
+            <span>Joanne, Grethel</span>
+            <a class="pill site" href="https://www.dentalcenterofhollywood.com/" target="_blank" rel="noreferrer">www.dentalcenterofhollywood.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11702533644" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Ahrefs Technical</h3>
+          <div class="meta">
+            <span>Great Healthy Smiles</span>
+            <span class="deadline">Timeline: 2026-04-02 - 2026-04-05</span>
+            <span>Ericka Marie Valencia</span>
+            <a class="pill site" href="https://brighthealthysmiles.com/" target="_blank" rel="noreferrer">brighthealthysmiles.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11660205557" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>EDG BrightCraft Sitemap</h3>
+          <div class="meta">
+            <span>EDG BrightCraft</span>
+            <span class="deadline">Deadline: 2026-04-03</span>
+            <span>Criseanne Aira Garcia</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11667701613" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Sitemap: Clear Lake Dental Care</h3>
+          <div class="meta">
+            <span>Clear Lake Dental</span>
+            <span class="deadline">Deadline: 2026-04-03</span>
+            <span>Criseanne Aira Garcia</span>
+            <a class="pill site" href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer">www.qandadentalcare.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11668467737" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Location Page for New Office</h3>
+          <div class="meta">
+            <span>Cap Dental</span>
+            <span class="deadline">Deadline: 2026-04-03</span>
+            <span>Criseanne Aira Garcia</span>
+            <a class="pill site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11670318735" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - Assigned</div>
+          <h3>Ahrefs Technical</h3>
+          <div class="meta">
+            <span>NK Dental</span>
+            <span class="deadline">Updated: 2026-04-02</span>
+            <span>Ericka Marie Valencia</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11660204968" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>One Ortho - Locational Landers</h3>
+          <div class="meta">
+            <span>One Orthodontics</span>
+            <span class="deadline">Timeline: 2026-04-01 - 2026-04-01</span>
+            <span>Jay Alison Tan, Ericka Marie Valencia, Criseanne Aira Garcia</span>
+            <a class="pill site" href="https://1-orthodontics.com/" target="_blank" rel="noreferrer">1-orthodontics.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11619990610" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - Assigned</div>
+          <h3>Palm Harbor Web Edits 03/30</h3>
+          <div class="meta">
+            <span>Dental Studio of Palm Harbor</span>
+            <span class="deadline">Deadline: 2026-03-30 16:00</span>
+            <span>Jay Alison Tan</span>
+            <a class="pill site" href="https://yourpalmharbordentist.com/" target="_blank" rel="noreferrer">yourpalmharbordentist.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11631019588" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>One-Ortho Web Edits 3/21</h3>
+          <div class="meta">
+            <span>One Orthodontics</span>
+            <span class="deadline">Deadline: 2026-03-25 17:00</span>
+            <span>Jay Alison Tan, Aleksandar Atanasoski, Ericka Marie Valencia, Ann Sereno</span>
+            <a class="pill site" href="https://1-orthodontics.com/" target="_blank" rel="noreferrer">1-orthodontics.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11578052187" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Working</div>
+          <h3>Loftus Dental Content - Landing Pages</h3>
+          <div class="meta">
+            <span>Loftus</span>
+            <span class="deadline">Deadline: 2026-03-25</span>
+            <span>Devin Taule</span>
+            <a class="pill site" href="https://dentistincoeurdalene.com/" target="_blank" rel="noreferrer">dentistincoeurdalene.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11592820020" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Dental Parlour - Team &amp; Form edits-3-24</h3>
+          <div class="meta">
+            <span>Dental</span>
+            <span class="deadline">Deadline: 2026-03-25 17:00</span>
+            <span>Jay Alison Tan, Ericka Marie Valencia</span>
+            <a class="pill site" href="https://dentalparlour.com/" target="_blank" rel="noreferrer">dentalparlour.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11596643458" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Cap Website Edits 2/19</h3>
+          <div class="meta">
+            <span>Cap Dental</span>
+            <span class="deadline">Deadline: 2026-03-24</span>
+            <span>Liza</span>
+            <a class="pill site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11582594117" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>WC tracking/GTM setup</h3>
+          <div class="meta">
+            <span>Farhoumand Dentistry</span>
+            <span class="deadline">Deadline: 2026-03-23</span>
+            <span>Grethel, Liza</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11576784916" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Addtnl Content</h3>
+          <div class="meta">
+            <span>Dr. Gleave -SLC</span>
+            <span class="deadline">Deadline: 2026-03-23</span>
+            <span>Criseanne Aira Garcia</span>
+            <a class="pill site" href="https://slcsmiles.com/" target="_blank" rel="noreferrer">slcsmiles.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11572824795" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="orange" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - Orange - QC</div>
+          <h3>Remove WC tagging from One-Ortho-</h3>
+          <div class="meta">
+            <span>One Orthodontics</span>
+            <span class="deadline">Deadline: 2026-03-17 17:00</span>
+            <span>Jay Alison Tan, Ericka Marie Valencia, Marcelo Beilin, Grethel</span>
+            <a class="pill site" href="https://1-orthodontics.com/" target="_blank" rel="noreferrer">1-orthodontics.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11530318889" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>No GBP Access</h3>
+          <div class="meta">
+            <span>Dulce Dental</span>
+            <span class="deadline">Deadline: 2026-03-17</span>
+            <span>Angelly Ross Buena</span>
+            <a class="pill site" href="https://www.mydulcedental.com/" target="_blank" rel="noreferrer">www.mydulcedental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11530700926" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item hot" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Loftus Landers</h3>
+          <div class="meta">
+            <span>Loftus</span>
+            <span class="deadline">Deadline: 2026-03-16</span>
+            <span>Angelly Ross Buena</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Very high</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11517269113" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Post Monthly Meeting Tasks</h3>
+          <div class="meta">
+            <span>Cap Dental</span>
+            <span class="deadline">Deadline: 2026-03-11</span>
+            <span>Liza</span>
+            <a class="pill site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11484420506" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Monitoring</div>
+          <h3>Dental Lab GBP</h3>
+          <div class="meta">
+            <span>EDG Dental Lab</span>
+            <span class="deadline">Deadline: 2026-02-16</span>
+            <span>Aleksandar Atanasoski, Angelly Ross Buena</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11290572749" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Patient Engagement Pic and Vid</h3>
+          <div class="meta">
+            <span>Smile SF</span>
+            <span class="deadline">Deadline: 2026-02-09</span>
+            <span>Mikee Novio</span>
+            <a class="pill site" href="https://sanfranciscodentistsmilesf.com/" target="_blank" rel="noreferrer">sanfranciscodentistsmilesf.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11232325393" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Technical SEO Tabor</h3>
+          <div class="meta">
+            <span>Tabor Dental Associates</span>
+            <span class="deadline">Deadline: 2026-01-22</span>
+            <span>Devin Taule, Liza</span>
+            <a class="pill site" href="https://charlottedentalassociatesnc.com/" target="_blank" rel="noreferrer">charlottedentalassociatesnc.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11072490490" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Content Posting Aug-Dec 2025</h3>
+          <div class="meta">
+            <span>MJB Law Firm</span>
+            <span class="deadline">Deadline: 2026-01-16</span>
+            <span>Mikee Novio, Liza</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11027383014" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - QC</div>
+          <h3>Crestview Px Form</h3>
+          <div class="meta">
+            <span>Smileology</span>
+            <span class="deadline">Deadline: 2026-01-12</span>
+            <span>Angelly Ross Buena</span>
+            <a class="pill site" href="https://smileology.com/" target="_blank" rel="noreferrer">smileology.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/10980532739" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - PAUSED // Bandwidth</div>
+          <h3>Page Speed Optimization</h3>
+          <div class="meta">
+            <span>Q and A Dental Care</span>
+            <span class="deadline">Deadline: 2025-11-07</span>
+            <span>Liza</span>
+            <a class="pill site" href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer">www.qandadentalcare.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Average</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/18368411371" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Working</div>
+          <h3>Portal Edits</h3>
+          <div class="meta">
+            <span>QMi</span>
+            <span class="deadline">Deadline: 2025-10-02</span>
+            <span>Joanne</span>
+            <span class="pill muted">domain missing</span>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">High</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/18097278606" target="_blank" rel="noreferrer">Monday</a>
+        </div>
+      </article>
+
+      <article class="item" data-pod="white" data-kind="qc / ticket">
+        <div class="item-main">
+          <div class="eyebrow">QC / Ticket - White - Assigned</div>
+          <h3>Page Speed Optimization</h3>
+          <div class="meta">
+            <span>Tabor Dental</span>
+            <span class="deadline">Deadline: 2025-04-03</span>
+            <span>Devin Taule, Liza</span>
+            <a class="pill site" href="https://www.smilesthatrock.com/" target="_blank" rel="noreferrer">www.smilesthatrock.com</a>
+          </div>
+        </div>
+        <div class="item-side">
+          <span class="priority">Medium</span>
+          <a href="https://serpagency.monday.com/boards/7441724825/pulses/8856591630" target="_blank" rel="noreferrer">Monday</a>
         </div>
       </article>
 
@@ -2519,7 +2520,7 @@ h3 { margin:3px 0 8px; font-size:18px; }
       </div>
     </aside>
   </section>
-  <p class="sub" style="margin-top:24px;">Generated 2026-05-11 17:53 from local Monday and Slack caches.</p>
+  <p class="sub" style="margin-top:24px;">Generated 2026-05-11 17:56 from local Monday and Slack caches.</p>
 </main>
 <script>
 document.querySelectorAll('button[data-filter]').forEach(btn => {
