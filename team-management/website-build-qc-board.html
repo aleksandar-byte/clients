@@ -56,6 +56,14 @@ h3 { margin:3px 0 8px; font-size:16px; line-height:1.15; }
 .item-side a { color:var(--blue); text-decoration:none; }
 .side-card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:14px; }
 .side-card h2 { margin:0 0 10px; font-size:18px; }
+.side-note { color:var(--muted); font:12px/1.35 Arial, sans-serif; margin:0 0 12px; }
+.sop-list { display:grid; gap:8px; margin-bottom:12px; }
+.sop-link { display:block; padding:9px 10px; border:1px solid var(--line); border-radius:12px; background:#fff; text-decoration:none; }
+.sop-link span { display:block; color:var(--muted); font:10px Arial, sans-serif; text-transform:uppercase; letter-spacing:.08em; }
+.sop-link strong { display:block; color:var(--blue); font:13px Arial, sans-serif; margin-top:3px; }
+.source-mini { border-top:1px solid var(--line); padding-top:8px; }
+.source-row { display:flex; justify-content:space-between; gap:10px; text-decoration:none; color:var(--muted); font:11px Arial, sans-serif; padding:4px 0; }
+.source-row strong { color:var(--blue); }
 .source-list { list-style:none; padding:0; margin:0; font:12px Arial, sans-serif; }
 .source-list li { display:flex; justify-content:space-between; gap:12px; padding:5px 0; border-bottom:1px solid var(--line); }
 .signal { display:block; text-decoration:none; border-top:1px solid var(--line); padding:10px 0; }
@@ -358,6 +366,14 @@ h3 { margin:3px 0 8px; font-size:16px; line-height:1.15; }
 </div>
     </div>
     <aside>
+      
+      <div class="side-card sop-card">
+        <h2>QC SOPs</h2>
+        <p class="side-note">Runnable SOP links Nick shared for launch QC. These are reference links; task status still comes from Monday.</p>
+        <div class="sop-list"><a class="sop-link" href="https://app.process.st/workflows/Site-Architecture-On-Page-QC-Pre-launch-Site-QC-g7pAem8Ggl1xxbNj-WxEdg/run-link" target="_blank" rel="noreferrer"><span>Pre Launch QC</span><strong>Site Architecture + On-Page QC</strong></a><a class="sop-link" href="https://app.process.st/workflows/Analytics-SEO-Pre-launch-Site-QC-gexFSM5QUUMKwcKiZfdM9Q/run-link" target="_blank" rel="noreferrer"><span>Pre Launch QC</span><strong>Analytics + SEO QC</strong></a><a class="sop-link" href="https://app.process.st/workflows/1-QC-Webforms-Pre-Launch-jgZALDbOfYhw50CiiBJAJQ/view/tasks/mWy8YYx76iZHpskX-jRA1Q" target="_blank" rel="noreferrer"><span>Pre Launch QC</span><strong>QC Webforms</strong></a><a class="sop-link" href="https://app.process.st/workflows/Mobile-Responsive-Check-vPtil0zXrZERKN7FDT5K5A/view/tasks/jaSSTuOHeqWeC3RerChIdQ" target="_blank" rel="noreferrer"><span>Pre Launch QC</span><strong>Responsiveness + Cross Browser</strong></a><a class="sop-link" href="https://app.process.st/workflows/2-QC-Plugins-Themes-imXZlNdSCLxgWmhkDDpPYQ/view/tasks/u6nqHlt2-No7HJ4N2A9HrA" target="_blank" rel="noreferrer"><span>Pre Launch QC</span><strong>QC Plugins + Themes</strong></a></div>
+        <div class="source-mini"><a class="source-row" href="https://serpagency.slack.com/archives/C06HYF8T4TA/p1734616814707609" target="_blank" rel="noreferrer"><span>Nick launch-QC Slack note</span><strong>Open</strong></a><a class="source-row" href="https://docs.google.com/document/d/1YL6UgE1OJWkCumk7Bhhi8Png0NOIUN5j/edit?usp=sharing&amp;ouid=105397725420681393444&amp;rtpof=true&amp;sd=true" target="_blank" rel="noreferrer"><span>Website SOP Google Doc</span><strong>Open</strong></a></div>
+      </div>
+
       <div class="side-card">
         <h2>Source Freshness</h2>
         <ul class="source-list"><li><span>board-620254537.json</span><strong>2026-05-06 18:03</strong></li><li><span>board-7441724825.json</span><strong>2026-05-11 18:12</strong></li><li><span>board-7446198439.json</span><strong>2026-05-11 18:11</strong></li><li><span>channel-C07NDLMGY0P.json</span><strong>2026-05-06 15:12</strong></li><li><span>channel-C07NV7DAUHL.json</span><strong>2026-05-06 15:12</strong></li></ul>
@@ -381,7 +397,7 @@ h3 { margin:3px 0 8px; font-size:16px; line-height:1.15; }
       </div>
     </aside>
   </section>
-  <p class="sub" style="margin-top:24px;">Generated 2026-05-11 18:13 from local Monday and Slack caches.</p>
+  <p class="sub" style="margin-top:24px;">Generated 2026-05-11 18:20 from local Monday and Slack caches.</p>
 </main>
 <script>
 document.querySelectorAll('button[data-filter]').forEach(btn => {
