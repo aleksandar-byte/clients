@@ -21,10 +21,25 @@ h1 { font-size:48px; line-height:.95; margin:0 0 10px; letter-spacing:-.04em; }
 button { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:7px 12px; cursor:pointer; }
 button.active { background:var(--ink); color:white; }
 .grid { display:grid; grid-template-columns:1fr 320px; gap:24px; }
-.process { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; align-items:start; }
-.lane { background:rgba(255,254,250,.45); border:1px solid var(--line); border-radius:16px; padding:12px; min-height:260px; }
-.lane-head { display:flex; align-items:center; justify-content:space-between; color:var(--muted); font:11px Arial, sans-serif; text-transform:uppercase; letter-spacing:.1em; margin-bottom:10px; }
-.lane-head strong { color:var(--ink); font-size:22px; font-weight:400; letter-spacing:0; }
+.client-list { display:grid; gap:12px; }
+.client-card { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px; box-shadow:0 12px 30px rgba(35,28,14,.05); }
+.client-head { display:grid; grid-template-columns:1fr auto; gap:16px; align-items:start; margin-bottom:14px; }
+.client-status { border:1px solid var(--line); border-radius:999px; padding:6px 10px; color:var(--muted); font:12px Arial, sans-serif; white-space:nowrap; background:#fff; }
+.client-domain { color:var(--blue); text-decoration:none; border:1px solid var(--line); border-radius:999px; padding:3px 8px; background:#fff; }
+.client-domain.muted { color:var(--muted); }
+.steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; position:relative; }
+.step { display:grid; grid-template-columns:24px 1fr; gap:8px; min-height:88px; padding:11px; border:1px solid var(--line); border-radius:14px; background:#fff; text-decoration:none; }
+.step span { display:block; color:var(--muted); font:10px Arial, sans-serif; text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px; }
+.step strong { display:block; font:13px Arial, sans-serif; color:var(--ink); }
+.step small { display:block; color:var(--muted); font:11px Arial, sans-serif; margin-top:5px; }
+.dot { width:18px; height:18px; border-radius:999px; margin-top:1px; border:2px solid var(--line); background:#fff; }
+.step.done { border-color:#b8d3ad; background:#f4fbf1; }
+.step.done .dot { border-color:var(--green); background:var(--green); }
+.step.active { border-color:#b9cce0; background:#f3f8fd; }
+.step.active .dot { border-color:var(--blue); background:var(--blue); }
+.step.risk { border-color:#e0b4a8; background:#fff3ef; }
+.step.risk .dot { border-color:var(--red); background:var(--red); }
+.step.missing { opacity:.66; background:#faf8f1; }
 .section-title { display:flex; align-items:center; gap:10px; margin:24px 0 10px; color:var(--muted); font:11px Arial, sans-serif; text-transform:uppercase; letter-spacing:.1em; }
 .section-title:after { content:""; height:1px; background:var(--line); flex:1; }
 .item { display:grid; grid-template-columns:1fr auto; gap:12px; background:var(--card); border:1px solid var(--line); border-left:4px solid var(--blue); border-radius:12px; padding:12px; margin-bottom:8px; }
@@ -49,7 +64,7 @@ h3 { margin:3px 0 8px; font-size:16px; line-height:1.15; }
 .empty { color:var(--muted); font:13px Arial, sans-serif; margin:10px 0; }
 .missing { color:var(--red); }
 .hidden { display:none; }
-@media (max-width:1100px) { .process { grid-template-columns:1fr; } }
+@media (max-width:1100px) { .steps { grid-template-columns:1fr; } }
 @media (max-width:900px) { .top,.grid { grid-template-columns:1fr; } h1 { font-size:38px; } }
 </style>
 </head>
@@ -58,14 +73,14 @@ h3 { margin:3px 0 8px; font-size:16px; line-height:1.15; }
   <section class="top">
     <div>
       <h1>Web Build<br>Process Board</h1>
-      <p class="sub">A strict operating board for the three web-build checkpoints only: sitemap, pre launch QC, and post launch. Nothing else is tracked here.</p>
+      <p class="sub">One client per row. Each client shows the three web-build checkpoints from Monday tickets: sitemap, pre launch QC, then post launch.</p>
     </div>
     <div class="stats">
       <div class="stat"><span>Sitemaps</span><strong>3</strong></div>
-      <div class="stat"><span>Pre Launch QC</span><strong>0</strong></div>
-      <div class="stat"><span>Post Launch</span><strong>7</strong></div>
-      <div class="stat"><span>White / Orange</span><strong>5 / 5</strong></div>
-      <div class="stat"><span>Missing domains</span><strong class="missing">2</strong></div>
+      <div class="stat"><span>Pre Launch QC</span><strong>1</strong></div>
+      <div class="stat"><span>Post Launch</span><strong>6</strong></div>
+      <div class="stat"><span>White / Orange</span><strong>8 / 2</strong></div>
+      <div class="stat"><span>Clients</span><strong>7</strong></div>
     </div>
   </section>
   <div class="controls">
@@ -78,207 +93,274 @@ h3 { margin:3px 0 8px; font-size:16px; line-height:1.15; }
   </div>
   <section class="grid">
     <div>
-      <div class="section-title">Build sequence</div>
-      <div class="process">
-        <section class="lane" data-lane="sitemap">
-          <div class="lane-head">
-            <span>1. Sitemap</span>
-            <strong>3</strong>
+      <div class="section-title">Client progress</div>
+      <div class="client-list">
+      <article class="client-card" data-pod="orange" data-stages="post_launch">
+        <div class="client-head">
+          <div>
+            <div class="eyebrow">Orange - Monday ticket status</div>
+            <h3>Ashburn Family Dental Care</h3>
+            <div class="meta"><a class="client-domain" href="https://ashburnfamilydentalcare.com/" target="_blank" rel="noreferrer">ashburnfamilydentalcare.com</a><span>Deadline: 2026-05-07 15:00</span></div>
           </div>
-          
-      <article class="item hot" data-pod="white" data-stage="sitemap">
-        <div class="item-main">
-          <div class="eyebrow">1. Sitemap - White - Assigned</div>
-          <h3>Website Build &amp; Sitemap</h3>
-          <div class="meta">
-            <span>Empower Dental Pasadena</span>
-            <span class="deadline">Deadline: 2026-04-09</span>
-            <span>Criseanne Aira Garcia</span>
-            <a class="pill site" href="https://empowerdentalpasadena.com/" target="_blank" rel="noreferrer">empowerdentalpasadena.com</a>
+          <div class="client-status">0/3 done - 1 active</div>
+        </div>
+        <div class="steps">
+          <div class="step missing" data-step="sitemap">
+            <div class="dot"></div>
+            <div>
+              <span>Sitemap</span>
+              <strong>No Monday ticket found</strong>
+            </div>
           </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11714047236" target="_blank" rel="noreferrer">Monday</a>
-        </div>
+
+          <div class="step missing" data-step="pre_launch_qc">
+            <div class="dot"></div>
+            <div>
+              <span>Pre Launch QC</span>
+              <strong>No Monday ticket found</strong>
+            </div>
+          </div>
+
+          <a class="step active" data-step="post_launch" href="https://serpagency.monday.com/boards/7446198439/pulses/11952511143" target="_blank" rel="noreferrer">
+            <div class="dot"></div>
+            <div>
+              <span>Post Launch</span>
+              <strong>QC</strong>
+              <small>Deadline: 2026-05-07 15:00</small>
+            </div>
+          </a>
+</div>
       </article>
 
-      <article class="item hot" data-pod="white" data-stage="sitemap">
-        <div class="item-main">
-          <div class="eyebrow">1. Sitemap - White - QC</div>
-          <h3>EDG BrightCraft Sitemap</h3>
-          <div class="meta">
-            <span>EDG BrightCraft</span>
-            <span class="deadline">Deadline: 2026-04-03</span>
-            <span>Criseanne Aira Garcia</span>
-            <span class="pill muted">domain missing</span>
+      <article class="client-card" data-pod="white" data-stages="post_launch,pre_launch_qc,sitemap">
+        <div class="client-head">
+          <div>
+            <div class="eyebrow">White - Monday ticket status</div>
+            <h3>Clear Lake Dental</h3>
+            <div class="meta"><a class="client-domain" href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer">www.qandadentalcare.com</a><span>Deadline: 2026-05-04</span></div>
           </div>
+          <div class="client-status">1/3 done - 2 active</div>
         </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11667701613" target="_blank" rel="noreferrer">Monday</a>
-        </div>
+        <div class="steps">
+          <a class="step active" data-step="sitemap" href="https://serpagency.monday.com/boards/7441724825/pulses/11668467737" target="_blank" rel="noreferrer">
+            <div class="dot"></div>
+            <div>
+              <span>Sitemap</span>
+              <strong>QC</strong>
+              <small>Deadline: 2026-04-03</small>
+            </div>
+          </a>
+
+          <a class="step done" data-step="pre_launch_qc" href="https://serpagency.monday.com/boards/7441724825/pulses/11783862097" target="_blank" rel="noreferrer">
+            <div class="dot"></div>
+            <div>
+              <span>Pre Launch QC</span>
+              <strong>Done</strong>
+              <small>Deadline: 2026-04-17</small>
+            </div>
+          </a>
+
+          <a class="step active" data-step="post_launch" href="https://serpagency.monday.com/boards/7441724825/pulses/11919251274" target="_blank" rel="noreferrer">
+            <div class="dot"></div>
+            <div>
+              <span>Post Launch</span>
+              <strong>QC</strong>
+              <small>Deadline: 2026-05-04</small>
+            </div>
+          </a>
+</div>
       </article>
 
-      <article class="item hot" data-pod="white" data-stage="sitemap">
-        <div class="item-main">
-          <div class="eyebrow">1. Sitemap - White - QC</div>
-          <h3>Sitemap: Clear Lake Dental Care</h3>
-          <div class="meta">
-            <span>Clear Lake Dental</span>
-            <span class="deadline">Deadline: 2026-04-03</span>
-            <span>Criseanne Aira Garcia</span>
-            <a class="pill site" href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer">www.qandadentalcare.com</a>
+      <article class="client-card" data-pod="white" data-stages="post_launch">
+        <div class="client-head">
+          <div>
+            <div class="eyebrow">White - Monday ticket status</div>
+            <h3>Empower Dental Group</h3>
+            <div class="meta"><a class="client-domain" href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer">dentalcarecalifornia.com</a><span>Deadline: 2026-05-04</span></div>
           </div>
+          <div class="client-status">0/3 done - 1 active</div>
         </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11668467737" target="_blank" rel="noreferrer">Monday</a>
-        </div>
+        <div class="steps">
+          <div class="step missing" data-step="sitemap">
+            <div class="dot"></div>
+            <div>
+              <span>Sitemap</span>
+              <strong>No Monday ticket found</strong>
+            </div>
+          </div>
+
+          <div class="step missing" data-step="pre_launch_qc">
+            <div class="dot"></div>
+            <div>
+              <span>Pre Launch QC</span>
+              <strong>No Monday ticket found</strong>
+            </div>
+          </div>
+
+          <a class="step active" data-step="post_launch" href="https://serpagency.monday.com/boards/7441724825/pulses/11918260684" target="_blank" rel="noreferrer">
+            <div class="dot"></div>
+            <div>
+              <span>Post Launch</span>
+              <strong>Assigned</strong>
+              <small>Deadline: 2026-05-04</small>
+            </div>
+          </a>
+</div>
       </article>
 
-        </section>
-
-        <section class="lane" data-lane="pre_launch_qc">
-          <div class="lane-head">
-            <span>2. Pre Launch QC</span>
-            <strong>0</strong>
+      <article class="client-card" data-pod="white" data-stages="post_launch">
+        <div class="client-head">
+          <div>
+            <div class="eyebrow">White - Monday ticket status</div>
+            <h3>Farhoumand Dentistry</h3>
+            <div class="meta"><span class="client-domain muted">domain missing</span><span>Deadline: 2026-04-20</span></div>
           </div>
-          <p class="empty">No active/upcoming items found.</p>
-        </section>
-
-        <section class="lane" data-lane="post_launch">
-          <div class="lane-head">
-            <span>3. Post Launch</span>
-            <strong>7</strong>
-          </div>
-          
-      <article class="item hot" data-pod="white" data-stage="post_launch">
-        <div class="item-main">
-          <div class="eyebrow">3. Post Launch - White - Assigned</div>
-          <h3>Post Launch QC</h3>
-          <div class="meta">
-            <span>Clear Lake Dental</span>
-            <span class="deadline">Deadline: 2026-05-04</span>
-            <span>Aleksandar Atanasoski, Mikee Novio, Criseanne Aira Garcia, Devin Taule</span>
-            <span class="pill muted">domain missing</span>
-          </div>
+          <div class="client-status">1/3 done</div>
         </div>
-        <div class="item-side">
-          <span class="priority">Very high</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11919251274" target="_blank" rel="noreferrer">Monday</a>
-        </div>
+        <div class="steps">
+          <div class="step missing" data-step="sitemap">
+            <div class="dot"></div>
+            <div>
+              <span>Sitemap</span>
+              <strong>No Monday ticket found</strong>
+            </div>
+          </div>
+
+          <div class="step missing" data-step="pre_launch_qc">
+            <div class="dot"></div>
+            <div>
+              <span>Pre Launch QC</span>
+              <strong>No Monday ticket found</strong>
+            </div>
+          </div>
+
+          <a class="step done" data-step="post_launch" href="https://serpagency.monday.com/boards/7441724825/pulses/11794324820" target="_blank" rel="noreferrer">
+            <div class="dot"></div>
+            <div>
+              <span>Post Launch</span>
+              <strong>Done</strong>
+              <small>Deadline: 2026-04-20</small>
+            </div>
+          </a>
+</div>
       </article>
 
-      <article class="item" data-pod="white" data-stage="post_launch">
-        <div class="item-main">
-          <div class="eyebrow">3. Post Launch - White - Assigned</div>
-          <h3>EDG Post Launch Tasks</h3>
-          <div class="meta">
-            <span>Empower Dental Group</span>
-            <span class="deadline">Deadline: 2026-05-04</span>
-            <span>Criseanne Aira Garcia, Mikee Novio, Joanne, Angelly Ross Buena</span>
-            <a class="pill site" href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer">dentalcarecalifornia.com</a>
+      <article class="client-card" data-pod="white" data-stages="sitemap">
+        <div class="client-head">
+          <div>
+            <div class="eyebrow">White - Monday ticket status</div>
+            <h3>Empower Dental Pasadena</h3>
+            <div class="meta"><a class="client-domain" href="https://empowerdentalpasadena.com/" target="_blank" rel="noreferrer">empowerdentalpasadena.com</a><span>Deadline: 2026-04-09</span></div>
           </div>
+          <div class="client-status">0/3 done - 1 active</div>
         </div>
-        <div class="item-side">
-          <span class="priority">Average</span>
-          <a href="https://serpagency.monday.com/boards/7441724825/pulses/11918260684" target="_blank" rel="noreferrer">Monday</a>
-        </div>
+        <div class="steps">
+          <a class="step active" data-step="sitemap" href="https://serpagency.monday.com/boards/7441724825/pulses/11714047236" target="_blank" rel="noreferrer">
+            <div class="dot"></div>
+            <div>
+              <span>Sitemap</span>
+              <strong>Assigned</strong>
+              <small>Deadline: 2026-04-09</small>
+            </div>
+          </a>
+
+          <div class="step missing" data-step="pre_launch_qc">
+            <div class="dot"></div>
+            <div>
+              <span>Pre Launch QC</span>
+              <strong>No Monday ticket found</strong>
+            </div>
+          </div>
+
+          <div class="step missing" data-step="post_launch">
+            <div class="dot"></div>
+            <div>
+              <span>Post Launch</span>
+              <strong>No Monday ticket found</strong>
+            </div>
+          </div>
+</div>
       </article>
 
-      <article class="item" data-pod="orange" data-stage="post_launch">
-        <div class="item-main">
-          <div class="eyebrow">3. Post Launch - Orange - QC</div>
-          <h3>Post Launch Edits 3-19- Dental Parlour</h3>
-          <div class="meta">
-            <span>Dental</span>
-            <span class="deadline">Deadline: 2026-03-19 17:00</span>
-            <span>Ericka Marie Valencia</span>
-            <a class="pill site" href="https://dentalparlour.com/" target="_blank" rel="noreferrer">dentalparlour.com</a>
+      <article class="client-card" data-pod="white" data-stages="sitemap">
+        <div class="client-head">
+          <div>
+            <div class="eyebrow">White - Monday ticket status</div>
+            <h3>EDG BrightCraft</h3>
+            <div class="meta"><span class="client-domain muted">domain missing</span><span>Deadline: 2026-04-03</span></div>
           </div>
+          <div class="client-status">0/3 done - 1 active</div>
         </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11552468456" target="_blank" rel="noreferrer">Monday</a>
-        </div>
+        <div class="steps">
+          <a class="step active" data-step="sitemap" href="https://serpagency.monday.com/boards/7441724825/pulses/11667701613" target="_blank" rel="noreferrer">
+            <div class="dot"></div>
+            <div>
+              <span>Sitemap</span>
+              <strong>QC</strong>
+              <small>Deadline: 2026-04-03</small>
+            </div>
+          </a>
+
+          <div class="step missing" data-step="pre_launch_qc">
+            <div class="dot"></div>
+            <div>
+              <span>Pre Launch QC</span>
+              <strong>No Monday ticket found</strong>
+            </div>
+          </div>
+
+          <div class="step missing" data-step="post_launch">
+            <div class="dot"></div>
+            <div>
+              <span>Post Launch</span>
+              <strong>No Monday ticket found</strong>
+            </div>
+          </div>
+</div>
       </article>
 
-      <article class="item" data-pod="orange" data-stage="post_launch">
-        <div class="item-main">
-          <div class="eyebrow">3. Post Launch - Orange - QC</div>
-          <h3>Post launch Website Edits - AZ Cosmetic Dentistry</h3>
-          <div class="meta">
-            <span>AZ Cosmetic Dentistry</span>
-            <span class="deadline">Deadline: 2026-03-17 17:00</span>
-            <span>Jay Alison Tan</span>
-            <a class="pill site" href="https://azfamilydentistry.com/" target="_blank" rel="noreferrer">azfamilydentistry.com</a>
+      <article class="client-card" data-pod="orange" data-stages="post_launch">
+        <div class="client-head">
+          <div>
+            <div class="eyebrow">Orange - Monday ticket status</div>
+            <h3>Dental Parlour</h3>
+            <div class="meta"><a class="client-domain" href="https://dentalparlour.com/" target="_blank" rel="noreferrer">dentalparlour.com</a><span>Deadline: 2026-03-19 17:00</span></div>
           </div>
+          <div class="client-status">0/3 done - 1 active</div>
         </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11532051052" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
-
-      <article class="item" data-pod="orange" data-stage="post_launch">
-        <div class="item-main">
-          <div class="eyebrow">3. Post Launch - Orange - QC</div>
-          <h3>Commonwealth- Post Launch Edits</h3>
-          <div class="meta">
-            <span>Commonwealth Dentistry</span>
-            <span class="deadline">Deadline: 2026-03-11 17:00</span>
-            <span>Jay Alison Tan, Aleksandar Atanasoski, Ericka Marie Valencia</span>
-            <a class="pill site" href="https://commonwealthfamilydentistry.com/" target="_blank" rel="noreferrer">commonwealthfamilydentistry.com</a>
+        <div class="steps">
+          <div class="step missing" data-step="sitemap">
+            <div class="dot"></div>
+            <div>
+              <span>Sitemap</span>
+              <strong>No Monday ticket found</strong>
+            </div>
           </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">High</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11485266790" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
 
-      <article class="item" data-pod="orange" data-stage="post_launch">
-        <div class="item-main">
-          <div class="eyebrow">3. Post Launch - Orange - QC</div>
-          <h3>NK Family Dental- Post Launch Edits</h3>
-          <div class="meta">
-            <span>NK Family Dental</span>
-            <span class="deadline">Deadline: 2026-02-09</span>
-            <span>Jay Alison Tan</span>
-            <a class="pill site" href="https://nkfamilydental.com/" target="_blank" rel="noreferrer">nkfamilydental.com</a>
+          <div class="step missing" data-step="pre_launch_qc">
+            <div class="dot"></div>
+            <div>
+              <span>Pre Launch QC</span>
+              <strong>No Monday ticket found</strong>
+            </div>
           </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Medium</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11226396600" target="_blank" rel="noreferrer">Monday</a>
-        </div>
-      </article>
 
-      <article class="item" data-pod="orange" data-stage="post_launch">
-        <div class="item-main">
-          <div class="eyebrow">3. Post Launch - Orange - QC</div>
-          <h3>Post launch Tasks (QC leftover)</h3>
-          <div class="meta">
-            <span>NK Family Dental</span>
-            <span class="deadline">Deadline: 2026-02-03</span>
-            <span>Jay Alison Tan</span>
-            <a class="pill site" href="https://nkfamilydental.com/" target="_blank" rel="noreferrer">nkfamilydental.com</a>
-          </div>
-        </div>
-        <div class="item-side">
-          <span class="priority">Medium</span>
-          <a href="https://serpagency.monday.com/boards/7446198439/pulses/11172564069" target="_blank" rel="noreferrer">Monday</a>
-        </div>
+          <a class="step active" data-step="post_launch" href="https://serpagency.monday.com/boards/7446198439/pulses/11552468456" target="_blank" rel="noreferrer">
+            <div class="dot"></div>
+            <div>
+              <span>Post Launch</span>
+              <strong>QC</strong>
+              <small>Deadline: 2026-03-19 17:00</small>
+            </div>
+          </a>
+</div>
       </article>
-
-        </section>
 </div>
     </div>
     <aside>
       <div class="side-card">
         <h2>Source Freshness</h2>
-        <ul class="source-list"><li><span>board-620254537.json</span><strong>2026-05-06 18:03</strong></li><li><span>board-7441724825.json</span><strong>2026-05-06 18:04</strong></li><li><span>board-7446198439.json</span><strong>2026-05-06 18:03</strong></li><li><span>channel-C07NDLMGY0P.json</span><strong>2026-05-06 15:12</strong></li><li><span>channel-C07NV7DAUHL.json</span><strong>2026-05-06 15:12</strong></li></ul>
+        <ul class="source-list"><li><span>board-620254537.json</span><strong>2026-05-06 18:03</strong></li><li><span>board-7441724825.json</span><strong>2026-05-11 18:12</strong></li><li><span>board-7446198439.json</span><strong>2026-05-11 18:11</strong></li><li><span>channel-C07NDLMGY0P.json</span><strong>2026-05-06 15:12</strong></li><li><span>channel-C07NV7DAUHL.json</span><strong>2026-05-06 15:12</strong></li></ul>
         <p class="sub" style="font-size:12px;margin-top:10px;">If a cache is stale, run Monday/Slack sync after local tokens are available. Current board still renders from the latest local cache.</p>
       </div>
       <div class="side-card">
@@ -299,7 +381,7 @@ h3 { margin:3px 0 8px; font-size:16px; line-height:1.15; }
       </div>
     </aside>
   </section>
-  <p class="sub" style="margin-top:24px;">Generated 2026-05-11 18:06 from local Monday and Slack caches.</p>
+  <p class="sub" style="margin-top:24px;">Generated 2026-05-11 18:13 from local Monday and Slack caches.</p>
 </main>
 <script>
 document.querySelectorAll('button[data-filter]').forEach(btn => {
@@ -307,9 +389,10 @@ document.querySelectorAll('button[data-filter]').forEach(btn => {
     document.querySelectorAll('button[data-filter]').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const f = btn.dataset.filter;
-    document.querySelectorAll('.item').forEach(item => {
-      const show = f === 'all' || item.dataset.pod === f || item.dataset.stage === f;
-      item.classList.toggle('hidden', !show);
+    document.querySelectorAll('.client-card').forEach(card => {
+      const stages = (card.dataset.stages || '').split(',');
+      const show = f === 'all' || card.dataset.pod === f || stages.includes(f);
+      card.classList.toggle('hidden', !show);
     });
   });
 });
