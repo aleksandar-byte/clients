@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SOP: Google Business Profile Optimization</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --paper: #ffffff;
+      --ink: #172033;
+      --muted: #5b6577;
+      --line: #dfe4ee;
+      --soft: #eef3ff;
+      --soft-2: #f5f7fb;
+      --accent: #2348a8;
+      --accent-2: #0f766e;
+      --warn: #b45309;
+      --danger: #b91c1c;
+      --ok: #15803d;
+      --shadow: 0 16px 40px rgba(23, 32, 51, 0.08);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 32px auto 64px;
+    }
+
+    header.hero {
+      background: linear-gradient(135deg, #172033 0%, #2348a8 100%);
+      color: white;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    h1, h2, h3, h4 { line-height: 1.2; margin: 0 0 12px; }
+    h1 { font-size: clamp(2rem, 4vw, 3.25rem); max-width: 900px; }
+    h2 { font-size: 1.65rem; margin-top: 10px; }
+    h3 { font-size: 1.25rem; }
+    h4 { font-size: 1rem; }
+
+    .hero p {
+      max-width: 860px;
+      color: rgba(255,255,255,0.88);
+      margin: 14px 0 0;
+      font-size: 1.05rem;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .meta-card {
+      background: rgba(255,255,255,0.11);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .meta-card strong {
+      display: block;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.72;
+      margin-bottom: 4px;
+    }
+
+    nav.toc {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin: 22px 0;
+      box-shadow: var(--shadow);
+    }
+
+    nav.toc ol {
+      margin: 10px 0 0;
+      padding-left: 22px;
+      columns: 2;
+      column-gap: 36px;
+    }
+
+    nav.toc li { break-inside: avoid; margin: 4px 0; }
+
+    section.card, .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      margin: 18px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.76rem;
+      margin-bottom: 8px;
+    }
+
+    .note {
+      background: var(--soft);
+      border-left: 5px solid var(--accent);
+      padding: 14px 16px;
+      border-radius: 12px;
+      margin: 16px 0;
+      color: #24345d;
+    }
+
+    .warning {
+      background: #fff7ed;
+      border-left: 5px solid var(--warn);
+      color: #5d3311;
+    }
+
+    .danger {
+      background: #fef2f2;
+      border-left-color: var(--danger);
+      color: #6b1515;
+    }
+
+    .success {
+      background: #f0fdf4;
+      border-left-color: var(--ok);
+      color: #154f2b;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .mini-card {
+      background: var(--soft-2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    ul, ol { padding-left: 22px; }
+    li { margin: 6px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      border: 1px solid var(--line);
+      padding: 11px 12px;
+    }
+
+    th {
+      background: #eef1f8;
+      font-weight: 800;
+    }
+
+    tr:nth-child(even) td { background: #fbfcff; }
+
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #e0e7ff;
+      color: #263a8b;
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-right: 6px;
+      white-space: nowrap;
+    }
+
+    .pill.ok { background: #dcfce7; color: #166534; }
+    .pill.warn { background: #ffedd5; color: #9a3412; }
+    .pill.danger { background: #fee2e2; color: #991b1b; }
+
+    .checklist label {
+      display: block;
+      margin: 8px 0;
+      padding-left: 4px;
+    }
+
+    .checklist input { margin-right: 8px; transform: translateY(1px); }
+
+    code, .template {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      background: #f1f5f9;
+      border: 1px solid #dbe3ee;
+      border-radius: 8px;
+      padding: 2px 6px;
+      color: #172033;
+    }
+
+    .template-block {
+      white-space: pre-wrap;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 12px 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.92rem;
+    }
+
+    .sop-step {
+      counter-increment: step;
+      position: relative;
+      padding-left: 58px;
+      margin: 22px 0;
+    }
+
+    .sop-step::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .steps { counter-reset: step; }
+
+    footer {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin: 24px 0;
+      text-align: center;
+    }
+
+    .print-note { display: none; }
+
+    @media (max-width: 900px) {
+      header.hero { padding: 28px; }
+      .meta-grid, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      nav.toc ol { columns: 1; }
+      .page { width: min(100% - 22px, 1120px); margin-top: 16px; }
+    }
+
+    @media print {
+      body { background: white; }
+      .page { width: 100%; margin: 0; }
+      header.hero, section.card, .card, nav.toc { box-shadow: none; }
+      header.hero { border-radius: 0; }
+      a { color: inherit; text-decoration: none; }
+      .print-note { display: block; }
+      nav.toc { page-break-after: always; }
+      section.card { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">Standard Operating Procedure</div>
+      <h1>Google Business Profile Optimization SOP</h1>
+      <p>This SOP turns our local SEO process into a repeatable GBP workflow for improving relevance, trust, customer engagement, and local conversion. Use it with judgment and always follow Google Business Profile platform rules.</p>
+      <div class="meta-grid">
+        <div class="meta-card"><strong>Version</strong>1.0</div>
+        <div class="meta-card"><strong>Date</strong>May 19, 2026</div>
+        <div class="meta-card"><strong>Owner</strong>SEO / Local SEO Team</div>
+        <div class="meta-card"><strong>Review Cycle</strong>Monthly</div>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="Table of contents">
+      <h2>Table of Contents</h2>
+      <ol>
+        <li><a href="#purpose">Purpose and scope</a></li>
+        <li><a href="#gbp-principles">GBP optimization principles</a></li>
+        <li><a href="#workflow">Full SOP workflow</a></li>
+        <li><a href="#name">Business name</a></li>
+        <li><a href="#description">Business description</a></li>
+        <li><a href="#categories">Primary and secondary categories</a></li>
+        <li><a href="#services">Services, products, and menu</a></li>
+        <li><a href="#reviews">Reviews and replies</a></li>
+        <li><a href="#photos">Photos and media</a></li>
+        <li><a href="#posts">GBP posts</a></li>
+        <li><a href="#qa">Q&amp;A</a></li>
+        <li><a href="#location">Address, service areas, and proximity</a></li>
+        <li><a href="#website">Website and local landing page</a></li>
+        <li><a href="#citations">NAP and citations</a></li>
+        <li><a href="#tracking">Tracking and reporting</a></li>
+        <li><a href="#maintenance">Monthly maintenance checklist</a></li>
+        <li><a href="#templates">Templates</a></li>
+        </ol>
+    </nav>
+
+    <section class="card" id="purpose">
+      <div class="section-kicker">Purpose</div>
+      <h2>1. Purpose and scope</h2>
+      <p>The purpose of this SOP is to standardize Google Business Profile optimization using recurring themes from our local SEO workflow: category accuracy, clean business naming, natural keyword relevance, review velocity, real photos, GBP-to-website alignment, and engagement tracking.</p>
+      <div class="grid-2">
+        <div class="mini-card">
+          <h3>Use this SOP for</h3>
+          <ul>
+            <li>New GBP setup and profile cleanup.</li>
+            <li>Monthly GBP optimization for local SEO clients.</li>
+            <li>GBP audits for ranking, conversion, or engagement issues.</li>
+            <li>Standardizing review, photo, post, and Q&amp;A workflows.</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3>Do not use it for</h3>
+          <ul>
+            <li>Fake locations, fake reviews, fake offices, or profile manipulation.</li>
+            <li>Keyword-stuffing names without real-world documentation.</li>
+            <li>Copying competitors blindly without checking business fit.</li>
+            <li>Replacing account-specific judgment or platform compliance checks.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note warning">
+        <strong>Important:</strong> Some local SEO tactics are risky or gray-hat. This SOP keeps the practical parts and flags risky areas clearly.
+      </div>
+    </section>
+
+    <section class="card" id="gbp-principles">
+      <div class="section-kicker">Operating principles</div>
+      <h2>2. GBP optimization principles</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Principle</th>
+            <th>Local SEO takeaway</th>
+            <th>How to apply</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pill ok">High priority</span>Primary category</td>
+            <td>Often discussed as one of the strongest controllable GBP levers.</td>
+            <td>Audit top competitors, pick the most specific accurate category, then align services and website content.</td>
+          </tr>
+          <tr>
+            <td><span class="pill ok">High priority</span>Reviews</td>
+            <td>Review velocity, detail, and replies are repeatedly treated as needle movers.</td>
+            <td>Request honest reviews consistently and respond to every review with useful, natural wording.</td>
+          </tr>
+          <tr>
+            <td><span class="pill ok">High priority</span>Website alignment</td>
+            <td>A GBP can stall if the linked website lacks local/service relevance.</td>
+            <td>Link to the best local landing page and make the page match GBP categories, services, and city/area.</td>
+          </tr>
+          <tr>
+            <td><span class="pill warn">Medium</span>Photos/posts/Q&amp;A</td>
+            <td>Often recommended for engagement and conversion; direct ranking impact is debated.</td>
+            <td>Keep active, but track calls, clicks, bookings, and direction requests instead of assuming ranking benefit.</td>
+          </tr>
+          <tr>
+            <td><span class="pill danger">Risk area</span>Name stuffing</td>
+            <td>Some users say keywords in names still work, but many warn about suspension/reverification/reporting risk.</td>
+            <td>Use the real business name unless the keyword is part of the documented real-world DBA/trade name.</td>
+          </tr>
+          <tr>
+            <td><span class="pill warn">Mixed</span>Citations</td>
+            <td>Important citations still matter; tiny directories usually matter less.</td>
+            <td>Clean major listings and industry/local directories, but do not obsess over low-quality citation farms.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card" id="workflow">
+      <div class="section-kicker">Workflow</div>
+      <h2>3. Full SOP workflow</h2>
+      <div class="steps">
+        <div class="sop-step">
+          <h3>Collect account and business data</h3>
+          <ul>
+            <li>Business name, legal/trade/DBA name, phone, website, address, service areas, hours, categories, services, photos, review history, and competitor list.</li>
+            <li>Collect real-world proof where possible: signage, website, invoices, licenses, storefront photos, branded vehicles, business cards, and directory listings.</li>
+          </ul>
+        </div>
+        <div class="sop-step">
+          <h3>Benchmark local competitors</h3>
+          <ul>
+            <li>Search the main money keywords in the target city/area.</li>
+            <li>Record top 3–10 GBP competitors: name, primary category, secondary categories where detectable, reviews, rating, photos, linked page, and visible services.</li>
+            <li>Do not copy spam. Use competitor data to identify patterns and gaps.</li>
+          </ul>
+        </div>
+        <div class="sop-step">
+          <h3>Fix core identity fields first</h3>
+          <ul>
+            <li>Business name, address/service area, phone, website, hours, and verification status.</li>
+            <li>Do not make multiple major edits at once unless necessary; large identity changes can trigger review or reverification.</li>
+          </ul>
+        </div>
+        <div class="sop-step">
+          <h3>Optimize relevance fields</h3>
+          <ul>
+            <li>Primary category, secondary categories, services, products/menu, description, attributes, and Q&amp;A.</li>
+            <li>Use natural service and city language where it fits.</li>
+          </ul>
+        </div>
+        <div class="sop-step">
+          <h3>Improve trust and engagement assets</h3>
+          <ul>
+            <li>Build review request workflow, reply to reviews, add real photos, publish useful posts, and answer Q&amp;A.</li>
+            <li>Focus on real customer interaction, not artificial activity.</li>
+          </ul>
+        </div>
+        <div class="sop-step">
+          <h3>Align the website and citations</h3>
+          <ul>
+            <li>Link GBP to the best page for the location/service intent.</li>
+            <li>Make sure NAP, services, city coverage, schema, local proof, and internal links support the GBP.</li>
+          </ul>
+        </div>
+        <div class="sop-step">
+          <h3>Track, report, and iterate</h3>
+          <ul>
+            <li>Track calls, clicks, direction requests, bookings, messages, reviews, photo views, map-grid ranking, and competitor movement.</li>
+            <li>Annotate every major change so movement can be tied back to actions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="name">
+      <div class="section-kicker">Field procedure</div>
+      <h2>4. Business name SOP</h2>
+      <p><strong>Objective:</strong> Use a clean, real-world business name while avoiding risky keyword stuffing.</p>
+      <div class="grid-2">
+        <div class="mini-card">
+          <h3>Procedure</h3>
+          <ol>
+            <li>Confirm the real business name from signage, website header/footer, invoices, business registration, and branded materials.</li>
+            <li>Compare GBP name against real-world proof.</li>
+            <li>Remove unsupported keywords, locations, phone numbers, taglines, slogans, emojis, and service lists.</li>
+            <li>If the client wants a keyword in the name, confirm whether it is part of the real DBA/trade name before changing GBP.</li>
+            <li>After any name edit, monitor for suspension, reverification, or competitor reporting.</li>
+          </ol>
+        </div>
+        <div class="mini-card">
+          <h3>Examples</h3>
+          <table>
+            <thead><tr><th>Status</th><th>Name</th></tr></thead>
+            <tbody>
+              <tr><td><span class="pill ok">Use</span></td><td>Atlas Dental Care</td></tr>
+              <tr><td><span class="pill danger">Avoid</span></td><td>Atlas Dental Care — Best Dentist Skopje Implants Emergency</td></tr>
+              <tr><td><span class="pill warn">Only if documented</span></td><td>Atlas Emergency Dental Care</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="note danger">
+        <strong>Risk note:</strong> Keyword-stuffed names may appear to rank, but they can trigger profile suspensions, reversions, competitor reports, and reverification. Treat name stuffing as a high-risk tactic.
+      </div>
+      <div class="checklist">
+        <h3>Checklist</h3>
+        <label><input type="checkbox" />Name matches website and real-world materials.</label>
+        <label><input type="checkbox" />No unsupported city or service keywords added.</label>
+        <label><input type="checkbox" />No phone number, URL, slogan, or promotional language.</label>
+        <label><input type="checkbox" />DBA/trade-name documentation saved if keyword is included.</label>
+      </div>
+    </section>
+
+    <section class="card" id="description">
+      <div class="section-kicker">Field procedure</div>
+      <h2>5. Business description SOP</h2>
+      <p><strong>Objective:</strong> Write a clear, conversion-focused description using natural service and city relevance.</p>
+      <div class="grid-2">
+        <div class="mini-card">
+          <h3>Procedure</h3>
+          <ol>
+            <li>Identify the primary category, main service, city/area, customer type, and differentiator.</li>
+            <li>Write the first sentence as: business type + main service + location.</li>
+            <li>Use the middle section for core services and customer outcomes.</li>
+            <li>Use the final sentence for trust, USP, or soft CTA.</li>
+            <li>Remove keyword repetition, sales hype, URLs, all-caps text, and irrelevant claims.</li>
+          </ol>
+        </div>
+        <div class="mini-card">
+          <h3>Writing rules</h3>
+          <ul>
+            <li>Use keywords naturally; do not stuff.</li>
+            <li>Prioritize clarity for the customer.</li>
+            <li>Support every claim somewhere else on GBP or the website.</li>
+            <li>Use services and locations the business actually serves.</li>
+          </ul>
+        </div>
+      </div>
+      <h3>Description template</h3>
+      <div class="template-block">[Business Name] is a [primary category/business type] in [city/area] helping [customer type] with [service 1], [service 2], and [service 3]. We focus on [differentiator: speed, quality, licensed team, experience, specialist work]. Serving [main service area], we help customers [specific outcome or benefit]. Contact us to [simple CTA].</div>
+      <h3>Example</h3>
+      <div class="template-block">Miller Dental Care is a family dental clinic in Skopje helping adults and children with preventive care, cosmetic dentistry, emergency appointments, and dental implants. Our team focuses on clear treatment plans, modern equipment, and comfortable visits. Contact us to book an appointment.</div>
+    </section>
+
+    <section class="card" id="categories">
+      <div class="section-kicker">Field procedure</div>
+      <h2>6. Primary and secondary category SOP</h2>
+      <p><strong>Objective:</strong> Choose the most accurate category setup to improve GBP relevance without diluting focus.</p>
+      <div class="grid-2">
+        <div class="mini-card">
+          <h3>Primary category procedure</h3>
+          <ol>
+            <li>Search the main service keyword in the target city.</li>
+            <li>Record the top local pack/map competitors and their visible categories.</li>
+            <li>Choose the most specific category that describes what the business is, not everything it sells.</li>
+            <li>Check if the primary category matches the linked website page and GBP services.</li>
+            <li>Monitor ranking and engagement after category changes.</li>
+          </ol>
+        </div>
+        <div class="mini-card">
+          <h3>Secondary category procedure</h3>
+          <ol>
+            <li>Add only categories that genuinely describe meaningful parts of the business.</li>
+            <li>Prioritize categories supported by real services, reviews, photos, and website content.</li>
+            <li>Avoid unrelated categories just because competitors use them.</li>
+            <li>Review every 3 months because category availability and competitor behavior change.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="note success">
+        <strong>Team standard:</strong> Primary category is usually the first field to audit when rankings are weak or the GBP is not matching relevant searches.
+      </div>
+    </section>
+
+    <section class="card" id="services">
+      <div class="section-kicker">Field procedure</div>
+      <h2>7. Services, products, and menu SOP</h2>
+      <p><strong>Objective:</strong> List real offerings in a way that reinforces GBP relevance and improves customer understanding.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>How to optimize</th>
+            <th>Avoid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Services</td>
+            <td>Add all real core services. Use common customer search terms. Group closely related services logically.</td>
+            <td>Fake services, duplicate variations, city-stuffed service names, and unsupported services.</td>
+          </tr>
+          <tr>
+            <td>Products</td>
+            <td>Use for real products or service packages where it helps conversion. Add photo, name, short description, and price/range where useful.</td>
+            <td>Using products as a messy duplicate of every service without customer benefit.</td>
+          </tr>
+          <tr>
+            <td>Menu</td>
+            <td>For food, drink, and service menus, keep items complete, current, and representative.</td>
+            <td>Only listing popular items, outdated pricing, or incomplete menus.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="checklist">
+        <h3>Checklist</h3>
+        <label><input type="checkbox" />Core money services added.</label>
+        <label><input type="checkbox" />Service names match website/service pages.</label>
+        <label><input type="checkbox" />Descriptions are short, useful, and not stuffed.</label>
+        <label><input type="checkbox" />Products/menu are current and supported by real business operations.</label>
+      </div>
+    </section>
+
+    <section class="card" id="reviews">
+      <div class="section-kicker">Field procedure</div>
+      <h2>8. Reviews and review replies SOP</h2>
+      <p><strong>Objective:</strong> Build a steady, genuine review profile and use replies to support trust, conversion, and natural service relevance.</p>
+      <div class="grid-2">
+        <div class="mini-card">
+          <h3>Review request procedure</h3>
+          <ol>
+            <li>Ask every eligible customer after service completion or purchase.</li>
+            <li>Use one consistent review link or QR code.</li>
+            <li>Ask for honest, specific feedback; do not script the review.</li>
+            <li>Avoid unnatural bursts. Build steady velocity over time.</li>
+            <li>Track reviews gained per month against top competitors.</li>
+          </ol>
+        </div>
+        <div class="mini-card">
+          <h3>Reply procedure</h3>
+          <ol>
+            <li>Reply to every review within 24–72 hours where possible.</li>
+            <li>Use a unique response, not a copied template every time.</li>
+            <li>Mention the service/location only when it sounds natural.</li>
+            <li>For negative reviews, stay factual and move resolution offline.</li>
+          </ol>
+        </div>
+      </div>
+      <h3>Review reply examples</h3>
+      <table>
+        <thead><tr><th>Scenario</th><th>Reply template</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Positive service review</td>
+            <td>Thank you, [Name]. We’re glad we could help with your [service] in [city/area]. We appreciate you choosing [Business Name].</td>
+          </tr>
+          <tr>
+            <td>Short positive review</td>
+            <td>Thank you for the review, [Name]. We appreciate your support.</td>
+          </tr>
+          <tr>
+            <td>Negative review</td>
+            <td>Thank you for the feedback, [Name]. We’re sorry your experience did not meet expectations. Please contact us at [phone/email] so we can review the details and help resolve this.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note warning">
+        <strong>Review warning:</strong> Do not fake reviews, buy reviews, review-gate, or coach customers to insert exact-match keywords. The safer approach is consistent requests for honest, specific feedback.
+      </div>
+    </section>
+
+    <section class="card" id="photos">
+      <div class="section-kicker">Field procedure</div>
+      <h2>9. Photos and media SOP</h2>
+      <p><strong>Objective:</strong> Use real images to prove the business is legitimate, improve customer trust, and increase profile engagement.</p>
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3>Must-have photos</h3>
+          <ul>
+            <li>Exterior/storefront.</li>
+            <li>Interior/customer area.</li>
+            <li>Team/staff.</li>
+            <li>Products/services.</li>
+            <li>Vehicles/equipment if relevant.</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3>Service business photos</h3>
+          <ul>
+            <li>Before/after work.</li>
+            <li>Job-site photos.</li>
+            <li>Tools and equipment.</li>
+            <li>Uniforms/vehicles.</li>
+            <li>Completed projects.</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3>Upload cadence</h3>
+          <ul>
+            <li>New setup: 15–30 strong photos.</li>
+            <li>Ongoing: weekly or monthly additions.</li>
+            <li>Replace outdated/low-quality images.</li>
+            <li>Use real photos, not stock.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="checklist">
+        <h3>Checklist</h3>
+        <label><input type="checkbox" />Exterior photo clearly helps customers recognize the business.</label>
+        <label><input type="checkbox" />Photos show real staff, work, products, or location.</label>
+        <label><input type="checkbox" />Photos support the primary category and main services.</label>
+        <label><input type="checkbox" />New media is added consistently.</label>
+      </div>
+    </section>
+
+    <section class="card" id="posts">
+      <div class="section-kicker">Field procedure</div>
+      <h2>10. GBP posts SOP</h2>
+      <p><strong>Objective:</strong> Use posts for customer communication, conversion, and engagement. Do not treat posts as a guaranteed direct ranking lever.</p>
+      <table>
+        <thead><tr><th>Post type</th><th>Use case</th><th>Recommended content</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Update</td>
+            <td>General announcement, new service, project highlight.</td>
+            <td>Short headline, real image, 1–2 benefit sentences, CTA.</td>
+          </tr>
+          <tr>
+            <td>Offer</td>
+            <td>Discounts, promotions, seasonal offers.</td>
+            <td>Offer details, dates, terms, CTA to call/book.</td>
+          </tr>
+          <tr>
+            <td>Event</td>
+            <td>Open days, local events, webinars, special schedules.</td>
+            <td>Event name, date, location, reason to attend.</td>
+          </tr>
+          <tr>
+            <td>FAQ-style post</td>
+            <td>Common customer objections or questions.</td>
+            <td>Question headline, concise answer, link or call CTA.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="template-block">Post template:
+[Headline with service/offer]
+[1 sentence explaining the benefit or update]
+[1 sentence with proof, detail, or urgency]
+CTA: Call / Book / Learn more / Get directions</div>
+      <div class="note">
+        <strong>Team standard:</strong> GBP posts should be used for conversion, freshness, and engagement when the content is genuinely helpful.
+      </div>
+    </section>
+
+    <section class="card" id="qa">
+      <div class="section-kicker">Field procedure</div>
+      <h2>11. Q&amp;A SOP</h2>
+      <p><strong>Objective:</strong> Use Q&amp;A to answer buying questions, reinforce relevance, and reduce friction before calls or bookings.</p>
+      <div class="grid-2">
+        <div class="mini-card">
+          <h3>Questions to add/answer</h3>
+          <ul>
+            <li>Do you serve [city/area]?</li>
+            <li>Do you offer [core service]?</li>
+            <li>How fast can I get an appointment?</li>
+            <li>Do you provide emergency service?</li>
+            <li>Where are you located / where do you park?</li>
+            <li>Do you provide warranties or guarantees?</li>
+            <li>What payment methods do you accept?</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3>Answer rules</h3>
+          <ul>
+            <li>Keep answers short and factual.</li>
+            <li>Use natural service/location terms only where helpful.</li>
+            <li>Do not over-optimize every answer.</li>
+            <li>Mirror important answers on the website FAQ page.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="template-block">Q: Do you offer [service] in [city]?
+A: Yes. [Business Name] provides [service] for customers in [city/area]. Contact us to check availability or book an appointment.</div>
+    </section>
+
+    <section class="card" id="location">
+      <div class="section-kicker">Field procedure</div>
+      <h2>12. Address, service area, and proximity SOP</h2>
+      <p><strong>Objective:</strong> Set location fields accurately while recognizing that proximity remains a major local ranking factor.</p>
+      <div class="grid-2">
+        <div class="mini-card">
+          <h3>Physical location</h3>
+          <ol>
+            <li>Use a real staffed location where customers can visit.</li>
+            <li>Verify the map pin is accurate.</li>
+            <li>Add parking/access details through attributes, Q&amp;A, posts, and website content where useful.</li>
+            <li>Use exterior photos to help customers identify the location.</li>
+          </ol>
+        </div>
+        <div class="mini-card">
+          <h3>Service-area business</h3>
+          <ol>
+            <li>Use real service areas only.</li>
+            <li>Do not create fake offices for proximity.</li>
+            <li>Support service areas with website pages, reviews, photos, and local proof.</li>
+            <li>Track rankings by grid because performance will vary by searcher location.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="note danger">
+        <strong>Risk note:</strong> Virtual addresses, fake offices, and location manipulation are high-risk tactics and should not be used in this SOP.
+      </div>
+    </section>
+
+    <section class="card" id="website">
+      <div class="section-kicker">Field procedure</div>
+      <h2>13. Website and local landing page SOP</h2>
+      <p><strong>Objective:</strong> Make the GBP website link reinforce the same business type, services, and location signals as the profile.</p>
+      <div class="grid-2">
+        <div class="mini-card">
+          <h3>Which URL to link</h3>
+          <ul>
+            <li>One-location business: homepage if it is highly local and service-focused.</li>
+            <li>Multi-location business: specific location page.</li>
+            <li>Multi-service business: best matching service/location page when appropriate.</li>
+            <li>Use UTM tracking on GBP links for reporting.</li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3>Landing page requirements</h3>
+          <ul>
+            <li>NAP matches GBP.</li>
+            <li>Primary service and city are clear in title/H1/body.</li>
+            <li>Core services match GBP services.</li>
+            <li>Local proof: reviews, photos, projects, team, licenses, service areas.</li>
+            <li>Clear CTA above the fold.</li>
+            <li>Mobile-friendly, fast-loading page.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note success">
+        <strong>Team standard:</strong> Many GBP ranking problems are not GBP-only problems. Weak or misaligned website pages can prevent the profile from performing well.
+      </div>
+    </section>
+
+    <section class="card" id="citations">
+      <div class="section-kicker">Field procedure</div>
+      <h2>14. NAP and citation SOP</h2>
+      <p><strong>Objective:</strong> Keep major business listings consistent without wasting time on low-value directories.</p>
+      <table>
+        <thead><tr><th>Priority</th><th>Citation type</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="pill ok">High</span></td>
+            <td>Website, GBP, Bing Places, Apple Maps, Facebook, Yelp, major industry profiles</td>
+            <td>Ensure exact NAP consistency and correct website URL.</td>
+          </tr>
+          <tr>
+            <td><span class="pill warn">Medium</span></td>
+            <td>Local chambers, local associations, relevant directories</td>
+            <td>Claim/update where they are relevant and visible.</td>
+          </tr>
+          <tr>
+            <td><span class="pill warn">Low</span></td>
+            <td>Low-quality generic directories</td>
+            <td>Do not spend excessive time unless they are causing visible NAP conflicts.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="checklist">
+        <h3>Checklist</h3>
+        <label><input type="checkbox" />GBP NAP matches website.</label>
+        <label><input type="checkbox" />Major maps and directories are consistent.</label>
+        <label><input type="checkbox" />Duplicate listings identified and removed/merged where possible.</label>
+        <label><input type="checkbox" />Important industry/local profiles are updated.</label>
+      </div>
+    </section>
+
+    <section class="card" id="tracking">
+      <div class="section-kicker">Measurement</div>
+      <h2>15. Tracking and reporting SOP</h2>
+      <p><strong>Objective:</strong> Measure whether GBP work improves real visibility and conversions, not just profile completion.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Why it matters</th>
+            <th>Cadence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Calls</td>
+            <td>Direct local conversion signal.</td>
+            <td>Weekly/monthly</td>
+          </tr>
+          <tr>
+            <td>Website clicks</td>
+            <td>Measures profile-to-site flow.</td>
+            <td>Weekly/monthly</td>
+          </tr>
+          <tr>
+            <td>Direction requests</td>
+            <td>Important for walk-in or physical-location businesses.</td>
+            <td>Monthly</td>
+          </tr>
+          <tr>
+            <td>Bookings/messages</td>
+            <td>Measures conversion intent.</td>
+            <td>Weekly/monthly</td>
+          </tr>
+          <tr>
+            <td>Review count/rating/velocity</td>
+            <td>Steady reviews are a major local trust and conversion lever.</td>
+            <td>Weekly/monthly</td>
+          </tr>
+          <tr>
+            <td>Map-grid rankings</td>
+            <td>Shows ranking by searcher location, not just one device.</td>
+            <td>Monthly</td>
+          </tr>
+          <tr>
+            <td>Competitor category/review movement</td>
+            <td>Explains why rankings move even when your profile is unchanged.</td>
+            <td>Monthly</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="template-block">Change log template:
+Date:
+Profile/location:
+Change made:
+Reason:
+Expected impact:
+Metric to monitor:
+Result after 2–4 weeks:</div>
+    </section>
+
+    <section class="card" id="maintenance">
+      <div class="section-kicker">Maintenance</div>
+      <h2>16. Monthly maintenance checklist</h2>
+      <div class="grid-2 checklist">
+        <div class="mini-card">
+          <h3>GBP fields</h3>
+          <label><input type="checkbox" />Confirm business name is unchanged and compliant.</label>
+          <label><input type="checkbox" />Confirm hours and special hours are current.</label>
+          <label><input type="checkbox" />Review category setup and competitor categories.</label>
+          <label><input type="checkbox" />Update services/products/menu if offerings changed.</label>
+          <label><input type="checkbox" />Check attributes, booking links, social links, and website URL.</label>
+          <label><input type="checkbox" />Review suggested edits and suspicious profile changes.</label>
+        </div>
+        <div class="mini-card">
+          <h3>Engagement and trust</h3>
+          <label><input type="checkbox" />Request reviews from recent customers.</label>
+          <label><input type="checkbox" />Reply to all new reviews.</label>
+          <label><input type="checkbox" />Upload new real photos.</label>
+          <label><input type="checkbox" />Publish useful posts when there is a real update/offer/event.</label>
+          <label><input type="checkbox" />Answer or update Q&amp;A.</label>
+          <label><input type="checkbox" />Review calls, clicks, direction requests, bookings, and map-grid results.</label>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="templates">
+      <div class="section-kicker">Templates</div>
+      <h2>17. Copy-and-use templates</h2>
+      <h3>GBP audit notes template</h3>
+      <div class="template-block">Business:
+Location:
+Primary category:
+Secondary categories:
+Main competitors:
+Main services:
+Current issues:
+Recommended changes:
+Risk notes:
+Tracking baseline:
+Next review date:</div>
+      <h3>Review request template</h3>
+      <div class="template-block">Hi [Name], thank you for choosing [Business Name]. If you have a moment, we would appreciate an honest Google review about your experience with us: [Review Link]</div>
+      <h3>Service description template</h3>
+      <div class="template-block">[Service Name]
+We provide [service] for [customer type] in [city/area]. This service is ideal for [problem/use case] and includes [key detail 1], [key detail 2], and [key detail 3].</div>
+      <h3>GBP post template</h3>
+      <div class="template-block">[Headline]
+[Short explanation of update, offer, service, or event.]
+[Why it matters to the customer.]
+Call [phone] or visit our website to [CTA].</div>
+      <h3>Local landing page checklist</h3>
+      <div class="template-block">Title includes service + city.
+H1 clearly states service/location.
+NAP matches GBP.
+Main services match GBP service list.
+Photos show real business/work.
+Reviews/testimonials included.
+Internal links to service pages included.
+Schema added where appropriate.
+Clear CTA above the fold.
+Page URL added to GBP with UTM tracking.</div>
+    </section>
+<footer>
+      SOP created for internal SEO workflow use. Review monthly and update when GBP behavior, internal standards, or platform rules change.
+    </footer>
+  </main>
+</body>
+</html>
