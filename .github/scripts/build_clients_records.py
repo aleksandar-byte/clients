@@ -139,7 +139,7 @@ def render_links(row: dict[str, str]) -> str:
         render_link("www", row.get("Website", "")),
         render_link("GBP", row.get("GBP Link", "")),
         render_link("drive", row.get("Folder", "")),
-        render_link("sheet", row.get("Web Build Sheet", "")),
+        render_link("build sheet", row.get("Web Build Sheet", "")),
         render_link("xml", row.get("Site Sitemap XML", "")),
     ]
     return "".join(link for link in links if link) or '<span class="muted">no links</span>'
