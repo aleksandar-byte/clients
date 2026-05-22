@@ -104,15 +104,20 @@ function toSqlDate(value) {
 }
 
 const databaseUrl = process.env.DATABASE_URL;
+const prefixedDatabaseUrl =
+  process.env.CLIENTS_DB_DATABASE_URL ||
+  process.env.CLIENTS_DB_POSTGRES_URL ||
+  process.env.CLIENTS_DB_URL ||
+  process.env.POSTGRES_URL;
 
-if (!databaseUrl) {
-  throw new Error("Missing DATABASE_URL. Use the Neon pooled connection string.");
+if (!databaseUrl && !prefixedDatabaseUrl) {
+  throw new Error("Missing DATABASE_URL or CLIENTS_DB_DATABASE_URL. Use the Neon pooled connection string.");
 }
 
 const inputPath = path.resolve(process.argv[2] || "../../client-reference.md");
 const markdown = await readFile(inputPath, "utf8");
 const rows = parseClientReference(markdown);
-const sql = neon(databaseUrl);
+const sql = neon(databaseUrl || prefixedDatabaseUrl);
 
 await sql.transaction(rows.map((row) => {
   const clientKey = slugify(row.Client);
