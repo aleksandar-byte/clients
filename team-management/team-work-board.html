@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Team Work Board - 05.20.2026</title>
+<title>Team Work Board - 05.22.2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -71,6 +71,9 @@
   .task-body { flex: 1; min-width: 0; } .task-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
   .task.is-done .task-title { text-decoration: line-through; color: var(--text-faint); }
   .task-desc { font-size: 12px; color: var(--text-muted); line-height: 1.45; margin-bottom: 6px; }
+  .context-list { margin: 0 0 6px; padding-left: 17px; color: var(--text-muted); font-size: 12px; line-height: 1.45; }
+  .context-list li { margin: 3px 0; }
+  .batch-context { margin: 0; }
   .task-links { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
   .tl-site, .tl-sitemap, .tl-ref { font-family: 'DM Mono', monospace; font-size: 11px; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
   .tl-site { color: var(--blue); } .tl-site:hover { border-color: var(--blue); }
@@ -99,7 +102,7 @@
   <aside class="sidebar">
     <div>
       <div class="brand">SERP <em>&amp;</em> Team</div>
-      <div class="brand-date">Weekly Board - 05.20.2026</div>
+      <div class="brand-date">Weekly Board - 05.22.2026</div>
     </div>
 
     <div class="side-section">
@@ -107,39 +110,39 @@
       
       <a class="pnav-item active" href="#" data-person="all">
         <div style="width:28px;height:28px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--text-faint);">ALL</div>
-        <div><div class="pnav-name">Everyone</div><div class="pnav-meta">22 open</div></div>
+        <div><div class="pnav-name">Everyone</div><div class="pnav-meta">29 open</div></div>
       </a>
 
       <a class="pnav-item" href="#alex" data-person="alex">
         <div class="avatar av-aa">AA</div>
-        <div><div class="pnav-name">Aleksandar</div><div class="pnav-meta">2 open - 2 overdue</div></div>
+        <div><div class="pnav-name">Aleksandar</div><div class="pnav-meta">6 open - 2 overdue</div></div>
       </a>
 
       <a class="pnav-item" href="#mikee" data-person="mikee">
         <div class="avatar av-mn">MN</div>
-        <div><div class="pnav-name">Mikee</div><div class="pnav-meta">1 open - 1 overdue</div></div>
+        <div><div class="pnav-name">Mikee</div><div class="pnav-meta">6 open - 3 overdue</div></div>
       </a>
 
       <a class="pnav-item" href="#grethel" data-person="grethel">
         <div class="avatar av-gr">GR</div>
-        <div><div class="pnav-name">Grethel</div><div class="pnav-meta">18 open - 10 overdue</div></div>
+        <div><div class="pnav-name">Grethel</div><div class="pnav-meta">12 open - 6 overdue</div></div>
       </a>
 
       <a class="pnav-item" href="#glydel" data-person="glydel">
         <div class="avatar av-gl">GL</div>
-        <div><div class="pnav-name">Glydel</div><div class="pnav-meta">1 open</div></div>
+        <div><div class="pnav-name">Glydel</div><div class="pnav-meta">5 open</div></div>
       </a>
 
     </div>
 
     <div class="side-stats">
-      <div class="side-stat-row"><span>Open</span><strong>22</strong></div>
-      <div class="side-stat-row"><span>Estimated</span><strong>29h40</strong></div>
-      <div class="side-stat-row alert"><span>Overdue</span><strong>13</strong></div>
-      <div class="side-stat-row"><span>Done</span><strong>5</strong></div>
+      <div class="side-stat-row"><span>Open</span><strong>29</strong></div>
+      <div class="side-stat-row"><span>Estimated</span><strong>33h30</strong></div>
+      <div class="side-stat-row alert"><span>Overdue</span><strong>11</strong></div>
+      <div class="side-stat-row"><span>Done</span><strong>12</strong></div>
       <div class="side-stat-row" style="margin-top:10px;">
         <span style="font-size:11px;color:var(--text-faint);">Generated</span>
-        <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text-faint);">2026-05-20 14:30</span>
+        <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text-faint);">2026-05-22 07:32</span>
       </div>
     </div>
   </aside>
@@ -147,11 +150,11 @@
   <main class="main">
     <div class="masthead">
       <h1>Team Work <em>Board</em></h1>
-      <div class="masthead-sub">Weekly operating surface - 4 people - 27 tasks</div>
+      <div class="masthead-sub">Weekly operating surface - 4 people - 41 tasks</div>
       <div class="stat-row">
-        <div class="stat-card"><div class="stat-label">Open workload</div><div class="stat-value">29h40</div></div>
-        <div class="stat-card alert"><div class="stat-label">Overdue</div><div class="stat-value">13</div></div>
-        <div class="stat-card ok"><div class="stat-label">Done this week</div><div class="stat-value">5</div></div>
+        <div class="stat-card"><div class="stat-label">Open workload</div><div class="stat-value">33h30</div></div>
+        <div class="stat-card alert"><div class="stat-label">Overdue</div><div class="stat-value">11</div></div>
+        <div class="stat-card ok"><div class="stat-label">Done this week</div><div class="stat-value">12</div></div>
         <div class="stat-card"><div class="stat-label">People active</div><div class="stat-value">4</div></div>
       </div>
     </div>
@@ -174,23 +177,23 @@
       <div class="section-head">
         <span class="section-title urgent">Needs attention</span>
         <span class="section-rule"></span>
-        <span class="section-count">13 overdue</span>
+        <span class="section-count">11 overdue</span>
       </div>
       
       <div class="person-group" data-person="alex" id="alex">
         <div class="person-header">
           <div class="avatar av-aa">AA</div>
           <span class="person-name-label">Aleksandar</span>
-          <span class="person-tally"><span class="ov">2 overdue</span> - 1h est.</span>
+          <span class="person-tally"><span class="ov">2 overdue</span> - 5h30 est.</span>
         </div>
         <div class="task-list">
           
           <article class="task is-overdue" data-task-id="alex-0" data-person="alex" data-status="planned" data-overdue="1" data-completed="0" data-search="empower dental rancho - contact support contact support about the maps/name cleanup path so citations refresh and apple maps follow-up can move again. aleksandar atanasoski local seo dentalcarecalifornia.com citations refresh citations refresh">
             <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
             <div class="task-body">
-              <div class="overdue-badge">Overdue 2d</div>
+              <div class="overdue-badge">Overdue 4d</div>
               <div class="task-title">Empower Dental Rancho - contact support</div>
-              <div class="task-desc">Contact support about the maps/name cleanup path so citations refresh and Apple Maps follow-up can move again.</div>
+              <div class="task-desc"><ul class="context-list"><li>Contact support about the maps/name cleanup path so citations refresh and Apple Maps follow-up can move again</li></ul></div>
               <div class="task-links"><a class="tl-site" href="https://dentalcarecalifornia.com/" target="_blank" rel="noreferrer">dentalcarecalifornia.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://dentalcarecalifornia.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/7441724825/pulses/8713490440" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
             </div>
             <div class="task-est">1h</div>
@@ -199,12 +202,56 @@
           <article class="task is-overdue" data-task-id="alex-1" data-person="alex" data-status="planned" data-overdue="1" data-completed="0" data-search="replit application spend reduction reduce replit application spend to $25. aleksandar atanasoski cost control  ">
             <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
             <div class="task-body">
-              <div class="overdue-badge">Overdue 2d</div>
+              <div class="overdue-badge">Overdue 4d</div>
               <div class="task-title">Replit application spend reduction</div>
-              <div class="task-desc">Reduce Replit application spend to $25.</div>
+              <div class="task-desc"><ul class="context-list"><li>Reduce Replit application spend to $25</li></ul></div>
               
             </div>
             <div class="task-est">-</div>
+          </article>
+
+          <article class="task" data-task-id="alex-2" data-person="alex" data-status="planned" data-overdue="0" data-completed="0" data-search="add report-run notes section to report hub due 2026-05-24. from grethel 1:1 notes: add a note section within each report run so feedback/issues can train the reporting system. source email `19e45d62ca3f36d2`. google doc: https://docs.google.com/document/d/1xuva7kmhw0z_ojb-u25vlb-nvh027dokw_car5jt6to aleksandar atanasoski reporting infrastructure www.arlingtondentalcenter.com google doc ashburn -&gt; `https://ashburnfamilydentalcare.com/` (live site from monday updates); original source site to review against">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Due in 2d</div>
+              <div class="task-title">Add report-run notes section to report hub</div>
+              <div class="task-desc"><ul class="context-list"><li>Due 2026-05-24. From Grethel 1:1 notes: add a note section within each report run so feedback/issues can train the reporting system. Source email <code>19e45d62ca3f36d2</code>. Google Doc: https://docs.google.com/document/d/1xuVA7kMHW0Z_oJB-u25vlB-nvh027DOKW_CAr5Jt6to</li></ul></div>
+              <div class="task-links"><a class="tl-site" href="https://www.arlingtondentalcenter.com/" target="_blank" rel="noreferrer">www.arlingtondentalcenter.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://www.arlingtondentalcenter.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a></div>
+            </div>
+            <div class="task-est">1h30</div>
+          </article>
+
+          <article class="task" data-task-id="alex-3" data-person="alex" data-status="planned" data-overdue="0" data-completed="0" data-search="brief grethel on report creation / qc lead role due 2026-05-24. from mikee 1:1 notes: clarify grethel&#x27;s role leading report creation and qc flow, with mikee scoped to qc/edit support when assigned. source email `19e45c404fd02cc8`. google doc: https://docs.google.com/document/d/1z4v3rz07rnfo5lhfyv7kopl3gb_rukdvjqd-rm3jgia aleksandar atanasoski coaching www.arlingtondentalcenter.com google doc ashburn -&gt; `https://ashburnfamilydentalcare.com/` (live site from monday updates); original source site to review against">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Due in 2d</div>
+              <div class="task-title">Brief Grethel on report creation / QC lead role</div>
+              <div class="task-desc"><ul class="context-list"><li>Due 2026-05-24. From Mikee 1:1 notes: clarify Grethel&#x27;s role leading report creation and QC flow, with Mikee scoped to QC/edit support when assigned. Source email <code>19e45c404fd02cc8</code>. Google Doc: https://docs.google.com/document/d/1Z4v3Rz07rNFo5lHfyv7kOPL3GB_RUKDVJqD-Rm3jGiA</li></ul></div>
+              <div class="task-links"><a class="tl-site" href="https://www.arlingtondentalcenter.com/" target="_blank" rel="noreferrer">www.arlingtondentalcenter.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://www.arlingtondentalcenter.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a></div>
+            </div>
+            <div class="task-est">1h30</div>
+          </article>
+
+          <article class="task" data-task-id="alex-4" data-person="alex" data-status="planned" data-overdue="0" data-completed="0" data-search="create shared weekly priority document for 1:1s due 2026-05-24. from mikee and grethel 1:1 notes: consolidate weekly priorities into one shared document before future meetings. source emails `19e45c404fd02cc8`, `19e45d62ca3f36d2`. google docs: https://docs.google.com/document/d/1z4v3rz07rnfo5lhfyv7kopl3gb_rukdvjqd-rm3jgia and https://docs.google.com/document/d/1xuva7kmhw0z_ojb-u25vlb-nvh027dokw_car5jt6to aleksandar atanasoski priority planning www.arlingtondentalcenter.com google doc google doc ashburn -&gt; `https://ashburnfamilydentalcare.com/` (live site from monday updates); original source site to review against">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Due in 2d</div>
+              <div class="task-title">Create shared weekly priority document for 1:1s</div>
+              <div class="task-desc"><ul class="context-list"><li>Due 2026-05-24. From Mikee and Grethel 1:1 notes: consolidate weekly priorities into one shared document before future meetings. Source emails <code>19e45c404fd02cc8</code>, <code>19e45d62ca3f36d2</code>. Google Docs: https://docs.google.com/document/d/1Z4v3Rz07rNFo5lHfyv7kOPL3GB_RUKDVJqD-Rm3jGiA and https://docs.google.com/document/d/1xuVA7kMHW0Z_oJB-u25vlB-nvh027DOKW_CAr5Jt6to</li></ul></div>
+              <div class="task-links"><a class="tl-site" href="https://www.arlingtondentalcenter.com/" target="_blank" rel="noreferrer">www.arlingtondentalcenter.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://www.arlingtondentalcenter.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a></div>
+            </div>
+            <div class="task-est">-</div>
+          </article>
+
+          <article class="task" data-task-id="alex-5" data-person="alex" data-status="planned" data-overdue="0" data-completed="0" data-search="organize client hub navigation for reporting due 2026-05-24. from grethel 1:1 notes: organize/provide clearer navigation to client hubs for easier report access. source email `19e45d62ca3f36d2`. google doc: https://docs.google.com/document/d/1xuva7kmhw0z_ojb-u25vlb-nvh027dokw_car5jt6to aleksandar atanasoski client hub www.arlingtondentalcenter.com google doc ashburn -&gt; `https://ashburnfamilydentalcare.com/` (live site from monday updates); original source site to review against">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Due in 2d</div>
+              <div class="task-title">Organize client hub navigation for reporting</div>
+              <div class="task-desc"><ul class="context-list"><li>Due 2026-05-24. From Grethel 1:1 notes: organize/provide clearer navigation to client hubs for easier report access. Source email <code>19e45d62ca3f36d2</code>. Google Doc: https://docs.google.com/document/d/1xuVA7kMHW0Z_oJB-u25vlB-nvh027DOKW_CAr5Jt6to</li></ul></div>
+              <div class="task-links"><a class="tl-site" href="https://www.arlingtondentalcenter.com/" target="_blank" rel="noreferrer">www.arlingtondentalcenter.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://www.arlingtondentalcenter.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a></div>
+            </div>
+            <div class="task-est">1h30</div>
           </article>
 
         </div>
@@ -214,19 +261,91 @@
         <div class="person-header">
           <div class="avatar av-mn">MN</div>
           <span class="person-name-label">Mikee</span>
-          <span class="person-tally"><span class="ov">1 overdue</span> - 1h est.</span>
+          <span class="person-tally"><span class="ov">3 overdue</span> - 8h30 est.</span>
         </div>
         <div class="task-list">
           
-          <article class="task is-overdue" data-task-id="mikee-0" data-person="mikee" data-status="in-progress" data-overdue="1" data-completed="0" data-search="az cosmetic / family &amp; cosmetic dental citations repurchase carry-forward from 2026-05-18 slack: support offered manual update or repurchase; alex chose repurchase. slack: `https://serpagency.slack.com/archives/d08qf163w03/p1779121999641199`. mikee novio citations  family &amp; cosmetic dental citations waiting on support az cosmetic citations repurchase approved citations">
+          <div class="reports-group" data-person="mikee">
+            <div class="reports-header" onclick="toggleReports(this)">
+              <div class="task-check"><input type="checkbox" class="task-checkbox" onclick="event.stopPropagation()"></div>
+              <div class="task-body" style="pointer-events:none;">
+                <div class="task-title">Monthly client reports</div>
+                <div class="task-desc" style="margin-top:2px;">2 reports - 2 overdue - 3h total</div>
+              </div>
+              <div class="reports-toggle">
+                <span class="rtoggle-label">expand</span>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+            <div class="reports-list" style="display:none;">
+              
+              <div class="report-row" data-person="mikee">
+                <div class="report-dot dot-inprog"></div>
+                <div class="report-body">
+                  <div class="report-name">Ashburn Family Dental Care</div>
+                  <div class="report-links">
+                    <span class="report-due">Overdue 4d - in progress</span>
+                    <div class="task-links"><a class="tl-site" href="https://ashburnfamilydentalcare.com/" target="_blank" rel="noreferrer">ashburnfamilydentalcare.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12014534623" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="report-row" data-person="mikee">
+                <div class="report-dot dot-planned"></div>
+                <div class="report-body">
+                  <div class="report-name">Commonwealth Family Dentistry</div>
+                  <div class="report-links">
+                    <span class="report-due">Overdue 4d</span>
+                    <div class="task-links"><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12015029033" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <article class="task" data-task-id="mikee-0" data-person="mikee" data-status="planned" data-overdue="0" data-completed="0" data-search="verify v2 reporting tool formatting workflow due 2026-05-24. from gemini notes email `19e45c404fd02cc8`: review the v2 reporting tool and confirm it supports proper report formatting. google doc: https://docs.google.com/document/d/1z4v3rz07rnfo5lhfyv7kopl3gb_rukdvjqd-rm3jgia mikee reporting tool  google doc">
             <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
             <div class="task-body">
-              <div class="overdue-badge">Overdue 1d</div>
+              <div class="overdue-badge">Due in 2d</div>
+              <div class="task-title">Verify V2 reporting tool formatting workflow</div>
+              <div class="task-desc"><ul class="context-list"><li>Due 2026-05-24. From Gemini notes email <code>19e45c404fd02cc8</code>: review the V2 reporting tool and confirm it supports proper report formatting. Google Doc: https://docs.google.com/document/d/1Z4v3Rz07rNFo5lHfyv7kOPL3GB_RUKDVJqD-Rm3jGiA</li></ul></div>
+              
+            </div>
+            <div class="task-est">1h30</div>
+          </article>
+
+          <article class="task is-overdue" data-task-id="mikee-1" data-person="mikee" data-status="in-progress" data-overdue="1" data-completed="0" data-search="az cosmetic / family &amp; cosmetic dental citations repurchase carry-forward from 2026-05-18 slack: support offered manual update or repurchase; alex chose repurchase. slack: `https://serpagency.slack.com/archives/d08qf163w03/p1779121999641199`. mikee citations  slack">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Overdue 3d</div>
               <div class="task-title">AZ Cosmetic / Family &amp; Cosmetic Dental citations repurchase</div>
-              <div class="task-desc">Carry-forward from 2026-05-18 Slack: support offered manual update or repurchase; Alex chose repurchase. Slack: <code>https://serpagency.slack.com/archives/D08QF163W03/p1779121999641199</code>.</div>
-              <div class="task-links"><a class="tl-monday" href="https://serpagency.monday.com/boards/7441724825/pulses/8366601616" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+              <div class="task-desc"><ul class="context-list"><li>Carry-forward from 2026-05-18 Slack: support offered manual update or repurchase</li><li>Alex chose repurchase. Slack: <code>https://serpagency.slack.com/archives/D08QF163W03/p1779121999641199</code></li></ul></div>
+              <div class="task-links"><a class="tl-ref" href="https://serpagency.slack.com/archives/D08QF163W03/p1779121999641199" target="_blank" rel="noreferrer">slack</a></div>
             </div>
             <div class="task-est">1h</div>
+          </article>
+
+          <article class="task" data-task-id="mikee-2" data-person="mikee" data-status="planned" data-overdue="0" data-completed="0" data-search="apply assigned report edits and cc alex due 2026-05-24. when report edits are needed, execute them on the seo team board and copy/cc aleksandar on the update. source email `19e45c404fd02cc8`. mikee report edits  ">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Due in 2d</div>
+              <div class="task-title">Apply assigned report edits and CC Alex</div>
+              <div class="task-desc"><ul class="context-list"><li>Due 2026-05-24. When report edits are needed, execute them on the SEO team board and copy/CC Aleksandar on the update. Source email <code>19e45c404fd02cc8</code></li></ul></div>
+              
+            </div>
+            <div class="task-est">1h30</div>
+          </article>
+
+          <article class="task is-inprogress" data-task-id="mikee-3" data-person="mikee" data-status="in-progress" data-overdue="0" data-completed="0" data-search="qc current reports and document feedback due 2026-05-24. from 2026-05-20 1:1: conduct report qc, provide feedback via the reporting tool, and keep feedback on the seo team board instead of only in chat. source email `19e45c404fd02cc8`. mikee report qc  ">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Due in 2d</div>
+              <div class="task-title">QC current reports and document feedback</div>
+              <div class="task-desc"><ul class="context-list"><li>Due 2026-05-24. From 2026-05-20 1:1: conduct report QC, provide feedback via the reporting tool, and keep feedback on the SEO team board instead of only in chat. Source email <code>19e45c404fd02cc8</code></li></ul></div>
+              
+            </div>
+            <div class="task-est">1h30</div>
           </article>
 
         </div>
@@ -236,7 +355,7 @@
         <div class="person-header">
           <div class="avatar av-gr">GR</div>
           <span class="person-name-label">Grethel</span>
-          <span class="person-tally"><span class="ov">10 overdue</span> - 27h est.</span>
+          <span class="person-tally"><span class="ov">6 overdue</span> - 16h30 est.</span>
         </div>
         <div class="task-list">
           
@@ -245,7 +364,7 @@
               <div class="task-check"><input type="checkbox" class="task-checkbox" onclick="event.stopPropagation()"></div>
               <div class="task-body" style="pointer-events:none;">
                 <div class="task-title">Monthly client reports</div>
-                <div class="task-desc" style="margin-top:2px;">18 reports - 10 overdue - 27h total</div>
+                <div class="task-desc" style="margin-top:2px;">8 reports - 5 overdue - 12h total</div>
               </div>
               <div class="reports-toggle">
                 <span class="rtoggle-label">expand</span>
@@ -257,32 +376,10 @@
               <div class="report-row" data-person="grethel">
                 <div class="report-dot dot-inprog"></div>
                 <div class="report-body">
-                  <div class="report-name">Apply AM feedback and Maiki task-selection check</div>
+                  <div class="report-name">Dental Care Center of Hollywood</div>
                   <div class="report-links">
-                    <span class="report-due">Overdue 2d - in progress</span>
-                    <div class="task-links"><a class="tl-monday" href="https://serpagency.monday.com/boards/6299506683/pulses/6299508067" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row" data-person="grethel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">Ashburn Family Dental Care</div>
-                  <div class="report-links">
-                    <span class="report-due">Overdue 2d - in progress</span>
-                    <div class="task-links"><a class="tl-site" href="https://ashburnfamilydentalcare.com/" target="_blank" rel="noreferrer">ashburnfamilydentalcare.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://ashburnfamilydentalcare.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12014534623" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row" data-person="grethel">
-                <div class="report-dot dot-planned"></div>
-                <div class="report-body">
-                  <div class="report-name">Commonwealth Family Dentistry</div>
-                  <div class="report-links">
-                    <span class="report-due">Overdue 2d</span>
-                    <div class="task-links"><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12015029033" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                    <span class="report-due">Overdue 4d - in progress</span>
+                    <div class="task-links"><a class="tl-site" href="https://www.dentalcenterofhollywood.com/" target="_blank" rel="noreferrer">www.dentalcenterofhollywood.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12075485221" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
                   </div>
                 </div>
               </div>
@@ -292,41 +389,8 @@
                 <div class="report-body">
                   <div class="report-name">Dulce Dental</div>
                   <div class="report-links">
-                    <span class="report-due">Overdue 2d - in progress</span>
-                    <div class="task-links"><a class="tl-site" href="https://www.mydulcedental.com/" target="_blank" rel="noreferrer">www.mydulcedental.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://www.mydulcedental.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020551569" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row" data-person="grethel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">Lorton Town Dental</div>
-                  <div class="report-links">
-                    <span class="report-due">Overdue 2d - in progress</span>
-                    <div class="task-links"><a class="tl-site" href="https://lortontowndental.com/" target="_blank" rel="noreferrer">lortontowndental.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://lortontowndental.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12014546553" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row" data-person="grethel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">Polished Dental</div>
-                  <div class="report-links">
-                    <span class="report-due">Overdue 2d - in progress</span>
-                    <div class="task-links"><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12014424891" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row" data-person="grethel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">Wagner Sleep Dentistry</div>
-                  <div class="report-links">
-                    <span class="report-due">Overdue 2d - in progress</span>
-                    <div class="task-links"><a class="tl-site" href="https://www.wagnersleepdentist.com/" target="_blank" rel="noreferrer">www.wagnersleepdentist.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://www.wagnersleepdentist.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12014995929" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                    <span class="report-due">Overdue 4d - in progress</span>
+                    <div class="task-links"><a class="tl-site" href="https://www.mydulcedental.com/" target="_blank" rel="noreferrer">www.mydulcedental.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020551569" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
                   </div>
                 </div>
               </div>
@@ -336,52 +400,8 @@
                 <div class="report-body">
                   <div class="report-name">Winwood Dental</div>
                   <div class="report-links">
-                    <span class="report-due">Overdue 2d - in progress</span>
-                    <div class="task-links"><a class="tl-site" href="https://winwooddental.com/" target="_blank" rel="noreferrer">winwooddental.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://winwooddental.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020475662" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row" data-person="grethel">
-                <div class="report-dot dot-planned"></div>
-                <div class="report-body">
-                  <div class="report-name">Brio PPC Update</div>
-                  <div class="report-links">
-                    <span class="report-due">Overdue 1d</span>
-                    <div class="task-links"><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12014556696" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row" data-person="grethel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">Coordinate White Team help with Mikee</div>
-                  <div class="report-links">
-                    <span class="report-due">Overdue 1d - in progress</span>
-                    <div class="task-links"><a class="tl-site" href="https://lookerstudio.google.com/reporting/5245d63d-a221-465e-ae75-9eb5de3baff8" target="_blank" rel="noreferrer">lookerstudio.google.com/reporting/5245d63d-a221-465e-ae75-9eb5de3baff8</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://lookerstudio.google.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/7814702110/pulses/7396321894" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row" data-person="grethel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">Encore Dental Studio</div>
-                  <div class="report-links">
-                    <span class="report-due">Due today - in progress</span>
-                    <div class="task-links"><a class="tl-site" href="https://edswinstonsalemdentist.com/" target="_blank" rel="noreferrer">edswinstonsalemdentist.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://edswinstonsalemdentist.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020715790" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row" data-person="grethel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">Smile Line Dentistry</div>
-                  <div class="report-links">
-                    <span class="report-due">Due in 1d - in progress</span>
-                    <div class="task-links"><a class="tl-site" href="https://smilelinedentistry.com/" target="_blank" rel="noreferrer">smilelinedentistry.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://smilelinedentistry.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020634474" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                    <span class="report-due">Overdue 4d - in progress</span>
+                    <div class="task-links"><a class="tl-site" href="https://winwooddental.com/" target="_blank" rel="noreferrer">winwooddental.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020475662" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
                   </div>
                 </div>
               </div>
@@ -391,8 +411,8 @@
                 <div class="report-body">
                   <div class="report-name">Synergy Dental Center</div>
                   <div class="report-links">
-                    <span class="report-due">Due in 1d</span>
-                    <div class="task-links"><a class="tl-site" href="https://mysynergydental.com/" target="_blank" rel="noreferrer">mysynergydental.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://mysynergydental.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020803765" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                    <span class="report-due">Overdue 1d</span>
+                    <div class="task-links"><a class="tl-site" href="https://mysynergydental.com/" target="_blank" rel="noreferrer">mysynergydental.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020803765" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
                   </div>
                 </div>
               </div>
@@ -400,21 +420,10 @@
               <div class="report-row" data-person="grethel">
                 <div class="report-dot dot-inprog"></div>
                 <div class="report-body">
-                  <div class="report-name">Tabor Dental</div>
-                  <div class="report-links">
-                    <span class="report-due">Due in 1d - in progress</span>
-                    <div class="task-links"><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020786304" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row" data-person="grethel">
-                <div class="report-dot dot-planned"></div>
-                <div class="report-body">
                   <div class="report-name">University Dental</div>
                   <div class="report-links">
-                    <span class="report-due">Due in 1d</span>
-                    <div class="task-links"><a class="tl-site" href="https://www.universitydentalsandiego.com/" target="_blank" rel="noreferrer">www.universitydentalsandiego.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://www.universitydentalsandiego.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020795000" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                    <span class="report-due">Overdue 1d - in progress</span>
+                    <div class="task-links"><a class="tl-site" href="https://www.universitydentalsandiego.com/" target="_blank" rel="noreferrer">www.universitydentalsandiego.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020795000" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
                   </div>
                 </div>
               </div>
@@ -424,8 +433,8 @@
                 <div class="report-body">
                   <div class="report-name">Carolina Complete</div>
                   <div class="report-links">
-                    <span class="report-due">Due in 2d</span>
-                    <div class="task-links"><a class="tl-site" href="https://nccompletedentistry.com/" target="_blank" rel="noreferrer">nccompletedentistry.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://nccompletedentistry.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12024622666" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                    <span class="report-due">Due today</span>
+                    <div class="task-links"><a class="tl-site" href="https://nccompletedentistry.com/" target="_blank" rel="noreferrer">nccompletedentistry.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12024622666" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
                   </div>
                 </div>
               </div>
@@ -435,8 +444,8 @@
                 <div class="report-body">
                   <div class="report-name">Clear Lake</div>
                   <div class="report-links">
-                    <span class="report-due">Due in 2d</span>
-                    <div class="task-links"><a class="tl-site" href="https://dentistwebstertx.com/" target="_blank" rel="noreferrer">dentistwebstertx.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://dentistwebstertx.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12024710308" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                    <span class="report-due">Due today</span>
+                    <div class="task-links"><a class="tl-site" href="https://dentistwebstertx.com/" target="_blank" rel="noreferrer">dentistwebstertx.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12024710308" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
                   </div>
                 </div>
               </div>
@@ -446,14 +455,58 @@
                 <div class="report-body">
                   <div class="report-name">Q and A Dental Care</div>
                   <div class="report-links">
-                    <span class="report-due">Due in 2d</span>
-                    <div class="task-links"><a class="tl-site" href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer">www.qandadentalcare.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://www.qandadentalcare.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12024577823" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                    <span class="report-due">Due today</span>
+                    <div class="task-links"><a class="tl-site" href="https://www.qandadentalcare.com/" target="_blank" rel="noreferrer">www.qandadentalcare.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12024577823" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
                   </div>
                 </div>
               </div>
 
             </div>
           </div>
+
+          <article class="task is-overdue" data-task-id="grethel-0" data-person="grethel" data-status="in-progress" data-overdue="1" data-completed="0" data-search="coordinate white team report help with mikee grethel said she needs help on white team reports; alex told her to share the generated report sheet/list with mikee. slack: `https://serpagency.slack.com/archives/d092we4dur0/p1779205759523559`, `https://serpagency.slack.com/archives/d092we4dur0/p1779208557010269`. grethel report support  slack slack">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Overdue 3d</div>
+              <div class="task-title">Coordinate White Team report help with Mikee</div>
+              <div class="task-desc"><ul class="context-list"><li>Grethel said she needs help on White Team reports</li><li>Alex told her to share the generated report sheet/list with Mikee. Slack: <code>https://serpagency.slack.com/archives/D092WE4DUR0/p1779205759523559</code>, <code>https://serpagency.slack.com/archives/D092WE4DUR0/p1779208557010269</code></li></ul></div>
+              <div class="task-links"><a class="tl-ref" href="https://serpagency.slack.com/archives/D092WE4DUR0/p1779205759523559" target="_blank" rel="noreferrer">slack</a></div>
+            </div>
+            <div class="task-est">1h30</div>
+          </article>
+
+          <article class="task" data-task-id="grethel-1" data-person="grethel" data-status="planned" data-overdue="0" data-completed="0" data-search="add report issue notes into client hubs due 2026-05-24. document identified reporting issues, missing context, exclusions, and feedback inside the specific client report or associated hub. source email `19e45d62ca3f36d2`. grethel client hub notes  ">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Due in 2d</div>
+              <div class="task-title">Add report issue notes into client hubs</div>
+              <div class="task-desc"><ul class="context-list"><li>Due 2026-05-24. Document identified reporting issues, missing context, exclusions, and feedback inside the specific client report or associated hub. Source email <code>19e45d62ca3f36d2</code></li></ul></div>
+              
+            </div>
+            <div class="task-est">1h30</div>
+          </article>
+
+          <article class="task" data-task-id="grethel-2" data-person="grethel" data-status="planned" data-overdue="0" data-completed="0" data-search="check keyword inconsistencies in reports due 2026-05-24. from gemini notes email `19e45d62ca3f36d2`: compare manual search console keyword data against generated report output and identify why keywords are omitted. google doc: https://docs.google.com/document/d/1xuva7kmhw0z_ojb-u25vlb-nvh027dokw_car5jt6to grethel report qa  google doc">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Due in 2d</div>
+              <div class="task-title">Check keyword inconsistencies in reports</div>
+              <div class="task-desc"><ul class="context-list"><li>Due 2026-05-24. From Gemini notes email <code>19e45d62ca3f36d2</code>: compare manual Search Console keyword data against generated report output and identify why keywords are omitted. Google Doc: https://docs.google.com/document/d/1xuVA7kMHW0Z_oJB-u25vlB-nvh027DOKW_CAr5Jt6to</li></ul></div>
+              
+            </div>
+            <div class="task-est">1h30</div>
+          </article>
+
+          <article class="task" data-task-id="grethel-3" data-person="grethel" data-status="planned" data-overdue="0" data-completed="0" data-search="prepare weekly priority document before next 1:1 due 2026-05-24. meeting decision: future sessions should start from a written weekly priority document. source email `19e45d62ca3f36d2`. grethel priority planning  ">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Due in 2d</div>
+              <div class="task-title">Prepare weekly priority document before next 1:1</div>
+              <div class="task-desc"><ul class="context-list"><li>Due 2026-05-24. Meeting decision: future sessions should start from a written weekly priority document. Source email <code>19e45d62ca3f36d2</code></li></ul></div>
+              
+            </div>
+            <div class="task-est">-</div>
+          </article>
 
         </div>
       </div>
@@ -462,7 +515,7 @@
         <div class="person-header">
           <div class="avatar av-gl">GL</div>
           <span class="person-name-label">Glydel</span>
-          <span class="person-tally">1 open - 40m est.</span>
+          <span class="person-tally">5 open - 3h est.</span>
         </div>
         <div class="task-list">
           
@@ -470,9 +523,9 @@
             <div class="reports-header" onclick="toggleReports(this)">
               <div class="task-check"><input type="checkbox" class="task-checkbox" onclick="event.stopPropagation()"></div>
               <div class="task-body" style="pointer-events:none;">
-                <div class="overdue-badge">Due in 11d</div>
+                <div class="overdue-badge">Due in 9d</div>
                 <div class="task-title">67-ticket GBP products/template batch</div>
-                <div class="task-desc" style="margin-top:2px;">67 tickets - 11 Working - 56 Assigned - 40m est.</div>
+                <div class="task-desc" style="margin-top:2px;">67 tickets - 3 Working - 56 Assigned - 8 Done - 40m est.</div>
               </div>
               <div class="reports-toggle">
                 <span class="rtoggle-label">expand</span>
@@ -480,63 +533,8 @@
               </div>
             </div>
             <div class="reports-list" style="display:none;">
-              <div class="batch-note">Campaign Tasks has 67 high-priority <code>Google Add GBP Products &amp; Template</code> tickets assigned to Glydel, all started 2026-05-15 and due 2026-05-31. Monday status after 2026-05-20 refresh: 11 Working, 56 Assigned. Instruction from ticket updates: add 2 GBP products per client, choosing the main service and second most important service; if main-service products already exist, use important missing services; use client resources/website as helper and flag mismatches to Alex before proceeding. Slack clarifications: ask Nick about IOTEC and show a product sample; for Q&amp;A, delete/rework the disapproved product and add a different product; for Dulce, use the GBP link Alex sent; product descriptions should include the dental practice name and a soft, not-overly-salesy CTA. Example tickets: <a href="https://serpagency.monday.com/boards/9496422576/pulses/12022125602">Empower Dental Rancho</a>, <a href="https://serpagency.monday.com/boards/9496422576/pulses/12022148393">AZ Cosmetic Dental</a>, <a href="https://serpagency.monday.com/boards/9496422576/pulses/12022161275">Polished Dentistry</a>. Slack: <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1779201961795759</code>, <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1779208421725639</code>, <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1779209697817299</code>, <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1779217858653199</code>.</div>
+              <div class="batch-note"><ul class="context-list batch-context"><li>Campaign Tasks has 67 high-priority <code>Google Add GBP Products &amp; Template</code> tickets assigned to Glydel, all started 2026-05-15 and due 2026-05-31. Monday status after 2026-05-20 refresh: 11 Working, 56 Assigned. Instruction from ticket updates: add 2 GBP products per client, choosing the main service and second most important service</li><li>if main-service products already exist, use important missing services</li><li>use client resources/website as helper and flag mismatches to Alex before proceeding. Slack clarifications: ask Nick about IOTEC and show a product sample</li><li>for Q&amp;A, delete/rework the disapproved product and add a different product</li><li>for Dulce, use the GBP link Alex sent</li><li>product descriptions should include the dental practice name and a soft, not-overly-salesy CTA. Example tickets: <a href="https://serpagency.monday.com/boards/9496422576/pulses/12022125602">Empower Dental Rancho</a>, <a href="https://serpagency.monday.com/boards/9496422576/pulses/12022148393">AZ Cosmetic Dental</a>, <a href="https://serpagency.monday.com/boards/9496422576/pulses/12022161275">Polished Dentistry</a>. Slack: <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1779201961795759</code>, <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1779208421725639</code>, <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1779209697817299</code>, <code>https://serpagency.slack.com/archives/D0ACBUJ8VHT/p1779217858653199</code></li></ul></div>
               
-              <div class="report-row batch-row" data-person="glydel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">[MDS] Elmtree Dental</div>
-                  <div class="report-links">
-                    <span class="report-due">Working - due 2026-05-31</span>
-                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022134452" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row batch-row" data-person="glydel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">[MDS] Smart Ortho</div>
-                  <div class="report-links">
-                    <span class="report-due">Working - due 2026-05-31</span>
-                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022123116" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row batch-row" data-person="glydel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">[MDS] Vivid Dental - Greensboro</div>
-                  <div class="report-links">
-                    <span class="report-due">Working - due 2026-05-31</span>
-                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022136816" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row batch-row" data-person="glydel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">CAP Dental</div>
-                  <div class="report-links">
-                    <span class="report-due">Working - due 2026-05-31</span>
-                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022131129" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row batch-row" data-person="glydel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">Clear Lake</div>
-                  <div class="report-links">
-                    <span class="report-due">Working - due 2026-05-31</span>
-                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022136238" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
-                  </div>
-                </div>
-              </div>
-
               <div class="report-row batch-row" data-person="glydel">
                 <div class="report-dot dot-inprog"></div>
                 <div class="report-body">
@@ -566,39 +564,6 @@
                   <div class="report-links">
                     <span class="report-due">Working - due 2026-05-31</span>
                     <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022140735" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row batch-row" data-person="glydel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">My Teeth &amp; Me</div>
-                  <div class="report-links">
-                    <span class="report-due">Working - due 2026-05-31</span>
-                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022189152" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row batch-row" data-person="glydel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">Q and A Dental Care</div>
-                  <div class="report-links">
-                    <span class="report-due">Working - due 2026-05-31</span>
-                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022134787" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="report-row batch-row" data-person="glydel">
-                <div class="report-dot dot-inprog"></div>
-                <div class="report-body">
-                  <div class="report-name">Winwood Dental</div>
-                  <div class="report-links">
-                    <span class="report-due">Working - due 2026-05-31</span>
-                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022134162" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
                   </div>
                 </div>
               </div>
@@ -1219,8 +1184,140 @@
                 </div>
               </div>
 
+              <div class="report-row batch-row" data-person="glydel">
+                <div class="report-dot dot-done"></div>
+                <div class="report-body">
+                  <div class="report-name">[MDS] Elmtree Dental</div>
+                  <div class="report-links">
+                    <span class="report-due">Done - due 2026-05-31</span>
+                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022134452" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="report-row batch-row" data-person="glydel">
+                <div class="report-dot dot-done"></div>
+                <div class="report-body">
+                  <div class="report-name">[MDS] Smart Ortho</div>
+                  <div class="report-links">
+                    <span class="report-due">Done - due 2026-05-31</span>
+                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022123116" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="report-row batch-row" data-person="glydel">
+                <div class="report-dot dot-done"></div>
+                <div class="report-body">
+                  <div class="report-name">[MDS] Vivid Dental - Greensboro</div>
+                  <div class="report-links">
+                    <span class="report-due">Done - due 2026-05-31</span>
+                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022136816" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="report-row batch-row" data-person="glydel">
+                <div class="report-dot dot-done"></div>
+                <div class="report-body">
+                  <div class="report-name">CAP Dental</div>
+                  <div class="report-links">
+                    <span class="report-due">Done - due 2026-05-31</span>
+                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022131129" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="report-row batch-row" data-person="glydel">
+                <div class="report-dot dot-done"></div>
+                <div class="report-body">
+                  <div class="report-name">Clear Lake</div>
+                  <div class="report-links">
+                    <span class="report-due">Done - due 2026-05-31</span>
+                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022136238" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="report-row batch-row" data-person="glydel">
+                <div class="report-dot dot-done"></div>
+                <div class="report-body">
+                  <div class="report-name">My Teeth &amp; Me</div>
+                  <div class="report-links">
+                    <span class="report-due">Done - due 2026-05-31</span>
+                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022189152" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="report-row batch-row" data-person="glydel">
+                <div class="report-dot dot-done"></div>
+                <div class="report-body">
+                  <div class="report-name">Q and A Dental Care</div>
+                  <div class="report-links">
+                    <span class="report-due">Done - due 2026-05-31</span>
+                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022134787" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="report-row batch-row" data-person="glydel">
+                <div class="report-dot dot-done"></div>
+                <div class="report-body">
+                  <div class="report-name">Winwood Dental</div>
+                  <div class="report-links">
+                    <span class="report-due">Done - due 2026-05-31</span>
+                    <a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12022134162" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
+
+          <article class="task" data-task-id="glydel-0" data-person="glydel" data-status="planned" data-overdue="0" data-completed="0" data-search="gentle arcs gbp product cadence due 2026-05-24. carry-forward from latest glydel 1:1: increase gentle arcs gbp product uploads to two per week. source email `19e21d31cdc4e44a`; google doc: https://docs.google.com/document/d/1nwuerx-q5nlfxnr3e46b61k9lvdsc-3rcxe1vnyigrq glydel gbp  google doc">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Due in 2d</div>
+              <div class="task-title">Gentle Arcs GBP product cadence</div>
+              <div class="task-desc"><ul class="context-list"><li>Due 2026-05-24. Carry-forward from latest Glydel 1:1: increase Gentle Arcs GBP product uploads to two per week. Source email <code>19e21d31cdc4e44a</code></li><li>Google Doc: https://docs.google.com/document/d/1nwuErX-q5nlFxnr3e46B61K9LVDsc-3RcXe1VNYIGrQ</li></ul></div>
+              
+            </div>
+            <div class="task-est">40m</div>
+          </article>
+
+          <article class="task" data-task-id="glydel-1" data-person="glydel" data-status="planned" data-overdue="0" data-completed="0" data-search="ac cosmetics gbp optimization due 2026-05-24. complete ac cosmetics gbp optimization requested by mikee. source email `19e21d31cdc4e44a`. glydel gbp  ">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Due in 2d</div>
+              <div class="task-title">AC Cosmetics GBP optimization</div>
+              <div class="task-desc"><ul class="context-list"><li>Due 2026-05-24. Complete AC Cosmetics GBP optimization requested by Mikee. Source email <code>19e21d31cdc4e44a</code></li></ul></div>
+              
+            </div>
+            <div class="task-est">40m</div>
+          </article>
+
+          <article class="task" data-task-id="glydel-2" data-person="glydel" data-status="planned" data-overdue="0" data-completed="0" data-search="ai image sample test for content due 2026-05-24. create test chatgpt images for next content pieces and send samples to aleksandar before posting. source email `19e21d31cdc4e44a`. glydel content  ">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Due in 2d</div>
+              <div class="task-title">AI image sample test for content</div>
+              <div class="task-desc"><ul class="context-list"><li>Due 2026-05-24. Create test ChatGPT images for next content pieces and send samples to Aleksandar before posting. Source email <code>19e21d31cdc4e44a</code></li></ul></div>
+              
+            </div>
+            <div class="task-est">20m</div>
+          </article>
+
+          <article class="task" data-task-id="glydel-3" data-person="glydel" data-status="planned" data-overdue="0" data-completed="0" data-search="booking / appointment gbp links cleanup due 2026-05-24. add missing booking and appointment links across client gbps as a safer positive-impact gbp task. source email `19e21d31cdc4e44a`. glydel gbp  ">
+            <div class="task-check"><input type="checkbox" class="task-checkbox"></div>
+            <div class="task-body">
+              <div class="overdue-badge">Due in 2d</div>
+              <div class="task-title">Booking / appointment GBP links cleanup</div>
+              <div class="task-desc"><ul class="context-list"><li>Due 2026-05-24. Add missing booking and appointment links across client GBPs as a safer positive-impact GBP task. Source email <code>19e21d31cdc4e44a</code></li></ul></div>
+              
+            </div>
+            <div class="task-est">40m</div>
+          </article>
 
         </div>
       </div>
@@ -1231,24 +1328,85 @@
       <div class="section-head" style="margin-top:28px;">
         <span class="section-title">Completed this week</span>
         <span class="section-rule"></span>
-        <span class="section-count">5 done</span>
+        <span class="section-count">12 done</span>
       </div>
       
       <div class="person-group" data-person="mikee" id="mikee-done">
         <div class="person-header">
           <div class="avatar av-mn">MN</div>
           <span class="person-name-label">Mikee</span>
-          <span class="person-tally">1 done - 0m est.</span>
+          <span class="person-tally">5 done - 6h est.</span>
         </div>
         <div class="task-list">
           
-          <article class="task is-done" data-task-id="mikee-0" data-person="mikee" data-status="done" data-overdue="0" data-completed="1" data-search="backlink purchase tickets for high-risk clients monday campaign tasks after 2026-05-20 refresh shows all six backlink tickets marked `done`, due 2026-05-22: az cosmetic dental, mountain view dental, dental wellness, polished dentistry, carolina complete dentistry, and clear lake. monday: [az cosmetic dental](https://serpagency.monday.com/boards/9496422576/pulses/12021357760), [mountain view dental](https://serpagency.monday.com/boards/9496422576/pulses/12021372032), [dental wellness](https://serpagency.monday.com/boards/9496422576/pulses/12021363664), [polished dentistry](https://serpagency.monday.com/boards/9496422576/pulses/12021367361), [carolina complete dentistry](https://serpagency.monday.com/boards/9496422576/pulses/12021363659), [clear lake](https://serpagency.monday.com/boards/9496422576/pulses/12021361696). mikee novio link building clearlakeu.kinsta.cloud www.notion.so/serpco/mountainview-dental-1af8ee4641868050b436c9ac2ec55cf8 dentistwebstertx.com dentistacworth.com www.1dentalwellness.com www.azcosmeticdental.com polishedgeneralandcosmeticdentistry.com nccompletedentistry.com [az cosmetic dental] backlink purchase [mountain view dental] backlink purchase [dental wellness] backlink purchase">
+          <div class="reports-group" data-person="mikee">
+            <div class="reports-header" onclick="toggleReports(this)">
+              <div class="task-check"><input type="checkbox" class="task-checkbox" onclick="event.stopPropagation()"></div>
+              <div class="task-body" style="pointer-events:none;">
+                <div class="task-title">Monthly client reports</div>
+                <div class="task-desc" style="margin-top:2px;">3 reports - 0m total</div>
+              </div>
+              <div class="reports-toggle">
+                <span class="rtoggle-label">expand</span>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+            <div class="reports-list" style="display:none;">
+              
+              <div class="report-row" data-person="mikee">
+                <div class="report-dot dot-done"></div>
+                <div class="report-body">
+                  <div class="report-name">Lorton Town Dental</div>
+                  <div class="report-links">
+                    <span class="report-due">Done</span>
+                    <div class="task-links"><a class="tl-site" href="https://lortontowndental.com/" target="_blank" rel="noreferrer">lortontowndental.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12014546553" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="report-row" data-person="mikee">
+                <div class="report-dot dot-done"></div>
+                <div class="report-body">
+                  <div class="report-name">Polished Dental</div>
+                  <div class="report-links">
+                    <span class="report-due">Done</span>
+                    <div class="task-links"><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12014424891" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="report-row" data-person="mikee">
+                <div class="report-dot dot-done"></div>
+                <div class="report-body">
+                  <div class="report-name">Wagner Sleep Dentistry</div>
+                  <div class="report-links">
+                    <span class="report-due">Done</span>
+                    <div class="task-links"><a class="tl-site" href="https://www.wagnersleepdentist.com/" target="_blank" rel="noreferrer">www.wagnersleepdentist.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12014995929" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <article class="task is-done" data-task-id="mikee-0" data-person="mikee" data-status="done" data-overdue="0" data-completed="1" data-search="cap dental report cleanup notes alex confirmed direct traffic should be removed from the report because it gives the wrong impression; cap dental paginated crawl urls are okay because they are follow/noindex; location page should move under a `locations` menu rather than `areas served`. slack: `https://serpagency.slack.com/archives/d08qf163w03/p1779213858499869`, `https://serpagency.slack.com/archives/d08qf163w03/p1779219972645299`, `https://serpagency.slack.com/archives/d08qf163w03/p1779220046790069`. mikee report qa mycapdental.com slack slack slack">
+            <div class="task-check"><input type="checkbox" class="task-checkbox" checked></div>
+            <div class="task-body">
+              
+              <div class="task-title">Cap Dental report cleanup notes</div>
+              <div class="task-desc"><ul class="context-list"><li>Alex confirmed direct traffic should be removed from the report because it gives the wrong impression</li><li>Cap Dental paginated crawl URLs are okay because they are follow/noindex</li><li>location page should move under a <code>Locations</code> menu rather than <code>Areas Served</code>. Slack: <code>https://serpagency.slack.com/archives/D08QF163W03/p1779213858499869</code>, <code>https://serpagency.slack.com/archives/D08QF163W03/p1779219972645299</code>, <code>https://serpagency.slack.com/archives/D08QF163W03/p1779220046790069</code></li></ul></div>
+              <div class="task-links"><a class="tl-site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://mycapdental.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-ref" href="https://serpagency.slack.com/archives/D08QF163W03/p1779213858499869" target="_blank" rel="noreferrer">slack</a></div>
+            </div>
+            <div class="task-est">1h30</div>
+          </article>
+
+          <article class="task is-done" data-task-id="mikee-1" data-person="mikee" data-status="done" data-overdue="0" data-completed="1" data-search="backlink purchase tickets for high-risk clients monday campaign tasks after 2026-05-20 refresh shows all six backlink tickets marked `done`, due 2026-05-22: az cosmetic dental, mountain view dental, dental wellness, polished dentistry, carolina complete dentistry, and clear lake. monday: [az cosmetic dental](https://serpagency.monday.com/boards/9496422576/pulses/12021357760), [mountain view dental](https://serpagency.monday.com/boards/9496422576/pulses/12021372032), [dental wellness](https://serpagency.monday.com/boards/9496422576/pulses/12021363664), [polished dentistry](https://serpagency.monday.com/boards/9496422576/pulses/12021367361), [carolina complete dentistry](https://serpagency.monday.com/boards/9496422576/pulses/12021363659), [clear lake](https://serpagency.monday.com/boards/9496422576/pulses/12021361696). mikee link building dentistwebstertx.com dentistacworth.com www.1dentalwellness.com www.azcosmeticdental.com polishedgeneralandcosmeticdentistry.com nccompletedentistry.com monday monday monday">
             <div class="task-check"><input type="checkbox" class="task-checkbox" checked></div>
             <div class="task-body">
               
               <div class="task-title">Backlink purchase tickets for high-risk clients</div>
-              <div class="task-desc">Monday Campaign Tasks after 2026-05-20 refresh shows all six backlink tickets marked <code>Done</code>, due 2026-05-22: AZ Cosmetic Dental, Mountain View Dental, Dental Wellness, Polished Dentistry, Carolina Complete Dentistry, and Clear Lake. Monday: <a href="https://serpagency.monday.com/boards/9496422576/pulses/12021357760">AZ Cosmetic Dental</a>, <a href="https://serpagency.monday.com/boards/9496422576/pulses/12021372032">Mountain View Dental</a>, <a href="https://serpagency.monday.com/boards/9496422576/pulses/12021363664">Dental Wellness</a>, <a href="https://serpagency.monday.com/boards/9496422576/pulses/12021367361">Polished Dentistry</a>, <a href="https://serpagency.monday.com/boards/9496422576/pulses/12021363659">Carolina Complete Dentistry</a>, <a href="https://serpagency.monday.com/boards/9496422576/pulses/12021361696">Clear Lake</a>.</div>
-              <div class="task-links"><a class="tl-site" href="https://clearlakeu.kinsta.cloud/" target="_blank" rel="noreferrer">clearlakeu.kinsta.cloud</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://clearlakeu.kinsta.cloud/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12021357760" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+              <div class="task-desc"><ul class="context-list"><li>Monday Campaign Tasks after 2026-05-20 refresh shows all six backlink tickets marked <code>Done</code>, due 2026-05-22: AZ Cosmetic Dental, Mountain View Dental, Dental Wellness, Polished Dentistry, Carolina Complete Dentistry, and Clear Lake. Monday: <a href="https://serpagency.monday.com/boards/9496422576/pulses/12021357760">AZ Cosmetic Dental</a>, <a href="https://serpagency.monday.com/boards/9496422576/pulses/12021372032">Mountain View Dental</a>, <a href="https://serpagency.monday.com/boards/9496422576/pulses/12021363664">Dental Wellness</a>, <a href="https://serpagency.monday.com/boards/9496422576/pulses/12021367361">Polished Dentistry</a>, <a href="https://serpagency.monday.com/boards/9496422576/pulses/12021363659">Carolina Complete Dentistry</a>, <a href="https://serpagency.monday.com/boards/9496422576/pulses/12021361696">Clear Lake</a></li></ul></div>
+              <div class="task-links"><a class="tl-site" href="https://dentistwebstertx.com/" target="_blank" rel="noreferrer">dentistwebstertx.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://dentistwebstertx.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/9496422576/pulses/12021357760" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
             </div>
             <div class="task-est">-</div>
           </article>
@@ -1260,7 +1418,7 @@
         <div class="person-header">
           <div class="avatar av-gr">GR</div>
           <span class="person-name-label">Grethel</span>
-          <span class="person-tally">4 done - 6h est.</span>
+          <span class="person-tally">7 done - 10h30 est.</span>
         </div>
         <div class="task-list">
           
@@ -1269,7 +1427,7 @@
               <div class="task-check"><input type="checkbox" class="task-checkbox" onclick="event.stopPropagation()"></div>
               <div class="task-body" style="pointer-events:none;">
                 <div class="task-title">Monthly client reports</div>
-                <div class="task-desc" style="margin-top:2px;">4 reports - 0m total</div>
+                <div class="task-desc" style="margin-top:2px;">7 reports - 0m total</div>
               </div>
               <div class="reports-toggle">
                 <span class="rtoggle-label">expand</span>
@@ -1284,7 +1442,7 @@
                   <div class="report-name">Cap Dental</div>
                   <div class="report-links">
                     <span class="report-due">Done</span>
-                    <div class="task-links"><a class="tl-site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://mycapdental.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020544413" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                    <div class="task-links"><a class="tl-site" href="https://mycapdental.com/" target="_blank" rel="noreferrer">mycapdental.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020544413" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
                   </div>
                 </div>
               </div>
@@ -1295,7 +1453,7 @@
                   <div class="report-name">Loftus Family Dental</div>
                   <div class="report-links">
                     <span class="report-due">Done</span>
-                    <div class="task-links"><a class="tl-site" href="https://dentistincoeurdalene.com/" target="_blank" rel="noreferrer">dentistincoeurdalene.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://dentistincoeurdalene.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020560290" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                    <div class="task-links"><a class="tl-site" href="https://dentistincoeurdalene.com/" target="_blank" rel="noreferrer">dentistincoeurdalene.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020560290" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
                   </div>
                 </div>
               </div>
@@ -1306,7 +1464,7 @@
                   <div class="report-name">South Florida Sedation Dentistry</div>
                   <div class="report-links">
                     <span class="report-due">Done</span>
-                    <div class="task-links"><a class="tl-site" href="https://www.southfloridasedationdentistry.com/" target="_blank" rel="noreferrer">www.southfloridasedationdentistry.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://www.southfloridasedationdentistry.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020601913" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                    <div class="task-links"><a class="tl-site" href="https://www.southfloridasedationdentistry.com/" target="_blank" rel="noreferrer">www.southfloridasedationdentistry.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020601913" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
                   </div>
                 </div>
               </div>
@@ -1317,7 +1475,40 @@
                   <div class="report-name">Davis Dental</div>
                   <div class="report-links">
                     <span class="report-due">Done</span>
-                    <div class="task-links"><a class="tl-site" href="https://smiles4jonesboro.com/" target="_blank" rel="noreferrer">smiles4jonesboro.com</a><span class="tl-sep">-</span><a class="tl-sitemap" href="https://smiles4jonesboro.com/sitemap.xml" target="_blank" rel="noreferrer">sitemap</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020583112" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                    <div class="task-links"><a class="tl-site" href="https://smiles4jonesboro.com/" target="_blank" rel="noreferrer">smiles4jonesboro.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020583112" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="report-row" data-person="grethel">
+                <div class="report-dot dot-done"></div>
+                <div class="report-body">
+                  <div class="report-name">Encore Dental Studio</div>
+                  <div class="report-links">
+                    <span class="report-due">Done</span>
+                    <div class="task-links"><a class="tl-site" href="https://edswinstonsalemdentist.com/" target="_blank" rel="noreferrer">edswinstonsalemdentist.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020715790" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="report-row" data-person="grethel">
+                <div class="report-dot dot-done"></div>
+                <div class="report-body">
+                  <div class="report-name">Smile Line Dentistry</div>
+                  <div class="report-links">
+                    <span class="report-due">Done</span>
+                    <div class="task-links"><a class="tl-site" href="https://smilelinedentistry.com/" target="_blank" rel="noreferrer">smilelinedentistry.com</a><span class="tl-sep">-</span><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020634474" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="report-row" data-person="grethel">
+                <div class="report-dot dot-done"></div>
+                <div class="report-body">
+                  <div class="report-name">Tabor Dental</div>
+                  <div class="report-links">
+                    <span class="report-due">Done</span>
+                    <div class="task-links"><a class="tl-monday" href="https://serpagency.monday.com/boards/6982782532/pulses/12020786304" target="_blank" rel="noreferrer"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M3 5h4M5 3v4" stroke="currentColor" stroke-width="1.2"/></svg>monday</a></div>
                   </div>
                 </div>
               </div>
