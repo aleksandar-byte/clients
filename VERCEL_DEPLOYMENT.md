@@ -50,7 +50,7 @@ https://your-custom-domain.com/api/auth/callback/google
 4. Add the environment variables above.
 5. Deploy from `main`.
 
-The existing GitHub Action still rebuilds `clients-records.html` from Airtable. Those commits will trigger Vercel redeploys when the Vercel GitHub integration is connected.
+Client records are served by the protected Vercel app from the configured database source. There is no scheduled static rebuild workflow in this repo.
 
 ## Important Security Note
 
