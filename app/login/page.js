@@ -1,18 +1,38 @@
 import { redirect } from "next/navigation";
-import { allowedEmailDomain, auth, isAllowedSerpEmail, signIn } from "../../auth";
+import {
+  hasClientRecordsAccess,
+  isPasswordAuthConfigured,
+  signInWithPassword
+} from "../../auth";
+
+function safeCallbackUrl(value) {
+  const next = String(value || "/clients-records.html");
+  if (!next.startsWith("/") || next.startsWith("//")) {
+    return "/clients-records.html";
+  }
+  return next;
+}
 
 export default async function LoginPage({ searchParams }) {
   const params = await searchParams;
-  const callbackUrl = params?.callbackUrl || "/clients-records.html";
+  const callbackUrl = safeCallbackUrl(params?.callbackUrl);
   const error = params?.error;
-  const session = await auth();
+  const isConfigured = isPasswordAuthConfigured();
 
-  async function signInWithGoogle() {
+  async function signIn(formData) {
     "use server";
-    await signIn("google", { redirectTo: callbackUrl });
+    const nextUrl = safeCallbackUrl(formData.get("callbackUrl"));
+    const password = formData.get("password");
+    const signedIn = await signInWithPassword(password);
+
+    if (!signedIn) {
+      redirect(`/login?callbackUrl=${encodeURIComponent(nextUrl)}&error=1`);
+    }
+
+    redirect(nextUrl);
   }
 
-  if (isAllowedSerpEmail(session?.user?.email)) {
+  if (await hasClientRecordsAccess()) {
     redirect(callbackUrl);
   }
 
@@ -22,22 +42,40 @@ export default async function LoginPage({ searchParams }) {
         <p className="eyebrow">SERP Client Records</p>
         <h1>Protected client roster</h1>
         <p className="lede">
-          Sign in with a Google account using your @{allowedEmailDomain} email.
-          Other Google accounts are blocked automatically.
+          Enter the shared access password to open the live client records.
         </p>
-        {error ? (
+        {!isConfigured ? (
           <div className="error-box">
-            Access denied. Use a Google account ending in @{allowedEmailDomain}.
+            Password login is not configured yet. Add CLIENT_RECORDS_PASSWORD
+            in Vercel to enable access.
           </div>
         ) : null}
-        <form action={signInWithGoogle}>
-          <button className="login-button" type="submit">
-            Continue with Google
+        {error ? (
+          <div className="error-box">
+            That password did not match. Try again.
+          </div>
+        ) : null}
+        <form action={signIn}>
+          <input type="hidden" name="callbackUrl" value={callbackUrl} />
+          <label className="password-label" htmlFor="password">
+            Password
+          </label>
+          <input
+            autoComplete="current-password"
+            autoFocus
+            className="password-input"
+            disabled={!isConfigured}
+            id="password"
+            name="password"
+            type="password"
+          />
+          <button className="login-button" disabled={!isConfigured} type="submit">
+            Continue
           </button>
         </form>
         <p className="fine-print">
-          This protects the Vercel app. Disable public GitHub Pages publishing
-          when you are ready to make this the only public entry point.
+          Access is stored in a secure browser cookie. Change the Vercel
+          password variable to revoke existing sessions.
         </p>
       </section>
     </main>

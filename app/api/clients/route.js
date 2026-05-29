@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { auth, isAllowedSerpEmail } from "../../../auth";
+import { hasClientRecordsAccess } from "../../../auth";
 import { listClientRecords } from "../../../lib/client-records-db";
 
 export const dynamic = "force-dynamic";
@@ -12,9 +12,7 @@ function hasValidApiToken(request) {
 }
 
 export async function GET(request) {
-  const session = await auth();
-
-  if (!isAllowedSerpEmail(session?.user?.email) && !hasValidApiToken(request)) {
+  if (!(await hasClientRecordsAccess()) && !hasValidApiToken(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

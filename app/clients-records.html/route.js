@@ -1,17 +1,14 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { NextResponse } from "next/server";
-import { auth, isAllowedSerpEmail } from "../../auth";
+import { hasClientRecordsAccess } from "../../auth";
 import { listClientRecords } from "../../lib/client-records-db";
 import { renderClientRecordsHtml } from "../../lib/render-client-records";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(request) {
-  const session = await auth();
-  const email = session?.user?.email;
-
-  if (!isAllowedSerpEmail(email)) {
+  if (!(await hasClientRecordsAccess())) {
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("callbackUrl", "/clients-records.html");
     return NextResponse.redirect(loginUrl);
