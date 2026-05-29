@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "db:migrate": "node scripts/migrate-client-records.mjs",
-    "db:import": "node scripts/import-client-reference.mjs"
+    "db:import": "node scripts/import-client-reference.mjs",
+    "db:client": "node scripts/client-records-direct.mjs"
   },
   "engines": {
     "node": ">=20.9.0"
