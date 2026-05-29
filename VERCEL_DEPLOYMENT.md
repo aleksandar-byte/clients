@@ -7,6 +7,7 @@ This repo now supports a protected Vercel deployment for `clients-records.html`.
 - `/clients-records.html` is served by a Next.js route.
 - The route checks a secure shared-password session cookie server-side.
 - `/api/clients` uses the same cookie, or `CLIENT_RECORDS_API_TOKEN` for scripted access.
+- Other apps should use the read-only API documented in `CLIENT_RECORDS_API.md`.
 - The generated HTML is returned with `Cache-Control: private, no-store`.
 
 ## Required Vercel Environment Variables
@@ -16,6 +17,7 @@ Set these in Vercel Project Settings -> Environment Variables:
 ```text
 CLIENT_RECORDS_PASSWORD=...
 CLIENT_RECORDS_SESSION_SECRET=...
+CLIENT_RECORDS_API_TOKEN=...
 AUTH_URL=https://your-vercel-domain.vercel.app
 ```
 
@@ -32,6 +34,7 @@ Add the password to Vercel:
 ```bash
 vercel env add CLIENT_RECORDS_PASSWORD production
 vercel env add CLIENT_RECORDS_SESSION_SECRET production
+vercel env add CLIENT_RECORDS_API_TOKEN production
 ```
 
 Use the same values for Preview and Development if those deployments should be testable.

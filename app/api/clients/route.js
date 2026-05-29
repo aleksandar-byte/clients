@@ -1,15 +1,13 @@
 import { NextResponse } from "next/server";
 import { hasClientRecordsAccess } from "../../../auth";
+import {
+  clientApiResponse,
+  filterClientRows,
+  hasValidApiToken
+} from "../../../lib/client-records-api";
 import { listClientRecords } from "../../../lib/client-records-db";
 
 export const dynamic = "force-dynamic";
-
-function hasValidApiToken(request) {
-  const expected = process.env.CLIENT_RECORDS_API_TOKEN;
-  if (!expected) return false;
-  const header = request.headers.get("authorization") || "";
-  return header === `Bearer ${expected}`;
-}
 
 export async function GET(request) {
   if (!(await hasClientRecordsAccess()) && !hasValidApiToken(request)) {
@@ -18,11 +16,17 @@ export async function GET(request) {
 
   try {
     const rows = await listClientRecords();
-    return NextResponse.json({
-      source: rows?.length ? "neon" : "empty",
-      count: rows?.length || 0,
-      clients: rows || []
-    });
+    const clients = rows || [];
+    const filtered = filterClientRows(clients, new URL(request.url).searchParams);
+
+    return NextResponse.json(clientApiResponse({
+      source: clients.length ? "neon" : "empty",
+      clients: filtered,
+      meta: {
+        total: clients.length,
+        filters: Object.fromEntries(new URL(request.url).searchParams)
+      }
+    }));
   } catch (error) {
     console.error("Client records API failed.", error);
     return NextResponse.json(
