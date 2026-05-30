@@ -47,6 +47,9 @@ await sql`
     client_key text primary key,
     client text not null,
     website text,
+    homepage_title text,
+    homepage_meta_description text,
+    homepage_checked_at timestamptz,
     location text,
     industry text,
     practice_type text,
@@ -80,6 +83,12 @@ await sql`
 await sql`create index if not exists clients_status_idx on core.clients (status)`;
 await sql`create index if not exists clients_pod_idx on core.clients (pod)`;
 await sql`alter table core.clients add column if not exists practice_type text`;
+await sql`
+  alter table core.clients
+    add column if not exists homepage_title text,
+    add column if not exists homepage_meta_description text,
+    add column if not exists homepage_checked_at timestamptz
+`;
 
 await sql`create index if not exists clients_industry_idx on core.clients (industry)`;
 await sql`create index if not exists clients_practice_type_idx on core.clients (practice_type)`;

@@ -63,6 +63,8 @@ GET /api/clients/resolve?name=Gilman
     {
       "Client": "Gilman Orthodontics",
       "Website": "https://gilmanorthodontics.com/",
+      "Homepage Title": "Gilman Orthodontics | Boise Orthodontist | Braces & Invisalign",
+      "Homepage Meta Description": "...",
       "Industry": "Dental",
       "Practice Type": "orthodontist",
       "Status": "Active",

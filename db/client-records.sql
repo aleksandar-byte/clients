@@ -4,6 +4,9 @@ create table if not exists core.clients (
   client_key text primary key,
   client text not null,
   website text,
+  homepage_title text,
+  homepage_meta_description text,
+  homepage_checked_at timestamptz,
   location text,
   industry text,
   practice_type text,
@@ -37,6 +40,11 @@ create index if not exists clients_status_idx on core.clients (status);
 create index if not exists clients_pod_idx on core.clients (pod);
 alter table core.clients
   add column if not exists practice_type text;
+
+alter table core.clients
+  add column if not exists homepage_title text,
+  add column if not exists homepage_meta_description text,
+  add column if not exists homepage_checked_at timestamptz;
 
 create index if not exists clients_industry_idx on core.clients (industry);
 create index if not exists clients_practice_type_idx on core.clients (practice_type);
