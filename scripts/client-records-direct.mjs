@@ -8,6 +8,7 @@ const FIELD_TO_COLUMN = {
   "Website": "website",
   "Location": "location",
   "Industry": "industry",
+  "Practice Type": "practice_type",
   "Pod": "pod",
   "Start Date": "start_date",
   "Launch Date": "launch_date",
@@ -39,11 +40,12 @@ function usage() {
   console.log(`Usage:
   node scripts/client-records-direct.mjs search <query>
   node scripts/client-records-direct.mjs get <client-name-or-key>
-  node scripts/client-records-direct.mjs upsert --field "Client=Example" --field "Website=https://example.com/"
+  node scripts/client-records-direct.mjs upsert --field "Client=Example" --field "Website=https://example.com/" --field "Practice Type=general dentist"
 
 Notes:
   - Loads .env.local automatically when present.
   - Writes directly to Neon/Postgres core.clients.
+  - Practice Type must be one of: ${[...PRACTICE_TYPES].join(", ")}.
   - Never prints database connection strings.`);
 }
 
@@ -63,6 +65,28 @@ function slugify(value) {
 function toSqlDate(value) {
   const clean = normalizeSpace(value);
   return /^\d{4}-\d{2}-\d{2}$/.test(clean) ? clean : null;
+}
+
+const PRACTICE_TYPES = new Set([
+  "general dentist",
+  "family dentist",
+  "pediatric dentist",
+  "orthodontist",
+  "oral surgeon",
+  "periodontist",
+  "dental implants provider",
+  "other",
+  "employment lawyer"
+]);
+
+function normalizeFieldValue(field, value) {
+  const clean = normalizeSpace(value);
+  if (field !== "Practice Type" || !clean) return clean;
+  const normalized = clean.toLowerCase();
+  if (!PRACTICE_TYPES.has(normalized)) {
+    throw new Error(`Unsupported Practice Type: ${clean}`);
+  }
+  return normalized;
 }
 
 function formatSqlDate(value) {
@@ -140,7 +164,7 @@ function parseFieldArgs(args) {
       throw new Error('Each --field must look like "Field Name=value".');
     }
     const field = assignment.slice(0, equalsIndex).trim();
-    const value = assignment.slice(equalsIndex + 1).trim();
+    const value = normalizeFieldValue(field, assignment.slice(equalsIndex + 1));
     if (!FIELD_TO_COLUMN[field]) {
       throw new Error(`Unsupported field: ${field}`);
     }
@@ -152,7 +176,7 @@ function parseFieldArgs(args) {
 async function searchClients(sql, query) {
   const like = `%${query}%`;
   const rows = await sql`
-    select client_key, client, website, pod, services, status, monday_item, updated_at
+    select client_key, client, website, practice_type, pod, services, status, monday_item, updated_at
     from core.clients
     where client ilike ${like}
        or website ilike ${like}
@@ -189,7 +213,7 @@ async function upsertClient(sql, fields) {
 
   for (const [field, column] of Object.entries(FIELD_TO_COLUMN)) {
     const raw = fields[field] ?? "";
-    values[column] = column.endsWith("_date") ? toSqlDate(raw) : normalizeSpace(raw);
+    values[column] = column.endsWith("_date") ? toSqlDate(raw) : normalizeFieldValue(field, raw);
   }
 
   const changedBy = process.env.CLIENT_RECORDS_CHANGED_BY || "codex-direct-db";
@@ -202,6 +226,7 @@ async function upsertClient(sql, fields) {
         website,
         location,
         industry,
+        practice_type,
         pod,
         start_date,
         launch_date,
@@ -230,6 +255,7 @@ async function upsertClient(sql, fields) {
         ${values.website},
         ${values.location},
         ${values.industry},
+        ${values.practice_type},
         ${values.pod},
         ${values.start_date},
         ${values.launch_date},
@@ -258,6 +284,7 @@ async function upsertClient(sql, fields) {
         website = coalesce(nullif(excluded.website, ''), core.clients.website),
         location = coalesce(nullif(excluded.location, ''), core.clients.location),
         industry = coalesce(nullif(excluded.industry, ''), core.clients.industry),
+        practice_type = coalesce(nullif(excluded.practice_type, ''), core.clients.practice_type),
         pod = coalesce(nullif(excluded.pod, ''), core.clients.pod),
         start_date = coalesce(excluded.start_date, core.clients.start_date),
         launch_date = coalesce(excluded.launch_date, core.clients.launch_date),

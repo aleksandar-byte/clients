@@ -1,4 +1,31 @@
 import { neon } from "@neondatabase/serverless";
+import { readFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import path from "node:path";
+
+async function loadEnvFile() {
+  const envPath = path.resolve(".env.local");
+  if (!existsSync(envPath)) return;
+
+  const body = await readFile(envPath, "utf8");
+  for (const line of body.split(/\r?\n/)) {
+    const match = line.match(/^\s*([^#][^=]+)=(.*)$/);
+    if (!match) continue;
+    const name = match[1].trim();
+    let value = match[2].trim();
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+    if (!process.env[name]) {
+      process.env[name] = value;
+    }
+  }
+}
+
+await loadEnvFile();
 
 const databaseUrl = process.env.DATABASE_URL;
 const prefixedDatabaseUrl =
@@ -22,6 +49,7 @@ await sql`
     website text,
     location text,
     industry text,
+    practice_type text,
     pod text,
     start_date date,
     launch_date date,
@@ -51,9 +79,42 @@ await sql`
 
 await sql`create index if not exists clients_status_idx on core.clients (status)`;
 await sql`create index if not exists clients_pod_idx on core.clients (pod)`;
+await sql`alter table core.clients add column if not exists practice_type text`;
+
 await sql`create index if not exists clients_industry_idx on core.clients (industry)`;
+await sql`create index if not exists clients_practice_type_idx on core.clients (practice_type)`;
 await sql`create index if not exists clients_start_date_idx on core.clients (start_date)`;
 await sql`create index if not exists clients_launch_date_idx on core.clients (launch_date)`;
+
+await sql`
+  do $$
+  begin
+    if not exists (
+      select 1
+      from pg_constraint
+      where conname = 'clients_practice_type_check'
+        and conrelid = 'core.clients'::regclass
+    ) then
+      alter table core.clients
+        add constraint clients_practice_type_check
+        check (
+          practice_type is null
+          or practice_type = ''
+          or lower(practice_type) in (
+            'general dentist',
+            'family dentist',
+            'pediatric dentist',
+            'orthodontist',
+            'oral surgeon',
+            'periodontist',
+            'dental implants provider',
+            'other',
+            'employment lawyer'
+          )
+        );
+    end if;
+  end $$
+`;
 
 await sql`
   create or replace function core.touch_updated_at()

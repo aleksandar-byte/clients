@@ -32,6 +32,7 @@ Filter clients:
 GET /api/clients?status=Active
 GET /api/clients?pod=White
 GET /api/clients?industry=Dental
+GET /api/clients?practice_type=orthodontist
 GET /api/clients?service=PPC
 GET /api/clients?search=gilman
 GET /api/clients?updated_since=2026-05-01
@@ -62,6 +63,8 @@ GET /api/clients/resolve?name=Gilman
     {
       "Client": "Gilman Orthodontics",
       "Website": "https://gilmanorthodontics.com/",
+      "Industry": "Dental",
+      "Practice Type": "orthodontist",
       "Status": "Active",
       "_client_key": "gilman-orthodontics",
       "_updated_at": "2026-05-29T18:00:00.000Z"
