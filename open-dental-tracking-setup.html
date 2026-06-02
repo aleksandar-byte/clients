@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Dental Booking Tracking Setup</title>
+  <style>
+    :root{--text:#1f2937;--muted:#5b6472;--line:#d8dee7;--soft:#f7f9fc;--blue:#1f5fbf;--blue-soft:#edf4ff;--green:#157347;--green-soft:#edf8f1}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:#fff;line-height:1.45;font-size:16px}
+    main{max-width:860px;margin:0 auto;padding:34px 22px}
+    header{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:18px}
+    h1{font-size:30px;line-height:1.15;margin:0 0 8px;letter-spacing:-.02em}
+    .intro{margin:0;color:var(--muted);font-size:17px;max-width:760px}
+    .box{border:1px solid var(--line);border-radius:14px;padding:18px;margin:0 0 16px;background:#fff}
+    .goal{background:var(--blue-soft);border-color:#cfe0ff}
+    h2{font-size:20px;margin:0 0 12px}
+    ol{margin:0;padding-left:24px}
+    li{margin:0 0 11px;padding-left:4px}
+    li:last-child{margin-bottom:0}
+    .path{display:block;margin-top:5px;font-weight:700;color:var(--blue)}
+    .code{display:block;margin:8px 0 0;padding:11px 12px;border-radius:10px;background:var(--soft);border:1px solid var(--line);font-family:Consolas,Monaco,monospace;font-size:14px;word-break:break-all;color:#111827}
+    .send{background:var(--green-soft);border-color:#ccebd7}
+    .small{font-size:14px;color:var(--muted);margin-top:10px}
+    a{color:var(--blue)}
+    footer{border-top:1px solid var(--line);padding-top:12px;margin-top:18px;color:var(--muted);font-size:13px}
+    @media print{main{padding:.35in;max-width:none}body{font-size:13.5px}h1{font-size:24px}.box{padding:13px;margin-bottom:10px}.code{font-size:12px}a{color:inherit;text-decoration:none}}
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Open Dental Booking Tracking Setup</h1>
+      <p class="intro">Please use these steps to set up the Open Dental booking link so completed online bookings can be tracked through a website thank-you page.</p>
+    </header>
+
+    <section class="box goal">
+      <h2>Thank-you page to use</h2>
+      <p>Use the practice website domain with this page at the end:</p>
+      <code class="code">https://www.YOURWEBSITE.com/thank-you-od/</code>
+    </section>
+
+    <section class="box">
+      <h2>Steps in Open Dental</h2>
+      <ol>
+        <li>Open <strong>Open Dental</strong>.</li>
+        <li>From the main menu, click <strong>eServices</strong>.
+          <span class="path">Main Menu → eServices</span>
+        </li>
+        <li>Under <strong>Web Scheduling</strong>, click <strong>Advanced</strong>.
+          <span class="path">Web Scheduling → Advanced</span>
+        </li>
+        <li>If there is more than one clinic/location, select the correct one from the list on the left.</li>
+        <li>Find <strong>Scheduling URL</strong>.</li>
+        <li>Right-click the <strong>Scheduling URL</strong> and choose <strong>Copy</strong>.</li>
+        <li>Paste the copied link somewhere you can edit it.</li>
+        <li>Add this to the very end of the link:
+          <code class="code">&amp;ReturnURL=https://www.YOURWEBSITE.com/thank-you-od/</code>
+        </li>
+      </ol>
+    </section>
+
+    <section class="box">
+      <h2>Example</h2>
+      <p><strong>Original Open Dental link:</strong></p>
+      <code class="code">https://www.patientviewer.com/?RSID=34343338&amp;CID=30&amp;C=1251</code>
+      <p><strong>Final link after adding the thank-you page:</strong></p>
+      <code class="code">https://www.patientviewer.com/?RSID=34343338&amp;CID=30&amp;C=1251&amp;ReturnURL=https://www.YOURWEBSITE.com/thank-you-od/</code>
+      <p class="small">Use <strong>&amp;ReturnURL=</strong>, not <strong>?ReturnURL=</strong>, because the Open Dental link already has a question mark in it.</p>
+    </section>
+
+    <section class="box send">
+      <h2>Send us this</h2>
+      <p>Please send us the final Open Dental link after the thank-you page has been added.</p>
+      <code class="code">Final Open Dental booking link:<br>[paste final link here]</code>
+      <p class="small">Do not send patient information. We only need the booking link.</p>
+    </section>
+
+    <section class="box">
+      <h2>Final check</h2>
+      <ol>
+        <li>Open the final booking link.</li>
+        <li>Complete a test booking only if your office is comfortable doing that.</li>
+        <li>Confirm the browser ends on <strong>/thank-you-od/</strong> after the booking is completed.</li>
+        <li>Tell us when the test was completed so we can confirm tracking.</li>
+      </ol>
+    </section>
+
+    <footer>
+      <p>Open Dental reference: <a href="https://www.opendental.com/manual/webschedadvanced.html" target="_blank" rel="noopener">Web Sched Advanced manual</a>. Open Dental documents the Scheduling URL and the <strong>&amp;ReturnURL=</strong> option for redirecting patients after scheduling.</p>
+    </footer>
+  </main>
+</body>
+</html>
