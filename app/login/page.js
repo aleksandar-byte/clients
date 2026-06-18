@@ -1,9 +1,12 @@
 import { redirect } from "next/navigation";
 import {
+  allowedDomains,
   hasClientRecordsAccess,
+  isGoogleAuthConfigured,
   isPasswordAuthConfigured,
   signInWithPassword
 } from "../../auth";
+import { GoogleLoginButton } from "./GoogleLoginButton";
 
 function safeCallbackUrl(value) {
   const next = String(value || "/clients-records.html");
@@ -17,7 +20,8 @@ export default async function LoginPage({ searchParams }) {
   const params = await searchParams;
   const callbackUrl = safeCallbackUrl(params?.callbackUrl);
   const error = params?.error;
-  const isConfigured = isPasswordAuthConfigured();
+  const isPasswordConfigured = isPasswordAuthConfigured();
+  const isGoogleConfigured = isGoogleAuthConfigured();
 
   async function signIn(formData) {
     "use server";
@@ -42,12 +46,12 @@ export default async function LoginPage({ searchParams }) {
         <p className="eyebrow">SERP Client Records</p>
         <h1>Protected client roster</h1>
         <p className="lede">
-          Enter the shared access password to open the live client records.
+          Use your {allowedDomains().map((domain) => `@${domain}`).join(" or ")} Google account to open the live client records.
         </p>
-        {!isConfigured ? (
+        {!isGoogleConfigured && !isPasswordConfigured ? (
           <div className="error-box">
-            Password login is not configured yet. Add CLIENT_RECORDS_PASSWORD
-            in Vercel to enable access.
+            Login is not configured yet. Add AUTH_GOOGLE_ID and
+            AUTH_GOOGLE_SECRET in Vercel to enable Google access.
           </div>
         ) : null}
         {error ? (
@@ -55,27 +59,30 @@ export default async function LoginPage({ searchParams }) {
             That password did not match. Try again.
           </div>
         ) : null}
-        <form action={signIn}>
-          <input type="hidden" name="callbackUrl" value={callbackUrl} />
-          <label className="password-label" htmlFor="password">
-            Password
-          </label>
-          <input
-            autoComplete="current-password"
-            autoFocus
-            className="password-input"
-            disabled={!isConfigured}
-            id="password"
-            name="password"
-            type="password"
-          />
-          <button className="login-button" disabled={!isConfigured} type="submit">
-            Continue
-          </button>
-        </form>
+        <GoogleLoginButton callbackUrl={callbackUrl} disabled={!isGoogleConfigured} />
+        {isPasswordConfigured ? (
+          <>
+            <div className="login-divider">or use the fallback password</div>
+            <form action={signIn}>
+              <input type="hidden" name="callbackUrl" value={callbackUrl} />
+              <label className="password-label" htmlFor="password">
+                Password
+              </label>
+              <input
+                autoComplete="current-password"
+                className="password-input"
+                id="password"
+                name="password"
+                type="password"
+              />
+              <button className="login-button login-button-secondary" type="submit">
+                Continue with password
+              </button>
+            </form>
+          </>
+        ) : null}
         <p className="fine-print">
-          Access is stored in a secure browser cookie. Change the Vercel
-          password variable to revoke existing sessions.
+          Google access is limited to the approved organization domain. Password login remains available only when configured.
         </p>
       </section>
     </main>

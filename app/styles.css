@@ -102,6 +102,17 @@ h1 {
   background: var(--ink);
 }
 
+.login-button-secondary {
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+}
+
+.login-button-secondary:hover {
+  background: var(--ink);
+  color: var(--surface);
+}
+
 .password-label {
   display: block;
   color: var(--muted);
@@ -138,4 +149,23 @@ h1 {
   margin: 0 0 16px;
   padding: 12px;
   font-weight: 700;
+}
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--line);
 }
