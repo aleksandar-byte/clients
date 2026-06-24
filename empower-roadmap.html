@@ -285,6 +285,17 @@
   .chart-caption{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:14px 26px 22px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
   .chart-caption strong{font-family:var(--fd);font-size:18px;color:var(--navy-800);font-weight:600}
 
+
+  .forecast-tabs{margin:0 0 22px;padding-bottom:2px}
+  .forecast-subpanel{animation:fadeIn .18s ease-out}
+  .location-report-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;border:1px solid var(--line);border-radius:16px;background:#fff;padding:22px 24px;margin:0 0 22px;box-shadow:0 14px 28px -28px rgba(6,24,47,.45)}
+  .location-report-head h3{font-family:var(--fd);font-size:25px;letter-spacing:-.01em;color:var(--navy-900);margin:0 0 5px}
+  .location-report-head p{color:var(--muted);font-size:14px;line-height:1.5;margin:0}
+  .location-kpis{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end;max-width:520px}
+  .location-kpis span{border:1px solid var(--line);border-radius:999px;padding:8px 11px;font-size:12px;color:var(--muted);white-space:nowrap;background:#F8FBFD}
+  .location-kpis b{font-family:var(--fd);font-size:16px;color:var(--navy-800);margin-left:4px}
+  .compact-line .svg-shell{height:350px}
+
   .client-chart-block{margin:22px 0 30px;border:1px solid var(--line);border-radius:16px;background:#fff;padding:22px 24px;box-shadow:0 16px 34px -30px rgba(6,24,47,.5)}
   .client-chart-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px}
   .client-chart-head h3{font-family:var(--fd);font-size:22px;color:var(--navy-900);margin:0;letter-spacing:-.01em}
@@ -299,7 +310,7 @@
   .mini-foot{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:9px;margin-top:6px}
   .mini-foot strong{font-family:var(--fd);font-size:15px;color:var(--navy-800);font-weight:600}
 
-  @media(max-width:900px){.forecast-panel .wrap{padding:0 18px}.forecast-grid{grid-template-columns:1fr}.line-card-head,.client-chart-head{display:block}.line-stats{justify-content:flex-start;margin-top:14px}.svg-shell{height:330px;padding-left:8px;padding-right:8px}.chart-caption{display:block}.chart-caption span,.chart-caption strong{display:block;margin-top:7px}.client-chart-grid{grid-template-columns:1fr}.client-chart-head p{text-align:left;margin-top:5px}.client-chart-block{padding:18px}}
+  @media(max-width:900px){.forecast-panel .wrap{padding:0 18px}.forecast-grid{grid-template-columns:1fr}.line-card-head,.client-chart-head,.location-report-head{display:block}.line-stats,.location-kpis{justify-content:flex-start;margin-top:14px}.svg-shell{height:330px;padding-left:8px;padding-right:8px}.chart-caption{display:block}.chart-caption span,.chart-caption strong{display:block;margin-top:7px}.client-chart-grid{grid-template-columns:1fr}.client-chart-head p{text-align:left;margin-top:5px}.client-chart-block,.location-report-head{padding:18px}}
 
   .wtag{font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--navy-600);margin-bottom:6px}
 
@@ -1217,15 +1228,19 @@
         <p>This view adds the latest month-by-month read across the six Empower Dental Group properties: organic clicks from Search Console and tracked lead actions from analytics. June is month-to-date through June 23 and is used as the current baseline for the forecast period.</p>
       </div>
 
-      <div class="forecast-grid" aria-label="Actual six month totals">
-        <div class="forecast-card"><div class="k">Organic clicks</div><div class="n">3,608</div><div class="d">Actual Jan-Jun MTD across the six tracked properties.</div></div>
-        <div class="forecast-card"><div class="k">Tracked lead actions</div><div class="n">230</div><div class="d">Lead-form, appointment, phone, and booking events tracked in analytics.</div></div>
-        <div class="forecast-card"><div class="k">Projected next 6 months</div><div class="n">5,325</div><div class="d">Combined projected clicks and tracked lead actions for July-December 2026.</div></div>
-      </div>
-
       <div class="forecast-note"><b>Forecast method:</b> June MTD was converted to a full-month run-rate, then extended through the next six months based on the planned growth curve.</div>
 
-      <div class="line-card">
+      <div class="forecast-tabs subtabs" role="tablist" aria-label="Performance report views">
+        <button class="subtab" role="tab" id="forecast-tab-total" aria-controls="forecast-panel-total" aria-selected="true">Total view</button><button class="subtab" role="tab" id="forecast-brightcraft-dental-laser-tab" aria-controls="forecast-brightcraft-dental-laser-panel" aria-selected="false" tabindex="-1">BrightCraft</button><button class="subtab" role="tab" id="forecast-coastland-dental-tab" aria-controls="forecast-coastland-dental-panel" aria-selected="false" tabindex="-1">Coastland Dental</button><button class="subtab" role="tab" id="forecast-empower-dental-glendale-tab" aria-controls="forecast-empower-dental-glendale-panel" aria-selected="false" tabindex="-1">Glendale</button><button class="subtab" role="tab" id="forecast-empower-dental-pasadena-tab" aria-controls="forecast-empower-dental-pasadena-panel" aria-selected="false" tabindex="-1">Pasadena</button><button class="subtab" role="tab" id="forecast-empower-dental-rancho-tab" aria-controls="forecast-empower-dental-rancho-panel" aria-selected="false" tabindex="-1">Rancho</button><button class="subtab" role="tab" id="forecast-empower-dental-upland-tab" aria-controls="forecast-empower-dental-upland-panel" aria-selected="false" tabindex="-1">Upland</button>
+      </div>
+
+      <div class="forecast-subpanel" id="forecast-panel-total" role="tabpanel" aria-labelledby="forecast-tab-total">
+        <div class="forecast-grid" aria-label="Actual six month totals">
+          <div class="forecast-card"><div class="k">Organic clicks</div><div class="n">3,608</div><div class="d">Actual Jan-Jun MTD across the six tracked properties.</div></div>
+          <div class="forecast-card"><div class="k">Tracked lead actions</div><div class="n">230</div><div class="d">Lead-form, appointment, phone, and booking events tracked in analytics.</div></div>
+          <div class="forecast-card"><div class="k">Projected next 6 months</div><div class="n">5,325</div><div class="d">Combined projected clicks and tracked lead actions for July-December 2026.</div></div>
+        </div>
+        <div class="line-card">
         <div class="line-card-head">
           <div><h3>Organic clicks</h3><p>GSC clicks by month</p></div>
           <div class="line-stats"><span>Actual clicks <b>3,608</b></span><span>Projected clicks <b>4,952</b></span></div>
@@ -1242,77 +1257,9 @@
             <circle cx="70.0" cy="224.4" r="4.2" class="svg-dot"/><circle cx="145.5" cy="144.3" r="4.2" class="svg-dot"/><circle cx="220.9" cy="118.6" r="4.2" class="svg-dot"/><circle cx="296.4" cy="113.4" r="4.2" class="svg-dot"/><circle cx="371.8" cy="124.3" r="4.2" class="svg-dot"/><circle cx="447.3" cy="170.5" r="4.2" class="svg-dot"/><circle cx="522.7" cy="124.7" r="4.2" class="svg-dot"/><circle cx="598.2" cy="114.0" r="4.2" class="svg-dot"/><circle cx="673.6" cy="103.6" r="4.2" class="svg-dot"/><circle cx="749.1" cy="92.9" r="4.2" class="svg-dot"/><circle cx="824.5" cy="82.4" r="4.2" class="svg-dot"/><circle cx="900.0" cy="72.0" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">Jan</text><text x="145.5" y="322" class="svg-x" text-anchor="middle">Feb</text><text x="220.9" y="322" class="svg-x" text-anchor="middle">Mar</text><text x="296.4" y="322" class="svg-x" text-anchor="middle">Apr</text><text x="371.8" y="322" class="svg-x" text-anchor="middle">May</text><text x="447.3" y="322" class="svg-x" text-anchor="middle">Jun</text><text x="522.7" y="322" class="svg-x" text-anchor="middle">Jul</text><text x="673.6" y="322" class="svg-x" text-anchor="middle">Sep</text><text x="824.5" y="322" class="svg-x" text-anchor="middle">Nov</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">Dec</text>
           </svg>
         </div>
-        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+433 clicks vs Jun MTD</strong></div>
+        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+433 vs Jun MTD</strong></div>
       </div>
-
-      <div class="client-chart-block">
-        <div class="client-chart-head"><h3>Organic clicks by location</h3><p>Actuals and forecast by client property</p></div>
-        <div class="client-chart-grid">
-          <div class="mini-line-card">
-          <div class="mini-head"><b>BrightCraft Dental & Laser</b><span>916 actual</span></div>
-          <svg viewBox="0 0 520 180" preserveAspectRatio="none" role="img" aria-label="BrightCraft Dental & Laser monthly trend">
-            <defs><linearGradient id="mini-click-brightcraft-dental-laser" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".24"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".04"/></linearGradient></defs>
-            <line x1="24" y1="160" x2="504" y2="160" class="svg-grid"/>
-            <path d="M 24.0 42.5 L 67.6 65.7 L 111.3 37.5 L 154.9 57.5 L 198.5 67.6 L 242.2 90.8 L 285.8 64.4 L 329.5 58.8 L 373.1 52.5 L 416.7 46.9 L 460.4 40.6 L 504.0 34.9 L 504.0 160.0 L 24.0 160.0 Z" fill="url(#mini-click-brightcraft-dental-laser)"/>
-            <path d="M 24.0 42.5 L 67.6 65.7 L 111.3 37.5 L 154.9 57.5 L 198.5 67.6 L 242.2 90.8" class="svg-line mini"/>
-            <path d="M 242.2 90.8 L 285.8 64.4 L 329.5 58.8 L 373.1 52.5 L 416.7 46.9 L 460.4 40.6 L 504.0 34.9" class="svg-line svg-line-proj mini"/>
-          </svg>
-          <div class="mini-foot"><span>Jun 104</span><strong>Dec 193</strong></div>
-        </div><div class="mini-line-card">
-          <div class="mini-head"><b>Empower Dental Rancho</b><span>829 actual</span></div>
-          <svg viewBox="0 0 520 180" preserveAspectRatio="none" role="img" aria-label="Empower Dental Rancho monthly trend">
-            <defs><linearGradient id="mini-click-empower-dental-rancho" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".24"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".04"/></linearGradient></defs>
-            <line x1="24" y1="160" x2="504" y2="160" class="svg-grid"/>
-            <path d="M 24.0 156.0 L 67.6 59.3 L 111.3 58.1 L 154.9 41.7 L 198.5 61.5 L 242.2 90.4 L 285.8 64.4 L 329.5 58.7 L 373.1 52.5 L 416.7 46.8 L 460.4 40.6 L 504.0 34.9 L 504.0 160.0 L 24.0 160.0 Z" fill="url(#mini-click-empower-dental-rancho)"/>
-            <path d="M 24.0 156.0 L 67.6 59.3 L 111.3 58.1 L 154.9 41.7 L 198.5 61.5 L 242.2 90.4" class="svg-line mini"/>
-            <path d="M 242.2 90.4 L 285.8 64.4 L 329.5 58.7 L 373.1 52.5 L 416.7 46.8 L 460.4 40.6 L 504.0 34.9" class="svg-line svg-line-proj mini"/>
-          </svg>
-          <div class="mini-foot"><span>Jun 116</span><strong>Dec 214</strong></div>
-        </div><div class="mini-line-card">
-          <div class="mini-head"><b>Coastland Dental</b><span>713 actual</span></div>
-          <svg viewBox="0 0 520 180" preserveAspectRatio="none" role="img" aria-label="Coastland Dental monthly trend">
-            <defs><linearGradient id="mini-click-coastland-dental" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".24"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".04"/></linearGradient></defs>
-            <line x1="24" y1="160" x2="504" y2="160" class="svg-grid"/>
-            <path d="M 24.0 156.0 L 67.6 86.4 L 111.3 73.0 L 154.9 74.0 L 198.5 74.0 L 242.2 90.7 L 285.8 64.9 L 329.5 59.1 L 373.1 53.2 L 416.7 46.7 L 460.4 40.8 L 504.0 34.9 L 504.0 160.0 L 24.0 160.0 Z" fill="url(#mini-click-coastland-dental)"/>
-            <path d="M 24.0 156.0 L 67.6 86.4 L 111.3 73.0 L 154.9 74.0 L 198.5 74.0 L 242.2 90.7" class="svg-line mini"/>
-            <path d="M 242.2 90.7 L 285.8 64.9 L 329.5 59.1 L 373.1 53.2 L 416.7 46.7 L 460.4 40.8 L 504.0 34.9" class="svg-line svg-line-proj mini"/>
-          </svg>
-          <div class="mini-foot"><span>Jun 122</span><strong>Dec 226</strong></div>
-        </div><div class="mini-line-card">
-          <div class="mini-head"><b>Empower Dental Glendale</b><span>399 actual</span></div>
-          <svg viewBox="0 0 520 180" preserveAspectRatio="none" role="img" aria-label="Empower Dental Glendale monthly trend">
-            <defs><linearGradient id="mini-click-empower-dental-glendale" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".24"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".04"/></linearGradient></defs>
-            <line x1="24" y1="160" x2="504" y2="160" class="svg-grid"/>
-            <path d="M 24.0 156.0 L 67.6 79.7 L 111.3 57.8 L 154.9 52.4 L 198.5 64.4 L 242.2 90.6 L 285.8 65.5 L 329.5 58.9 L 373.1 53.5 L 416.7 46.9 L 460.4 41.5 L 504.0 34.9 L 504.0 160.0 L 24.0 160.0 Z" fill="url(#mini-click-empower-dental-glendale)"/>
-            <path d="M 24.0 156.0 L 67.6 79.7 L 111.3 57.8 L 154.9 52.4 L 198.5 64.4 L 242.2 90.6" class="svg-line mini"/>
-            <path d="M 242.2 90.6 L 285.8 65.5 L 329.5 58.9 L 373.1 53.5 L 416.7 46.9 L 460.4 41.5 L 504.0 34.9" class="svg-line svg-line-proj mini"/>
-          </svg>
-          <div class="mini-foot"><span>Jun 60</span><strong>Dec 111</strong></div>
-        </div><div class="mini-line-card">
-          <div class="mini-head"><b>Empower Dental Pasadena</b><span>554 actual</span></div>
-          <svg viewBox="0 0 520 180" preserveAspectRatio="none" role="img" aria-label="Empower Dental Pasadena monthly trend">
-            <defs><linearGradient id="mini-click-empower-dental-pasadena" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".24"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".04"/></linearGradient></defs>
-            <line x1="24" y1="160" x2="504" y2="160" class="svg-grid"/>
-            <path d="M 24.0 77.1 L 67.6 77.9 L 111.3 82.3 L 154.9 78.8 L 198.5 42.8 L 242.2 91.1 L 285.8 64.8 L 329.5 58.6 L 373.1 53.4 L 416.7 47.2 L 460.4 41.1 L 504.0 34.9 L 504.0 160.0 L 24.0 160.0 Z" fill="url(#mini-click-empower-dental-pasadena)"/>
-            <path d="M 24.0 77.1 L 67.6 77.9 L 111.3 82.3 L 154.9 78.8 L 198.5 42.8 L 242.2 91.1" class="svg-line mini"/>
-            <path d="M 242.2 91.1 L 285.8 64.8 L 329.5 58.6 L 373.1 53.4 L 416.7 47.2 L 460.4 41.1 L 504.0 34.9" class="svg-line svg-line-proj mini"/>
-          </svg>
-          <div class="mini-foot"><span>Jun 74</span><strong>Dec 138</strong></div>
-        </div><div class="mini-line-card">
-          <div class="mini-head"><b>Empower Dental Upland</b><span>197 actual</span></div>
-          <svg viewBox="0 0 520 180" preserveAspectRatio="none" role="img" aria-label="Empower Dental Upland monthly trend">
-            <defs><linearGradient id="mini-click-empower-dental-upland" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".24"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".04"/></linearGradient></defs>
-            <line x1="24" y1="160" x2="504" y2="160" class="svg-grid"/>
-            <path d="M 24.0 156.0 L 67.6 120.1 L 111.3 70.9 L 154.9 34.9 L 198.5 86.0 L 242.2 95.5 L 285.8 70.9 L 329.5 65.2 L 373.1 59.5 L 416.7 53.9 L 460.4 48.2 L 504.0 42.5 L 504.0 160.0 L 24.0 160.0 Z" fill="url(#mini-click-empower-dental-upland)"/>
-            <path d="M 24.0 156.0 L 67.6 120.1 L 111.3 70.9 L 154.9 34.9 L 198.5 86.0 L 242.2 95.5" class="svg-line mini"/>
-            <path d="M 242.2 95.5 L 285.8 70.9 L 329.5 65.2 L 373.1 59.5 L 416.7 53.9 L 460.4 48.2 L 504.0 42.5" class="svg-line svg-line-proj mini"/>
-          </svg>
-          <div class="mini-foot"><span>Jun 32</span><strong>Dec 60</strong></div>
-        </div>
-        </div>
-      </div>
-
-      <div class="line-card">
+        <div class="line-card">
         <div class="line-card-head">
           <div><h3>Tracked lead actions</h3><p>Lead actions by month</p></div>
           <div class="line-stats"><span>Actual lead actions <b>230</b></span><span>Projected lead actions <b>373</b></span></div>
@@ -1329,80 +1276,302 @@
             <circle cx="70.0" cy="286.0" r="4.2" class="svg-dot"/><circle cx="145.5" cy="177.5" r="4.2" class="svg-dot"/><circle cx="220.9" cy="89.6" r="4.2" class="svg-dot"/><circle cx="296.4" cy="159.9" r="4.2" class="svg-dot"/><circle cx="371.8" cy="148.2" r="4.2" class="svg-dot"/><circle cx="447.3" cy="180.4" r="4.2" class="svg-dot"/><circle cx="522.7" cy="136.5" r="4.2" class="svg-dot"/><circle cx="598.2" cy="121.8" r="4.2" class="svg-dot"/><circle cx="673.6" cy="110.1" r="4.2" class="svg-dot"/><circle cx="749.1" cy="98.4" r="4.2" class="svg-dot"/><circle cx="824.5" cy="83.7" r="4.2" class="svg-dot"/><circle cx="900.0" cy="72.0" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">Jan</text><text x="145.5" y="322" class="svg-x" text-anchor="middle">Feb</text><text x="220.9" y="322" class="svg-x" text-anchor="middle">Mar</text><text x="296.4" y="322" class="svg-x" text-anchor="middle">Apr</text><text x="371.8" y="322" class="svg-x" text-anchor="middle">May</text><text x="447.3" y="322" class="svg-x" text-anchor="middle">Jun</text><text x="522.7" y="322" class="svg-x" text-anchor="middle">Jul</text><text x="673.6" y="322" class="svg-x" text-anchor="middle">Sep</text><text x="824.5" y="322" class="svg-x" text-anchor="middle">Nov</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">Dec</text>
           </svg>
         </div>
-        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+37 lead actions vs Jun MTD</strong></div>
+        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+37 vs Jun MTD</strong></div>
       </div>
-
-      <div class="client-chart-block">
-        <div class="client-chart-head"><h3>Tracked lead actions by location</h3><p>Actuals and forecast by client property</p></div>
-        <div class="client-chart-grid">
-          <div class="mini-line-card">
-          <div class="mini-head"><b>BrightCraft Dental & Laser</b><span>9 actual</span></div>
-          <svg viewBox="0 0 520 180" preserveAspectRatio="none" role="img" aria-label="BrightCraft Dental & Laser monthly trend">
-            <defs><linearGradient id="mini-lead-brightcraft-dental-laser" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".24"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".04"/></linearGradient></defs>
-            <line x1="24" y1="160" x2="504" y2="160" class="svg-grid"/>
-            <path d="M 24.0 156.0 L 67.6 145.9 L 111.3 135.8 L 154.9 156.0 L 198.5 156.0 L 242.2 95.5 L 285.8 65.2 L 329.5 65.2 L 373.1 55.1 L 416.7 45.0 L 460.4 34.9 L 504.0 34.9 L 504.0 160.0 L 24.0 160.0 Z" fill="url(#mini-lead-brightcraft-dental-laser)"/>
-            <path d="M 24.0 156.0 L 67.6 145.9 L 111.3 135.8 L 154.9 156.0 L 198.5 156.0 L 242.2 95.5" class="svg-line mini"/>
-            <path d="M 242.2 95.5 L 285.8 65.2 L 329.5 65.2 L 373.1 55.1 L 416.7 45.0 L 460.4 34.9 L 504.0 34.9" class="svg-line svg-line-proj mini"/>
-          </svg>
-          <div class="mini-foot"><span>Jun 6</span><strong>Dec 12</strong></div>
-        </div><div class="mini-line-card">
-          <div class="mini-head"><b>Empower Dental Rancho</b><span>62 actual</span></div>
-          <svg viewBox="0 0 520 180" preserveAspectRatio="none" role="img" aria-label="Empower Dental Rancho monthly trend">
-            <defs><linearGradient id="mini-lead-empower-dental-rancho" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".24"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".04"/></linearGradient></defs>
-            <line x1="24" y1="160" x2="504" y2="160" class="svg-grid"/>
-            <path d="M 24.0 156.0 L 67.6 115.6 L 111.3 34.9 L 154.9 61.8 L 198.5 41.7 L 242.2 108.9 L 285.8 88.7 L 329.5 82.0 L 373.1 82.0 L 416.7 75.3 L 460.4 68.6 L 504.0 61.8 L 504.0 160.0 L 24.0 160.0 Z" fill="url(#mini-lead-empower-dental-rancho)"/>
-            <path d="M 24.0 156.0 L 67.6 115.6 L 111.3 34.9 L 154.9 61.8 L 198.5 41.7 L 242.2 108.9" class="svg-line mini"/>
-            <path d="M 242.2 108.9 L 285.8 88.7 L 329.5 82.0 L 373.1 82.0 L 416.7 75.3 L 460.4 68.6 L 504.0 61.8" class="svg-line svg-line-proj mini"/>
-          </svg>
-          <div class="mini-foot"><span>Jun 7</span><strong>Dec 14</strong></div>
-        </div><div class="mini-line-card">
-          <div class="mini-head"><b>Coastland Dental</b><span>42 actual</span></div>
-          <svg viewBox="0 0 520 180" preserveAspectRatio="none" role="img" aria-label="Coastland Dental monthly trend">
-            <defs><linearGradient id="mini-lead-coastland-dental" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".24"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".04"/></linearGradient></defs>
-            <line x1="24" y1="160" x2="504" y2="160" class="svg-grid"/>
-            <path d="M 24.0 156.0 L 67.6 124.1 L 111.3 92.3 L 154.9 117.8 L 198.5 79.5 L 242.2 98.7 L 285.8 73.2 L 329.5 66.8 L 373.1 60.4 L 416.7 54.1 L 460.4 41.3 L 504.0 34.9 L 504.0 160.0 L 24.0 160.0 Z" fill="url(#mini-lead-coastland-dental)"/>
-            <path d="M 24.0 156.0 L 67.6 124.1 L 111.3 92.3 L 154.9 117.8 L 198.5 79.5 L 242.2 98.7" class="svg-line mini"/>
-            <path d="M 242.2 98.7 L 285.8 73.2 L 329.5 66.8 L 373.1 60.4 L 416.7 54.1 L 460.4 41.3 L 504.0 34.9" class="svg-line svg-line-proj mini"/>
-          </svg>
-          <div class="mini-foot"><span>Jun 9</span><strong>Dec 19</strong></div>
-        </div><div class="mini-line-card">
-          <div class="mini-head"><b>Empower Dental Glendale</b><span>24 actual</span></div>
-          <svg viewBox="0 0 520 180" preserveAspectRatio="none" role="img" aria-label="Empower Dental Glendale monthly trend">
-            <defs><linearGradient id="mini-lead-empower-dental-glendale" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".24"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".04"/></linearGradient></defs>
-            <line x1="24" y1="160" x2="504" y2="160" class="svg-grid"/>
-            <path d="M 24.0 156.0 L 67.6 156.0 L 111.3 85.4 L 154.9 125.7 L 198.5 75.3 L 242.2 95.5 L 285.8 65.2 L 329.5 65.2 L 373.1 55.1 L 416.7 45.0 L 460.4 34.9 L 504.0 34.9 L 504.0 160.0 L 24.0 160.0 Z" fill="url(#mini-lead-empower-dental-glendale)"/>
-            <path d="M 24.0 156.0 L 67.6 156.0 L 111.3 85.4 L 154.9 125.7 L 198.5 75.3 L 242.2 95.5" class="svg-line mini"/>
-            <path d="M 242.2 95.5 L 285.8 65.2 L 329.5 65.2 L 373.1 55.1 L 416.7 45.0 L 460.4 34.9 L 504.0 34.9" class="svg-line svg-line-proj mini"/>
-          </svg>
-          <div class="mini-foot"><span>Jun 6</span><strong>Dec 12</strong></div>
-        </div><div class="mini-line-card">
-          <div class="mini-head"><b>Empower Dental Pasadena</b><span>86 actual</span></div>
-          <svg viewBox="0 0 520 180" preserveAspectRatio="none" role="img" aria-label="Empower Dental Pasadena monthly trend">
-            <defs><linearGradient id="mini-lead-empower-dental-pasadena" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".24"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".04"/></linearGradient></defs>
-            <line x1="24" y1="160" x2="504" y2="160" class="svg-grid"/>
-            <path d="M 24.0 156.0 L 67.6 51.6 L 111.3 34.9 L 154.9 76.7 L 198.5 126.8 L 242.2 131.0 L 285.8 118.4 L 329.5 118.4 L 373.1 114.3 L 416.7 110.1 L 460.4 105.9 L 504.0 105.9 L 504.0 160.0 L 24.0 160.0 Z" fill="url(#mini-lead-empower-dental-pasadena)"/>
-            <path d="M 24.0 156.0 L 67.6 51.6 L 111.3 34.9 L 154.9 76.7 L 198.5 126.8 L 242.2 131.0" class="svg-line mini"/>
-            <path d="M 242.2 131.0 L 285.8 118.4 L 329.5 118.4 L 373.1 114.3 L 416.7 110.1 L 460.4 105.9 L 504.0 105.9" class="svg-line svg-line-proj mini"/>
-          </svg>
-          <div class="mini-foot"><span>Jun 6</span><strong>Dec 12</strong></div>
-        </div><div class="mini-line-card">
-          <div class="mini-head"><b>Empower Dental Upland</b><span>7 actual</span></div>
-          <svg viewBox="0 0 520 180" preserveAspectRatio="none" role="img" aria-label="Empower Dental Upland monthly trend">
-            <defs><linearGradient id="mini-lead-empower-dental-upland" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".24"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".04"/></linearGradient></defs>
-            <line x1="24" y1="160" x2="504" y2="160" class="svg-grid"/>
-            <path d="M 24.0 156.0 L 67.6 156.0 L 111.3 131.8 L 154.9 131.8 L 198.5 83.4 L 242.2 107.6 L 285.8 83.4 L 329.5 59.2 L 373.1 59.2 L 416.7 59.2 L 460.4 59.2 L 504.0 34.9 L 504.0 160.0 L 24.0 160.0 Z" fill="url(#mini-lead-empower-dental-upland)"/>
-            <path d="M 24.0 156.0 L 67.6 156.0 L 111.3 131.8 L 154.9 131.8 L 198.5 83.4 L 242.2 107.6" class="svg-line mini"/>
-            <path d="M 242.2 107.6 L 285.8 83.4 L 329.5 59.2 L 373.1 59.2 L 416.7 59.2 L 460.4 59.2 L 504.0 34.9" class="svg-line svg-line-proj mini"/>
-          </svg>
-          <div class="mini-foot"><span>Jun 2</span><strong>Dec 5</strong></div>
-        </div>
+        <div class="forecast-grid" aria-label="Projected six month totals">
+          <div class="forecast-card"><div class="k">Projected organic clicks</div><div class="n">4,952</div><div class="d">July-December 2026 forecast.</div></div>
+          <div class="forecast-card"><div class="k">Projected lead actions</div><div class="n">373</div><div class="d">Projected tracked lead actions from the current growth plan.</div></div>
+          <div class="forecast-card"><div class="k">December outlook</div><div class="n">941 / 73</div><div class="d">Projected organic clicks / tracked lead actions for December.</div></div>
         </div>
       </div>
-
-      <div class="forecast-grid" aria-label="Projected six month totals">
-        <div class="forecast-card"><div class="k">Projected organic clicks</div><div class="n">4,952</div><div class="d">July-December 2026 forecast.</div></div>
-        <div class="forecast-card"><div class="k">Projected lead actions</div><div class="n">373</div><div class="d">Projected tracked lead actions from the current growth plan.</div></div>
-        <div class="forecast-card"><div class="k">December outlook</div><div class="n">941 / 73</div><div class="d">Projected organic clicks / tracked lead actions for December.</div></div>
+      <div class="forecast-subpanel" id="forecast-brightcraft-dental-laser-panel" role="tabpanel" aria-labelledby="forecast-brightcraft-dental-laser-tab" hidden>
+        <div class="location-report-head">
+          <div><h3>BrightCraft Dental &amp; Laser</h3><p>Location-level organic clicks and tracked lead actions.</p></div>
+          <div class="location-kpis"><span>Actual clicks <b>916</b></span><span>Actual lead actions <b>9</b></span><span>Projected Dec <b>193 / 12</b></span></div>
+        </div>
+        <div class="forecast-grid" aria-label="BrightCraft Dental &amp; Laser actual and projected totals">
+          <div class="forecast-card"><div class="k">Actual organic clicks</div><div class="n">916</div><div class="d">Jan-Jun MTD from Search Console.</div></div>
+          <div class="forecast-card"><div class="k">Actual lead actions</div><div class="n">9</div><div class="d">Tracked analytics lead-action events.</div></div>
+          <div class="forecast-card"><div class="k">Projected next 6 months</div><div class="n">1,080</div><div class="d">Combined July-December outlook.</div></div>
+        </div>
+        <div class="line-card compact-line">
+        <div class="line-card-head">
+          <div><h3>BrightCraft Dental &amp; Laser organic clicks</h3><p>GSC clicks by month</p></div>
+          <div class="line-stats"><span>Actual clicks <b>916</b></span><span>Projected clicks <b>1,017</b></span></div>
+        </div>
+        <div class="svg-shell">
+          <svg viewBox="0 0 940 340" role="img" aria-label="BrightCraft Dental &amp; Laser organic clicks actual and projected monthly trend" preserveAspectRatio="none">
+            <defs><linearGradient id="area-clicks-brightcraft-dental-laser" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".30"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".05"/></linearGradient></defs>
+            <line x1="70" y1="286.0" x2="900" y2="286.0" class="svg-grid"/><text x="36" y="290.0" class="svg-y">0</text><line x1="70" y1="225.0" x2="900" y2="225.0" class="svg-grid"/><text x="36" y="229.0" class="svg-y">55</text><line x1="70" y1="164.0" x2="900" y2="164.0" class="svg-grid"/><text x="36" y="168.0" class="svg-y">110</text><line x1="70" y1="103.0" x2="900" y2="103.0" class="svg-grid"/><text x="36" y="107.0" class="svg-y">165</text><line x1="70" y1="42.0" x2="900" y2="42.0" class="svg-grid"/><text x="36" y="46.0" class="svg-y">220</text>
+            <path d="M 70.0 85.3 L 145.5 126.3 L 220.9 76.4 L 296.4 111.9 L 371.8 129.6 L 447.3 170.7 L 522.7 124.1 L 598.2 114.1 L 673.6 103.0 L 749.1 93.0 L 824.5 81.9 L 900.0 72.0 L 900.0 286.0 L 70.0 286.0 Z" fill="url(#area-clicks-brightcraft-dental-laser)"/>
+            <path d="M 70.0 85.3 L 145.5 126.3 L 220.9 76.4 L 296.4 111.9 L 371.8 129.6 L 447.3 170.7" class="svg-line"/>
+            <path d="M 447.3 170.7 L 522.7 124.1 L 598.2 114.1 L 673.6 103.0 L 749.1 93.0 L 824.5 81.9 L 900.0 72.0" class="svg-line svg-line-proj"/>
+            <line x1="485.0" y1="32" x2="485.0" y2="292" class="svg-now"/>
+            <text x="476.0" y="24" class="svg-now-text">Forecast</text>
+            <circle cx="70.0" cy="85.3" r="4.2" class="svg-dot"/><circle cx="145.5" cy="126.3" r="4.2" class="svg-dot"/><circle cx="220.9" cy="76.4" r="4.2" class="svg-dot"/><circle cx="296.4" cy="111.9" r="4.2" class="svg-dot"/><circle cx="371.8" cy="129.6" r="4.2" class="svg-dot"/><circle cx="447.3" cy="170.7" r="4.2" class="svg-dot"/><circle cx="522.7" cy="124.1" r="4.2" class="svg-dot"/><circle cx="598.2" cy="114.1" r="4.2" class="svg-dot"/><circle cx="673.6" cy="103.0" r="4.2" class="svg-dot"/><circle cx="749.1" cy="93.0" r="4.2" class="svg-dot"/><circle cx="824.5" cy="81.9" r="4.2" class="svg-dot"/><circle cx="900.0" cy="72.0" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">Jan</text><text x="145.5" y="322" class="svg-x" text-anchor="middle">Feb</text><text x="220.9" y="322" class="svg-x" text-anchor="middle">Mar</text><text x="296.4" y="322" class="svg-x" text-anchor="middle">Apr</text><text x="371.8" y="322" class="svg-x" text-anchor="middle">May</text><text x="447.3" y="322" class="svg-x" text-anchor="middle">Jun</text><text x="522.7" y="322" class="svg-x" text-anchor="middle">Jul</text><text x="673.6" y="322" class="svg-x" text-anchor="middle">Sep</text><text x="824.5" y="322" class="svg-x" text-anchor="middle">Nov</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">Dec</text>
+          </svg>
+        </div>
+        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+89 vs Jun MTD</strong></div>
+      </div>
+        <div class="line-card compact-line">
+        <div class="line-card-head">
+          <div><h3>BrightCraft Dental &amp; Laser lead actions</h3><p>Tracked lead actions by month</p></div>
+          <div class="line-stats"><span>Actual lead actions <b>9</b></span><span>Projected lead actions <b>63</b></span></div>
+        </div>
+        <div class="svg-shell">
+          <svg viewBox="0 0 940 340" role="img" aria-label="BrightCraft Dental &amp; Laser lead actions actual and projected monthly trend" preserveAspectRatio="none">
+            <defs><linearGradient id="area-leads-brightcraft-dental-laser" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".30"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".05"/></linearGradient></defs>
+            <line x1="70" y1="286.0" x2="900" y2="286.0" class="svg-grid"/><text x="36" y="290.0" class="svg-y">0</text><line x1="70" y1="225.0" x2="900" y2="225.0" class="svg-grid"/><text x="36" y="229.0" class="svg-y">3</text><line x1="70" y1="164.0" x2="900" y2="164.0" class="svg-grid"/><text x="36" y="168.0" class="svg-y">7</text><line x1="70" y1="103.0" x2="900" y2="103.0" class="svg-grid"/><text x="36" y="107.0" class="svg-y">10</text><line x1="70" y1="42.0" x2="900" y2="42.0" class="svg-grid"/><text x="36" y="46.0" class="svg-y">14</text>
+            <path d="M 70.0 286.0 L 145.5 268.2 L 220.9 250.3 L 296.4 286.0 L 371.8 286.0 L 447.3 179.0 L 522.7 125.5 L 598.2 125.5 L 673.6 107.6 L 749.1 89.8 L 824.5 72.0 L 900.0 72.0 L 900.0 286.0 L 70.0 286.0 Z" fill="url(#area-leads-brightcraft-dental-laser)"/>
+            <path d="M 70.0 286.0 L 145.5 268.2 L 220.9 250.3 L 296.4 286.0 L 371.8 286.0 L 447.3 179.0" class="svg-line"/>
+            <path d="M 447.3 179.0 L 522.7 125.5 L 598.2 125.5 L 673.6 107.6 L 749.1 89.8 L 824.5 72.0 L 900.0 72.0" class="svg-line svg-line-proj"/>
+            <line x1="485.0" y1="32" x2="485.0" y2="292" class="svg-now"/>
+            <text x="476.0" y="24" class="svg-now-text">Forecast</text>
+            <circle cx="70.0" cy="286.0" r="4.2" class="svg-dot"/><circle cx="145.5" cy="268.2" r="4.2" class="svg-dot"/><circle cx="220.9" cy="250.3" r="4.2" class="svg-dot"/><circle cx="296.4" cy="286.0" r="4.2" class="svg-dot"/><circle cx="371.8" cy="286.0" r="4.2" class="svg-dot"/><circle cx="447.3" cy="179.0" r="4.2" class="svg-dot"/><circle cx="522.7" cy="125.5" r="4.2" class="svg-dot"/><circle cx="598.2" cy="125.5" r="4.2" class="svg-dot"/><circle cx="673.6" cy="107.6" r="4.2" class="svg-dot"/><circle cx="749.1" cy="89.8" r="4.2" class="svg-dot"/><circle cx="824.5" cy="72.0" r="4.2" class="svg-dot"/><circle cx="900.0" cy="72.0" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">Jan</text><text x="145.5" y="322" class="svg-x" text-anchor="middle">Feb</text><text x="220.9" y="322" class="svg-x" text-anchor="middle">Mar</text><text x="296.4" y="322" class="svg-x" text-anchor="middle">Apr</text><text x="371.8" y="322" class="svg-x" text-anchor="middle">May</text><text x="447.3" y="322" class="svg-x" text-anchor="middle">Jun</text><text x="522.7" y="322" class="svg-x" text-anchor="middle">Jul</text><text x="673.6" y="322" class="svg-x" text-anchor="middle">Sep</text><text x="824.5" y="322" class="svg-x" text-anchor="middle">Nov</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">Dec</text>
+          </svg>
+        </div>
+        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+6 vs Jun MTD</strong></div>
+      </div>
+      </div><div class="forecast-subpanel" id="forecast-coastland-dental-panel" role="tabpanel" aria-labelledby="forecast-coastland-dental-tab" hidden>
+        <div class="location-report-head">
+          <div><h3>Coastland Dental</h3><p>Location-level organic clicks and tracked lead actions.</p></div>
+          <div class="location-kpis"><span>Actual clicks <b>713</b></span><span>Actual lead actions <b>42</b></span><span>Projected Dec <b>226 / 19</b></span></div>
+        </div>
+        <div class="forecast-grid" aria-label="Coastland Dental actual and projected totals">
+          <div class="forecast-card"><div class="k">Actual organic clicks</div><div class="n">713</div><div class="d">Jan-Jun MTD from Search Console.</div></div>
+          <div class="forecast-card"><div class="k">Actual lead actions</div><div class="n">42</div><div class="d">Tracked analytics lead-action events.</div></div>
+          <div class="forecast-card"><div class="k">Projected next 6 months</div><div class="n">1,283</div><div class="d">Combined July-December outlook.</div></div>
+        </div>
+        <div class="line-card compact-line">
+        <div class="line-card-head">
+          <div><h3>Coastland Dental organic clicks</h3><p>GSC clicks by month</p></div>
+          <div class="line-stats"><span>Actual clicks <b>713</b></span><span>Projected clicks <b>1,188</b></span></div>
+        </div>
+        <div class="svg-shell">
+          <svg viewBox="0 0 940 340" role="img" aria-label="Coastland Dental organic clicks actual and projected monthly trend" preserveAspectRatio="none">
+            <defs><linearGradient id="area-clicks-coastland-dental" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".30"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".05"/></linearGradient></defs>
+            <line x1="70" y1="286.0" x2="900" y2="286.0" class="svg-grid"/><text x="36" y="290.0" class="svg-y">0</text><line x1="70" y1="225.0" x2="900" y2="225.0" class="svg-grid"/><text x="36" y="229.0" class="svg-y">64</text><line x1="70" y1="164.0" x2="900" y2="164.0" class="svg-grid"/><text x="36" y="168.0" class="svg-y">129</text><line x1="70" y1="103.0" x2="900" y2="103.0" class="svg-grid"/><text x="36" y="107.0" class="svg-y">193</text><line x1="70" y1="42.0" x2="900" y2="42.0" class="svg-grid"/><text x="36" y="46.0" class="svg-y">258</text>
+            <path d="M 70.0 286.0 L 145.5 162.9 L 220.9 139.2 L 296.4 141.1 L 371.8 141.1 L 447.3 170.5 L 522.7 125.0 L 598.2 114.6 L 673.6 104.2 L 749.1 92.8 L 824.5 82.4 L 900.0 72.0 L 900.0 286.0 L 70.0 286.0 Z" fill="url(#area-clicks-coastland-dental)"/>
+            <path d="M 70.0 286.0 L 145.5 162.9 L 220.9 139.2 L 296.4 141.1 L 371.8 141.1 L 447.3 170.5" class="svg-line"/>
+            <path d="M 447.3 170.5 L 522.7 125.0 L 598.2 114.6 L 673.6 104.2 L 749.1 92.8 L 824.5 82.4 L 900.0 72.0" class="svg-line svg-line-proj"/>
+            <line x1="485.0" y1="32" x2="485.0" y2="292" class="svg-now"/>
+            <text x="476.0" y="24" class="svg-now-text">Forecast</text>
+            <circle cx="70.0" cy="286.0" r="4.2" class="svg-dot"/><circle cx="145.5" cy="162.9" r="4.2" class="svg-dot"/><circle cx="220.9" cy="139.2" r="4.2" class="svg-dot"/><circle cx="296.4" cy="141.1" r="4.2" class="svg-dot"/><circle cx="371.8" cy="141.1" r="4.2" class="svg-dot"/><circle cx="447.3" cy="170.5" r="4.2" class="svg-dot"/><circle cx="522.7" cy="125.0" r="4.2" class="svg-dot"/><circle cx="598.2" cy="114.6" r="4.2" class="svg-dot"/><circle cx="673.6" cy="104.2" r="4.2" class="svg-dot"/><circle cx="749.1" cy="92.8" r="4.2" class="svg-dot"/><circle cx="824.5" cy="82.4" r="4.2" class="svg-dot"/><circle cx="900.0" cy="72.0" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">Jan</text><text x="145.5" y="322" class="svg-x" text-anchor="middle">Feb</text><text x="220.9" y="322" class="svg-x" text-anchor="middle">Mar</text><text x="296.4" y="322" class="svg-x" text-anchor="middle">Apr</text><text x="371.8" y="322" class="svg-x" text-anchor="middle">May</text><text x="447.3" y="322" class="svg-x" text-anchor="middle">Jun</text><text x="522.7" y="322" class="svg-x" text-anchor="middle">Jul</text><text x="673.6" y="322" class="svg-x" text-anchor="middle">Sep</text><text x="824.5" y="322" class="svg-x" text-anchor="middle">Nov</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">Dec</text>
+          </svg>
+        </div>
+        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+104 vs Jun MTD</strong></div>
+      </div>
+        <div class="line-card compact-line">
+        <div class="line-card-head">
+          <div><h3>Coastland Dental lead actions</h3><p>Tracked lead actions by month</p></div>
+          <div class="line-stats"><span>Actual lead actions <b>42</b></span><span>Projected lead actions <b>95</b></span></div>
+        </div>
+        <div class="svg-shell">
+          <svg viewBox="0 0 940 340" role="img" aria-label="Coastland Dental lead actions actual and projected monthly trend" preserveAspectRatio="none">
+            <defs><linearGradient id="area-leads-coastland-dental" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".30"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".05"/></linearGradient></defs>
+            <line x1="70" y1="286.0" x2="900" y2="286.0" class="svg-grid"/><text x="36" y="290.0" class="svg-y">0</text><line x1="70" y1="225.0" x2="900" y2="225.0" class="svg-grid"/><text x="36" y="229.0" class="svg-y">5</text><line x1="70" y1="164.0" x2="900" y2="164.0" class="svg-grid"/><text x="36" y="168.0" class="svg-y">11</text><line x1="70" y1="103.0" x2="900" y2="103.0" class="svg-grid"/><text x="36" y="107.0" class="svg-y">16</text><line x1="70" y1="42.0" x2="900" y2="42.0" class="svg-grid"/><text x="36" y="46.0" class="svg-y">22</text>
+            <path d="M 70.0 286.0 L 145.5 229.7 L 220.9 173.3 L 296.4 218.4 L 371.8 150.8 L 447.3 184.6 L 522.7 139.6 L 598.2 128.3 L 673.6 117.0 L 749.1 105.8 L 824.5 83.2 L 900.0 72.0 L 900.0 286.0 L 70.0 286.0 Z" fill="url(#area-leads-coastland-dental)"/>
+            <path d="M 70.0 286.0 L 145.5 229.7 L 220.9 173.3 L 296.4 218.4 L 371.8 150.8 L 447.3 184.6" class="svg-line"/>
+            <path d="M 447.3 184.6 L 522.7 139.6 L 598.2 128.3 L 673.6 117.0 L 749.1 105.8 L 824.5 83.2 L 900.0 72.0" class="svg-line svg-line-proj"/>
+            <line x1="485.0" y1="32" x2="485.0" y2="292" class="svg-now"/>
+            <text x="476.0" y="24" class="svg-now-text">Forecast</text>
+            <circle cx="70.0" cy="286.0" r="4.2" class="svg-dot"/><circle cx="145.5" cy="229.7" r="4.2" class="svg-dot"/><circle cx="220.9" cy="173.3" r="4.2" class="svg-dot"/><circle cx="296.4" cy="218.4" r="4.2" class="svg-dot"/><circle cx="371.8" cy="150.8" r="4.2" class="svg-dot"/><circle cx="447.3" cy="184.6" r="4.2" class="svg-dot"/><circle cx="522.7" cy="139.6" r="4.2" class="svg-dot"/><circle cx="598.2" cy="128.3" r="4.2" class="svg-dot"/><circle cx="673.6" cy="117.0" r="4.2" class="svg-dot"/><circle cx="749.1" cy="105.8" r="4.2" class="svg-dot"/><circle cx="824.5" cy="83.2" r="4.2" class="svg-dot"/><circle cx="900.0" cy="72.0" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">Jan</text><text x="145.5" y="322" class="svg-x" text-anchor="middle">Feb</text><text x="220.9" y="322" class="svg-x" text-anchor="middle">Mar</text><text x="296.4" y="322" class="svg-x" text-anchor="middle">Apr</text><text x="371.8" y="322" class="svg-x" text-anchor="middle">May</text><text x="447.3" y="322" class="svg-x" text-anchor="middle">Jun</text><text x="522.7" y="322" class="svg-x" text-anchor="middle">Jul</text><text x="673.6" y="322" class="svg-x" text-anchor="middle">Sep</text><text x="824.5" y="322" class="svg-x" text-anchor="middle">Nov</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">Dec</text>
+          </svg>
+        </div>
+        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+10 vs Jun MTD</strong></div>
+      </div>
+      </div><div class="forecast-subpanel" id="forecast-empower-dental-glendale-panel" role="tabpanel" aria-labelledby="forecast-empower-dental-glendale-tab" hidden>
+        <div class="location-report-head">
+          <div><h3>Empower Dental Glendale</h3><p>Location-level organic clicks and tracked lead actions.</p></div>
+          <div class="location-kpis"><span>Actual clicks <b>399</b></span><span>Actual lead actions <b>24</b></span><span>Projected Dec <b>111 / 12</b></span></div>
+        </div>
+        <div class="forecast-grid" aria-label="Empower Dental Glendale actual and projected totals">
+          <div class="forecast-card"><div class="k">Actual organic clicks</div><div class="n">399</div><div class="d">Jan-Jun MTD from Search Console.</div></div>
+          <div class="forecast-card"><div class="k">Actual lead actions</div><div class="n">24</div><div class="d">Tracked analytics lead-action events.</div></div>
+          <div class="forecast-card"><div class="k">Projected next 6 months</div><div class="n">645</div><div class="d">Combined July-December outlook.</div></div>
+        </div>
+        <div class="line-card compact-line">
+        <div class="line-card-head">
+          <div><h3>Empower Dental Glendale organic clicks</h3><p>GSC clicks by month</p></div>
+          <div class="line-stats"><span>Actual clicks <b>399</b></span><span>Projected clicks <b>582</b></span></div>
+        </div>
+        <div class="svg-shell">
+          <svg viewBox="0 0 940 340" role="img" aria-label="Empower Dental Glendale organic clicks actual and projected monthly trend" preserveAspectRatio="none">
+            <defs><linearGradient id="area-clicks-empower-dental-glendale" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".30"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".05"/></linearGradient></defs>
+            <line x1="70" y1="286.0" x2="900" y2="286.0" class="svg-grid"/><text x="36" y="290.0" class="svg-y">0</text><line x1="70" y1="225.0" x2="900" y2="225.0" class="svg-grid"/><text x="36" y="229.0" class="svg-y">32</text><line x1="70" y1="164.0" x2="900" y2="164.0" class="svg-grid"/><text x="36" y="168.0" class="svg-y">63</text><line x1="70" y1="103.0" x2="900" y2="103.0" class="svg-grid"/><text x="36" y="107.0" class="svg-y">95</text><line x1="70" y1="42.0" x2="900" y2="42.0" class="svg-grid"/><text x="36" y="46.0" class="svg-y">127</text>
+            <path d="M 70.0 286.0 L 145.5 151.0 L 220.9 112.5 L 296.4 102.8 L 371.8 124.0 L 447.3 170.3 L 522.7 126.0 L 598.2 114.4 L 673.6 104.7 L 749.1 93.2 L 824.5 83.5 L 900.0 72.0 L 900.0 286.0 L 70.0 286.0 Z" fill="url(#area-clicks-empower-dental-glendale)"/>
+            <path d="M 70.0 286.0 L 145.5 151.0 L 220.9 112.5 L 296.4 102.8 L 371.8 124.0 L 447.3 170.3" class="svg-line"/>
+            <path d="M 447.3 170.3 L 522.7 126.0 L 598.2 114.4 L 673.6 104.7 L 749.1 93.2 L 824.5 83.5 L 900.0 72.0" class="svg-line svg-line-proj"/>
+            <line x1="485.0" y1="32" x2="485.0" y2="292" class="svg-now"/>
+            <text x="476.0" y="24" class="svg-now-text">Forecast</text>
+            <circle cx="70.0" cy="286.0" r="4.2" class="svg-dot"/><circle cx="145.5" cy="151.0" r="4.2" class="svg-dot"/><circle cx="220.9" cy="112.5" r="4.2" class="svg-dot"/><circle cx="296.4" cy="102.8" r="4.2" class="svg-dot"/><circle cx="371.8" cy="124.0" r="4.2" class="svg-dot"/><circle cx="447.3" cy="170.3" r="4.2" class="svg-dot"/><circle cx="522.7" cy="126.0" r="4.2" class="svg-dot"/><circle cx="598.2" cy="114.4" r="4.2" class="svg-dot"/><circle cx="673.6" cy="104.7" r="4.2" class="svg-dot"/><circle cx="749.1" cy="93.2" r="4.2" class="svg-dot"/><circle cx="824.5" cy="83.5" r="4.2" class="svg-dot"/><circle cx="900.0" cy="72.0" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">Jan</text><text x="145.5" y="322" class="svg-x" text-anchor="middle">Feb</text><text x="220.9" y="322" class="svg-x" text-anchor="middle">Mar</text><text x="296.4" y="322" class="svg-x" text-anchor="middle">Apr</text><text x="371.8" y="322" class="svg-x" text-anchor="middle">May</text><text x="447.3" y="322" class="svg-x" text-anchor="middle">Jun</text><text x="522.7" y="322" class="svg-x" text-anchor="middle">Jul</text><text x="673.6" y="322" class="svg-x" text-anchor="middle">Sep</text><text x="824.5" y="322" class="svg-x" text-anchor="middle">Nov</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">Dec</text>
+          </svg>
+        </div>
+        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+51 vs Jun MTD</strong></div>
+      </div>
+        <div class="line-card compact-line">
+        <div class="line-card-head">
+          <div><h3>Empower Dental Glendale lead actions</h3><p>Tracked lead actions by month</p></div>
+          <div class="line-stats"><span>Actual lead actions <b>24</b></span><span>Projected lead actions <b>63</b></span></div>
+        </div>
+        <div class="svg-shell">
+          <svg viewBox="0 0 940 340" role="img" aria-label="Empower Dental Glendale lead actions actual and projected monthly trend" preserveAspectRatio="none">
+            <defs><linearGradient id="area-leads-empower-dental-glendale" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".30"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".05"/></linearGradient></defs>
+            <line x1="70" y1="286.0" x2="900" y2="286.0" class="svg-grid"/><text x="36" y="290.0" class="svg-y">0</text><line x1="70" y1="225.0" x2="900" y2="225.0" class="svg-grid"/><text x="36" y="229.0" class="svg-y">3</text><line x1="70" y1="164.0" x2="900" y2="164.0" class="svg-grid"/><text x="36" y="168.0" class="svg-y">7</text><line x1="70" y1="103.0" x2="900" y2="103.0" class="svg-grid"/><text x="36" y="107.0" class="svg-y">10</text><line x1="70" y1="42.0" x2="900" y2="42.0" class="svg-grid"/><text x="36" y="46.0" class="svg-y">14</text>
+            <path d="M 70.0 286.0 L 145.5 286.0 L 220.9 161.1 L 296.4 232.5 L 371.8 143.3 L 447.3 179.0 L 522.7 125.5 L 598.2 125.5 L 673.6 107.6 L 749.1 89.8 L 824.5 72.0 L 900.0 72.0 L 900.0 286.0 L 70.0 286.0 Z" fill="url(#area-leads-empower-dental-glendale)"/>
+            <path d="M 70.0 286.0 L 145.5 286.0 L 220.9 161.1 L 296.4 232.5 L 371.8 143.3 L 447.3 179.0" class="svg-line"/>
+            <path d="M 447.3 179.0 L 522.7 125.5 L 598.2 125.5 L 673.6 107.6 L 749.1 89.8 L 824.5 72.0 L 900.0 72.0" class="svg-line svg-line-proj"/>
+            <line x1="485.0" y1="32" x2="485.0" y2="292" class="svg-now"/>
+            <text x="476.0" y="24" class="svg-now-text">Forecast</text>
+            <circle cx="70.0" cy="286.0" r="4.2" class="svg-dot"/><circle cx="145.5" cy="286.0" r="4.2" class="svg-dot"/><circle cx="220.9" cy="161.1" r="4.2" class="svg-dot"/><circle cx="296.4" cy="232.5" r="4.2" class="svg-dot"/><circle cx="371.8" cy="143.3" r="4.2" class="svg-dot"/><circle cx="447.3" cy="179.0" r="4.2" class="svg-dot"/><circle cx="522.7" cy="125.5" r="4.2" class="svg-dot"/><circle cx="598.2" cy="125.5" r="4.2" class="svg-dot"/><circle cx="673.6" cy="107.6" r="4.2" class="svg-dot"/><circle cx="749.1" cy="89.8" r="4.2" class="svg-dot"/><circle cx="824.5" cy="72.0" r="4.2" class="svg-dot"/><circle cx="900.0" cy="72.0" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">Jan</text><text x="145.5" y="322" class="svg-x" text-anchor="middle">Feb</text><text x="220.9" y="322" class="svg-x" text-anchor="middle">Mar</text><text x="296.4" y="322" class="svg-x" text-anchor="middle">Apr</text><text x="371.8" y="322" class="svg-x" text-anchor="middle">May</text><text x="447.3" y="322" class="svg-x" text-anchor="middle">Jun</text><text x="522.7" y="322" class="svg-x" text-anchor="middle">Jul</text><text x="673.6" y="322" class="svg-x" text-anchor="middle">Sep</text><text x="824.5" y="322" class="svg-x" text-anchor="middle">Nov</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">Dec</text>
+          </svg>
+        </div>
+        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+6 vs Jun MTD</strong></div>
+      </div>
+      </div><div class="forecast-subpanel" id="forecast-empower-dental-pasadena-panel" role="tabpanel" aria-labelledby="forecast-empower-dental-pasadena-tab" hidden>
+        <div class="location-report-head">
+          <div><h3>Empower Dental Pasadena</h3><p>Location-level organic clicks and tracked lead actions.</p></div>
+          <div class="location-kpis"><span>Actual clicks <b>554</b></span><span>Actual lead actions <b>86</b></span><span>Projected Dec <b>138 / 12</b></span></div>
+        </div>
+        <div class="forecast-grid" aria-label="Empower Dental Pasadena actual and projected totals">
+          <div class="forecast-card"><div class="k">Actual organic clicks</div><div class="n">554</div><div class="d">Jan-Jun MTD from Search Console.</div></div>
+          <div class="forecast-card"><div class="k">Actual lead actions</div><div class="n">86</div><div class="d">Tracked analytics lead-action events.</div></div>
+          <div class="forecast-card"><div class="k">Projected next 6 months</div><div class="n">788</div><div class="d">Combined July-December outlook.</div></div>
+        </div>
+        <div class="line-card compact-line">
+        <div class="line-card-head">
+          <div><h3>Empower Dental Pasadena organic clicks</h3><p>GSC clicks by month</p></div>
+          <div class="line-stats"><span>Actual clicks <b>554</b></span><span>Projected clicks <b>725</b></span></div>
+        </div>
+        <div class="svg-shell">
+          <svg viewBox="0 0 940 340" role="img" aria-label="Empower Dental Pasadena organic clicks actual and projected monthly trend" preserveAspectRatio="none">
+            <defs><linearGradient id="area-clicks-empower-dental-pasadena" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".30"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".05"/></linearGradient></defs>
+            <line x1="70" y1="286.0" x2="900" y2="286.0" class="svg-grid"/><text x="36" y="290.0" class="svg-y">0</text><line x1="70" y1="225.0" x2="900" y2="225.0" class="svg-grid"/><text x="36" y="229.0" class="svg-y">39</text><line x1="70" y1="164.0" x2="900" y2="164.0" class="svg-grid"/><text x="36" y="168.0" class="svg-y">79</text><line x1="70" y1="103.0" x2="900" y2="103.0" class="svg-grid"/><text x="36" y="107.0" class="svg-y">118</text><line x1="70" y1="42.0" x2="900" y2="42.0" class="svg-grid"/><text x="36" y="46.0" class="svg-y">157</text>
+            <path d="M 70.0 146.4 L 145.5 148.0 L 220.9 155.7 L 296.4 149.5 L 371.8 85.9 L 447.3 171.2 L 522.7 124.7 L 598.2 113.8 L 673.6 104.5 L 749.1 93.7 L 824.5 82.8 L 900.0 72.0 L 900.0 286.0 L 70.0 286.0 Z" fill="url(#area-clicks-empower-dental-pasadena)"/>
+            <path d="M 70.0 146.4 L 145.5 148.0 L 220.9 155.7 L 296.4 149.5 L 371.8 85.9 L 447.3 171.2" class="svg-line"/>
+            <path d="M 447.3 171.2 L 522.7 124.7 L 598.2 113.8 L 673.6 104.5 L 749.1 93.7 L 824.5 82.8 L 900.0 72.0" class="svg-line svg-line-proj"/>
+            <line x1="485.0" y1="32" x2="485.0" y2="292" class="svg-now"/>
+            <text x="476.0" y="24" class="svg-now-text">Forecast</text>
+            <circle cx="70.0" cy="146.4" r="4.2" class="svg-dot"/><circle cx="145.5" cy="148.0" r="4.2" class="svg-dot"/><circle cx="220.9" cy="155.7" r="4.2" class="svg-dot"/><circle cx="296.4" cy="149.5" r="4.2" class="svg-dot"/><circle cx="371.8" cy="85.9" r="4.2" class="svg-dot"/><circle cx="447.3" cy="171.2" r="4.2" class="svg-dot"/><circle cx="522.7" cy="124.7" r="4.2" class="svg-dot"/><circle cx="598.2" cy="113.8" r="4.2" class="svg-dot"/><circle cx="673.6" cy="104.5" r="4.2" class="svg-dot"/><circle cx="749.1" cy="93.7" r="4.2" class="svg-dot"/><circle cx="824.5" cy="82.8" r="4.2" class="svg-dot"/><circle cx="900.0" cy="72.0" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">Jan</text><text x="145.5" y="322" class="svg-x" text-anchor="middle">Feb</text><text x="220.9" y="322" class="svg-x" text-anchor="middle">Mar</text><text x="296.4" y="322" class="svg-x" text-anchor="middle">Apr</text><text x="371.8" y="322" class="svg-x" text-anchor="middle">May</text><text x="447.3" y="322" class="svg-x" text-anchor="middle">Jun</text><text x="522.7" y="322" class="svg-x" text-anchor="middle">Jul</text><text x="673.6" y="322" class="svg-x" text-anchor="middle">Sep</text><text x="824.5" y="322" class="svg-x" text-anchor="middle">Nov</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">Dec</text>
+          </svg>
+        </div>
+        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+64 vs Jun MTD</strong></div>
+      </div>
+        <div class="line-card compact-line">
+        <div class="line-card-head">
+          <div><h3>Empower Dental Pasadena lead actions</h3><p>Tracked lead actions by month</p></div>
+          <div class="line-stats"><span>Actual lead actions <b>86</b></span><span>Projected lead actions <b>63</b></span></div>
+        </div>
+        <div class="svg-shell">
+          <svg viewBox="0 0 940 340" role="img" aria-label="Empower Dental Pasadena lead actions actual and projected monthly trend" preserveAspectRatio="none">
+            <defs><linearGradient id="area-leads-empower-dental-pasadena" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".30"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".05"/></linearGradient></defs>
+            <line x1="70" y1="286.0" x2="900" y2="286.0" class="svg-grid"/><text x="36" y="290.0" class="svg-y">0</text><line x1="70" y1="225.0" x2="900" y2="225.0" class="svg-grid"/><text x="36" y="229.0" class="svg-y">8</text><line x1="70" y1="164.0" x2="900" y2="164.0" class="svg-grid"/><text x="36" y="168.0" class="svg-y">17</text><line x1="70" y1="103.0" x2="900" y2="103.0" class="svg-grid"/><text x="36" y="107.0" class="svg-y">25</text><line x1="70" y1="42.0" x2="900" y2="42.0" class="svg-grid"/><text x="36" y="46.0" class="svg-y">33</text>
+            <path d="M 70.0 286.0 L 145.5 101.5 L 220.9 72.0 L 296.4 145.8 L 371.8 234.3 L 447.3 241.7 L 522.7 219.6 L 598.2 219.6 L 673.6 212.2 L 749.1 204.8 L 824.5 197.4 L 900.0 197.4 L 900.0 286.0 L 70.0 286.0 Z" fill="url(#area-leads-empower-dental-pasadena)"/>
+            <path d="M 70.0 286.0 L 145.5 101.5 L 220.9 72.0 L 296.4 145.8 L 371.8 234.3 L 447.3 241.7" class="svg-line"/>
+            <path d="M 447.3 241.7 L 522.7 219.6 L 598.2 219.6 L 673.6 212.2 L 749.1 204.8 L 824.5 197.4 L 900.0 197.4" class="svg-line svg-line-proj"/>
+            <line x1="485.0" y1="32" x2="485.0" y2="292" class="svg-now"/>
+            <text x="476.0" y="24" class="svg-now-text">Forecast</text>
+            <circle cx="70.0" cy="286.0" r="4.2" class="svg-dot"/><circle cx="145.5" cy="101.5" r="4.2" class="svg-dot"/><circle cx="220.9" cy="72.0" r="4.2" class="svg-dot"/><circle cx="296.4" cy="145.8" r="4.2" class="svg-dot"/><circle cx="371.8" cy="234.3" r="4.2" class="svg-dot"/><circle cx="447.3" cy="241.7" r="4.2" class="svg-dot"/><circle cx="522.7" cy="219.6" r="4.2" class="svg-dot"/><circle cx="598.2" cy="219.6" r="4.2" class="svg-dot"/><circle cx="673.6" cy="212.2" r="4.2" class="svg-dot"/><circle cx="749.1" cy="204.8" r="4.2" class="svg-dot"/><circle cx="824.5" cy="197.4" r="4.2" class="svg-dot"/><circle cx="900.0" cy="197.4" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">Jan</text><text x="145.5" y="322" class="svg-x" text-anchor="middle">Feb</text><text x="220.9" y="322" class="svg-x" text-anchor="middle">Mar</text><text x="296.4" y="322" class="svg-x" text-anchor="middle">Apr</text><text x="371.8" y="322" class="svg-x" text-anchor="middle">May</text><text x="447.3" y="322" class="svg-x" text-anchor="middle">Jun</text><text x="522.7" y="322" class="svg-x" text-anchor="middle">Jul</text><text x="673.6" y="322" class="svg-x" text-anchor="middle">Sep</text><text x="824.5" y="322" class="svg-x" text-anchor="middle">Nov</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">Dec</text>
+          </svg>
+        </div>
+        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+6 vs Jun MTD</strong></div>
+      </div>
+      </div><div class="forecast-subpanel" id="forecast-empower-dental-rancho-panel" role="tabpanel" aria-labelledby="forecast-empower-dental-rancho-tab" hidden>
+        <div class="location-report-head">
+          <div><h3>Empower Dental Rancho</h3><p>Location-level organic clicks and tracked lead actions.</p></div>
+          <div class="location-kpis"><span>Actual clicks <b>829</b></span><span>Actual lead actions <b>62</b></span><span>Projected Dec <b>214 / 14</b></span></div>
+        </div>
+        <div class="forecast-grid" aria-label="Empower Dental Rancho actual and projected totals">
+          <div class="forecast-card"><div class="k">Actual organic clicks</div><div class="n">829</div><div class="d">Jan-Jun MTD from Search Console.</div></div>
+          <div class="forecast-card"><div class="k">Actual lead actions</div><div class="n">62</div><div class="d">Tracked analytics lead-action events.</div></div>
+          <div class="forecast-card"><div class="k">Projected next 6 months</div><div class="n">1,199</div><div class="d">Combined July-December outlook.</div></div>
+        </div>
+        <div class="line-card compact-line">
+        <div class="line-card-head">
+          <div><h3>Empower Dental Rancho organic clicks</h3><p>GSC clicks by month</p></div>
+          <div class="line-stats"><span>Actual clicks <b>829</b></span><span>Projected clicks <b>1,128</b></span></div>
+        </div>
+        <div class="svg-shell">
+          <svg viewBox="0 0 940 340" role="img" aria-label="Empower Dental Rancho organic clicks actual and projected monthly trend" preserveAspectRatio="none">
+            <defs><linearGradient id="area-clicks-empower-dental-rancho" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".30"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".05"/></linearGradient></defs>
+            <line x1="70" y1="286.0" x2="900" y2="286.0" class="svg-grid"/><text x="36" y="290.0" class="svg-y">0</text><line x1="70" y1="225.0" x2="900" y2="225.0" class="svg-grid"/><text x="36" y="229.0" class="svg-y">61</text><line x1="70" y1="164.0" x2="900" y2="164.0" class="svg-grid"/><text x="36" y="168.0" class="svg-y">122</text><line x1="70" y1="103.0" x2="900" y2="103.0" class="svg-grid"/><text x="36" y="107.0" class="svg-y">183</text><line x1="70" y1="42.0" x2="900" y2="42.0" class="svg-grid"/><text x="36" y="46.0" class="svg-y">244</text>
+            <path d="M 70.0 286.0 L 145.5 115.0 L 220.9 113.0 L 296.4 84.0 L 371.8 119.0 L 447.3 170.0 L 522.7 124.0 L 598.2 114.0 L 673.6 103.0 L 749.1 93.0 L 824.5 82.0 L 900.0 72.0 L 900.0 286.0 L 70.0 286.0 Z" fill="url(#area-clicks-empower-dental-rancho)"/>
+            <path d="M 70.0 286.0 L 145.5 115.0 L 220.9 113.0 L 296.4 84.0 L 371.8 119.0 L 447.3 170.0" class="svg-line"/>
+            <path d="M 447.3 170.0 L 522.7 124.0 L 598.2 114.0 L 673.6 103.0 L 749.1 93.0 L 824.5 82.0 L 900.0 72.0" class="svg-line svg-line-proj"/>
+            <line x1="485.0" y1="32" x2="485.0" y2="292" class="svg-now"/>
+            <text x="476.0" y="24" class="svg-now-text">Forecast</text>
+            <circle cx="70.0" cy="286.0" r="4.2" class="svg-dot"/><circle cx="145.5" cy="115.0" r="4.2" class="svg-dot"/><circle cx="220.9" cy="113.0" r="4.2" class="svg-dot"/><circle cx="296.4" cy="84.0" r="4.2" class="svg-dot"/><circle cx="371.8" cy="119.0" r="4.2" class="svg-dot"/><circle cx="447.3" cy="170.0" r="4.2" class="svg-dot"/><circle cx="522.7" cy="124.0" r="4.2" class="svg-dot"/><circle cx="598.2" cy="114.0" r="4.2" class="svg-dot"/><circle cx="673.6" cy="103.0" r="4.2" class="svg-dot"/><circle cx="749.1" cy="93.0" r="4.2" class="svg-dot"/><circle cx="824.5" cy="82.0" r="4.2" class="svg-dot"/><circle cx="900.0" cy="72.0" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">Jan</text><text x="145.5" y="322" class="svg-x" text-anchor="middle">Feb</text><text x="220.9" y="322" class="svg-x" text-anchor="middle">Mar</text><text x="296.4" y="322" class="svg-x" text-anchor="middle">Apr</text><text x="371.8" y="322" class="svg-x" text-anchor="middle">May</text><text x="447.3" y="322" class="svg-x" text-anchor="middle">Jun</text><text x="522.7" y="322" class="svg-x" text-anchor="middle">Jul</text><text x="673.6" y="322" class="svg-x" text-anchor="middle">Sep</text><text x="824.5" y="322" class="svg-x" text-anchor="middle">Nov</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">Dec</text>
+          </svg>
+        </div>
+        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+98 vs Jun MTD</strong></div>
+      </div>
+        <div class="line-card compact-line">
+        <div class="line-card-head">
+          <div><h3>Empower Dental Rancho lead actions</h3><p>Tracked lead actions by month</p></div>
+          <div class="line-stats"><span>Actual lead actions <b>62</b></span><span>Projected lead actions <b>71</b></span></div>
+        </div>
+        <div class="svg-shell">
+          <svg viewBox="0 0 940 340" role="img" aria-label="Empower Dental Rancho lead actions actual and projected monthly trend" preserveAspectRatio="none">
+            <defs><linearGradient id="area-leads-empower-dental-rancho" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".30"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".05"/></linearGradient></defs>
+            <line x1="70" y1="286.0" x2="900" y2="286.0" class="svg-grid"/><text x="36" y="290.0" class="svg-y">0</text><line x1="70" y1="225.0" x2="900" y2="225.0" class="svg-grid"/><text x="36" y="229.0" class="svg-y">5</text><line x1="70" y1="164.0" x2="900" y2="164.0" class="svg-grid"/><text x="36" y="168.0" class="svg-y">10</text><line x1="70" y1="103.0" x2="900" y2="103.0" class="svg-grid"/><text x="36" y="107.0" class="svg-y">15</text><line x1="70" y1="42.0" x2="900" y2="42.0" class="svg-grid"/><text x="36" y="46.0" class="svg-y">21</text>
+            <path d="M 70.0 286.0 L 145.5 214.7 L 220.9 72.0 L 296.4 119.5 L 371.8 83.9 L 447.3 202.8 L 522.7 167.1 L 598.2 155.2 L 673.6 155.2 L 749.1 143.3 L 824.5 131.4 L 900.0 119.5 L 900.0 286.0 L 70.0 286.0 Z" fill="url(#area-leads-empower-dental-rancho)"/>
+            <path d="M 70.0 286.0 L 145.5 214.7 L 220.9 72.0 L 296.4 119.5 L 371.8 83.9 L 447.3 202.8" class="svg-line"/>
+            <path d="M 447.3 202.8 L 522.7 167.1 L 598.2 155.2 L 673.6 155.2 L 749.1 143.3 L 824.5 131.4 L 900.0 119.5" class="svg-line svg-line-proj"/>
+            <line x1="485.0" y1="32" x2="485.0" y2="292" class="svg-now"/>
+            <text x="476.0" y="24" class="svg-now-text">Forecast</text>
+            <circle cx="70.0" cy="286.0" r="4.2" class="svg-dot"/><circle cx="145.5" cy="214.7" r="4.2" class="svg-dot"/><circle cx="220.9" cy="72.0" r="4.2" class="svg-dot"/><circle cx="296.4" cy="119.5" r="4.2" class="svg-dot"/><circle cx="371.8" cy="83.9" r="4.2" class="svg-dot"/><circle cx="447.3" cy="202.8" r="4.2" class="svg-dot"/><circle cx="522.7" cy="167.1" r="4.2" class="svg-dot"/><circle cx="598.2" cy="155.2" r="4.2" class="svg-dot"/><circle cx="673.6" cy="155.2" r="4.2" class="svg-dot"/><circle cx="749.1" cy="143.3" r="4.2" class="svg-dot"/><circle cx="824.5" cy="131.4" r="4.2" class="svg-dot"/><circle cx="900.0" cy="119.5" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">Jan</text><text x="145.5" y="322" class="svg-x" text-anchor="middle">Feb</text><text x="220.9" y="322" class="svg-x" text-anchor="middle">Mar</text><text x="296.4" y="322" class="svg-x" text-anchor="middle">Apr</text><text x="371.8" y="322" class="svg-x" text-anchor="middle">May</text><text x="447.3" y="322" class="svg-x" text-anchor="middle">Jun</text><text x="522.7" y="322" class="svg-x" text-anchor="middle">Jul</text><text x="673.6" y="322" class="svg-x" text-anchor="middle">Sep</text><text x="824.5" y="322" class="svg-x" text-anchor="middle">Nov</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">Dec</text>
+          </svg>
+        </div>
+        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+7 vs Jun MTD</strong></div>
+      </div>
+      </div><div class="forecast-subpanel" id="forecast-empower-dental-upland-panel" role="tabpanel" aria-labelledby="forecast-empower-dental-upland-tab" hidden>
+        <div class="location-report-head">
+          <div><h3>Empower Dental Upland</h3><p>Location-level organic clicks and tracked lead actions.</p></div>
+          <div class="location-kpis"><span>Actual clicks <b>197</b></span><span>Actual lead actions <b>7</b></span><span>Projected Dec <b>60 / 5</b></span></div>
+        </div>
+        <div class="forecast-grid" aria-label="Empower Dental Upland actual and projected totals">
+          <div class="forecast-card"><div class="k">Actual organic clicks</div><div class="n">197</div><div class="d">Jan-Jun MTD from Search Console.</div></div>
+          <div class="forecast-card"><div class="k">Actual lead actions</div><div class="n">7</div><div class="d">Tracked analytics lead-action events.</div></div>
+          <div class="forecast-card"><div class="k">Projected next 6 months</div><div class="n">339</div><div class="d">Combined July-December outlook.</div></div>
+        </div>
+        <div class="line-card compact-line">
+        <div class="line-card-head">
+          <div><h3>Empower Dental Upland organic clicks</h3><p>GSC clicks by month</p></div>
+          <div class="line-stats"><span>Actual clicks <b>197</b></span><span>Projected clicks <b>315</b></span></div>
+        </div>
+        <div class="svg-shell">
+          <svg viewBox="0 0 940 340" role="img" aria-label="Empower Dental Upland organic clicks actual and projected monthly trend" preserveAspectRatio="none">
+            <defs><linearGradient id="area-clicks-empower-dental-upland" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".30"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".05"/></linearGradient></defs>
+            <line x1="70" y1="286.0" x2="900" y2="286.0" class="svg-grid"/><text x="36" y="290.0" class="svg-y">0</text><line x1="70" y1="225.0" x2="900" y2="225.0" class="svg-grid"/><text x="36" y="229.0" class="svg-y">18</text><line x1="70" y1="164.0" x2="900" y2="164.0" class="svg-grid"/><text x="36" y="168.0" class="svg-y">36</text><line x1="70" y1="103.0" x2="900" y2="103.0" class="svg-grid"/><text x="36" y="107.0" class="svg-y">55</text><line x1="70" y1="42.0" x2="900" y2="42.0" class="svg-grid"/><text x="36" y="46.0" class="svg-y">73</text>
+            <path d="M 70.0 286.0 L 145.5 222.5 L 220.9 135.5 L 296.4 72.0 L 371.8 162.3 L 447.3 179.0 L 522.7 135.5 L 598.2 125.5 L 673.6 115.4 L 749.1 105.4 L 824.5 95.4 L 900.0 85.3 L 900.0 286.0 L 70.0 286.0 Z" fill="url(#area-clicks-empower-dental-upland)"/>
+            <path d="M 70.0 286.0 L 145.5 222.5 L 220.9 135.5 L 296.4 72.0 L 371.8 162.3 L 447.3 179.0" class="svg-line"/>
+            <path d="M 447.3 179.0 L 522.7 135.5 L 598.2 125.5 L 673.6 115.4 L 749.1 105.4 L 824.5 95.4 L 900.0 85.3" class="svg-line svg-line-proj"/>
+            <line x1="485.0" y1="32" x2="485.0" y2="292" class="svg-now"/>
+            <text x="476.0" y="24" class="svg-now-text">Forecast</text>
+            <circle cx="70.0" cy="286.0" r="4.2" class="svg-dot"/><circle cx="145.5" cy="222.5" r="4.2" class="svg-dot"/><circle cx="220.9" cy="135.5" r="4.2" class="svg-dot"/><circle cx="296.4" cy="72.0" r="4.2" class="svg-dot"/><circle cx="371.8" cy="162.3" r="4.2" class="svg-dot"/><circle cx="447.3" cy="179.0" r="4.2" class="svg-dot"/><circle cx="522.7" cy="135.5" r="4.2" class="svg-dot"/><circle cx="598.2" cy="125.5" r="4.2" class="svg-dot"/><circle cx="673.6" cy="115.4" r="4.2" class="svg-dot"/><circle cx="749.1" cy="105.4" r="4.2" class="svg-dot"/><circle cx="824.5" cy="95.4" r="4.2" class="svg-dot"/><circle cx="900.0" cy="85.3" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">Jan</text><text x="145.5" y="322" class="svg-x" text-anchor="middle">Feb</text><text x="220.9" y="322" class="svg-x" text-anchor="middle">Mar</text><text x="296.4" y="322" class="svg-x" text-anchor="middle">Apr</text><text x="371.8" y="322" class="svg-x" text-anchor="middle">May</text><text x="447.3" y="322" class="svg-x" text-anchor="middle">Jun</text><text x="522.7" y="322" class="svg-x" text-anchor="middle">Jul</text><text x="673.6" y="322" class="svg-x" text-anchor="middle">Sep</text><text x="824.5" y="322" class="svg-x" text-anchor="middle">Nov</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">Dec</text>
+          </svg>
+        </div>
+        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+28 vs Jun MTD</strong></div>
+      </div>
+        <div class="line-card compact-line">
+        <div class="line-card-head">
+          <div><h3>Empower Dental Upland lead actions</h3><p>Tracked lead actions by month</p></div>
+          <div class="line-stats"><span>Actual lead actions <b>7</b></span><span>Projected lead actions <b>24</b></span></div>
+        </div>
+        <div class="svg-shell">
+          <svg viewBox="0 0 940 340" role="img" aria-label="Empower Dental Upland lead actions actual and projected monthly trend" preserveAspectRatio="none">
+            <defs><linearGradient id="area-leads-empower-dental-upland" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".30"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".05"/></linearGradient></defs>
+            <line x1="70" y1="286.0" x2="900" y2="286.0" class="svg-grid"/><text x="36" y="290.0" class="svg-y">0</text><line x1="70" y1="225.0" x2="900" y2="225.0" class="svg-grid"/><text x="36" y="229.0" class="svg-y">1</text><line x1="70" y1="164.0" x2="900" y2="164.0" class="svg-grid"/><text x="36" y="168.0" class="svg-y">3</text><line x1="70" y1="103.0" x2="900" y2="103.0" class="svg-grid"/><text x="36" y="107.0" class="svg-y">4</text><line x1="70" y1="42.0" x2="900" y2="42.0" class="svg-grid"/><text x="36" y="46.0" class="svg-y">6</text>
+            <path d="M 70.0 286.0 L 145.5 286.0 L 220.9 243.2 L 296.4 243.2 L 371.8 157.6 L 447.3 200.4 L 522.7 157.6 L 598.2 114.8 L 673.6 114.8 L 749.1 114.8 L 824.5 114.8 L 900.0 72.0 L 900.0 286.0 L 70.0 286.0 Z" fill="url(#area-leads-empower-dental-upland)"/>
+            <path d="M 70.0 286.0 L 145.5 286.0 L 220.9 243.2 L 296.4 243.2 L 371.8 157.6 L 447.3 200.4" class="svg-line"/>
+            <path d="M 447.3 200.4 L 522.7 157.6 L 598.2 114.8 L 673.6 114.8 L 749.1 114.8 L 824.5 114.8 L 900.0 72.0" class="svg-line svg-line-proj"/>
+            <line x1="485.0" y1="32" x2="485.0" y2="292" class="svg-now"/>
+            <text x="476.0" y="24" class="svg-now-text">Forecast</text>
+            <circle cx="70.0" cy="286.0" r="4.2" class="svg-dot"/><circle cx="145.5" cy="286.0" r="4.2" class="svg-dot"/><circle cx="220.9" cy="243.2" r="4.2" class="svg-dot"/><circle cx="296.4" cy="243.2" r="4.2" class="svg-dot"/><circle cx="371.8" cy="157.6" r="4.2" class="svg-dot"/><circle cx="447.3" cy="200.4" r="4.2" class="svg-dot"/><circle cx="522.7" cy="157.6" r="4.2" class="svg-dot"/><circle cx="598.2" cy="114.8" r="4.2" class="svg-dot"/><circle cx="673.6" cy="114.8" r="4.2" class="svg-dot"/><circle cx="749.1" cy="114.8" r="4.2" class="svg-dot"/><circle cx="824.5" cy="114.8" r="4.2" class="svg-dot"/><circle cx="900.0" cy="72.0" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">Jan</text><text x="145.5" y="322" class="svg-x" text-anchor="middle">Feb</text><text x="220.9" y="322" class="svg-x" text-anchor="middle">Mar</text><text x="296.4" y="322" class="svg-x" text-anchor="middle">Apr</text><text x="371.8" y="322" class="svg-x" text-anchor="middle">May</text><text x="447.3" y="322" class="svg-x" text-anchor="middle">Jun</text><text x="522.7" y="322" class="svg-x" text-anchor="middle">Jul</text><text x="673.6" y="322" class="svg-x" text-anchor="middle">Sep</text><text x="824.5" y="322" class="svg-x" text-anchor="middle">Nov</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">Dec</text>
+          </svg>
+        </div>
+        <div class="chart-caption"><span>Solid line: actuals through June MTD</span><span>Dotted line: forecast period</span><strong>+3 vs Jun MTD</strong></div>
+      </div>
       </div>
     </div>
   </section>
@@ -1443,17 +1612,28 @@
   })();
 
   (function(){
-    var st=Array.prototype.slice.call(document.querySelectorAll('.subtabs [role="tab"]'));
-    function sel(t){st.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on?'true':'false');x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});}
-    st.forEach(function(t,i){
-      t.addEventListener('click',function(){sel(t);});
-      t.addEventListener('keydown',function(e){
-        var idx=i;
-        if(e.key==='ArrowRight'||e.key==='ArrowDown'){idx=(i+1)%st.length;}
-        else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){idx=(i-1+st.length)%st.length;}
-        else if(e.key==='Home'){idx=0;}else if(e.key==='End'){idx=st.length-1;}
-        else{return;}
-        e.preventDefault();sel(st[idx]);st[idx].focus();
+    var tablists=Array.prototype.slice.call(document.querySelectorAll('.subtabs[role="tablist"]'));
+    tablists.forEach(function(list){
+      var st=Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+      function sel(t){
+        st.forEach(function(x){
+          var on=x===t;
+          x.setAttribute('aria-selected',on?'true':'false');
+          x.tabIndex=on?0:-1;
+          var panel=document.getElementById(x.getAttribute('aria-controls'));
+          if(panel){panel.hidden=!on;}
+        });
+      }
+      st.forEach(function(t,i){
+        t.addEventListener('click',function(){sel(t);});
+        t.addEventListener('keydown',function(e){
+          var idx=i;
+          if(e.key==='ArrowRight'||e.key==='ArrowDown'){idx=(i+1)%st.length;}
+          else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){idx=(i-1+st.length)%st.length;}
+          else if(e.key==='Home'){idx=0;}else if(e.key==='End'){idx=st.length-1;}
+          else{return;}
+          e.preventDefault();sel(st[idx]);st[idx].focus();
+        });
       });
     });
   })();
