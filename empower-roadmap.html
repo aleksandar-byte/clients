@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empower Dental Group — SEO Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#06182F;
+    --navy-850:#0A2143;
+    --navy-800:#0E2A52;
+    --navy-700:#163C6B;
+    --navy-600:#1F4E86;
+    --cyan:#39C5E8;
+    --cyan-bright:#5FD8F2;
+    --teal:#2DD4B4;
+    --ice:#EAF2F8;
+    --ice-2:#DCE9F2;
+    --paper:#F6FAFD;
+    --ink:#0A1A2E;
+    --muted:#5C7589;
+    --muted-light:#9FB6C7;
+    --amber:#E8B05A;
+    --line:rgba(10,30,55,.10);
+    --line-dark:rgba(255,255,255,.10);
+    --fd:'Fraunces',Georgia,serif;
+    --fb:'Inter',system-ui,sans-serif;
+    --fm:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--fb);color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 30px}
+  .eyebrow{font-family:var(--fm);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+
+  /* header */
+  header{
+    background:
+      radial-gradient(120% 110% at 88% -25%, rgba(57,197,232,.17), transparent 55%),
+      radial-gradient(90% 80% at 2% 130%, rgba(45,212,180,.10), transparent 60%),
+      var(--navy-900);
+    color:#fff;padding:46px 0 0;
+  }
+  header .eyebrow{color:var(--cyan);margin-bottom:16px}
+  header h1{font-family:var(--fd);font-weight:600;font-size:clamp(32px,5vw,52px);letter-spacing:-.02em;line-height:1.0}
+  header .sub{margin-top:14px;font-size:15.5px;color:#C6D7E5;max-width:600px}
+  header .date{font-family:var(--fm);font-size:11px;letter-spacing:.12em;color:var(--muted-light);margin-top:14px}
+
+  /* tabs — high-contrast bar that sits on its own band */
+  .tabwrap{
+    background:var(--navy-850);
+    border-top:1px solid var(--line-dark);
+    position:sticky;top:0;z-index:20;
+  }
+  .tablabel{
+    font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--muted-light);padding-top:16px;margin-bottom:-2px;
+  }
+  .tabbar{display:flex;gap:10px;padding:14px 0 16px;flex-wrap:wrap}
+  .tab{
+    appearance:none;cursor:pointer;
+    font-family:var(--fb);font-size:14px;font-weight:600;color:#C6D7E5;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.16);
+    padding:12px 20px;border-radius:11px;
+    display:flex;align-items:center;gap:9px;transition:all .18s;
+  }
+  .tab .tnum{font-family:var(--fm);font-size:11px;font-weight:600;color:var(--cyan);opacity:.85}
+  .tab:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.3);color:#fff;transform:translateY(-1px)}
+  .tab[aria-selected="true"]{
+    color:var(--navy-900);
+    background:linear-gradient(135deg,var(--cyan),var(--teal));
+    border-color:transparent;
+    box-shadow:0 6px 18px -6px rgba(57,197,232,.6);
+  }
+  .tab[aria-selected="true"] .tnum{color:var(--navy-800);opacity:.7}
+  .tab:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+  /* panels */
+  .panel{padding:50px 0 64px;animation:fade .4s ease}
+  .panel[hidden]{display:none}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .panel-head{margin-bottom:34px;max-width:720px}
+  .panel-head .eyebrow{color:var(--navy-600);margin-bottom:10px}
+  .panel-head h2{font-family:var(--fd);font-weight:600;font-size:clamp(26px,3.4vw,38px);letter-spacing:-.015em;line-height:1.04}
+  .panel-head p{margin-top:14px;font-size:15.5px;color:var(--muted);line-height:1.6}
+
+  /* OVERVIEW */
+  .ov-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:26px}
+  .ov-card{border:1px solid var(--line);border-radius:18px;padding:30px 30px 28px;background:#fff;position:relative;overflow:hidden}
+  .ov-card.found::before,.ov-card.grow::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+  .ov-card.found::before{background:var(--cyan)}
+  .ov-card.grow::before{background:var(--teal)}
+  .ov-card .ph{font-family:var(--fm);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+  .ov-card.found .ph{color:var(--cyan)}
+  .ov-card.grow .ph{color:var(--teal)}
+  .ov-card h3{font-family:var(--fd);font-weight:600;font-size:23px;margin:9px 0 12px;letter-spacing:-.01em}
+  .ov-card p{font-size:14.5px;color:#34495C;line-height:1.6}
+  .stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#fff,#F0F7FC);padding:26px 24px}
+  .stat{text-align:center}
+  .stat .v{font-family:var(--fd);font-weight:600;font-size:clamp(30px,3.4vw,42px);color:var(--navy-800);line-height:1;letter-spacing:-.02em}
+  .stat .k{font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  .sites-line{font-family:var(--fm);font-size:11.5px;letter-spacing:.05em;color:var(--muted);text-align:center;margin-top:24px}
+  .sites-line b{color:var(--navy-700)}
+
+  /* overview — unified summary card */
+  .ov-summary{margin-top:26px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#fff,#F0F7FC);overflow:hidden}
+  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:28px 26px 26px}
+  .ov-expect{display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;padding:18px 26px;border-top:1px solid var(--line);background:rgba(255,255,255,.55)}
+  .expect-tag{font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-600);font-weight:600;white-space:nowrap}
+  .expect-chips{display:flex;flex-wrap:wrap;gap:9px}
+  .ec{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--navy-800);background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 15px}
+  .ec i{width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--teal));flex:0 0 auto}
+  .expect-note{font-size:13px;color:var(--muted);text-align:center;margin-top:12px}
+  .expect-note b{color:var(--navy-700)}
+
+  /* monthly timeline */
+  .month-intro{border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#fff,#F0F7FC);padding:24px 26px;margin-bottom:14px}
+  .month-intro .scope{font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:8px}
+  .month-intro h3{font-family:var(--fd);font-weight:600;font-size:20px;letter-spacing:-.01em;margin-bottom:8px}
+  .month-intro p{font-size:14px;color:var(--muted);line-height:1.55}
+  .month-intro p b{color:var(--navy-700)}
+
+  .baseline{border:1px solid var(--line);border-radius:16px;background:#fff;padding:24px 26px;margin-bottom:30px}
+  .baseline .btag{font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-600);font-weight:600;margin-bottom:14px}
+  .baseline ul{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 26px}
+  .baseline li{display:flex;gap:9px;align-items:flex-start;font-size:13.6px;color:#34495C;line-height:1.45}
+  .baseline li::before{content:"●";color:var(--teal);font-size:8px;line-height:1.8;flex:0 0 auto}
+  .baseline li b{color:var(--ink);font-weight:600}
+
+  .timeline{position:relative;margin-left:8px;padding-left:30px}
+  .timeline::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:0;border-left:2px dotted var(--cyan)}
+  .mo-item{position:relative;margin-bottom:18px}
+  .mo-item::before{content:"";position:absolute;left:-30px;top:24px;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--cyan);box-shadow:0 0 0 3px rgba(57,197,232,.12)}
+  .mo-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:22px 24px 20px}
+  .mo-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+  .mo-head .mname{font-family:var(--fd);font-weight:600;font-size:21px;letter-spacing:-.01em;color:var(--navy-900)}
+  .mo-head .mname span{font-family:var(--fm);font-size:12px;font-weight:500;color:var(--muted-light);letter-spacing:.04em;margin-left:8px}
+  .mo-theme{font-family:var(--fm);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--teal);text-align:right}
+  .mo-focus{font-size:13.5px;color:#34495C;line-height:1.5;margin-bottom:13px}
+  .mo-focus b{color:var(--ink);font-weight:600}
+  .mo-acts{list-style:none;display:flex;flex-direction:column}
+  .mo-act{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line)}
+  .mo-act:first-child{border-top:none}
+  .mo-act .act-main{flex:1;min-width:0}
+  .mo-act .act-name{font-weight:600;font-size:14px;color:var(--ink);line-height:1.35}
+  .mo-act .act-help{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.4}
+  .st{font-family:var(--fm);font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;white-space:nowrap;flex:0 0 auto;margin-top:1px}
+  .st.planned{color:var(--navy-700);background:rgba(57,197,232,.12);border:1px solid rgba(57,197,232,.4)}
+  .st.ongoing{color:#1E7A6B;background:rgba(45,212,180,.12);border:1px solid rgba(45,212,180,.45)}
+  .st.notstarted{color:#9A6A22;background:rgba(232,176,90,.14);border:1px solid rgba(232,176,90,.5)}
+
+  .subtabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+  .subtab{appearance:none;cursor:pointer;font-family:var(--fb);font-size:13px;font-weight:600;color:var(--navy-700);background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 17px;transition:all .15s}
+  .subtab:hover{border-color:var(--cyan);color:var(--navy-900)}
+  .subtab[aria-selected="true"]{color:var(--navy-900);background:linear-gradient(135deg,var(--cyan),var(--teal));border-color:transparent;box-shadow:0 5px 14px -6px rgba(57,197,232,.55)}
+  .subtab:focus-visible{outline:2px solid var(--navy-700);outline-offset:2px}
+  .site-panel[hidden]{display:none}
+  .site-panel{animation:fade .35s ease}
+  .site-intro{margin-bottom:22px;padding:18px 22px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,#fff,#F0F7FC)}
+  .site-intro .site-name{font-family:var(--fd);font-weight:600;font-size:19px;color:var(--navy-900);letter-spacing:-.01em;margin-bottom:4px}
+  .site-intro p{font-size:13.5px;color:var(--muted);line-height:1.5}
+
+  .addons{margin-top:28px;border:1px solid var(--line);border-radius:16px;background:var(--navy-900);color:#fff;padding:24px 26px}
+  .addons .atag{font-family:var(--fm);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);font-weight:600;margin-bottom:6px}
+  .addons h3{font-family:var(--fd);font-weight:600;font-size:19px;margin-bottom:4px}
+  .addons .asub{font-size:13px;color:var(--muted-light);margin-bottom:18px}
+  .addon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .addon{border:1px solid var(--line-dark);border-radius:12px;padding:16px 18px;background:rgba(255,255,255,.03)}
+  .addon .an{font-weight:600;font-size:14.5px;color:#EAF4FA;margin-bottom:4px}
+  .addon .ad{font-size:12.5px;color:var(--muted-light);line-height:1.4;margin-bottom:10px}
+  .addon .ap{font-family:var(--fm);font-size:14px;font-weight:600;color:var(--amber)}
+
+  /* FOUNDATION cards */
+  .found-grid{display:grid;grid-template-columns:1fr;gap:16px}
+  .found-grid.tl{position:relative;padding-left:30px;margin-left:8px}
+  .found-grid.tl::before{content:"";position:absolute;left:5px;top:10px;bottom:10px;width:0;border-left:2px dotted var(--cyan)}
+  .found-grid.tl .fcard{position:relative}
+  .found-grid.tl .fcard::after{content:"";position:absolute;left:-30px;top:26px;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--cyan);box-shadow:0 0 0 3px rgba(57,197,232,.12)}
+  .fcard-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .st.completed{color:#1E7A6B;background:rgba(45,212,180,.13);border:1px solid rgba(45,212,180,.5);font-family:var(--fm);font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;white-space:nowrap}
+  .fcard{border:1px solid var(--line);border-radius:16px;padding:26px 26px 24px;background:#fff}
+  .fcard.span{grid-column:1 / -1}
+  .fcard .fno{font-family:var(--fm);font-size:11px;letter-spacing:.16em;color:var(--navy-600);font-weight:600}
+  .baked{display:inline-block;font-family:var(--fm);font-size:10px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;color:var(--teal);background:rgba(45,212,180,.10);border:1px solid rgba(45,212,180,.45);border-radius:999px;padding:4px 11px;margin-bottom:10px}
+  .fcard h3{font-family:var(--fd);font-weight:600;font-size:20px;margin:8px 0 16px;letter-spacing:-.01em}
+  .check{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .check.cols{display:grid;grid-template-columns:1fr;gap:10px}
+  .check li{display:flex;gap:10px;align-items:flex-start;font-size:13.8px;color:#34495C;line-height:1.45}
+  .check li .tick{flex:0 0 auto;margin-top:2px;width:16px;height:16px;border-radius:5px;background:rgba(45,212,180,.13);border:1px solid rgba(45,212,180,.5);display:flex;align-items:center;justify-content:center}
+  .check li .tick svg{width:9px;height:9px;stroke:var(--teal);stroke-width:2.6;fill:none}
+  .check li b{color:var(--ink);font-weight:600}
+
+  /* GROWTH */
+  .cad-table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;margin-bottom:14px}
+  .cad-table thead th{
+    font-family:var(--fm);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    text-align:left;color:var(--muted-light);background:var(--navy-900);padding:14px 20px;font-weight:600;
+  }
+  .cad-table tbody td{padding:18px 20px;border-top:1px solid var(--line);font-size:14px;color:#34495C;vertical-align:middle}
+  .cad-table tbody tr:first-child td{border-top:none}
+  .cad-table .ws{font-weight:600;color:var(--ink);font-size:15px}
+  .cad-table .mo{font-family:var(--fm);font-size:13px;color:var(--navy-700);font-weight:600;white-space:nowrap}
+  .cad-table .tot{font-family:var(--fd);font-weight:600;font-size:24px;color:var(--navy-800);letter-spacing:-.01em;white-space:nowrap}
+  .cad-table .goal{font-size:13px;color:var(--muted);line-height:1.45}
+  .cad-foot{font-family:var(--fm);font-size:11.5px;letter-spacing:.05em;color:var(--muted);margin-bottom:44px}
+  .cad-foot b{color:var(--navy-700)}
+
+  .ws-grid{display:grid;grid-template-columns:1fr;gap:16px}
+  .ws{border:1px solid var(--line);border-radius:16px;padding:24px 24px 22px;background:#fff}
+  .ws.accent{background:linear-gradient(180deg,#fff,#F0F7FC);border-color:var(--ice-2)}
+  .ws.span{grid-column:1 / -1}
+  .ws .whead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}
+  .ws .whead h3{font-family:var(--fd);font-weight:600;font-size:19px;letter-spacing:-.01em}
+  .ws .rate{font-family:var(--fm);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--teal);border:1px solid rgba(45,212,180,.4);border-radius:999px;padding:5px 11px;white-space:nowrap}
+  .arrow{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .arrow.cols{display:grid;grid-template-columns:1fr;gap:9px}
+  .arrow li{display:flex;gap:10px;align-items:flex-start;font-size:13.8px;color:#34495C;line-height:1.5}
+  .arrow li::before{content:"→";color:var(--teal);font-weight:700;flex:0 0 auto}
+  .arrow li b{color:var(--ink);font-weight:600}
+  .wtag{font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--navy-600);margin-bottom:6px}
+
+  .priority{margin-top:18px;border:1px solid var(--line);border-radius:16px;padding:26px 28px;background:var(--navy-900);color:#fff;grid-column:1 / -1}
+  .priority .wtag{color:var(--cyan)}
+  .priority h3{font-family:var(--fd);font-weight:600;font-size:20px;margin-bottom:14px}
+  .priority p{font-size:14.5px;color:#C6D7E5;line-height:1.65}
+  .priority p b{color:#fff;font-weight:600}
+  .priority p + p{margin-top:12px}
+
+  footer{background:var(--navy-900);color:var(--muted-light);padding:30px 0;border-top:1px solid var(--line-dark)}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-family:var(--fm);font-size:11px;letter-spacing:.12em}
+  footer b{color:var(--cyan)}
+
+  @media (max-width:860px){
+    .ov-grid,.found-grid,.ws-grid{grid-template-columns:1fr}
+    .stat-strip{grid-template-columns:1fr 1fr}
+    .check.cols,.arrow.cols{grid-template-columns:1fr}
+    .stat-row{grid-template-columns:1fr 1fr}
+    .ov-expect{flex-direction:column;align-items:flex-start;gap:12px}
+    .baseline ul{grid-template-columns:1fr}
+    .addon-grid{grid-template-columns:1fr}
+    .mo-head{flex-direction:column;gap:4px}
+    .mo-theme{text-align:left}
+  }
+  @media (max-width:680px){
+    .wrap{padding:0 18px}
+    .tabbar{overflow-x:auto}
+    .tab{padding:13px 15px 14px;white-space:nowrap}
+    .cad-table thead{display:none}
+    .cad-table,.cad-table tbody,.cad-table tr,.cad-table td{display:block;width:100%}
+    .cad-table tbody td{border-top:none;padding:4px 18px}
+    .cad-table tbody tr{border-top:1px solid var(--line);padding:14px 0}
+    .cad-table tbody tr:first-child{border-top:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .panel{animation:none}html{scroll-behavior:auto}
+  }
+  @media print{
+    body{background:#fff}
+    header,.priority,.cad-table thead th,footer{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .tabbar{display:none}
+    .panel[hidden]{display:block !important}
+    .site-panel[hidden]{display:block !important}
+    .subtabs{display:none}
+    .panel{padding:24px 0;break-inside:avoid;border-top:1px solid var(--line)}
+    .panel::before{content:attr(data-print);display:block;font-family:var(--fm);font-size:11px;letter-spacing:.16em;color:var(--navy-600);text-transform:uppercase;margin-bottom:8px}
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">Empower Dental Group · AscendPoint</div>
+      <h1>SEO Roadmap</h1>
+      <p class="sub">From launch foundation to measurable growth — across six active locations.</p>
+      <div class="date">Prepared 2026-06-24</div>
+    </div>
+  </header>
+
+  <div class="tabwrap">
+    <div class="wrap">
+      <div class="tablabel">View section ↓</div>
+      <div class="tabbar" role="tablist" aria-label="Roadmap sections">
+        <button class="tab" role="tab" id="tab-ov" aria-controls="panel-ov" aria-selected="true"><span class="tnum">00</span>Overview</button>
+        <button class="tab" role="tab" id="tab-found" aria-controls="panel-found" aria-selected="false" tabindex="-1"><span class="tnum">01</span>Foundation · Past 6 mo</button>
+        <button class="tab" role="tab" id="tab-month" aria-controls="panel-month" aria-selected="false" tabindex="-1"><span class="tnum">02</span>Next 6 mo · Monthly plan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== OVERVIEW ===== -->
+  <section class="panel" id="panel-ov" role="tabpanel" aria-labelledby="tab-ov" data-print="Overview">
+    <div class="wrap">
+      <div class="panel-head">
+        <div class="eyebrow">Your roadmap at a glance</div>
+        <h2>Built right, now growing.</h2>
+        <p>Here's the simple version: the first half of the year was about getting your websites live and built on solid SEO ground. The next half is about putting that foundation to work — more content, stronger local presence, and clearer paths for patients to call, book, and fill out forms. This page walks you through what's done, what's coming, and what happens each month.</p>
+      </div>
+
+      <div class="ov-grid">
+        <div class="ov-card found">
+          <div class="ph">Past 6 months · Done</div>
+          <h3>We built the foundation</h3>
+          <p>All six websites are live, each launched with quality checks and the core SEO structure built in from day one — the technical groundwork, page structure, and local profiles that everything else stands on. In short: the hard setup work is behind you.</p>
+        </div>
+        <div class="ov-card grow">
+          <div class="ph">Next 6 months · Underway</div>
+          <h3>Now we grow on it</h3>
+          <p>Each month brings fresh articles, sharper service pages, more authority-building links, and active local profiles across all your locations. The goal isn't just more visitors — it's turning that visibility into real calls, bookings, and new patients.</p>
+        </div>
+      </div>
+
+      <div class="ov-summary">
+        <div class="stat-row">
+          <div class="stat"><div class="v">6</div><div class="k">Sites live</div></div>
+          <div class="stat"><div class="v">108</div><div class="k">Articles ahead</div></div>
+          <div class="stat"><div class="v">144</div><div class="k">GBP posts ahead</div></div>
+          <div class="stat"><div class="v">360</div><div class="k">Total deliverables</div></div>
+        </div>
+        <div class="ov-expect">
+          <span class="expect-tag">Every month you'll see</span>
+          <div class="expect-chips">
+            <span class="ec"><i></i>New articles published</span>
+            <span class="ec"><i></i>Service pages improved</span>
+            <span class="ec"><i></i>Local profiles kept active</span>
+            <span class="ec"><i></i>New authority links</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sites-line">ACTIVE SITES — <b>Rancho · Coastland · Glendale · Pasadena · Upland · BrightCraft</b></div>
+      <p class="expect-note">The <b>Next 6 mo</b> tab breaks down exactly what we're focused on from July through December.</p>
+    </div>
+  </section>
+
+  <!-- ===== FOUNDATION ===== -->
+  <section class="panel" id="panel-found" role="tabpanel" aria-labelledby="tab-found" data-print="Foundation · Past 6 months" hidden>
+    <div class="wrap">
+      <div class="panel-head">
+        <div class="eyebrow">Previous 6 months · Foundation phase</div>
+        <h2>What's built and done.</h2>
+        <p>Six sites launched — and every launch shipped with full QA and the core SEO structure baked in, not bolted on afterward. Local profiles and measurement were set up alongside them.</p>
+      </div>
+
+      <div class="found-grid tl">
+
+        <div class="fcard">
+          <div class="fcard-head"><div class="fno">01 — LAUNCHES</div><span class="st completed">Completed</span></div>
+          <h3>Website launches</h3>
+          <ul class="check cols">
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span>Rancho</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span>Coastland</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span>Glendale</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span>Pasadena</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span>Upland</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span>BrightCraft</li>
+          </ul>
+        </div>
+
+        <div class="fcard span">
+          <span class="baked">Baked into every launch</span>
+          <div class="fcard-head"><div class="fno">02 — QA + SEO FOUNDATION</div><span class="st completed">Completed</span></div>
+          <h3>Launch QA &amp; core SEO structure</h3>
+          <ul class="check cols">
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span><b>QA:</b> crawlability, indexability, sitemaps, robots.txt, URLs</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span><b>QA:</b> content, metadata, headings, targeting &amp; cleanup</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span><b>QA:</b> schema &amp; social metadata, links, redirects &amp; 404s</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span><b>QA:</b> local consistency + mobile, desktop &amp; layout</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span>Site structure: core, hubs, service &amp; location pages</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span>Final URLs &amp; redirect paths mapped</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span>Service page audit &amp; planning</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span>Keyword targeting, SEO titles, meta &amp; H1s</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span>Cannibalization cleanup &amp; internal linking</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span>Schema setup + crawl, index &amp; XML sitemap checks</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <div class="fcard-head"><div class="fno">03 — LOCAL</div><span class="st completed">Completed</span></div>
+          <h3>Local visibility setup</h3>
+          <ul class="check">
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span><b>GBP initial optimization</b> for priority locations — areas, descriptions, titles, booking links, images</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span><b>Apple Business</b> profiles opened &amp; optimized</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <div class="fcard-head"><div class="fno">04 — MEASUREMENT</div><span class="st completed">Completed</span></div>
+          <h3>Measurement &amp; technical setup</h3>
+          <ul class="check">
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span><b>Access:</b> GSC, GA4, CMS, hosting, GBP</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span><b>GA4, GTM &amp; conversion tracking</b> set up</li>
+          </ul>
+        </div>
+
+        <div class="fcard span">
+          <div class="fcard-head"><div class="fno">05 — CAMPAIGN</div><span class="st completed">Completed</span></div>
+          <h3>Early campaign work</h3>
+          <ul class="check cols">
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span><b>Ahrefs</b> technical verification &amp; cleanup</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span><b>Backlinks</b> — initial link building</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span><b>PR</b> — press release work</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span><b>Citations</b> — citation building</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span><b>Service-page internal links</b> established</li>
+            <li><span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.5 4.7 9 10 3"/></svg></span><b>Content plan</b> — content audit &amp; planning</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEXT 6 MONTHS ===== -->
+  <section class="panel" id="panel-month" role="tabpanel" aria-labelledby="tab-month" data-print="Next 6 months · Monthly plan" hidden>
+    <div class="wrap">
+      <div class="panel-head">
+        <div class="eyebrow">Next 6 months · Month by month</div>
+        <h2>The plan, by client.</h2>
+        <p>Every client runs the same monthly cadence — GBP posting, articles, internal linking, BirdEye, CTAs, and a service-page optimization each month, with backlinks in August, October &amp; December. What shifts is the focus cluster, tuned to each practice. Pick a client to see their plan.</p>
+      </div>
+
+      <div class="subtabs" role="tablist" aria-label="Client plans">
+        <button class="subtab" role="tab" id="st-brightcraft" aria-controls="site-brightcraft" aria-selected="true">Bright Craft</button>
+        <button class="subtab" role="tab" id="st-coastland" aria-controls="site-coastland" aria-selected="false" tabindex="-1">Coastland</button>
+        <button class="subtab" role="tab" id="st-glendale" aria-controls="site-glendale" aria-selected="false" tabindex="-1">Glendale</button>
+        <button class="subtab" role="tab" id="st-pasadena" aria-controls="site-pasadena" aria-selected="false" tabindex="-1">Pasadena</button>
+        <button class="subtab" role="tab" id="st-rancho" aria-controls="site-rancho" aria-selected="false" tabindex="-1">Rancho</button>
+        <button class="subtab" role="tab" id="st-edgroup" aria-controls="site-edgroup" aria-selected="false" tabindex="-1">ED Group</button>
+      </div>
+
+      <div class="site-panel" id="site-brightcraft" role="tabpanel" aria-labelledby="st-brightcraft">
+        <div class="site-intro">
+          <div class="site-name">Bright Craft Dental &amp; Laser</div>
+          <p>Implants and sedation to start, into cosmetic and orthodontics, then a year-end push.</p>
+        </div>
+        <div class="timeline">
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">July <span>2026</span></div><div class="mo-theme">Implants &amp; Sedation</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds topical authority around the highest-value implant and sedation cluster</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - blog-to-service and service-to-service cleanup</div><div class="act-help">Helps Google understand page relationships and pass authority to money pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Supports ongoing review acquisition and review response cadence</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: full-arch, implants, sedation, emergency</div><div class="act-help">Pushes more authority toward the most commercial pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves consultation conversion from informational traffic</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to appropriate service pages</div><div class="act-help">Starts in August after new article inventory is available</div></div><span class="st notstarted">Not started</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves rankings and lead conversion on Bright Craft's clearest hero service</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">August <span>2026</span></div><div class="mo-theme">Emergency &amp; Sedation</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Expands non-brand entry points and supports higher-intent service keywords</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to a target service page during the first backlink month</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - sitewide refresh using July and August articles</div><div class="act-help">Strengthens crawl paths and topical clusters</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Keeps review generation and response workflows active</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: emergency dentistry and sedation</div><div class="act-help">Helps drive informational traffic into revenue pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Converts top-of-funnel traffic into bookings</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to emergency, sedation, and implant pages</div><div class="act-help">Helps service pages stay fresh and better supported semantically</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add `LLM.txt` for AIO optimization</div><div class="act-help">Improves AI-readability and gives future LLM-driven discovery systems a cleaner business and service summary layer</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Improves categories, services, images, FAQs, and review-response quality</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Captures high-conversion local intent and call-driven traffic</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">September <span>2026</span></div><div class="mo-theme">Implant Depth</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds depth around implant evaluation and treatment planning</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - refresh anchors into implant and full-mouth pages</div><div class="act-help">Improves relevance for implant-related rankings</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Maintains review velocity and trust</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: single-tooth implants, implant bridge, full-mouth rehab</div><div class="act-help">Supports long-tail and mid-funnel implant pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves consult requests from educational readers</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to implant-related service pages</div><div class="act-help">Keeps service pages connected to current educational content</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Strengthens rankings for core commercial implant terms</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">October <span>2026</span></div><div class="mo-theme">Cosmetic</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds cosmetic topic coverage while supporting case acceptance</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Provides authority to a cosmetic or makeover target page</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - incorporate cosmetic and makeover content into core pages</div><div class="act-help">Strengthens thematic depth and click paths</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Keeps trust and review freshness strong</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: smile makeovers, veneers, cosmetic dentistry</div><div class="act-help">Helps priority cosmetic pages gain support</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Converts cosmetic traffic into consult leads</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to cosmetic service pages</div><div class="act-help">Improves freshness and supports conversion context</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Improves conversion elements and profile completeness before year-end push</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Aligns page copy with aspirational and consult-intent searches</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">November <span>2026</span></div><div class="mo-theme">Invisalign &amp; Ortho</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds topical support for aligner-focused searches</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - connect cosmetic and orthodontic assets into treatment pages</div><div class="act-help">Supports cross-service discovery and crawl efficiency</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Keeps reputation growth active during holiday planning season</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: Invisalign and orthodontics</div><div class="act-help">Boosts authority to the ortho cluster</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves evaluation requests for Invisalign leads</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to orthodontic service pages</div><div class="act-help">Keeps commercial pages fresh with relevant educational support</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves rankings and conversion for adult aligner intent</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">December <span>2026</span></div><div class="mo-theme">Cosmetic &amp; Implants</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Supports seasonal search demand and booking urgency</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority during a commercial month when conversions can spike</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - holiday and year-end refresh</div><div class="act-help">Keeps recent content connected to commercial pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Protects trust and review momentum through year-end</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: cosmetic dentistry, implants, financing-related CTAs</div><div class="act-help">Helps seasonal traffic reach the highest-converting pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Captures year-end consultation intent</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to cosmetic and implant pages</div><div class="act-help">Supports freshness and stronger conversion framing</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Fine-tunes conversion assets before the next quarter begins</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Strengthens year-end and new-year demand capture</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        </div>
+      </div>
+
+      <div class="site-panel" id="site-coastland" role="tabpanel" aria-labelledby="st-coastland" hidden>
+        <div class="site-intro">
+          <div class="site-name">Coastland Dental</div>
+          <p>Broad restorative and ortho early, through TMJ, sleep apnea, and periodontics, closing on emergency care.</p>
+        </div>
+        <div class="timeline">
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">July <span>2026</span></div><div class="mo-theme">Restorative &amp; Ortho</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds authority around broad commercial treatment intent</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - blog-to-service and service-to-service cleanup</div><div class="act-help">Improves crawl efficiency and topical consolidation</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Supports steady review flow and response management</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: restorative, cosmetic, orthodontics</div><div class="act-help">Sends more authority to Coastland's main revenue pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves consult and booking conversion from educational traffic</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to appropriate service pages</div><div class="act-help">Starts once the July content set is live</div></div><span class="st notstarted">Not started</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Strengthens ranking and conversion on a core commercial hub</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">August <span>2026</span></div><div class="mo-theme">Orthodontics</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds topical depth around orthodontics and bite correction</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to the orthodontics cluster</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - add new ortho content into service and supporting pages</div><div class="act-help">Strengthens relevance for braces and aligners</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Helps grow trust and review freshness</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: orthodontics, Invisalign, braces</div><div class="act-help">Supports ranking for local ortho modifiers</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Pushes evaluation traffic into consultations</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to orthodontic pages</div><div class="act-help">Keeps commercial pages fresh and context-rich</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add `LLM.txt` for AIO optimization</div><div class="act-help">Improves AI-readability and gives future LLM-driven discovery systems a cleaner business and service summary layer</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Improves categories, services, images, and profile conversion elements</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves performance on a strong differentiator for the practice</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">September <span>2026</span></div><div class="mo-theme">Sedation &amp; Restorative</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds topical trust around a conversion-supporting differentiator</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - push sedation-related assets into cosmetic and restorative pages</div><div class="act-help">Helps cross-service conversion for anxious patients</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Maintains review and trust growth</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: sedation, restorative, cosmetic</div><div class="act-help">Improves internal authority flow into high-value pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves consult capture from anxiety-related traffic</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to sedation and restorative pages</div><div class="act-help">Strengthens supporting relevance</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves conversion for patients who need reassurance and convenience</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">October <span>2026</span></div><div class="mo-theme">TMJ &amp; Sleep Apnea</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds authority in adjacent specialty areas that can attract new patient demand</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to a specialty page cluster</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - add specialty-supporting links from general and orthodontic pages</div><div class="act-help">Helps search engines connect symptom and solution content</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Keeps reputation growth steady</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: TMJ treatment and sleep apnea treatment</div><div class="act-help">Pushes authority into less-established but valuable service lines</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Converts symptom-driven readers into consultations</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to TMJ and sleep apnea pages</div><div class="act-help">Refreshes specialty pages with current support content</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Improves local conversion assets and keeps the profile competitive</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Supports niche rankings with stronger on-page targeting and CTAs</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">November <span>2026</span></div><div class="mo-theme">Periodontics</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds authority around periodontics and preventive treatment</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - connect perio content into general and restorative pages</div><div class="act-help">Supports related rankings and treatment pathways</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Keeps trust signals strong</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: periodontics, laser periodontal therapy, general dentistry</div><div class="act-help">Improves support for gum-related money pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Encourages exams and gum evaluations</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to periodontics and general pages</div><div class="act-help">Keeps core pages fresh and better supported</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves rankings and conversions for prevention and gum therapy demand</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">December <span>2026</span></div><div class="mo-theme">Emergency &amp; Restorative</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Supports high-intent search demand at year-end</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to emergency or restorative pages in a high-conversion month</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - year-end conversion refresh</div><div class="act-help">Keeps recent content connected to emergency and restorative pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Maintains trust and social proof during a busy booking period</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: emergency, restorative, same-day problem-solving pages</div><div class="act-help">Helps seasonal traffic land on booking-oriented pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves immediate booking actions</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to emergency and restorative pages</div><div class="act-help">Increases freshness and support</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Fine-tunes profile quality heading into Q1</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Strengthens local rankings for one of the highest-conversion service types</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        </div>
+      </div>
+
+      <div class="site-panel" id="site-glendale" role="tabpanel" aria-labelledby="st-glendale" hidden>
+        <div class="site-intro">
+          <div class="site-name">Empower Dental Glendale</div>
+          <p>Family and general care first, through implants, cosmetic, and emergency, into new-patient and financing.</p>
+        </div>
+        <div class="timeline">
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">July <span>2026</span></div><div class="mo-theme">Family &amp; General</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds trust and visibility for top-of-funnel family searches</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - foundational cleanup across family and general care pages</div><div class="act-help">Strengthens crawl paths and site structure</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Supports review flow and local trust</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: general/family dentistry and exams</div><div class="act-help">Pushes authority toward broad entry-point services</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves conversion from educational readers into appointments</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to appropriate service pages</div><div class="act-help">Starts in August after article library grows</div></div><span class="st notstarted">Not started</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves rankings for the broadest local service demand</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">August <span>2026</span></div><div class="mo-theme">Implants &amp; Restorative</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds commercial topical authority around missing-teeth intent</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to a key implant page</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - connect new implant content into restorative and smile pages</div><div class="act-help">Helps Google and users find the implant cluster faster</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Keeps review signals growing</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: implants and restorative dentistry</div><div class="act-help">Supports revenue-focused pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Turns informational implant traffic into consult leads</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to implant-related service pages</div><div class="act-help">Keeps service pages fresher and more complete</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add `LLM.txt` for AIO optimization</div><div class="act-help">Improves AI-readability and gives future LLM-driven discovery systems a cleaner business and service summary layer</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Improves profile completeness, services, imagery, and conversion elements</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Strengthens one of Glendale's most valuable service lines</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">September <span>2026</span></div><div class="mo-theme">Cosmetic</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds authority for cosmetic and appearance-driven search demand</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - push cosmetic blogs into smile and restorative service pages</div><div class="act-help">Supports relevance and conversion paths</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Maintains trust and review recency</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: cosmetic dentistry and smile makeovers</div><div class="act-help">Helps important commercial pages accumulate authority</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves consult conversion on cosmetic traffic</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to cosmetic pages</div><div class="act-help">Strengthens content freshness and relevance</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves rankings and consult conversion for aesthetic services</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">October <span>2026</span></div><div class="mo-theme">Emergency</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds visibility for high-conversion emergency searches</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to emergency pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - connect emergency content into general and restorative pages</div><div class="act-help">Strengthens urgency-related pathways</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Keeps social proof fresh</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: emergency dentistry and restorative treatment</div><div class="act-help">Helps urgent traffic move into bookable pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Encourages immediate calls and scheduling</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to emergency and restorative pages</div><div class="act-help">Supports freshness and better semantic fit</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Improves categories, services, and profile conversion assets</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Targets one of the highest-converting local dental intents</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">November <span>2026</span></div><div class="mo-theme">Restorative &amp; Crowns</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds mid- and bottom-funnel topical support</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - strengthen restorative cluster with new educational content</div><div class="act-help">Improves page authority and crawl depth</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Maintains review growth</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: restorative dentistry, crowns, bridges</div><div class="act-help">Supports core commercial pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Drives consults for repair-focused treatment needs</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to restorative pages</div><div class="act-help">Improves freshness and relevance</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves rankings and patient conversion for repair-based care</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">December <span>2026</span></div><div class="mo-theme">New Patient &amp; Financing</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Captures seasonal search behavior and booking urgency</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to a priority conversion page</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - year-end refresh on commercial pages</div><div class="act-help">Helps recent seasonal content support booking pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Protects trust and keeps review velocity active</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: new patient, financing, high-value treatment pages</div><div class="act-help">Improves conversion support during peak urgency</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Converts seasonal readers into booked consults</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to financing and high-intent service pages</div><div class="act-help">Adds freshness and relevance during a commercial period</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Tightens profile quality before the next quarter</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves conversion from broad and commercial-intent traffic</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        </div>
+      </div>
+
+      <div class="site-panel" id="site-pasadena" role="tabpanel" aria-labelledby="st-pasadena" hidden>
+        <div class="site-intro">
+          <div class="site-name">Empower Dental Pasadena</div>
+          <p>Digital Smile Design and guided implants lead, then cosmetic, sedation, and oral surgery.</p>
+        </div>
+        <div class="timeline">
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">July <span>2026</span></div><div class="mo-theme">Digital Smile Design</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds authority around Pasadena's most unique differentiator</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - connect DSD and cosmetic content into core service pages</div><div class="act-help">Strengthens thematic clustering</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Supports review acquisition and trust growth</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: Digital Smile Design and cosmetic dentistry</div><div class="act-help">Pushes internal authority into a high-value niche cluster</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves cosmetic consult conversion from educational content</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to appropriate service pages</div><div class="act-help">Starts in August after July article publication</div></div><span class="st notstarted">Not started</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves rankings and conversion on the practice's clearest differentiator</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">August <span>2026</span></div><div class="mo-theme">Guided Implants</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Expands authority around implant intent with a technology angle</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to an implant landing page</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - weave guided implant content into restorative and cosmetic pages</div><div class="act-help">Connects commercial pages to new supporting content</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Keeps review recency and patient trust strong</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: guided restoration implants and implants</div><div class="act-help">Supports rankings for profitable treatment terms</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves consult conversion from implant traffic</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to implant pages</div><div class="act-help">Keeps service pages fresh and semantically reinforced</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add `LLM.txt` for AIO optimization</div><div class="act-help">Improves AI-readability and gives future LLM-driven discovery systems a cleaner business and service summary layer</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Improves map pack competitiveness and profile conversion</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Strengthens a premium treatment page around precision-based messaging</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">September <span>2026</span></div><div class="mo-theme">Cosmetic &amp; Veneers</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds topical support for cosmetic searches</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - connect cosmetic articles into DSD and smile makeover pages</div><div class="act-help">Strengthens conversion pathways</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Maintains review growth and credibility</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: smile makeovers, veneers, cosmetic dentistry</div><div class="act-help">Boosts authority to commercial aesthetic pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Captures cosmetic consultations</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to cosmetic pages</div><div class="act-help">Increases freshness and relevance</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves rankings and consult conversion for aspirational searches</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">October <span>2026</span></div><div class="mo-theme">Sedation &amp; Oral Surgery</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds trust for problem-aware and procedure-aware searches</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to a sedation or oral surgery page</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - strengthen support from general and cosmetic pages into surgery/sedation pages</div><div class="act-help">Improves pathway visibility and crawl depth</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Keeps trust strong during more procedure-heavy messaging</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: sedation dentistry and oral surgery</div><div class="act-help">Supports less-broad but highly valuable service pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves consult and evaluation submissions</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to sedation and surgery pages</div><div class="act-help">Keeps service pages current and supported</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Improves profile quality and service coverage</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Helps convert anxious and complex-case patients</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">November <span>2026</span></div><div class="mo-theme">General &amp; Perio</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Supports broader search demand and new patient acquisition</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - connect prevention content into general and periodontal pages</div><div class="act-help">Improves support for broad service pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Maintains review momentum and trust</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: general dentistry, cleanings, periodontics</div><div class="act-help">Strengthens the site's foundational care cluster</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Encourages new patient scheduling</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to general and perio pages</div><div class="act-help">Keeps foundational service pages fresh</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves rankings for broader non-specialty searches</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">December <span>2026</span></div><div class="mo-theme">Cosmetic &amp; Implants</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Captures year-end and new-year search behavior</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority during a commercial month</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - connect seasonal articles to cosmetic and implant pages</div><div class="act-help">Supports conversion-focused browsing paths</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Maintains trust and review cadence</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: cosmetic, implant, and consultation pages</div><div class="act-help">Helps direct commercial intent into core conversion pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves booking actions from seasonal traffic</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to implant and cosmetic service pages</div><div class="act-help">Increases freshness and intent alignment</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Fine-tunes profile quality before the next quarter</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Strengthens conversion during a high-intent season</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        </div>
+      </div>
+
+      <div class="site-panel" id="site-rancho" role="tabpanel" aria-labelledby="st-rancho" hidden>
+        <div class="site-intro">
+          <div class="site-name">Empower Dental Rancho</div>
+          <p>Implants and All-on-4 to start, across Invisalign, pediatric, and specialty lines, into cosmetic.</p>
+        </div>
+        <div class="timeline">
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">July <span>2026</span></div><div class="mo-theme">Implants &amp; All-on-4</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds authority around high-value restorative services</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - cleanup across implant, ortho, and restorative sections</div><div class="act-help">Helps a large site architecture become easier to crawl and understand</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Supports ongoing review generation</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: implants, All-on-4/6, restorative dentistry</div><div class="act-help">Pushes more authority into key money pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves consultation capture on treatment-aware traffic</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to appropriate service pages</div><div class="act-help">Starts in August after new article publishing cycle</div></div><span class="st notstarted">Not started</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Strengthens rankings and conversion for a premium service</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">August <span>2026</span></div><div class="mo-theme">Invisalign &amp; Braces</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds topical depth around the ortho cluster</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to braces or Invisalign pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - connect ortho content into quiz, Invisalign, and braces pages</div><div class="act-help">Strengthens internal cluster signals</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Maintains trust and review growth</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: Invisalign, braces, Invisalign Teen</div><div class="act-help">Helps rank across multiple local ortho modifiers</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Converts research traffic into evaluations</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to orthodontic service pages</div><div class="act-help">Increases freshness and support</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add `LLM.txt` for AIO optimization</div><div class="act-help">Improves AI-readability and gives future LLM-driven discovery systems a cleaner business and service summary layer</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Improves profile services, imagery, and conversion elements</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Strengthens performance on one of Rancho's broadest growth opportunities</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">September <span>2026</span></div><div class="mo-theme">Pediatric</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds authority around family and pediatric intent</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - connect pediatric content into family and ortho pages</div><div class="act-help">Improves topical paths and service discovery</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Keeps local trust and review volume active</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: pediatric dentistry and pediatric braces</div><div class="act-help">Supports a strategic differentiation cluster</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Encourages parent-driven appointment requests</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to pediatric and ortho pages</div><div class="act-help">Keeps service pages current and better supported</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves visibility for family-oriented local searches</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">October <span>2026</span></div><div class="mo-theme">Sleep Apnea &amp; Surgery</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Expands topical authority into specialty growth areas</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to a specialty page</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - tie specialty content into general, surgery, and sedation pages</div><div class="act-help">Helps search engines connect related topic clusters</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Maintains review momentum</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: sleep apnea, oral surgery, sedation</div><div class="act-help">Supports less-established but valuable pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Captures evaluation demand from symptom-aware users</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to specialty service pages</div><div class="act-help">Supports freshness and topical reinforcement</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Improves profile completeness and local conversion strength</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Helps grow visibility for an under-leveraged specialty service</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">November <span>2026</span></div><div class="mo-theme">Emergency &amp; Crowns</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds high-intent topical support</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - strengthen emergency and restorative pathways</div><div class="act-help">Improves conversion journeys from symptom to treatment page</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Keeps reputation growth active</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: emergency, crowns, restorative dentistry</div><div class="act-help">Pushes authority to high-conversion pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Encourages immediate appointment action</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to emergency and crown pages</div><div class="act-help">Adds freshness and better semantic support</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves rankings for one of the most immediate local intents</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">December <span>2026</span></div><div class="mo-theme">Cosmetic &amp; Whitening</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Captures commercial and seasonal search intent</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to a cosmetic target page</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - connect seasonal content to cosmetic and restorative pages</div><div class="act-help">Improves conversion support from holiday traffic</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Maintains trust and review recency</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: cosmetic dentistry, veneers, whitening</div><div class="act-help">Supports aesthetic pages heading into Q1</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves cosmetic consult bookings</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to cosmetic service pages</div><div class="act-help">Strengthens freshness and topical support</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Fine-tunes profile quality before the next quarter</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves rankings and conversion for year-end cosmetic demand</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        </div>
+      </div>
+
+      <div class="site-panel" id="site-edgroup" role="tabpanel" aria-labelledby="st-edgroup" hidden>
+        <div class="site-intro">
+          <div class="site-name">Empower Dental Group</div>
+          <p>Brand-level work — network structure, doctor E-E-A-T, and trust — rather than per-service treatment.</p>
+        </div>
+        <div class="timeline">
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">July <span>2026</span></div><div class="mo-theme">Network &amp; Doctors</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds brand-level E-E-A-T and non-location authority</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - strengthen links between group site and location sites</div><div class="act-help">Helps distribute authority and improve location discovery</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Supports review/reputation workflows at the brand level where relevant</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: location pages, about pages, doctor pages</div><div class="act-help">Pushes authority into the pages that define the network</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves traffic flow into location pages and contact actions</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to appropriate brand or location pages</div><div class="act-help">Starts in August once new articles are live</div></div><span class="st notstarted">Not started</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves branded navigation and location discovery</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">August <span>2026</span></div><div class="mo-theme">Doctor E-E-A-T</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Improves E-E-A-T and doctor-led search relevance</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to doctor or about pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - connect doctor bios, about pages, and location pages more tightly</div><div class="act-help">Helps branded users and search engines understand the organization</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Supports ongoing brand trust signals</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: doctor pages and location pages</div><div class="act-help">Strengthens the most trust-sensitive pages on the group site</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Drives branded users into the correct location or consultation page</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to doctor and about pages where appropriate</div><div class="act-help">Keeps E-E-A-T pages current and better supported</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add `LLM.txt` for AIO optimization</div><div class="act-help">Improves AI-readability and gives future LLM-driven discovery systems a cleaner business and service summary layer</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Improves profile completeness and conversion strength</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Strengthens trust, authority, and conversion for brand traffic</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">September <span>2026</span></div><div class="mo-theme">Technology &amp; Brand</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Builds topic support for technology and care-quality messaging</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - connect technology messaging to each relevant location site</div><div class="act-help">Helps transfer brand-level authority into local conversion pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Maintains trust and consistency</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: technology-related brand and location pages</div><div class="act-help">Strengthens brand-to-location equity flow</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves location click-through and branded conversion</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to brand pages and location landing pages</div><div class="act-help">Keeps network pages fresher and more useful</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves performance on quality- and trust-based brand searches</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">October <span>2026</span></div><div class="mo-theme">Location Hubs</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Improves brand-to-location discovery and intent matching</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to a location-hub or comparison-style page</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - strengthen inter-location references from the group site</div><div class="act-help">Helps users and search engines navigate the network clearly</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Keeps reputation support active</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: location hubs and treatment-overview pages</div><div class="act-help">Supports brand queries that need geographic routing</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Drives users to the right office faster</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to location hub pages</div><div class="act-help">Keeps discovery pages current and more conversion-focused</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Improves profile quality and branded click performance</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Strengthens branded discovery and click-through to offices</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">November <span>2026</span></div><div class="mo-theme">Financing &amp; Contact</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Supports brand queries with commercial and practical information</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - connect access/financing content into location and contact pages</div><div class="act-help">Improves conversion pathways</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Maintains trust and review recency</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: financing, contact, and location pages</div><div class="act-help">Helps convert brand interest into office-level action</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Increases clicks to schedule/contact pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to relevant group pages</div><div class="act-help">Keeps conversion-oriented pages fresher</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves branded conversion and user clarity</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mo-item">
+          <div class="mo-card">
+            <div class="mo-head"><div class="mname">December <span>2026</span></div><div class="mo-theme">Trust &amp; Testimonials</div></div>
+            <ul class="mo-acts">
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP posting</div><div class="act-help">Supports local visibility, profile freshness, and stronger map-pack engagement for the practice</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">4 articles/mo</div><div class="act-help">Captures branded and seasonal informational demand</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 backlink/mo</div><div class="act-help">Adds authority to a high-trust brand page</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking - year-end brand refresh</div><div class="act-help">Improves support for location and conversion pages</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">BirdEye profile management</div><div class="act-help">Keeps reputation and review efforts active</div></div><span class="st ongoing">Ongoing</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Internal linking to improve core services: testimonials, reviews, locations, and about pages</div><div class="act-help">Reinforces the trust layer across the network</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add CTAs on blog articles</div><div class="act-help">Improves conversion into location pages and contact points</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">Add latest articles to review and location hub pages</div><div class="act-help">Adds freshness and stronger trust support</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">GBP review and optimization</div><div class="act-help">Fine-tunes branded profile quality before Q1</div></div><span class="st planned">Planned</span></li>
+              <li class="mo-act"><div class="act-main"><div class="act-name">1 service page SEO and CRO optimization</div><div class="act-help">Improves entity trust and conversion for branded visitors</div></div><span class="st planned">Planned</span></li>
+            </ul>
+          </div>
+        </div>
+
+        </div>
+      </div>
+
+      <div class="addons">
+        <div class="atag">Optional add-ons · any month · any client</div>
+        <h3>Accelerators, if you want to push harder</h3>
+        <p class="asub">Available on top of the core monthly plan for every location.</p>
+        <div class="addon-grid">
+          <div class="addon"><div class="an">2 extra backlinks</div><div class="ad">Faster authority to priority pages beyond the core plan</div><div class="ap">$350</div></div>
+          <div class="addon"><div class="an">3 citations / mo</div><div class="ad">Stronger local trust &amp; consistency signals</div><div class="ap">$50</div></div>
+          <div class="addon"><div class="an">1 PR</div><div class="ad">Brand authority &amp; broader awareness support</div><div class="ap">TBD</div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <span>ASCEND<b>POINT</b> · FOR EMPOWER DENTAL GROUP</span>
+      <span>PREPARED 2026-06-24</span>
+    </div>
+  </footer>
+
+<script>
+  (function(){
+    var tabs=Array.prototype.slice.call(document.querySelectorAll('.tabbar [role="tab"]'));
+    function select(tab){
+      tabs.forEach(function(t){
+        var on=t===tab;
+        t.setAttribute('aria-selected',on?'true':'false');
+        t.tabIndex=on?0:-1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+      });
+    }
+    tabs.forEach(function(tab,i){
+      tab.addEventListener('click',function(){select(tab);});
+      tab.addEventListener('keydown',function(e){
+        var idx=i;
+        if(e.key==='ArrowRight'||e.key==='ArrowDown'){idx=(i+1)%tabs.length;}
+        else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){idx=(i-1+tabs.length)%tabs.length;}
+        else if(e.key==='Home'){idx=0;}
+        else if(e.key==='End'){idx=tabs.length-1;}
+        else{return;}
+        e.preventDefault();select(tabs[idx]);tabs[idx].focus();
+      });
+    });
+  })();
+
+  (function(){
+    var st=Array.prototype.slice.call(document.querySelectorAll('.subtabs [role="tab"]'));
+    function sel(t){st.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on?'true':'false');x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});}
+    st.forEach(function(t,i){
+      t.addEventListener('click',function(){sel(t);});
+      t.addEventListener('keydown',function(e){
+        var idx=i;
+        if(e.key==='ArrowRight'||e.key==='ArrowDown'){idx=(i+1)%st.length;}
+        else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){idx=(i-1+st.length)%st.length;}
+        else if(e.key==='Home'){idx=0;}else if(e.key==='End'){idx=st.length-1;}
+        else{return;}
+        e.preventDefault();sel(st[idx]);st[idx].focus();
+      });
+    });
+  })();
+</script>
+</body>
+</html>
