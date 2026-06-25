@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Roadmap — AZ Cosmetic Family Dentistry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0E2A47;
+    --navy-2:#163A5E;
+    --navy-soft:#3A5474;
+    --ice:#EFF5FA;
+    --ice-2:#E2ECF4;
+    --surface:#FFFFFF;
+    --line:#D7E3EE;
+    --line-soft:#E7EFF6;
+    --teal:#0E9D90;
+    --teal-deep:#0B7D73;
+    --teal-tint:#E2F3F1;
+    --green:#2E9E68;
+    --green-tint:#E1F2E9;
+    --violet:#7A5CC9;
+    --violet-tint:#EEE8F8;
+    --gold:#D9982E;
+    --gold-tint:#FBF1DC;
+    --slate:#6B7E90;
+    --slate-tint:#EAEFF4;
+    --ink:#13283C;
+    --muted:#54677A;
+    --muted-2:#76889A;
+    --shadow:0 1px 2px rgba(14,42,71,.04), 0 8px 24px rgba(14,42,71,.06);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--ice);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--teal-deep);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s ease,color .15s ease;}
+  a:hover{border-bottom-color:var(--teal);color:var(--teal);}
+  a:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:2px;}
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(120% 140% at 100% 0%, rgba(14,157,144,.20) 0%, rgba(14,157,144,0) 48%),
+      linear-gradient(160deg, var(--navy) 0%, #0B2236 100%);
+    color:#EAF2F8;
+    padding:64px 0 56px;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#7FD8CE;
+    margin:0 0 22px;
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  }
+  .eyebrow .dot{width:5px;height:5px;border-radius:50%;background:var(--teal);display:inline-block;}
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(34px,5.4vw,52px);
+    line-height:1.04;
+    letter-spacing:-.015em;
+    margin:0 0 18px;
+    color:#FBFDFE;
+  }
+  .hero .lede{
+    font-size:clamp(16px,2vw,18px);
+    color:#BCD2E2;
+    max-width:62ch;
+    margin:0 0 30px;
+  }
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;
+    padding-top:26px;
+    border-top:1px solid rgba(255,255,255,.12);
+    font-size:13.5px;
+  }
+  .hero-meta .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7E9DB6;}
+  .hero-meta a{
+    color:#C7F0EA;border:1px solid rgba(159,227,218,.3);
+    padding:7px 14px;border-radius:8px;font-weight:500;
+  }
+  .hero-meta a:hover{color:#EAFBF8;border-color:#9FE3DA;background:rgba(159,227,218,.08);}
+
+  /* ---------- Snapshot strip ---------- */
+  .snapshot{
+    background:var(--surface);
+    border-bottom:1px solid var(--line);
+  }
+  .snap-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);
+  }
+  .snap{
+    padding:24px 22px;
+    border-right:1px solid var(--line-soft);
+  }
+  .snap:last-child{border-right:none;}
+  .snap .n{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:30px;line-height:1;color:var(--navy);
+    letter-spacing:-.01em;display:flex;align-items:baseline;gap:6px;
+  }
+  .snap .n .suffix{font-size:14px;color:var(--teal);font-family:'Inter',sans-serif;font-weight:600;}
+  .snap .lab{
+    margin-top:9px;font-size:12.5px;color:var(--muted);line-height:1.35;
+  }
+
+  /* ---------- Sections ---------- */
+  section{padding:54px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .sec-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--teal-deep);margin:0 0 14px;
+  }
+  h2{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:clamp(25px,3.4vw,32px);line-height:1.12;
+    letter-spacing:-.012em;color:var(--navy);margin:0 0 18px;
+  }
+  h3{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:20px;color:var(--navy);margin:0 0 8px;letter-spacing:-.005em;
+  }
+  p{margin:0 0 16px;color:var(--ink);}
+  p.muted{color:var(--muted);}
+  .intro p{font-size:17px;color:#28425B;max-width:68ch;}
+
+  /* ---------- Improved sub-cards ---------- */
+  .cards{display:grid;gap:18px;}
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:26px 26px;
+    box-shadow:var(--shadow);
+  }
+  .card-head{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+  .card-head .badge{
+    flex:none;
+    width:30px;height:30px;border-radius:8px;
+    background:var(--teal-tint);color:var(--teal-deep);
+    display:grid;place-items:center;
+  }
+  .card-head .badge svg{width:16px;height:16px;}
+  .card h3{margin:0;}
+  .card p:last-child{margin-bottom:0;}
+
+  .linklist{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:0;}
+  .linklist.two{grid-template-columns:1fr 1fr;gap:2px 26px;}
+  .linklist li{
+    padding:9px 0;border-bottom:1px solid var(--line-soft);
+    font-size:14.5px;display:flex;align-items:baseline;gap:9px;
+  }
+  .linklist li::before{
+    content:"";flex:none;width:5px;height:5px;border-radius:50%;
+    background:var(--teal);margin-top:8px;
+  }
+  .tmpl > span{display:flex;flex-direction:column;gap:2px;}
+  .tmpl .role{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--muted-2);
+    margin-bottom:1px;
+  }
+
+  /* before / after compare */
+  .compare-note{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    font-size:12.5px;color:var(--muted);margin:16px 0 2px;
+  }
+  .compare-note .key{display:inline-flex;align-items:center;gap:7px;}
+  .compare-note .chip{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.04em;
+    padding:2px 8px;border-radius:5px;
+  }
+  .compare-note .chip.before{background:var(--ice-2);color:var(--slate);border:1px solid var(--line);}
+  .compare-note .chip.after{background:var(--teal-tint);color:var(--teal-deep);}
+
+  .cmp-list{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:0;}
+  .cmp{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:11px 0;border-bottom:1px solid var(--line-soft);
+  }
+  .cmp:last-child{border-bottom:none;}
+  .cmp .name{font-size:14.5px;font-weight:500;color:var(--navy);line-height:1.3;}
+  .cmp .role{
+    display:block;margin-bottom:3px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--muted-2);font-weight:500;
+  }
+  .ba{display:flex;gap:7px;flex:none;}
+  .ba a{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.02em;
+    padding:5px 10px;border-radius:7px;display:inline-flex;align-items:center;gap:5px;
+    border:1px solid var(--line);white-space:nowrap;
+  }
+  .ba a svg{width:10px;height:10px;opacity:.7;}
+  .ba a.before{background:var(--ice);color:var(--slate);}
+  .ba a.before:hover{border-color:var(--slate);color:var(--navy);}
+  .ba a.after{background:var(--teal-tint);color:var(--teal-deep);border-color:transparent;}
+  .ba a.after:hover{background:#D4ECE9;color:var(--teal-deep);}
+
+  /* audit stats */
+  .audit{
+    margin-top:18px;border-top:1px solid var(--line-soft);padding-top:18px;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
+  }
+  .audit .stat .num{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:22px;color:var(--navy);}
+  .audit .stat.good .num{color:var(--teal-deep);}
+  .audit .stat .desc{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.35;}
+
+  /* checklist */
+  .checklist{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:9px;}
+  .checklist li{display:flex;gap:11px;font-size:14.5px;align-items:flex-start;}
+  .checklist li svg{flex:none;width:17px;height:17px;margin-top:3px;color:var(--teal);}
+  .checklist li b{color:var(--navy);font-weight:600;}
+
+  /* ---------- Priorities (numbered) ---------- */
+  .priorities{display:grid;gap:14px;counter-reset:p;}
+  .prio{
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:24px 26px 24px 24px;display:grid;grid-template-columns:54px 1fr;gap:22px;
+    box-shadow:var(--shadow);
+  }
+  .prio .num{
+    font-family:'Fraunces',serif;font-weight:600;font-size:30px;
+    color:var(--teal);line-height:1;padding-top:2px;
+    border-right:1px solid var(--line-soft);
+  }
+  .prio h3{margin-bottom:6px;}
+  .prio p:last-child{margin-bottom:0;}
+  .prio .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .pill{
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    padding:5px 11px;border-radius:999px;background:var(--ice-2);
+    color:var(--navy-2);border:1px solid var(--line);
+  }
+  .pill a{color:inherit;border:none;}
+  .pill a:hover{color:var(--teal-deep);}
+  .micro-checks{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 20px;}
+  .micro-checks li{font-size:13.5px;color:var(--muted);display:flex;align-items:center;gap:7px;}
+  .micro-checks li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold);}
+
+  /* ---------- Roadmap board ---------- */
+  .legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:0 0 22px;}
+  .legend .tag{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);}
+  .swatch{width:10px;height:10px;border-radius:3px;display:inline-block;}
+  .sw-qa{background:var(--teal);}
+  .sw-prog{background:var(--gold);}
+  .sw-todo{background:var(--slate);}
+  .sw-wait{background:#5B86C4;}
+  .sw-act{background:var(--navy-2);}
+  .sw-done{background:var(--green);}
+  .sw-client{background:var(--violet);}
+
+  .board{
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    overflow:hidden;box-shadow:var(--shadow);
+  }
+  .row{
+    display:grid;grid-template-columns:54px 1fr auto;gap:18px;align-items:center;
+    padding:16px 22px;border-bottom:1px solid var(--line-soft);
+  }
+  .row:last-child{border-bottom:none;}
+  .row .ph{
+    font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;
+    color:var(--navy);background:var(--ice);border:1px solid var(--line);
+    width:34px;height:34px;border-radius:8px;display:grid;place-items:center;
+  }
+  .row .focus{font-size:14.5px;color:var(--ink);}
+  .row .focus a{font-weight:500;}
+  .status{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.03em;
+    padding:6px 12px;border-radius:999px;white-space:nowrap;font-weight:500;
+    display:inline-flex;align-items:center;gap:7px;
+  }
+  .status::before{content:"";width:6px;height:6px;border-radius:50%;}
+  .st-qa{background:var(--teal-tint);color:var(--teal-deep);}
+  .st-qa::before{background:var(--teal);}
+  .st-prog{background:var(--gold-tint);color:#9A6B12;}
+  .st-prog::before{background:var(--gold);}
+  .st-todo{background:var(--slate-tint);color:var(--slate);}
+  .st-todo::before{background:var(--slate);}
+  .st-wait{background:#E7EEF8;color:#3F619B;}
+  .st-wait::before{background:#5B86C4;}
+  .st-act{background:#E4EAF1;color:var(--navy-2);}
+  .st-act::before{background:var(--navy-2);}
+  .st-done{background:var(--green-tint);color:#1E7A4D;}
+  .st-done::before{background:var(--green);}
+  .st-client{background:var(--violet-tint);color:#583D9C;}
+  .st-client::before{background:var(--violet);}
+
+  /* ---------- Closing principles ---------- */
+  .closing{background:var(--navy);color:#E6EFF6;border-top:none;}
+  .closing .sec-tag{color:#7FD8CE;}
+  .closing h2{color:#FBFDFE;}
+  .closing > .wrap > p{color:#BACFE0;max-width:66ch;font-size:16.5px;}
+  .principles{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:1px;
+    background:rgba(255,255,255,.10);border-radius:12px;overflow:hidden;}
+  .principles li{
+    background:var(--navy);padding:16px 20px;display:flex;gap:14px;align-items:flex-start;
+    font-size:15px;color:#DCE8F1;
+  }
+  .principles li .i{
+    flex:none;font-family:'JetBrains Mono',monospace;font-size:12px;color:#7FD8CE;
+    margin-top:2px;min-width:20px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{background:#0B2236;color:#8FA9BF;padding:30px 0;font-size:13px;}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;}
+  footer .brand{font-family:'JetBrains Mono',monospace;letter-spacing:.06em;color:#B9CDDD;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:720px){
+    .snap-grid{grid-template-columns:1fr 1fr;}
+    .snap:nth-child(2){border-right:none;}
+    .snap:nth-child(1),.snap:nth-child(2){border-bottom:1px solid var(--line-soft);}
+    .linklist.two{grid-template-columns:1fr;}
+    .audit{grid-template-columns:1fr;gap:14px;}
+    .prio{grid-template-columns:1fr;gap:10px;}
+    .prio .num{border-right:none;border-bottom:1px solid var(--line-soft);padding-bottom:8px;}
+    .cmp{flex-direction:column;align-items:flex-start;gap:9px;}
+    .ba{width:100%;}
+    .row{grid-template-columns:34px 1fr;gap:12px;}
+    .row .status{grid-column:2;justify-self:start;margin-top:2px;}
+  }
+
+  @media print{
+    body{background:#fff;}
+    .hero,.closing{background:#fff !important;color:var(--ink) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .hero h1,.closing h2{color:var(--navy) !important;}
+    .hero .lede,.hero-meta .v,.closing > .wrap > p,.principles li{color:var(--ink) !important;}
+    .eyebrow,.closing .sec-tag{color:var(--teal-deep) !important;}
+    .principles{background:var(--line) !important;}
+    .principles li{background:#fff !important;}
+    .card,.prio,.board{box-shadow:none;break-inside:avoid;}
+    .hero-meta{border-top:1px solid var(--line);}
+    a{color:var(--teal-deep);}
+    section{padding:28px 0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow"><span class="dot"></span> AscendPoint · Website Roadmap</p>
+    <h1>AZ Cosmetic Family Dentistry</h1>
+    <p class="lede">A clear plan for making the website easier for patients to understand, easier for Google to interpret, and easier for your team to maintain over time — organized by what matters most for patient decisions and local search.</p>
+    <div class="hero-meta">
+      <span class="k">Visit</span>
+      <a href="https://www.azcosmeticdental.com/" target="_blank" rel="noopener">Live site &#8599;</a>
+      <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud" target="_blank" rel="noopener">Staging site &#8599;</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== BIG PICTURE ===================== -->
+<section id="big-picture">
+  <div class="wrap intro">
+    <p class="sec-tag">The big picture</p>
+    <h2>Building a clearer service system, not just rewriting pages</h2>
+    <p>So far the work has focused on cleaning up confusing service navigation, replacing thin or outdated content, removing old practice and location references, and creating a reusable page system so future service pages can be improved more consistently.</p>
+    <p>The remaining work is organized by priority. We start with the pages that matter most for patient decisions and local search visibility, then move into supporting service pages and a final sitewide polish.</p>
+  </div>
+</section>
+
+<!-- ===================== ALREADY IMPROVED ===================== -->
+<section id="done">
+  <div class="wrap">
+    <p class="sec-tag">What has already been improved</p>
+    <h2>The foundation is in place</h2>
+    <p class="muted" style="max-width:64ch;margin-top:-6px;">Each improved page links to both versions so you can compare what changed &mdash; <strong style="color:var(--slate);font-weight:600;">Before</strong> opens the current live site, <strong style="color:var(--teal-deep);font-weight:600;">After</strong> opens the updated staging version.</p>
+
+    <div class="cards">
+
+      <!-- Service Navigation -->
+      <div class="card">
+        <div class="card-head">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="14" y2="12"/><line x1="4" y1="17" x2="18" y2="17"/></svg></span>
+          <h3>Service navigation</h3>
+        </div>
+        <p>The Services menu has been cleaned up so patients aren't shown every small support page, brand page, or old draft in the main navigation. It now focuses on real treatment categories and appointment-relevant services — so visitors can find the care they're looking for without feeling lost in a long dropdown.</p>
+      </div>
+
+      <!-- Core Service Pages -->
+      <div class="card">
+        <div class="card-head">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+          <h3>Core service pages</h3>
+        </div>
+        <p>Several important pages have had meaningful content and layout improvements. These now mainly need final quality checks for mobile display, links, metadata, schema, calls to action, and caching.</p>
+        <ul class="cmp-list">
+          <li class="cmp">
+            <span class="name">Cosmetic Dentistry</span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/services/cosmetic-dentistry/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/cosmetic-dentistry/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+          <li class="cmp">
+            <span class="name">Pediatric Dentistry</span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/services/pediatric-dentistry/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/pediatric-dentistry/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+          <li class="cmp">
+            <span class="name">Orthodontics</span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/services/orthodontics/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/orthodontics/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+          <li class="cmp">
+            <span class="name">Invisalign</span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/services/orthodontics/invisalign/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/orthodontics/invisalign/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+          <li class="cmp">
+            <span class="name">Orthodontic Exams</span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/services/orthodontics/orthodontic-exams/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/orthodontics/orthodontic-exams/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+          <li class="cmp">
+            <span class="name">Dental Implants</span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/services/dental-implants/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/dental-implants/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+          <li class="cmp">
+            <span class="name">Dental Technology</span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/services/technology/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/technology/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+          <li class="cmp">
+            <span class="name">Emergency Dentistry</span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/services/dental-emergencies/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/dental-emergencies/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Reusable Page System -->
+      <div class="card">
+        <div class="card-head">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+          <h3>Reusable page system</h3>
+        </div>
+        <p>A reusable service page structure means new and improved pages follow a consistent pattern, so the site avoids one-off page builds. The goal isn't to make every page identical — it's to keep the underlying structure consistent while letting each page carry the right content, intent, and level of detail.</p>
+        <ul class="cmp-list">
+          <li class="cmp">
+            <span><span class="role">Service hub</span><span class="name">Cosmetic Dentistry</span></span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/services/cosmetic-dentistry/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/cosmetic-dentistry/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+          <li class="cmp">
+            <span><span class="role">Treatment service page</span><span class="name">Invisalign</span></span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/services/orthodontics/invisalign/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/orthodontics/invisalign/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+          <li class="cmp">
+            <span><span class="role">Appointment-prep / informational</span><span class="name">Orthodontic Exams</span></span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/services/orthodontics/orthodontic-exams/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/orthodontics/orthodontic-exams/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+          <li class="cmp">
+            <span><span class="role">Technology page</span><span class="name">Dental Technology</span></span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/services/technology/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/technology/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+          <li class="cmp">
+            <span><span class="role">Practice / about trust page</span><span class="name">Our Practice</span></span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/our-practice/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/our-practice/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Practice Trust -->
+      <div class="card">
+        <div class="card-head">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>
+          <h3>Practice trust &amp; identity</h3>
+        </div>
+        <p>The site was cleaned up around the correct business name, doctor name, location, and practice details. Older template references and outdated location and name issues were corrected wherever found — including SEOPress local business settings, page SEO and social metadata, the Privacy Policy, the homepage, a reusable service-page CTA block, schema entries, and media metadata.</p>
+        <div class="audit">
+          <div class="stat">
+            <div class="num">121</div>
+            <div class="desc">public URLs had old names, locations, or template references in page code or metadata</div>
+          </div>
+          <div class="stat">
+            <div class="num">49</div>
+            <div class="desc">had old names or locations in visible page text or image alt text</div>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:18px;margin-bottom:0;font-size:13.5px;">These pages were also improved to better support credentials and patient confidence:</p>
+        <ul class="cmp-list" style="margin-top:8px;">
+          <li class="cmp">
+            <span class="name">Our Practice</span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/our-practice/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/our-practice/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+          <li class="cmp">
+            <span class="name">Meet Dr. Adrian Pulkrabek</span>
+            <span class="ba">
+              <a class="before" href="https://www.azcosmeticdental.com/our-practice/meet-dr-pulkrabek/" target="_blank" rel="noopener">Before <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="after" href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/our-practice/meet-dr-pulkrabek/" target="_blank" rel="noopener">After <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Technical Cleanup -->
+      <div class="card">
+        <div class="card-head">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3z"/></svg></span>
+          <h3>Technical cleanup</h3>
+        </div>
+        <p>A technical crawl was run and priority issues were addressed, giving the remaining page work a cleaner foundation.</p>
+        <ul class="checklist">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Metadata</b> — fixed missing, outdated, or overly long page titles and meta descriptions.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Headings &amp; templates</b> — corrected service-template H1 issues that could confuse page structure.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Redirects</b> — fixed an incorrect redirect found during crawl review.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Link safety</b> — added safer handling for links opening in a new tab.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><b>Image dimensions</b> — added key dimensions to reduce layout shift and improve stability.</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WORKING TOWARD ===================== -->
+<section id="next">
+  <div class="wrap">
+    <p class="sec-tag">What we are working toward</p>
+    <h2>The plan ahead, in priority order</h2>
+
+    <div class="priorities">
+
+      <div class="prio">
+        <div class="num">1</div>
+        <div>
+          <h3>Final QA for completed pages</h3>
+          <p>Lock down the pages that are already in good shape before moving on. Each gets a full pass across the checks below.</p>
+          <ul class="micro-checks">
+            <li>Mobile layout</li><li>Calls to action</li><li>Menu &amp; internal links</li>
+            <li>Titles &amp; meta descriptions</li><li>Social sharing tags</li><li>Schema / structured data</li><li>Cache &amp; live rendering</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="prio">
+        <div class="num">2</div>
+        <div>
+          <h3>Move approved draft hubs into the main pages</h3>
+          <p>Several major service pages now have improved draft versions that should become the new main direction. The work is to move those drafts into the main live URLs while keeping them easy to review. The Emergency Dentistry page is now sorted &mdash; it&rsquo;s in the improved list above.</p>
+          <div class="pills">
+            <span class="pill"><a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/preventive-dentistry/" target="_blank" rel="noopener">Preventive Dentistry</a></span>
+            <span class="pill"><a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/endodontics/" target="_blank" rel="noopener">Endodontics / Root Canal</a></span>
+            <span class="pill"><a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/oral-maxillofacial-surgery/" target="_blank" rel="noopener">Oral Surgery</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prio">
+        <div class="num">3</div>
+        <div>
+          <h3>Build the missing Restorative Dentistry hub</h3>
+          <p><a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/restorative-dentistry/" target="_blank" rel="noopener">Restorative Dentistry</a> is a major category and should be built before rewriting its child pages. It should help patients understand repair and replacement options — fillings, crowns, bridges, dentures, and root canal therapy — so related pages can link back and share consistent language.</p>
+        </div>
+      </div>
+
+      <div class="prio">
+        <div class="num">4</div>
+        <div>
+          <h3>Improve high-intent standalone service pages</h3>
+          <p>Some pages represent direct patient needs and should read as strong service pages, not just informational content — clearly explaining symptoms, when to schedule, what the visit may involve, and how the practice helps.</p>
+          <div class="pills">
+            <span class="pill"><a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/periodontal-disease/treatment/" target="_blank" rel="noopener">Gum Disease Treatment</a></span>
+            <span class="pill"><a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/oral-maxillofacial-surgery/sleep-apnea/" target="_blank" rel="noopener">Sleep Apnea Treatment</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prio">
+        <div class="num">5</div>
+        <div>
+          <h3>Rewrite child service pages by cluster</h3>
+          <p>Once the major hubs are in place, improve the smaller service pages in grouped batches. This keeps content consistent and makes internal linking cleaner.</p>
+          <div class="pills">
+            <span class="pill">Cosmetic — <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/cosmetic-dentistry/teeth-whitening/" target="_blank" rel="noopener">Whitening</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/cosmetic-dentistry/bonding/" target="_blank" rel="noopener">Bonding</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/cosmetic-dentistry/porcelain-veneers/" target="_blank" rel="noopener">Veneers</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/cosmetic-dentistry/porcelain-crowns-caps/" target="_blank" rel="noopener">Crowns</a></span>
+            <span class="pill">Restorative — <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/restorative-dentistry/composite-fillings/" target="_blank" rel="noopener">Fillings</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/restorative-dentistry/crowns-caps/" target="_blank" rel="noopener">Crowns</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/restorative-dentistry/fixed-bridges/" target="_blank" rel="noopener">Bridges</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/restorative-dentistry/partial-dentures/" target="_blank" rel="noopener">Dentures</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/restorative-dentistry/root-canal-therapy/" target="_blank" rel="noopener">Root Canal</a></span>
+            <span class="pill">Preventive — <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/preventive-dentistry/dental-exams/" target="_blank" rel="noopener">Exams</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/preventive-dentistry/dental-x-rays/" target="_blank" rel="noopener">X-Rays</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/preventive-dentistry/fluoride-treatment/" target="_blank" rel="noopener">Fluoride</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/preventive-dentistry/mouthguards/" target="_blank" rel="noopener">Mouthguards</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/preventive-dentistry/oral-cancer-exam/" target="_blank" rel="noopener">Oral Cancer Exam</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/preventive-dentistry/tooth-extractions/" target="_blank" rel="noopener">Extractions</a></span>
+            <span class="pill">Gum / root / oral surgery — <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/periodontics/periodontal-scaling-root-planing/" target="_blank" rel="noopener">Scaling &amp; Root Planing</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/periodontics/gum-recession/" target="_blank" rel="noopener">Gum Recession</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/endodontics/cracked-tooth/" target="_blank" rel="noopener">Cracked Tooth</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/oral-maxillofacial-surgery/wisdom-teeth-extractions/" target="_blank" rel="noopener">Wisdom Teeth</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/oral-maxillofacial-surgery/tmj-treatment/" target="_blank" rel="noopener">TMJ</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/oral-maxillofacial-surgery/oral-pathology/" target="_blank" rel="noopener">Oral Pathology</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prio">
+        <div class="num">6</div>
+        <div>
+          <h3>Keep Digital Radiographs as a support page</h3>
+          <p><a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/technology/digital-radiographs/" target="_blank" rel="noopener">Digital Radiographs</a> should stay on the site but not act as a main menu service. Remove it from the Services menu if still listed, then link to it from the <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/technology/" target="_blank" rel="noopener">Dental Technology</a> page where it supports the technology explanation.</p>
+        </div>
+      </div>
+
+      <div class="prio">
+        <div class="num">7</div>
+        <div>
+          <h3>Strengthen internal linking as each cluster is finished</h3>
+          <p>Links are added as pages are completed, not only at the end. Hub pages link to their most important child services; child pages link back to the parent hub; related pages link to each other where helpful; and blog and informational pages support the main service pages — always pointing toward current, patient-facing services in the cleaned menu.</p>
+        </div>
+      </div>
+
+      <div class="prio">
+        <div class="num">8</div>
+        <div>
+          <h3>Final Services page &amp; sitewide QA</h3>
+          <p>The <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/" target="_blank" rel="noopener">Services index</a> is updated last, after the service structure is stable.</p>
+          <ul class="micro-checks">
+            <li>Services menu</li><li>Services index</li><li>Hub &amp; child links</li><li>Mobile layout</li>
+            <li>CTA consistency</li><li>Metadata &amp; schema</li><li>Cache clearing</li><li>Live spot checks</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROADMAP BOARD ===================== -->
+<section id="board">
+  <div class="wrap">
+    <p class="sec-tag">Current roadmap summary</p>
+    <h2>At a glance</h2>
+    <div class="legend">
+      <span class="tag"><span class="swatch sw-client"></span> Awaiting Dr. Pulkrabek</span>
+      <span class="tag"><span class="swatch sw-prog"></span> In progress</span>
+      <span class="tag"><span class="swatch sw-qa"></span> Ready for QA</span>
+      <span class="tag"><span class="swatch sw-todo"></span> Not started</span>
+      <span class="tag"><span class="swatch sw-wait"></span> Waiting on dependency</span>
+    </div>
+
+    <div class="board">
+      <div class="row">
+        <span class="ph">1</span>
+        <span class="focus">Services menu cleaned up &mdash; <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/technology/digital-radiographs/" target="_blank" rel="noopener">Digital Radiographs</a> kept as a support page and removed from the menu</span>
+        <span class="status st-client">Needs Dr. Pulkrabek&rsquo;s QA</span>
+      </div>
+      <div class="row">
+        <span class="ph">2</span>
+        <span class="focus"><a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/technology/" target="_blank" rel="noopener">Dental Technology</a> and dentistry pages &mdash; need more input from Dr. Pulkrabek before we finalize content</span>
+        <span class="status st-client">Awaiting Dr. Pulkrabek</span>
+      </div>
+      <div class="row">
+        <span class="ph">3</span>
+        <span class="focus"><a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/our-practice/" target="_blank" rel="noopener">About / Our Practice</a> &mdash; need Dr. Pulkrabek&rsquo;s credentials and confirmation that the information is correct</span>
+        <span class="status st-client">Awaiting Dr. Pulkrabek</span>
+      </div>
+      <div class="row">
+        <span class="ph">4</span>
+        <span class="focus">Move approved draft hubs (Preventive, Endodontics, Oral Surgery) into the main pages</span>
+        <span class="status st-prog">In progress</span>
+      </div>
+      <div class="row">
+        <span class="ph">5</span>
+        <span class="focus">Internal linking and <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/" target="_blank" rel="noopener">Services index</a> cleanup</span>
+        <span class="status st-prog">Ongoing &middot; final pass later</span>
+      </div>
+      <div class="row">
+        <span class="ph">6</span>
+        <span class="focus">Lock down already-improved core pages, including <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/dental-implants/" target="_blank" rel="noopener">Dental Implants</a>, <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/technology/" target="_blank" rel="noopener">Dental Technology</a>, and Emergency Dentistry</span>
+        <span class="status st-qa">Ready for final QA</span>
+      </div>
+      <div class="row">
+        <span class="ph">7</span>
+        <span class="focus">Build <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/restorative-dentistry/" target="_blank" rel="noopener">Restorative Dentistry</a> hub</span>
+        <span class="status st-todo">Not started</span>
+      </div>
+      <div class="row">
+        <span class="ph">8</span>
+        <span class="focus">Improve <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/periodontal-disease/treatment/" target="_blank" rel="noopener">Gum Disease</a> and <a href="https://stg-azcosmeticfamilydentistry-staging.kinsta.cloud/services/oral-maxillofacial-surgery/sleep-apnea/" target="_blank" rel="noopener">Sleep Apnea</a> pages</span>
+        <span class="status st-todo">Not started</span>
+      </div>
+      <div class="row">
+        <span class="ph">9</span>
+        <span class="focus">Rewrite cosmetic child service pages</span>
+        <span class="status st-todo">Not started</span>
+      </div>
+      <div class="row">
+        <span class="ph">10</span>
+        <span class="focus">Rewrite preventive / support pages</span>
+        <span class="status st-todo">Not started</span>
+      </div>
+      <div class="row">
+        <span class="ph">11</span>
+        <span class="focus">Rewrite gum / root / oral surgery support pages</span>
+        <span class="status st-todo">Not started</span>
+      </div>
+      <div class="row">
+        <span class="ph">12</span>
+        <span class="focus">Rewrite restorative child service pages</span>
+        <span class="status st-wait">Waiting on Restorative hub</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CLOSING ===================== -->
+<section class="closing" id="closing">
+  <div class="wrap">
+    <p class="sec-tag">How to think about the roadmap</p>
+    <h2>A clearer service system, built to keep improving</h2>
+    <p>The work isn't just about rewriting pages — it's about building a system that helps patients now and stays easy to improve over time.</p>
+    <ul class="principles">
+      <li><span class="i">01</span><span>Patients should understand what each service is for.</span></li>
+      <li><span class="i">02</span><span>Important treatment categories should feel trustworthy and complete.</span></li>
+      <li><span class="i">03</span><span>Smaller pages should support the main service pages instead of competing with them.</span></li>
+      <li><span class="i">04</span><span>The menu should stay clean and practical.</span></li>
+      <li><span class="i">05</span><span>The site should use consistent calls to action and local practice details.</span></li>
+      <li><span class="i">06</span><span>Future service pages should be easier to update using the reusable structure.</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="brand">AscendPoint</span>
+    <span>Website Roadmap · AZ Cosmetic Family Dentistry · Staging environment</span>
+  </div>
+</footer>
+
+</body>
+</html>
