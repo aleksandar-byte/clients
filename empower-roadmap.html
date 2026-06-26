@@ -295,6 +295,11 @@
   .location-kpis span{border:1px solid var(--line);border-radius:999px;padding:8px 11px;font-size:12px;color:var(--muted);white-space:nowrap;background:#F8FBFD}
   .location-kpis b{font-family:var(--fd);font-size:16px;color:var(--navy-800);margin-left:4px}
   .compact-line .svg-shell{height:350px}
+  .merge-timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 24px}
+  .merge-timeline span{border:1px solid var(--line);border-radius:12px;background:#F8FBFD;padding:14px 15px;color:var(--muted);font-size:13px;line-height:1.35}
+  .merge-timeline b{display:block;font-family:var(--fd);font-size:20px;color:var(--navy-800);margin-bottom:3px}
+  .merge-report-head{border-left:4px solid var(--cyan)}
+
 
   .client-chart-block{margin:22px 0 30px;border:1px solid var(--line);border-radius:16px;background:#fff;padding:22px 24px;box-shadow:0 16px 34px -30px rgba(6,24,47,.5)}
   .client-chart-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px}
@@ -310,7 +315,7 @@
   .mini-foot{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:9px;margin-top:6px}
   .mini-foot strong{font-family:var(--fd);font-size:15px;color:var(--navy-800);font-weight:600}
 
-  @media(max-width:900px){.forecast-panel .wrap{padding:0 18px}.forecast-grid{grid-template-columns:1fr}.line-card-head,.client-chart-head,.location-report-head{display:block}.line-stats,.location-kpis{justify-content:flex-start;margin-top:14px}.svg-shell{height:330px;padding-left:8px;padding-right:8px}.chart-caption{display:block}.chart-caption span,.chart-caption strong{display:block;margin-top:7px}.client-chart-grid{grid-template-columns:1fr}.client-chart-head p{text-align:left;margin-top:5px}.client-chart-block,.location-report-head{padding:18px}}
+  @media(max-width:900px){.forecast-panel .wrap{padding:0 18px}.forecast-grid,.merge-timeline{grid-template-columns:1fr}.line-card-head,.client-chart-head,.location-report-head{display:block}.line-stats,.location-kpis{justify-content:flex-start;margin-top:14px}.svg-shell{height:330px;padding-left:8px;padding-right:8px}.chart-caption{display:block}.chart-caption span,.chart-caption strong{display:block;margin-top:7px}.client-chart-grid{grid-template-columns:1fr}.client-chart-head p{text-align:left;margin-top:5px}.client-chart-block,.location-report-head{padding:18px}}
 
   .wtag{font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--navy-600);margin-bottom:6px}
 
@@ -1231,7 +1236,7 @@
       <div class="forecast-note"><b>Forecast method:</b> June MTD was converted to a full-month run-rate, then extended through the next six months based on the planned growth curve.</div>
 
       <div class="forecast-tabs subtabs" role="tablist" aria-label="Performance report views">
-        <button class="subtab" role="tab" id="forecast-tab-total" aria-controls="forecast-panel-total" aria-selected="true">Total view</button><button class="subtab" role="tab" id="forecast-brightcraft-dental-laser-tab" aria-controls="forecast-brightcraft-dental-laser-panel" aria-selected="false" tabindex="-1">BrightCraft</button><button class="subtab" role="tab" id="forecast-coastland-dental-tab" aria-controls="forecast-coastland-dental-panel" aria-selected="false" tabindex="-1">Coastland Dental</button><button class="subtab" role="tab" id="forecast-empower-dental-glendale-tab" aria-controls="forecast-empower-dental-glendale-panel" aria-selected="false" tabindex="-1">Glendale</button><button class="subtab" role="tab" id="forecast-empower-dental-pasadena-tab" aria-controls="forecast-empower-dental-pasadena-panel" aria-selected="false" tabindex="-1">Pasadena</button><button class="subtab" role="tab" id="forecast-empower-dental-rancho-tab" aria-controls="forecast-empower-dental-rancho-panel" aria-selected="false" tabindex="-1">Rancho</button><button class="subtab" role="tab" id="forecast-empower-dental-upland-tab" aria-controls="forecast-empower-dental-upland-panel" aria-selected="false" tabindex="-1">Upland</button>
+        <button class="subtab" role="tab" id="forecast-tab-total" aria-controls="forecast-panel-total" aria-selected="true">Total view</button><button class="subtab" role="tab" id="forecast-tab-merge-offer" aria-controls="forecast-panel-merge-offer" aria-selected="false" tabindex="-1">Site merge offer</button><button class="subtab" role="tab" id="forecast-brightcraft-dental-laser-tab" aria-controls="forecast-brightcraft-dental-laser-panel" aria-selected="false" tabindex="-1">BrightCraft</button><button class="subtab" role="tab" id="forecast-coastland-dental-tab" aria-controls="forecast-coastland-dental-panel" aria-selected="false" tabindex="-1">Coastland Dental</button><button class="subtab" role="tab" id="forecast-empower-dental-glendale-tab" aria-controls="forecast-empower-dental-glendale-panel" aria-selected="false" tabindex="-1">Glendale</button><button class="subtab" role="tab" id="forecast-empower-dental-pasadena-tab" aria-controls="forecast-empower-dental-pasadena-panel" aria-selected="false" tabindex="-1">Pasadena</button><button class="subtab" role="tab" id="forecast-empower-dental-rancho-tab" aria-controls="forecast-empower-dental-rancho-panel" aria-selected="false" tabindex="-1">Rancho</button><button class="subtab" role="tab" id="forecast-empower-dental-upland-tab" aria-controls="forecast-empower-dental-upland-panel" aria-selected="false" tabindex="-1">Upland</button>
       </div>
 
       <div class="forecast-subpanel" id="forecast-panel-total" role="tabpanel" aria-labelledby="forecast-tab-total">
@@ -1283,6 +1288,52 @@
           <div class="forecast-card"><div class="k">Projected leads</div><div class="n">373</div><div class="d">Projected leads from the current growth plan.</div></div>
           <div class="forecast-card"><div class="k">December outlook</div><div class="n">941 / 73</div><div class="d">Projected clicks / leads for December.</div></div>
         </div>
+      </div>
+      <div class="forecast-subpanel" id="forecast-panel-merge-offer" role="tabpanel" aria-labelledby="forecast-tab-merge-offer" hidden>
+        <div class="location-report-head merge-report-head">
+          <div><h3>Site merge offer scenario</h3><p>Total clicks and leads outlook if the locations are merged into one site over the next 9 months.</p></div>
+          <div class="location-kpis"><span>Month 1 clicks <b>663</b></span><span>Month 1 leads <b>47</b></span><span>Month 9 <b>298 / 21</b></span></div>
+        </div>
+        <div class="forecast-grid" aria-label="Site merge offer scenario totals">
+          <div class="forecast-card"><div class="k">Month 1</div><div class="n">663 / 47</div><div class="d">Normal monthly baseline for clicks / leads.</div></div>
+          <div class="forecast-card"><div class="k">Months 2-6</div><div class="n">0 / 0</div><div class="d">Temporary traffic and lead disruption during consolidation.</div></div>
+          <div class="forecast-card"><div class="k">Month 9</div><div class="n">298 / 21</div><div class="d">Stabilized clicks / leads at the modeled recovery level.</div></div>
+        </div>
+        <div class="merge-timeline" aria-label="Merge scenario timeline">
+          <span><b>M1</b> Normal</span><span><b>M2-M6</b> No traffic</span><span><b>M7-M8</b> Recovery to 45%</span><span><b>M9</b> Stable at 45%</span>
+        </div>
+        <div class="line-card merge-line-card">
+        <div class="line-card-head">
+          <div><h3>Merge scenario clicks</h3><p>Total clicks by month</p></div>
+          <div class="line-stats"><span>Month 1 <b>663</b></span><span>Month 9 <b>298</b></span></div>
+        </div>
+        <div class="svg-shell">
+          <svg viewBox="0 0 940 340" role="img" aria-label="Merge scenario clicks merge scenario monthly trend" preserveAspectRatio="none">
+            <defs><linearGradient id="area-merge-clicks" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".30"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".05"/></linearGradient></defs>
+            <line x1="70" y1="286.0" x2="900" y2="286.0" class="svg-grid"/><text x="36" y="290.0" class="svg-y">0</text><line x1="70" y1="225.0" x2="900" y2="225.0" class="svg-grid"/><text x="36" y="229.0" class="svg-y">189</text><line x1="70" y1="164.0" x2="900" y2="164.0" class="svg-grid"/><text x="36" y="168.0" class="svg-y">378</text><line x1="70" y1="103.0" x2="900" y2="103.0" class="svg-grid"/><text x="36" y="107.0" class="svg-y">567</text><line x1="70" y1="42.0" x2="900" y2="42.0" class="svg-grid"/><text x="36" y="46.0" class="svg-y">756</text>
+            <path d="M 70.0 72.0 L 173.8 286.0 L 277.5 286.0 L 381.2 286.0 L 485.0 286.0 L 588.8 286.0 L 692.5 237.9 L 796.2 189.8 L 900.0 189.8 L 900.0 286.0 L 70.0 286.0 Z" fill="url(#area-merge-clicks)"/>
+            <path d="M 70.0 72.0 L 173.8 286.0 L 277.5 286.0 L 381.2 286.0 L 485.0 286.0 L 588.8 286.0 L 692.5 237.9 L 796.2 189.8 L 900.0 189.8" class="svg-line svg-line-proj"/>
+            <circle cx="70.0" cy="72.0" r="4.2" class="svg-dot"/><circle cx="173.8" cy="286.0" r="4.2" class="svg-dot"/><circle cx="277.5" cy="286.0" r="4.2" class="svg-dot"/><circle cx="381.2" cy="286.0" r="4.2" class="svg-dot"/><circle cx="485.0" cy="286.0" r="4.2" class="svg-dot"/><circle cx="588.8" cy="286.0" r="4.2" class="svg-dot"/><circle cx="692.5" cy="237.9" r="4.2" class="svg-dot"/><circle cx="796.2" cy="189.8" r="4.2" class="svg-dot"/><circle cx="900.0" cy="189.8" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">M1</text><text x="173.8" y="322" class="svg-x" text-anchor="middle">M2</text><text x="277.5" y="322" class="svg-x" text-anchor="middle">M3</text><text x="381.2" y="322" class="svg-x" text-anchor="middle">M4</text><text x="485.0" y="322" class="svg-x" text-anchor="middle">M5</text><text x="588.8" y="322" class="svg-x" text-anchor="middle">M6</text><text x="692.5" y="322" class="svg-x" text-anchor="middle">M7</text><text x="796.2" y="322" class="svg-x" text-anchor="middle">M8</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">M9</text>
+          </svg>
+        </div>
+        <div class="chart-caption"><span>Month 1: normal baseline</span><span>Months 2-6: migration disruption</span><strong>Month 9: 298 clicks</strong></div>
+      </div>
+        <div class="line-card merge-line-card">
+        <div class="line-card-head">
+          <div><h3>Merge scenario leads</h3><p>Total leads by month</p></div>
+          <div class="line-stats"><span>Month 1 <b>47</b></span><span>Month 9 <b>21</b></span></div>
+        </div>
+        <div class="svg-shell">
+          <svg viewBox="0 0 940 340" role="img" aria-label="Merge scenario leads merge scenario monthly trend" preserveAspectRatio="none">
+            <defs><linearGradient id="area-merge-leads" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#39C5E8" stop-opacity=".30"/><stop offset="100%" stop-color="#39C5E8" stop-opacity=".05"/></linearGradient></defs>
+            <line x1="70" y1="286.0" x2="900" y2="286.0" class="svg-grid"/><text x="36" y="290.0" class="svg-y">0</text><line x1="70" y1="225.0" x2="900" y2="225.0" class="svg-grid"/><text x="36" y="229.0" class="svg-y">13</text><line x1="70" y1="164.0" x2="900" y2="164.0" class="svg-grid"/><text x="36" y="168.0" class="svg-y">27</text><line x1="70" y1="103.0" x2="900" y2="103.0" class="svg-grid"/><text x="36" y="107.0" class="svg-y">40</text><line x1="70" y1="42.0" x2="900" y2="42.0" class="svg-grid"/><text x="36" y="46.0" class="svg-y">54</text>
+            <path d="M 70.0 72.0 L 173.8 286.0 L 277.5 286.0 L 381.2 286.0 L 485.0 286.0 L 588.8 286.0 L 692.5 235.9 L 796.2 190.4 L 900.0 190.4 L 900.0 286.0 L 70.0 286.0 Z" fill="url(#area-merge-leads)"/>
+            <path d="M 70.0 72.0 L 173.8 286.0 L 277.5 286.0 L 381.2 286.0 L 485.0 286.0 L 588.8 286.0 L 692.5 235.9 L 796.2 190.4 L 900.0 190.4" class="svg-line svg-line-proj"/>
+            <circle cx="70.0" cy="72.0" r="4.2" class="svg-dot"/><circle cx="173.8" cy="286.0" r="4.2" class="svg-dot"/><circle cx="277.5" cy="286.0" r="4.2" class="svg-dot"/><circle cx="381.2" cy="286.0" r="4.2" class="svg-dot"/><circle cx="485.0" cy="286.0" r="4.2" class="svg-dot"/><circle cx="588.8" cy="286.0" r="4.2" class="svg-dot"/><circle cx="692.5" cy="235.9" r="4.2" class="svg-dot"/><circle cx="796.2" cy="190.4" r="4.2" class="svg-dot"/><circle cx="900.0" cy="190.4" r="4.2" class="svg-dot"/><text x="70.0" y="322" class="svg-x" text-anchor="middle">M1</text><text x="173.8" y="322" class="svg-x" text-anchor="middle">M2</text><text x="277.5" y="322" class="svg-x" text-anchor="middle">M3</text><text x="381.2" y="322" class="svg-x" text-anchor="middle">M4</text><text x="485.0" y="322" class="svg-x" text-anchor="middle">M5</text><text x="588.8" y="322" class="svg-x" text-anchor="middle">M6</text><text x="692.5" y="322" class="svg-x" text-anchor="middle">M7</text><text x="796.2" y="322" class="svg-x" text-anchor="middle">M8</text><text x="900.0" y="322" class="svg-x" text-anchor="middle">M9</text>
+          </svg>
+        </div>
+        <div class="chart-caption"><span>Month 1: normal baseline</span><span>Months 2-6: migration disruption</span><strong>Month 9: 21 leads</strong></div>
+      </div>
       </div>
       <div class="forecast-subpanel" id="forecast-brightcraft-dental-laser-panel" role="tabpanel" aria-labelledby="forecast-brightcraft-dental-laser-tab" hidden>
         <div class="location-report-head">
