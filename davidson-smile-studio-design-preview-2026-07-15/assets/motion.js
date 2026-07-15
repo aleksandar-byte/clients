@@ -43,6 +43,19 @@
     });
   }
 
+  const reviewMenus = [...document.querySelectorAll('.review-menu')];
+
+  document.addEventListener('click', (event) => {
+    reviewMenus.forEach((menu) => {
+      if (!menu.contains(event.target)) menu.removeAttribute('open');
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    reviewMenus.forEach((menu) => menu.removeAttribute('open'));
+  });
+
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   if (reducedMotion.matches || !('IntersectionObserver' in window)) {

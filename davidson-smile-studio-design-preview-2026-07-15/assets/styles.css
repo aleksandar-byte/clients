@@ -149,6 +149,60 @@ main [id] {
   text-transform: uppercase;
 }
 
+.review-menu {
+  position: relative;
+}
+
+.review-menu summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.review-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.review-menu summary span {
+  font-size: 14px;
+  transition: transform 160ms ease;
+}
+
+.review-menu[open] summary span {
+  transform: rotate(180deg);
+}
+
+.review-menu-list {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 18px);
+  right: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(190px, 1fr));
+  width: min(440px, calc(100vw - 40px));
+  padding: 10px;
+  border: 1px solid rgba(16, 48, 54, 0.14);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 0 18px 45px rgba(16, 48, 54, 0.16);
+}
+
+.review-menu-list a {
+  padding: 11px 12px;
+  border-radius: 5px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.review-menu-list a:hover,
+.review-menu-list a:focus-visible {
+  color: var(--ink);
+  background: rgba(116, 165, 148, 0.14);
+}
+
 .nav-actions {
   justify-content: flex-end;
   gap: 16px;
@@ -709,6 +763,24 @@ textarea {
     border-radius: 5px;
   }
 
+  .review-menu summary {
+    padding: 13px 14px;
+  }
+
+  .review-menu-list {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: auto;
+    margin: 0 8px 8px;
+    padding: 6px;
+    border-color: rgba(16, 48, 54, 0.1);
+    box-shadow: none;
+  }
+
+  .review-menu-list a {
+    padding: 10px;
+  }
+
   .nav-links a:hover,
   .nav-links a:focus-visible,
   .nav-links a[aria-current="page"] {
@@ -816,6 +888,10 @@ textarea {
   .nav-links {
     right: 18px;
     left: 18px;
+  }
+
+  .review-menu-list {
+    grid-template-columns: 1fr;
   }
 
   .nav-actions .text-link {
