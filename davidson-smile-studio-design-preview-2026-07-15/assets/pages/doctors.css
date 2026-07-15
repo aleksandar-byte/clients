@@ -317,6 +317,10 @@ button:focus-visible {
   align-items: center;
 }
 
+.page-contact > * {
+  min-width: 0;
+}
+
 .contact-panel {
   padding: 30px;
   color: var(--paper);
@@ -339,6 +343,7 @@ button:focus-visible {
 .contact-panel a {
   margin-bottom: 8px;
   font-weight: 800;
+  overflow-wrap: anywhere;
 }
 
 .contact-panel span {
