@@ -42,7 +42,7 @@ button:focus-visible {
   flex-direction: column;
   justify-content: center;
   max-width: 740px;
-  padding: 84px 64px 84px max(28px, calc((100vw - 1220px) / 2));
+  padding: 84px 64px 84px max(28px, calc((100vw - 1220px) / 2 + 28px));
 }
 
 .page-hero h1 {
@@ -70,10 +70,9 @@ button:focus-visible {
 }
 
 .page-hero-media-nicholas img {
-  width: 132%;
-  max-width: none;
-  margin-left: -32%;
-  object-position: right center;
+  width: 100%;
+  margin-left: 0;
+  object-position: center 24%;
 }
 
 .page-hero-actions {
@@ -129,6 +128,10 @@ button:focus-visible {
   max-width: 1220px;
   margin: 0 auto;
   padding: 104px 28px;
+}
+
+.team-list {
+  padding-bottom: 0;
 }
 
 .page-intro {
@@ -188,11 +191,11 @@ button:focus-visible {
 }
 
 .team-photo-nicholas img {
-  object-position: 100% center;
+  object-position: center 22%;
 }
 
 .team-photo-farrah img {
-  object-position: 0 center;
+  object-position: center 28%;
 }
 
 .team-copy > p,
@@ -272,8 +275,8 @@ button:focus-visible {
 
 .care-section {
   max-width: none;
-  padding-left: max(28px, calc((100vw - 1220px) / 2));
-  padding-right: max(28px, calc((100vw - 1220px) / 2));
+  padding-left: max(28px, calc((100vw - 1220px) / 2 + 28px));
+  padding-right: max(28px, calc((100vw - 1220px) / 2 + 28px));
   background: var(--warm);
 }
 
@@ -369,6 +372,29 @@ button:focus-visible {
   .team-photo {
     max-width: 620px;
   }
+
+  .page-intro,
+  .team-list,
+  .bio-section,
+  .care-section,
+  .page-contact {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .team-list {
+    padding-bottom: 0;
+  }
+
+  .page-intro {
+    gap: 48px;
+  }
+
+  .bio-section,
+  .care-section,
+  .page-contact {
+    gap: 52px;
+  }
 }
 
 @media (max-width: 720px) {
@@ -407,6 +433,7 @@ button:focus-visible {
     border-right: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
     border-left: 1px solid var(--line);
+    padding: 22px 24px;
   }
 
   .page-intro,
@@ -419,6 +446,17 @@ button:focus-visible {
 
   .team-list {
     padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .page-intro {
+    gap: 38px;
+  }
+
+  .bio-section,
+  .care-section,
+  .page-contact {
+    gap: 40px;
   }
 
   .team-profile {

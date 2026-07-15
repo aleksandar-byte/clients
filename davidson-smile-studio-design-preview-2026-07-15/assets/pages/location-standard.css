@@ -211,7 +211,7 @@ button:focus-visible {
 
 .visit-content {
   max-width: 690px;
-  padding: 92px max(28px, calc((100vw - 1220px) / 2));
+  padding: 92px max(28px, calc((100vw - 1220px) / 2 + 28px));
 }
 
 .visit-steps {
@@ -287,7 +287,7 @@ button:focus-visible {
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 50px;
-  padding: 76px max(28px, calc((100vw - 1220px) / 2));
+  padding: 76px max(28px, calc((100vw - 1220px) / 2 + 28px));
   color: var(--paper);
   background: var(--ink);
 }
@@ -525,6 +525,27 @@ button:focus-visible {
     max-width: 520px;
   }
 
+  .page-hero-inner {
+    gap: 36px;
+    padding: 64px 28px;
+  }
+
+  .location-intro,
+  .care-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .visit-content {
+    padding: 80px 28px;
+  }
+
+  .direction-cta,
+  .standard-cta {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
   .location-facts {
     margin-top: 0;
   }
@@ -557,6 +578,8 @@ button:focus-visible {
   .standard-layout {
     grid-template-columns: 220px minmax(0, 1fr);
     gap: 54px;
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 }
 

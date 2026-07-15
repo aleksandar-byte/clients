@@ -35,13 +35,13 @@
 .cp-contact-hero .cp-hero-media {
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.62) 48%, rgba(0, 0, 0, 0.2) 100%),
-    url("../img/hero-street-2.png") center / cover no-repeat;
+    url("../img/hero-services.jpg") center 42% / cover no-repeat;
 }
 
 .cp-patient-hero .cp-hero-media {
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.66) 50%, rgba(0, 0, 0, 0.24) 100%),
-    url("../img/service-family.jpg") center 42% / cover no-repeat;
+    url("../img/hero-visit.jpg") center 45% / cover no-repeat;
 }
 
 .cp-hero-inner {
@@ -301,7 +301,7 @@ button:focus-visible {
 .cp-location-copy {
   align-self: center;
   max-width: 610px;
-  padding: 80px max(28px, calc((100vw - 1220px) / 2));
+  padding: 80px max(28px, calc((100vw - 1220px) / 2 + 28px));
   padding-left: 70px;
 }
 
@@ -406,7 +406,7 @@ button:focus-visible {
   display: grid;
   grid-template-columns: minmax(0, 0.72fr) minmax(380px, 0.58fr);
   gap: 80px;
-  padding: 104px max(28px, calc((100vw - 1220px) / 2));
+  padding: 104px max(28px, calc((100vw - 1220px) / 2 + 28px));
   background: var(--warm);
 }
 
@@ -502,7 +502,7 @@ button:focus-visible {
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
   gap: 60px;
-  padding: 82px max(28px, calc((100vw - 1220px) / 2));
+  padding: 82px max(28px, calc((100vw - 1220px) / 2 + 28px));
   color: var(--paper);
   background: var(--ink);
 }
@@ -518,6 +518,13 @@ button:focus-visible {
   font-size: 18px;
 }
 
+.cp-insurance-section,
+.cp-payment-band,
+.cp-first-visit,
+.cp-faq-section {
+  scroll-margin-top: 200px;
+}
+
 @media (max-width: 1040px) {
   .cp-hero-inner,
   .cp-contact-section,
@@ -530,7 +537,8 @@ button:focus-visible {
   }
 
   .cp-hero-inner {
-    gap: 36px;
+    gap: 32px;
+    padding: 64px 28px;
   }
 
   .cp-hours-card {
@@ -541,12 +549,17 @@ button:focus-visible {
     margin-top: 0;
   }
 
-  .cp-contact-section {
-    padding-top: 104px;
+  .cp-contact-section,
+  .cp-insurance-section,
+  .cp-payment-band,
+  .cp-first-visit,
+  .cp-faq-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 
   .cp-location-copy {
-    padding: 72px 28px;
+    padding: 80px 28px;
   }
 
   .cp-section-intro .eyebrow {
@@ -565,6 +578,13 @@ button:focus-visible {
 }
 
 @media (max-width: 720px) {
+  .cp-insurance-section,
+  .cp-payment-band,
+  .cp-first-visit,
+  .cp-faq-section {
+    scroll-margin-top: 123px;
+  }
+
   .cp-hero,
   .cp-hero-inner {
     min-height: auto;

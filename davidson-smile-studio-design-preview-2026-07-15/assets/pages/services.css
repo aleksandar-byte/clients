@@ -44,11 +44,13 @@ textarea:focus-visible,
 }
 
 .page-hero-services .page-hero-media {
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.91) 0%, rgba(0, 0, 0, 0.65) 53%, rgba(0, 0, 0, 0.22) 100%), url("../img/hero-street-2.png");
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.91) 0%, rgba(0, 0, 0, 0.65) 53%, rgba(0, 0, 0, 0.22) 100%), url("../img/hero-services.jpg");
+  background-position: center, center 42%;
 }
 
 .page-hero-implants .page-hero-media {
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.67) 51%, rgba(0, 0, 0, 0.26) 100%), url("../img/service-implants.png");
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.67) 51%, rgba(0, 0, 0, 0.26) 100%), url("../img/hero-implants.jpg");
+  background-position: center, center 46%;
 }
 
 .page-hero-inner {
@@ -210,7 +212,7 @@ textarea:focus-visible,
   grid-template-columns: minmax(0, 0.72fr) minmax(420px, 0.8fr);
   gap: 70px;
   align-items: center;
-  padding: 104px max(28px, calc((100vw - 1220px) / 2));
+  padding: 104px max(28px, calc((100vw - 1220px) / 2 + 28px));
   background: var(--warm);
 }
 
@@ -350,8 +352,8 @@ textarea:focus-visible,
 
 .option-section {
   max-width: none;
-  padding-left: max(28px, calc((100vw - 1220px) / 2));
-  padding-right: max(28px, calc((100vw - 1220px) / 2));
+  padding-left: max(28px, calc((100vw - 1220px) / 2 + 28px));
+  padding-right: max(28px, calc((100vw - 1220px) / 2 + 28px));
   background: var(--warm);
 }
 
@@ -437,7 +439,7 @@ textarea:focus-visible,
   display: grid;
   grid-template-columns: 70px 1fr;
   gap: 28px;
-  padding: 0 0 38px;
+  padding: 0;
 }
 
 .process-timeline li > span {
@@ -452,7 +454,8 @@ textarea:focus-visible,
 }
 
 .process-timeline li:not(:last-child) > div {
-  padding-bottom: 38px;
+  margin-bottom: 28px;
+  padding-bottom: 28px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -463,8 +466,8 @@ textarea:focus-visible,
 
 .comparison-section {
   max-width: none;
-  padding-left: max(28px, calc((100vw - 1220px) / 2));
-  padding-right: max(28px, calc((100vw - 1220px) / 2));
+  padding-left: max(28px, calc((100vw - 1220px) / 2 + 28px));
+  padding-right: max(28px, calc((100vw - 1220px) / 2 + 28px));
   background: var(--warm);
 }
 
@@ -516,7 +519,7 @@ tbody td {
 .implant-doctor-band .doctor-image img {
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 18%;
 }
 
 @media (max-width: 1040px) {
@@ -530,8 +533,30 @@ tbody td {
   }
 
   .page-hero-inner {
-    gap: 38px;
+    gap: 32px;
+    padding: 64px 28px;
+  }
+
+  .choice-section,
+  .decision-section,
+  .faq-section,
+  .content-split,
+  .option-section,
+  .process-section,
+  .comparison-section,
+  .guidance-band,
+  .candidate-band,
+  .cost-band {
+    padding-top: 80px;
     padding-bottom: 80px;
+  }
+
+  .guidance-band,
+  .candidate-band,
+  .cost-band,
+  .content-split,
+  .doctor-band {
+    gap: 48px;
   }
 
   .page-hero-aside {
@@ -608,6 +633,14 @@ tbody td {
     grid-column: auto;
   }
 
+  .option-grid article {
+    padding: 26px 24px;
+  }
+
+  .option-grid .option-number {
+    margin-bottom: 20px;
+  }
+
   .guidance-band,
   .candidate-band,
   .cost-band,
@@ -619,6 +652,12 @@ tbody td {
     min-height: 340px;
   }
 
+  .compact-doctor-band,
+  .implant-doctor-band {
+    gap: 38px;
+    padding: 72px 20px;
+  }
+
   .process-timeline li {
     grid-template-columns: 48px 1fr;
     gap: 16px;
@@ -627,6 +666,11 @@ tbody td {
   .process-timeline li > span {
     width: 42px;
     height: 42px;
+  }
+
+  .process-timeline li:not(:last-child) > div {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
   }
 
   .faq-list summary {

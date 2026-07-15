@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 84px max(28px, calc((100vw - 1220px) / 2));
+  padding: 84px max(28px, calc((100vw - 1220px) / 2 + 28px));
   padding-right: 64px;
 }
 
@@ -272,7 +272,7 @@
   grid-template-columns: minmax(0, 0.75fr) minmax(340px, 0.55fr);
   gap: 72px;
   align-items: center;
-  padding: 86px max(28px, calc((100vw - 1220px) / 2));
+  padding: 86px max(28px, calc((100vw - 1220px) / 2 + 28px));
   color: var(--paper);
   background: var(--ink);
 }
@@ -634,6 +634,18 @@
     min-height: 430px;
   }
 
+  .blog-feature,
+  .blog-feed,
+  .related-articles {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .blog-cta {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
   .blog-card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -641,6 +653,8 @@
   .article-layout {
     grid-template-columns: 210px minmax(0, 650px);
     gap: 48px;
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 
   .related-grid article {
